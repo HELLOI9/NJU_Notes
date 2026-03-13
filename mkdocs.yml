@@ -1,0 +1,56 @@
+site_name: HELLOI's Course Note
+site_url: https://helloi9.github.io/NJU_Notes/
+site_description: Studying at The School of Intelligent Software and Engineering of Nanjing University
+repo_url: https://github.com/helloi9/NJU_Notes
+repo_name: helloi9/NJU_Notes
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Course Notes:
+      - Introduction: notes/intro.md
+  - Blog:
+      - First Post: blog/first-post.md
+  - About: about.md
