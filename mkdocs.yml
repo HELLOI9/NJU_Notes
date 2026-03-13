@@ -108,7 +108,14 @@ extra_javascript:
 nav:
   - Home: index.md
   - Course Notes:
-      - Introduction: notes/intro.md
+      - Introduction: notes/introduction.md
+      - The second semester of sophomore year:
+        - Internet Computing: notes/The second semester of sophomore year/Internet Computing/introduction.md
+        - New Technologies in Mobile Networks: notes/The second semester of sophomore year/New Technologies in Mobile Networks/introduction.md
+        - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer Interaction Systems/introduction.md
+        - Foundations of Data Management: notes/The second semester of sophomore year/Foundations of Data Management/introduction.md
+        - Computer Operating Systems: notes/The second semester of sophomore year/Computer Operating Systems/introduction.md
+        - Software Engineering and Computing II: notes/The second semester of sophomore year/Software Engineering and Computing II/introduction.md
   - Blog:
       - First Post: blog/first-post.md
   - About: about.md
