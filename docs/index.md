@@ -16,21 +16,6 @@ Welcome! This site hosts my personal course notes taken during my time at NJU. F
 
 ---
 
-## 🚀 Quick Start
-
-```bash
-# Clone the repo
-git clone https://github.com/helloi9/NJU_Notes.git
-
-# Serve locally
-mkdocs serve
-
-# Build static site
-mkdocs build
-```
-
----
-
 ## 📌 About This Site
 
 - Built with [MkDocs](https://www.mkdocs.org) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
