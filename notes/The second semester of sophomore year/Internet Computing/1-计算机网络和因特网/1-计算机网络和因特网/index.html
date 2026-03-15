@@ -1,0 +1,3892 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/">
+      
+      
+        <link rel="prev" href="../../Introduction/introduction/">
+      
+      
+        <link rel="next" href="../../../New%20Technologies%20in%20Mobile%20Networks/introduction/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>1-计算机网络和因特网 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#计算机网络与因特网" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1-计算机网络和因特网
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-课程定位与本讲范围" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 课程定位与本讲范围
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 课程定位与本讲范围">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-课程整体结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 课程整体结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-计算机网络与互联网的基本概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 计算机网络与互联网的基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 计算机网络与互联网的基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-什么是网络network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 什么是网络（Network）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 什么是网络（Network）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-什么是因特网internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 什么是因特网（Internet）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 什么是因特网（Internet）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#互联网的本质" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        互联网的本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-三个基本问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 三个基本问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-互联网的组成" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 互联网的组成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 互联网的组成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-组件视角component-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 组件视角（Component View）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 组件视角（Component View）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1端系统hosts--end-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1）端系统（Hosts / End Systems）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2通信链路communication-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2）通信链路（Communication Links）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3路由器routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3）路由器（Routers）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-服务视角service-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 服务视角（Service View）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 服务视角（Service View）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#支持的典型分布式应用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        支持的典型分布式应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#提供的通信服务类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提供的通信服务类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-协议protocol与标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 协议（Protocol）与标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 协议（Protocol）与标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#互联网标准组织" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        互联网标准组织
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-接入互联网" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 接入互联网
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 接入互联网">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-网络边缘network-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 网络边缘（Network Edge）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 网络边缘（Network Edge）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#两种主要应用模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两种主要应用模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="两种主要应用模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#客户机服务器模型clientserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        客户机/服务器模型（Client/Server）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对等模型p2p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对等模型（P2P）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-接入网络access-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 接入网络（Access Networks）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 接入网络（Access Networks）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#家庭接入网络" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        家庭接入网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#公司--学校接入局域网lan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公司 &amp; 学校接入：局域网（LAN）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#无线接入网络" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        无线接入网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-网络核心network-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 网络核心（Network Core）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-物理介质physical-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 物理介质（Physical Media）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 物理介质（Physical Media）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-基本概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#两大类物理介质" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两大类物理介质
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-现代家庭网络示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 现代家庭网络示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-网络核心与数据交换方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 网络核心与数据交换方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 网络核心与数据交换方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-网络核心network-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 网络核心（Network Core）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-电路交换circuit-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 电路交换（Circuit Switching）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-分组交换packet-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 分组交换（Packet Switching）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-拥塞排队与丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 拥塞、排队与丢失
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 拥塞、排队与丢失">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#资源竞争resource-contention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        资源竞争（Resource Contention）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#拥塞congestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拥塞（Congestion）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-统计多路复用statistical-multiplexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 统计多路复用（Statistical Multiplexing）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-虚电路virtual-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 虚电路（Virtual Circuit）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-三种交换方式比较" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8 三种交换方式比较
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-分层思想与协议体系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 分层思想与协议体系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 分层思想与协议体系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-为什么要分层layering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 为什么要分层（Layering）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-osi-参考模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. OSI 参考模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. OSI 参考模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#osi-模型简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OSI 模型简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#osi-七层及功能" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OSI 七层及功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OSI 七层及功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1物理层physical-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1）物理层（Physical Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2数据链路层data-link-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2）数据链路层（Data Link Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3网络层network-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3）网络层（Network Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4运输层transport-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4）运输层（Transport Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5会话层session-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5）会话层（Session Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6表示层presentation-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6）表示层（Presentation Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7应用层application-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7）应用层（Application Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-tcpip-协议体系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. TCP/IP 协议体系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. TCP/IP 协议体系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcpip-五层结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCP/IP 五层结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#各层功能与典型协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各层功能与典型协议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各层功能与典型协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1应用层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1）应用层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2运输层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2）运输层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3网络层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3）网络层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4链路层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4）链路层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5物理层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5）物理层
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-思想ip是沙漏腰部" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 思想：IP是沙漏腰部
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 思想：IP是沙漏腰部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#窄腰narrow-waist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        窄腰（Narrow Waist）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-封装encapsulation与协议数据单元pdu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 封装（Encapsulation）与协议数据单元（PDU）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. 封装（Encapsulation）与协议数据单元（PDU）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdu协议数据单元" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDU（协议数据单元）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-网络性能指标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 网络性能指标
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. 网络性能指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#时延delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时延（Delay）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="时延（Delay）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#传输时延transmission-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传输时延（Transmission Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#传播时延propagation-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传播时延（Propagation Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#排队时延queueing-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        排队时延（Queueing Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#处理时延processing-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理时延（Processing Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#端到端时延end-to-end-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端到端时延（End-to-End Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#丢包loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        丢包（Loss）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#吞吐量throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        吞吐量（Throughput）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="吞吐量（Throughput）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#端到端吞吐量与瓶颈链路" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端到端吞吐量与瓶颈链路
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-排队论基础little-定律" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 排队论基础：Little 定律
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 排队论基础：Little 定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#基本术语" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本术语
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#littles-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Little’s Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Human-Computer%20Interaction%20Systems/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human-Computer Interaction Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-课程定位与本讲范围" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 课程定位与本讲范围
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 课程定位与本讲范围">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-课程整体结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 课程整体结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-计算机网络与互联网的基本概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 计算机网络与互联网的基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 计算机网络与互联网的基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-什么是网络network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 什么是网络（Network）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 什么是网络（Network）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-什么是因特网internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 什么是因特网（Internet）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 什么是因特网（Internet）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#互联网的本质" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        互联网的本质
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-三个基本问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 三个基本问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-互联网的组成" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 互联网的组成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 互联网的组成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-组件视角component-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 组件视角（Component View）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 组件视角（Component View）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1端系统hosts--end-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1）端系统（Hosts / End Systems）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2通信链路communication-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2）通信链路（Communication Links）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3路由器routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3）路由器（Routers）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-服务视角service-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 服务视角（Service View）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 服务视角（Service View）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#支持的典型分布式应用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        支持的典型分布式应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#提供的通信服务类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提供的通信服务类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-协议protocol与标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 协议（Protocol）与标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 协议（Protocol）与标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#互联网标准组织" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        互联网标准组织
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-接入互联网" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 接入互联网
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 接入互联网">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-网络边缘network-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 网络边缘（Network Edge）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 网络边缘（Network Edge）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#两种主要应用模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两种主要应用模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="两种主要应用模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#客户机服务器模型clientserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        客户机/服务器模型（Client/Server）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对等模型p2p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对等模型（P2P）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-接入网络access-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 接入网络（Access Networks）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 接入网络（Access Networks）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#家庭接入网络" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        家庭接入网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#公司--学校接入局域网lan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公司 &amp; 学校接入：局域网（LAN）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#无线接入网络" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        无线接入网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-网络核心network-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 网络核心（Network Core）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-物理介质physical-media" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 物理介质（Physical Media）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 物理介质（Physical Media）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-基本概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#两大类物理介质" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两大类物理介质
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-现代家庭网络示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 现代家庭网络示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-网络核心与数据交换方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 网络核心与数据交换方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 网络核心与数据交换方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-网络核心network-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 网络核心（Network Core）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-电路交换circuit-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 电路交换（Circuit Switching）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-分组交换packet-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 分组交换（Packet Switching）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-拥塞排队与丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 拥塞、排队与丢失
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 拥塞、排队与丢失">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#资源竞争resource-contention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        资源竞争（Resource Contention）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#拥塞congestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拥塞（Congestion）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-统计多路复用statistical-multiplexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 统计多路复用（Statistical Multiplexing）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-虚电路virtual-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 虚电路（Virtual Circuit）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-三种交换方式比较" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8 三种交换方式比较
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-分层思想与协议体系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 分层思想与协议体系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 分层思想与协议体系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-为什么要分层layering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 为什么要分层（Layering）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-osi-参考模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. OSI 参考模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. OSI 参考模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#osi-模型简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OSI 模型简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#osi-七层及功能" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OSI 七层及功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OSI 七层及功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1物理层physical-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1）物理层（Physical Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2数据链路层data-link-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2）数据链路层（Data Link Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3网络层network-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3）网络层（Network Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4运输层transport-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4）运输层（Transport Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5会话层session-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5）会话层（Session Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6表示层presentation-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6）表示层（Presentation Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7应用层application-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7）应用层（Application Layer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-tcpip-协议体系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. TCP/IP 协议体系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. TCP/IP 协议体系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcpip-五层结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCP/IP 五层结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#各层功能与典型协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各层功能与典型协议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各层功能与典型协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1应用层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1）应用层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2运输层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2）运输层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3网络层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3）网络层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4链路层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4）链路层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5物理层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5）物理层
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-思想ip是沙漏腰部" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 思想：IP是沙漏腰部
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 思想：IP是沙漏腰部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#窄腰narrow-waist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        窄腰（Narrow Waist）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-封装encapsulation与协议数据单元pdu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 封装（Encapsulation）与协议数据单元（PDU）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. 封装（Encapsulation）与协议数据单元（PDU）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdu协议数据单元" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDU（协议数据单元）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-网络性能指标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 网络性能指标
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. 网络性能指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#时延delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时延（Delay）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="时延（Delay）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#传输时延transmission-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传输时延（Transmission Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#传播时延propagation-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传播时延（Propagation Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#排队时延queueing-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        排队时延（Queueing Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#处理时延processing-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理时延（Processing Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#端到端时延end-to-end-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端到端时延（End-to-End Delay）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#丢包loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        丢包（Loss）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#吞吐量throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        吞吐量（Throughput）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="吞吐量（Throughput）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#端到端吞吐量与瓶颈链路" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端到端吞吐量与瓶颈链路
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-排队论基础little-定律" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 排队论基础：Little 定律
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 排队论基础：Little 定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#基本术语" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本术语
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#littles-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Little’s Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="计算机网络与因特网">计算机网络与因特网<a class="headerlink" href="#计算机网络与因特网" title="Permanent link">&para;</a></h1>
+<h2 id="1-课程定位与本讲范围">1. 课程定位与本讲范围<a class="headerlink" href="#1-课程定位与本讲范围" title="Permanent link">&para;</a></h2>
+<h3 id="11-课程整体结构">1.1 课程整体结构<a class="headerlink" href="#11-课程整体结构" title="Permanent link">&para;</a></h3>
+<p>本课程包含如下模块：</p>
+<ul>
+<li>计算机网络和因特网</li>
+<li>应用层</li>
+<li>运输层</li>
+<li>网络层：数据平面</li>
+<li>网络层：控制平面</li>
+<li>链路层和局域网</li>
+<li>无线网络和移动网络</li>
+<li>计算机网络中的安全</li>
+<li>习题课和总复习</li>
+</ul>
+<hr />
+<h2 id="2-计算机网络与互联网的基本概念">2. 计算机网络与互联网的基本概念<a class="headerlink" href="#2-计算机网络与互联网的基本概念" title="Permanent link">&para;</a></h2>
+<h3 id="21-什么是网络network">2.1 什么是网络（Network）<a class="headerlink" href="#21-什么是网络network" title="Permanent link">&para;</a></h3>
+<h4 id="核心定义">核心定义<a class="headerlink" href="#核心定义" title="Permanent link">&para;</a></h4>
+<p>网络可以抽象定义为：</p>
+<ul>
+<li>由若干“<strong>节点</strong>”组成</li>
+<li>节点之间通过“<strong>链路</strong>”互连</li>
+<li>用于在节点之间传递“<strong>信息</strong>”</li>
+</ul>
+<hr />
+<h3 id="22-什么是因特网internet">2.2 什么是因特网（Internet）<a class="headerlink" href="#22-什么是因特网internet" title="Permanent link">&para;</a></h3>
+<h4 id="互联网的本质">互联网的本质<a class="headerlink" href="#互联网的本质" title="Permanent link">&para;</a></h4>
+<p>互联网是：</p>
+<ul>
+<li>一个<strong>全球互联的计算机网络系统</strong></li>
+<li>使用 <strong>TCP/IP 协议族</strong></li>
+<li>连接数十亿设备</li>
+<li>本质上是一个“<strong>网络的网络（network of networks）</strong>”</li>
+</ul>
+<hr />
+<h2 id="3-三个基本问题">3. 三个基本问题<a class="headerlink" href="#3-三个基本问题" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Q1：互联网由什么组成？</p>
+</li>
+<li>
+<p>Q2：如何接入互联网？</p>
+</li>
+<li>
+<p>Q3：数据如何在网络中传输？</p>
+</li>
+</ul>
+<hr />
+<h2 id="4-互联网的组成">4. 互联网的组成<a class="headerlink" href="#4-互联网的组成" title="Permanent link">&para;</a></h2>
+<h3 id="41-组件视角component-view">4.1 组件视角（Component View）<a class="headerlink" href="#41-组件视角component-view" title="Permanent link">&para;</a></h3>
+<p>从组件角度看，互联网由三大部分组成：</p>
+<h4 id="1端系统hosts--end-systems">1）端系统（Hosts / End Systems）<a class="headerlink" href="#1端系统hosts--end-systems" title="Permanent link">&para;</a></h4>
+<p>一般来说，Host（主机）指的是：
+* “连接在网络边缘、能运行网络应用的设备”
+* 通常有自己的网络地址（如IP），能发送/接收数据
+* 既可以是客户端（手机、电脑），也可以是服务器（网站服务器、云主机）</p>
+<p>End Systems(端系统)：
+* 更强调它处在网络的“端点”（网络边缘）
+* 端系统的主要特点是：运行网络应用（network applications），例如浏览器/微信/网盘/视频会议/游戏客户端、服务器端程序等</p>
+<details class="note">
+<summary>注意</summary>
+<p>根据上述的定义，Hosts = End system.</p>
+</details>
+<h4 id="2通信链路communication-links">2）通信链路（Communication Links）<a class="headerlink" href="#2通信链路communication-links" title="Permanent link">&para;</a></h4>
+<p>用于连接设备和网络设备，可采用：光纤（Fiber）、铜缆(Copper)、无线电(Radio)、卫星(Satelite)</p>
+<h4 id="3路由器routers">3）路由器（Routers）<a class="headerlink" href="#3路由器routers" title="Permanent link">&para;</a></h4>
+<ul>
+<li>在不同物理网络之间<strong>转发分组</strong></li>
+<li>是互联网核心中的关键设备</li>
+</ul>
+<details class="warning">
+<summary>警告</summary>
+<p>只要负责把数据包从一个网络转发到另一个网络的设备，都叫路由器。这里所说的“路由器”更加侧重于在ISP中的路由器（网络核心），重点是高速转发、稳定性、冗余并且跑各种路由协议，一般不做NAT。</p>
+<p>而我们一般的家用路由器，位于网络边缘，是局域网通向ISP的网关，集成了:</p>
+<ul>
+<li>NAT（地址转换）：把家里多台设备共享一个公网 IP（最典型差异）</li>
+<li>DHCP：自动给家里设备分配内网 IP</li>
+<li>防火墙/简单安全策略</li>
+<li>Wi-Fi 接入点（AP）</li>
+<li>以太网交换机（LAN 口其实是 switch 功能）</li>
+<li>有些还带 光猫/Modem（运营商一体机）</li>
+</ul>
+<p>需要区分。</p>
+</details>
+<hr />
+<h3 id="42-服务视角service-view">4.2 服务视角（Service View）<a class="headerlink" href="#42-服务视角service-view" title="Permanent link">&para;</a></h3>
+<p>从服务角度看，互联网是一种<strong>通信基础设施</strong>，为应用程序提供通信服务。</p>
+<h4 id="支持的典型分布式应用">支持的典型分布式应用<a class="headerlink" href="#支持的典型分布式应用" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Web、VoIP、电子邮件、在线游戏、电子商务、文件共享</li>
+</ul>
+<h4 id="提供的通信服务类型">提供的通信服务类型<a class="headerlink" href="#提供的通信服务类型" title="Permanent link">&para;</a></h4>
+<ul>
+<li>可靠数据传输</li>
+<li>尽力而为（best effort）传输</li>
+<li>有保证的时延与吞吐量</li>
+</ul>
+<hr />
+<h3 id="43-协议protocol与标准">4.3 协议（Protocol）与标准<a class="headerlink" href="#43-协议protocol与标准" title="Permanent link">&para;</a></h3>
+<h4 id="协议">协议<a class="headerlink" href="#协议" title="Permanent link">&para;</a></h4>
+<p>协议用于规定：</p>
+<ul>
+<li>消息的<strong>格式</strong></li>
+<li>消息的<strong>发送顺序</strong></li>
+<li>消息接收后的<strong>动作</strong></li>
+<li>某些事件发生后的处理方式</li>
+</ul>
+<p>网络中的所有通信活动都由协议控制。机器通信不是随意的，而是严格按协议执行。</p>
+<p>常见网络协议：</p>
+<ul>
+<li>应用层：HTTP、Skype</li>
+<li>运输层：TCP</li>
+<li>网络层：IP</li>
+<li>链路层：PPP、Ethernet</li>
+</ul>
+<h4 id="互联网标准组织">互联网标准组织<a class="headerlink" href="#互联网标准组织" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>IETF</p>
+<ul>
+<li>Internet Engineering Task Force</li>
+<li>负责制定互联网标准</li>
+</ul>
+</li>
+<li>
+<p>RFC</p>
+<ul>
+<li>Request for Comments</li>
+<li>互联网标准和技术文档的重要载体</li>
+</ul>
+</li>
+</ol>
+<details class="info">
+<summary>说明</summary>
+<p>在网络中，<strong>绝对可靠性</strong>很难实现，现实网络系统通常追求：高概率可靠、可检测丢失、可重传恢复，而非数学意义上的绝对保证。</p>
+</details>
+<hr />
+<h2 id="5-接入互联网">5. 接入互联网<a class="headerlink" href="#5-接入互联网" title="Permanent link">&para;</a></h2>
+<p>互联网接入可分成三部分：<strong>网络边缘（Network Edge）</strong>、<strong>接入网络（Access Networks）</strong>、<strong>网络核心（Network Core）</strong>。</p>
+<h3 id="51-网络边缘network-edge">5.1 网络边缘（Network Edge）<a class="headerlink" href="#51-网络边缘network-edge" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>定义：网络边缘是靠近用户和应用的一侧，主要由<strong>End System/hosts</strong>构成。</p>
+</li>
+<li>
+<p>特点：运行应用程序、发起或接收通信。</p>
+</li>
+</ul>
+<h4 id="两种主要应用模型">两种主要应用模型<a class="headerlink" href="#两种主要应用模型" title="Permanent link">&para;</a></h4>
+<h5 id="客户机服务器模型clientserver">客户机/服务器模型（Client/Server）<a class="headerlink" href="#客户机服务器模型clientserver" title="Permanent link">&para;</a></h5>
+<p>由客户端发起请求，服务器长期在线提供服务，例子：</p>
+<ul>
+<li>浏览器 &amp; Web 服务器</li>
+<li>邮件客户端 &amp; 邮件服务器</li>
+</ul>
+<h5 id="对等模型p2p">对等模型（P2P）<a class="headerlink" href="#对等模型p2p" title="Permanent link">&para;</a></h5>
+<p>尽量少依赖专用服务器，节点之间直接交换资源，例子：Skype、BitTorrent</p>
+<h3 id="52-接入网络access-networks">5.2 接入网络（Access Networks）<a class="headerlink" href="#52-接入网络access-networks" title="Permanent link">&para;</a></h3>
+<p>接入网络回答的是：<strong>端系统如何连接到边缘路由器？</strong></p>
+<p>接入网络的三大类:</p>
+<ul>
+<li>家庭(Residential)接入网络</li>
+<li>机构(Institutional)接入网络（学校、公司）</li>
+<li>移动(Mobile)接入网络</li>
+</ul>
+<h4 id="家庭接入网络">家庭接入网络<a class="headerlink" href="#家庭接入网络" title="Permanent link">&para;</a></h4>
+<p>1）拨号接入（Dial-up）：通过调制解调器接入，速率可达 56 Kbps，传统方式，速度慢</p>
+<p>2）DSL（数字用户线）：由电话公司部署、上行速率可到 1 Mbps、下行速率可到 8 Mbps，具有从家庭到电话局的<strong>专用物理线路</strong>。</p>
+<p>3）HFC（混合光纤同轴）：由有线电视公司部署，非对称速率：</p>
+<ul>
+<li>下行可到 30 Mbps</li>
+<li>上行约 2 Mbps</li>
+</ul>
+<p>多个家庭共享到 ISP 路由器的链路。</p>
+<h4 id="公司--学校接入局域网lan">公司 &amp; 学校接入：局域网（LAN）<a class="headerlink" href="#公司--学校接入局域网lan" title="Permanent link">&para;</a></h4>
+<p>公司或大学中，通常通过<strong>局域网（LAN）</strong>将终端连接到边缘路由器。</p>
+<p>一般使用以太网（Ethernet），支持速率包括：</p>
+<ul>
+<li>10 Mbps</li>
+<li>100 Mbps</li>
+<li>1 Gbps</li>
+<li>10 Gbps</li>
+</ul>
+<p>终端通常接入到以太网交换机，再通过交换机骨干互联。</p>
+<h4 id="无线接入网络">无线接入网络<a class="headerlink" href="#无线接入网络" title="Permanent link">&para;</a></h4>
+<p>无线接入通过共享无线信道（基站 or “接入点”）将端系统连接到路由器，通常通过：</p>
+<p>1）无线局域网（WLAN）</p>
+<ul>
+<li>802.11b/g，即 WiFi</li>
+<li>典型速率：11 Mbps / 54 Mbps</li>
+</ul>
+<p>2）广域无线接入</p>
+<ul>
+<li>由电信运营商提供</li>
+<li>覆盖范围可达几十公里</li>
+<li>速率约 1~10 Mbps</li>
+<li>典型技术：3G、4G、LTE、WiMax</li>
+</ul>
+<h3 id="53-网络核心network-core">5.3 网络核心（Network Core）<a class="headerlink" href="#53-网络核心network-core" title="Permanent link">&para;</a></h3>
+<p>网络核心是由路由器构成的网络架构，关注数据如何在网络中传输。</p>
+<p>有两种交换模式：</p>
+<ul>
+<li>电路交换：每次交换分配专用线路。</li>
+<li>分组交换：主机将应用层分割成数据包，通过链路将数据包从路由器转发到路由器。</li>
+</ul>
+<details class="waring">
+<summary>概念辨析</summary>
+<ul>
+<li>属于网络边缘的是：笔记本、手机、智能家居、服务器</li>
+<li>属于接入网络的是：双绞线、同轴电缆、无线路由器</li>
+<li>属于网络核心的是：路由器、交换机</li>
+</ul>
+</details>
+<hr />
+<h2 id="6-物理介质physical-media">6. 物理介质（Physical Media）<a class="headerlink" href="#6-物理介质physical-media" title="Permanent link">&para;</a></h2>
+<h3 id="61-基本概念">6.1 基本概念<a class="headerlink" href="#61-基本概念" title="Permanent link">&para;</a></h3>
+<p>bit: 在发送端和接收端之间传播的基本信息单位</p>
+<p>physical link: 发送器与接收器之间的实际物理连接</p>
+<h4 id="两大类物理介质">两大类物理介质<a class="headerlink" href="#两大类物理介质" title="Permanent link">&para;</a></h4>
+<p>1）导引型介质（Guided Media）</p>
+<p>信号沿着固体介质传播，例如：双绞线、同轴电缆、光纤。</p>
+<ul>
+<li>
+<p>双绞线：两根绝缘铜线缠绕组成，常用于以太网。典型类别有：</p>
+<ul>
+<li>Cat5：100 Mbps / 1 Gbps</li>
+<li>Cat6：10 Gbps</li>
+</ul>
+</li>
+<li>
+<p>同轴电缆：两层同心铜导体，双向传输，支持宽带、多信道</p>
+</li>
+<li>光纤：使用玻璃纤维传输光脉冲，每个脉冲代表一个 bit，可达几十到上百 Gbps。优点：高速、低误码率、中继器间距大、抗电磁干扰</li>
+</ul>
+<p>2）非导引型介质（Unguided Media）</p>
+<p>信号自由传播，例如：无线电。</p>
+<p>无线电使用电磁频谱传输，不需要实体导线，可双向通信，但是易受环境影响。</p>
+<p>常见的无线链路类型：地面微波、无线 LAN（WiFi）、广域蜂窝通信、卫星通信</p>
+<h3 id="62-现代家庭网络示例">6.2 现代家庭网络示例<a class="headerlink" href="#62-现代家庭网络示例" title="Permanent link">&para;</a></h3>
+<p>家庭网络常见组件包括：</p>
+<ul>
+<li>DSL 或 cable modem</li>
+<li>Router / Firewall / NAT</li>
+<li>Ethernet switch</li>
+<li>Wireless access point</li>
+</ul>
+<figure>
+<img alt="Modern Family" src="../../../../../assets/images/modern_family.png" width="60%" />
+</figure>
+<hr />
+<h2 id="7-网络核心与数据交换方式">7. 网络核心与数据交换方式<a class="headerlink" href="#7-网络核心与数据交换方式" title="Permanent link">&para;</a></h2>
+<h3 id="71-网络核心network-core">7.1 网络核心（Network Core）<a class="headerlink" href="#71-网络核心network-core" title="Permanent link">&para;</a></h3>
+<p>定义：网络核心是由<strong>互联路由器组成的网状结构</strong></p>
+<p>核心问题：数据如何穿过网络核心？</p>
+<ul>
+<li>电路交换（Circuit Switching）</li>
+<li>分组交换（Packet Switching）</li>
+<li>虚电路（Virtual Circuit）</li>
+</ul>
+<p>终端与网络通过交换设备连接，而不是彼此直接相连。这样做的好处是：</p>
+<ul>
+<li>支持大规模扩展</li>
+<li>若 <span class="arithmatex">\(N\)</span> 个节点两两直连，需要约 <span class="arithmatex">\(N^2\)</span> 条链路，代价过高</li>
+</ul>
+<h3 id="72-电路交换circuit-switching">7.2 电路交换（Circuit Switching）<a class="headerlink" href="#72-电路交换circuit-switching" title="Permanent link">&para;</a></h3>
+<p>基本机制:</p>
+<ol>
+<li>源节点向目的节点发送<strong>资源预约请求</strong></li>
+<li>交换设备进行<strong>接纳控制</strong></li>
+<li>若通过，则建立专用电路</li>
+<li>数据沿该专用电路传输</li>
+<li>通信结束后拆除电路</li>
+</ol>
+<p>特征：每条连接占用专用资源；性能可预测；一旦建立，交换简单快速。</p>
+<p>优点：性能稳定、可预测；时延抖动小；对实时业务友好</p>
+<p>缺点：建立和拆除电路复杂；专用资源浪费；对突发业务效率低；建立连接本身增加时延；交换机故障会导致相关电路失效。</p>
+<details class="tip">
+<summary>拓展</summary>
+<p>电路交换很适合光交换机。一般光交换机只做全光交换（因为光电交换从高速信号转化为低速信号会产生大量的发热，且电的速度实在是太慢），非常适合end to end.</p>
+</details>
+<hr />
+<h3 id="73-分组交换packet-switching">7.3 分组交换（Packet Switching）<a class="headerlink" href="#73-分组交换packet-switching" title="Permanent link">&para;</a></h3>
+<p>基本机制：</p>
+<ol>
+<li>主机把应用层消息切分成<strong>分组（packets）</strong></li>
+<li>每个分组携带目的地址</li>
+<li>路由器逐跳转发</li>
+<li>分组在每一跳采用<strong>存储-转发（store-and-forward）</strong>方式前进</li>
+</ol>
+<p>特征：每个分组独立处理、可共享网络资源、通过缓冲区吸收瞬时拥塞</p>
+<p>优点：资源利用率高、实现较简单、具有更强鲁棒性、可绕过故障路径</p>
+<p>缺点：性能不可预测、会产生排队时延、缓冲区满时会丢包、需要拥塞控制和缓冲管理</p>
+<details class="tip">
+<summary>拓展</summary>
+<p>分组交换很适合全电交换机。</p>
+</details>
+<h3 id="75-拥塞排队与丢失">7.5 拥塞、排队与丢失<a class="headerlink" href="#75-拥塞排队与丢失" title="Permanent link">&para;</a></h3>
+<h4 id="资源竞争resource-contention">资源竞争（Resource Contention）<a class="headerlink" href="#资源竞争resource-contention" title="Permanent link">&para;</a></h4>
+<p>当多个流同时争用同一输出链路时，总需求可能超过可用资源。</p>
+<h4 id="拥塞congestion">拥塞（Congestion）<a class="headerlink" href="#拥塞congestion" title="Permanent link">&para;</a></h4>
+<p>表现为：分组在队列中等待；队列过长时可能溢出；从而发生丢包。</p>
+<h3 id="76-统计多路复用statistical-multiplexing">7.6 统计多路复用（Statistical Multiplexing）<a class="headerlink" href="#76-统计多路复用statistical-multiplexing" title="Permanent link">&para;</a></h3>
+<p>定义：链路带宽采用“<strong>按需共享</strong>”的方式在多个用户之间分配。</p>
+<p>思想：</p>
+<ol>
+<li>不为每个用户固定保留资源</li>
+<li>依赖“不是所有用户都会同时活跃”这一事实</li>
+<li>在多数时候可支持比固定分配更多的用户</li>
+</ol>
+<p>代价：</p>
+<ol>
+<li>性能不可预测</li>
+<li>极端情况下会发生拥塞</li>
+</ol>
+<details class="info">
+<summary>例子</summary>
+<p>假设链路速率 10 Mbps，每个用户需求 1 Mbps，每个用户只有 10% 时间活跃。</p>
+<p>若用电路交换：最多支持 10 个用户。</p>
+<p>若用统计多路复用：可支持约 35 个用户，且有99.96%的概率每位用户仍可得到足够带宽。</p>
+</details>
+<h3 id="77-虚电路virtual-circuit">7.7 虚电路（Virtual Circuit）<a class="headerlink" href="#77-虚电路virtual-circuit" title="Permanent link">&para;</a></h3>
+<p>定义：虚电路可以看成是<strong>电路交换 + 分组交换的结合</strong>。</p>
+<p>特征：</p>
+<ol>
+<li>路径预先固定</li>
+<li>数据仍以分组形式传输，仍需拥塞控制</li>
+<li>资源共享，可能保留一定资源</li>
+<li>需要建立和拆除连接</li>
+</ol>
+<figure>
+<img alt="Virtual Circuit" src="../../../../../assets/images/Virtual_Circuit.png" width="40%" />
+</figure>
+<h3 id="78-三种交换方式比较">7.8 三种交换方式比较<a class="headerlink" href="#78-三种交换方式比较" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>电路交换</th>
+<th>数据报分组交换</th>
+<th>虚电路分组交换</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传输通路</td>
+<td>专用</td>
+<td>非专用</td>
+<td>非专用</td>
+</tr>
+<tr>
+<td>传输方式</td>
+<td>连续传输</td>
+<td>分组传输</td>
+<td>分组传输</td>
+</tr>
+<tr>
+<td>带宽使用</td>
+<td>固定</td>
+<td>动态</td>
+<td>动态</td>
+</tr>
+<tr>
+<td>路由</td>
+<td>固定</td>
+<td>动态</td>
+<td>固定</td>
+</tr>
+<tr>
+<td>时延特点</td>
+<td>只有呼叫建立时延</td>
+<td>分组传输有时延</td>
+<td>呼叫建立时延+分组传输时延</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>差（接入用户有上限）</td>
+<td>好（用户数量可动态扩充）</td>
+<td>较好（用户数量可动态扩充，有拥塞控制保证服务质量）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-分层思想与协议体系">8. 分层思想与协议体系<a class="headerlink" href="#8-分层思想与协议体系" title="Permanent link">&para;</a></h2>
+<h3 id="81-为什么要分层layering">8.1 为什么要分层（Layering）<a class="headerlink" href="#81-为什么要分层layering" title="Permanent link">&para;</a></h3>
+<p>网络系统非常复杂，包含：主机、路由器、多种链路、应用、协议、硬件与软件。</p>
+<p>因此需要一种清晰的组织方法。</p>
+<p>分层的作用：</p>
+<ol>
+<li>给复杂系统建立明确结构</li>
+<li>便于识别各部分功能及相互关系</li>
+<li>提高模块化程度</li>
+<li>便于维护与升级</li>
+<li>某层实现改变时，尽量不影响其他层</li>
+</ol>
+<hr />
+<h2 id="9-osi-参考模型">9. OSI 参考模型<a class="headerlink" href="#9-osi-参考模型" title="Permanent link">&para;</a></h2>
+<h3 id="osi-模型简介">OSI 模型简介<a class="headerlink" href="#osi-模型简介" title="Permanent link">&para;</a></h3>
+<p>OSI 由 ISO 提出，是一个<strong>七层模型</strong>。然而推出较晚，未成为实际主流，现实中 TCP/IP 更成功</p>
+<h3 id="osi-七层及功能">OSI 七层及功能<a class="headerlink" href="#osi-七层及功能" title="Permanent link">&para;</a></h3>
+<h4 id="1物理层physical-layer">1）物理层（Physical Layer）<a class="headerlink" href="#1物理层physical-layer" title="Permanent link">&para;</a></h4>
+<ul>
+<li>在链路上传输 bit</li>
+<li>规定机械、电气、光学、接口特性，负责链路的建立、维持、撤销</li>
+</ul>
+<details class="tip">
+<summary>量纲辨析</summary>
+<p>物理层速率一定是b(bit)，应用层的速率才是（Byte）</p>
+</details>
+<h4 id="2数据链路层data-link-layer">2）数据链路层（Data Link Layer）<a class="headerlink" href="#2数据链路层data-link-layer" title="Permanent link">&para;</a></h4>
+<ul>
+<li>将 bit 组织成帧（frame）</li>
+<li>在直接相连节点间传输帧</li>
+<li>链路管理、差错检测、重传控制、介质访问控制、流量控制</li>
+</ul>
+<h4 id="3网络层network-layer">3）网络层（Network Layer）<a class="headerlink" href="#3网络层network-layer" title="Permanent link">&para;</a></h4>
+<ul>
+<li>跨多个链路、多个网络传输分组</li>
+<li>大规模地址体系</li>
+<li>路由选择</li>
+<li>转发</li>
+<li>拥塞控制</li>
+<li>若为面向连接网络，还涉及连接建立、维护、释放</li>
+</ul>
+<h4 id="4运输层transport-layer">4）运输层（Transport Layer）<a class="headerlink" href="#4运输层transport-layer" title="Permanent link">&para;</a></h4>
+<ul>
+<li>端系统之间的进程到进程通信</li>
+<li>端到端数据传输</li>
+<li>可靠传输、顺序保证、无重复、无丢失</li>
+<li>连接管理</li>
+</ul>
+<h3 id="5会话层session-layer">5）会话层（Session Layer）<a class="headerlink" href="#5会话层session-layer" title="Permanent link">&para;</a></h3>
+<ul>
+<li>应用之间对话控制、会话管理、检查点与恢复</li>
+</ul>
+<h3 id="6表示层presentation-layer">6）表示层（Presentation Layer）<a class="headerlink" href="#6表示层presentation-layer" title="Permanent link">&para;</a></h3>
+<ul>
+<li>数据格式转换</li>
+<li>编码、压缩、加密</li>
+<li>机器无关表示</li>
+</ul>
+<h3 id="7应用层application-layer">7）应用层（Application Layer）<a class="headerlink" href="#7应用层application-layer" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用于为应用访问网络环境提供接口</li>
+</ul>
+<details class="info">
+<summary>INF0</summary>
+<p>会话层、表示层的很多功能在现实 TCP/IP 中通常并入应用层。</p>
+</details>
+<h2 id="10-tcpip-协议体系">10. TCP/IP 协议体系<a class="headerlink" href="#10-tcpip-协议体系" title="Permanent link">&para;</a></h2>
+<h3 id="tcpip-五层结构">TCP/IP 五层结构<a class="headerlink" href="#tcpip-五层结构" title="Permanent link">&para;</a></h3>
+<p>应用层、运输层、网络层（Internetwork）、链路层、物理层</p>
+<h3 id="各层功能与典型协议">各层功能与典型协议<a class="headerlink" href="#各层功能与典型协议" title="Permanent link">&para;</a></h3>
+<h4 id="1应用层">1）应用层<a class="headerlink" href="#1应用层" title="Permanent link">&para;</a></h4>
+<p>用于支持网络应用</p>
+<p>协议：FTP、SMTP、HTTP</p>
+<h4 id="2运输层">2）运输层<a class="headerlink" href="#2运输层" title="Permanent link">&para;</a></h4>
+<p>用于进程到进程的数据传输</p>
+<p>协议示例：TCP、UDP</p>
+<h4 id="3网络层">3）网络层<a class="headerlink" href="#3网络层" title="Permanent link">&para;</a></h4>
+<p>在网络中数据包的路由传输</p>
+<p>协议：IP、路由协议</p>
+<details class="waring">
+<summary>IP</summary>
+<p>网络层是唯一涉及多态转发的，所以网络层的协议一定要相同。</p>
+</details>
+<h4 id="4链路层">4）链路层<a class="headerlink" href="#4链路层" title="Permanent link">&para;</a></h4>
+<p>邻居节点之间的数据传输</p>
+<p>协议：PPP、Ethernet</p>
+<h4 id="5物理层">5）物理层<a class="headerlink" href="#5物理层" title="Permanent link">&para;</a></h4>
+<p>在线路上传输 <strong>bit</strong></p>
+<figure>
+<img alt="Virtual Circuit" src="../../../../../assets/images/tcp_ip.png" width="60%" />
+</figure>
+<hr />
+<h2 id="11-思想ip是沙漏腰部">11. 思想：IP是沙漏腰部<a class="headerlink" href="#11-思想ip是沙漏腰部" title="Permanent link">&para;</a></h2>
+<h3 id="窄腰narrow-waist">窄腰（Narrow Waist）<a class="headerlink" href="#窄腰narrow-waist" title="Permanent link">&para;</a></h3>
+<p>IP 位于中间狭窄处：</p>
+<ol>
+<li>上面可以承载多种应用层和运输层协议</li>
+<li>下面可以运行在多种链路和物理介质之上</li>
+</ol>
+<p>这表明：</p>
+<ol>
+<li>任何支持 IP 的网络都能互通</li>
+<li>应用与底层网络技术解耦</li>
+<li>上下两侧都能自由创新</li>
+</ol>
+<p>好处：网络互操作性极强、应用创新快、底层链路技术也可快速演进</p>
+<p>代价：一旦 IP 本身要改动就很难！最典型的是，IPv4 向 IPv6 迁移困难</p>
+<figure>
+<img alt="Virtual Circuit" src="../../../../../assets/images/tcp.png" width="60%" />
+</figure>
+<hr />
+<h2 id="12-封装encapsulation与协议数据单元pdu">12. 封装（Encapsulation）与协议数据单元（PDU）<a class="headerlink" href="#12-封装encapsulation与协议数据单元pdu" title="Permanent link">&para;</a></h2>
+<p>发送端数据下传时，每一层都会在上层数据前面添加自己的控制信息（头部）。</p>
+<p>例如：</p>
+<ol>
+<li>应用层消息</li>
+<li>加上传输层头部 → 段（segment）</li>
+<li>再加网络层头部 → 数据报（datagram）</li>
+<li>再加链路层头部 → 帧（frame）</li>
+<li>再通过物理层发送 bit</li>
+</ol>
+<p>接收端则执行相反过程：<strong>解封装</strong></p>
+<figure>
+<img alt="Virtual Circuit" src="../../../../../assets/images/ip.png" width="75%" />
+</figure>
+<h3 id="pdu协议数据单元">PDU（协议数据单元）<a class="headerlink" href="#pdu协议数据单元" title="Permanent link">&para;</a></h3>
+<p>不同层对其数据单元有不同称呼：</p>
+<ul>
+<li>应用层：message</li>
+<li>运输层：segment</li>
+<li>网络层：datagram / packet</li>
+<li>链路层：frame</li>
+<li>物理层：bit</li>
+</ul>
+<p>运输层头部可能包含:目的端口号、序号、差错检测码</p>
+<hr />
+<h2 id="13-网络性能指标">13. 网络性能指标<a class="headerlink" href="#13-网络性能指标" title="Permanent link">&para;</a></h2>
+<p>三个核心性能指标：</p>
+<ul>
+<li><strong>时延（Delay）</strong></li>
+<li><strong>丢包（Loss）</strong></li>
+<li><strong>吞吐量（Throughput）</strong></li>
+</ul>
+<h3 id="时延delay">时延（Delay）<a class="headerlink" href="#时延delay" title="Permanent link">&para;</a></h3>
+<p>定义：一个分组从源到目的地需要多长时间。</p>
+<p>四种组成部分：</p>
+<ol>
+<li><strong>传输时延（Transmission Delay）</strong></li>
+<li><strong>传播时延（Propagation Delay）</strong></li>
+<li><strong>排队时延（Queueing Delay）</strong></li>
+<li><strong>处理时延（Processing Delay）</strong></li>
+</ol>
+<h4 id="传输时延transmission-delay">传输时延（Transmission Delay）<a class="headerlink" href="#传输时延transmission-delay" title="Permanent link">&para;</a></h4>
+<p>定义：把一个分组的所有比特“推入链路”需要的时间。</p>
+<p>公式：</p>
+<div class="arithmatex">\[
+\text{传输时延} = \frac{\text{分组长度}}{\text{链路传输速率}}
+\]</div>
+<p>影响因素：</p>
+<ul>
+<li>分组越大，传输时延越大</li>
+<li>速率越高，传输时延越小</li>
+</ul>
+<figure>
+<img alt="Virtual Circuit" src="../../../../../assets/images/tran_delay.png" width="75%" />
+</figure>
+<h4 id="传播时延propagation-delay">传播时延（Propagation Delay）<a class="headerlink" href="#传播时延propagation-delay" title="Permanent link">&para;</a></h4>
+<p>定义：一个 bit 从链路一端传播到另一端所需的时间。</p>
+<p>公式：</p>
+<div class="arithmatex">\[
+\text{传播时延} = \frac{\text{链路长度}}{\text{传播速度}}
+\]</div>
+<p>影响因素：</p>
+<ul>
+<li>距离越远，传播时延越大</li>
+<li>传播速度通常接近光速但低于光速</li>
+</ul>
+<details class="tip">
+<summary>辨析</summary>
+<ul>
+<li>高带宽链路可显著降低传输时延</li>
+<li>但不能消除传播时延</li>
+<li>长距离链路即使带宽很高，传播时延仍存在</li>
+</ul>
+</details>
+<h4 id="排队时延queueing-delay">排队时延（Queueing Delay）<a class="headerlink" href="#排队时延queueing-delay" title="Permanent link">&para;</a></h4>
+<p>定义：分组在缓冲区中等待被处理或发送的时间。</p>
+<p>产生原因：</p>
+<ol>
+<li>瞬时到达流量超过链路处理能力</li>
+<li>出现资源竞争</li>
+<li>分组必须在队列中等待</li>
+</ol>
+<p>影响因素：</p>
+<ul>
+<li>到达速率</li>
+<li>流量是否突发</li>
+<li>输出链路速率</li>
+</ul>
+<p>特点：最不稳定、最难精确预测、通常采用统计指标描述</p>
+<p>常用统计描述：平均排队时延、时延方差、超过某一阈值的概率</p>
+<h4 id="处理时延processing-delay">处理时延（Processing Delay）<a class="headerlink" href="#处理时延processing-delay" title="Permanent link">&para;</a></h4>
+<p>定义</p>
+<p>交换机、路由器处理一个分组所需的时间</p>
+<p>特点：通常较小、很多场景下可视为可忽略</p>
+<h4 id="端到端时延end-to-end-delay">端到端时延（End-to-End Delay）<a class="headerlink" href="#端到端时延end-to-end-delay" title="Permanent link">&para;</a></h4>
+<p>一个分组经过多个节点时，总时延为各跳：处理时延、排队时延、传输时延、传播时延的叠加。注意，这里的叠加不是简单相加，因为<strong>e2e的发送过程是流水线的</strong>！</p>
+<figure>
+<img alt="Virtual Circuit" src="../../../../../assets/images/e2e.png" width="75%" />
+</figure>
+<h3 id="丢包loss">丢包（Loss）<a class="headerlink" href="#丢包loss" title="Permanent link">&para;</a></h3>
+<p>定义：发送到目的地的分组中，有多少比例在途中被丢弃。</p>
+<p>原因：典型原因是队列缓冲区满；拥塞严重时丢包上升</p>
+<h3 id="吞吐量throughput">吞吐量（Throughput）<a class="headerlink" href="#吞吐量throughput" title="Permanent link">&para;</a></h3>
+<p>定义：目的地主机从源主机接收数据的速率。</p>
+<p>单链路场景下，若文件大小为 (F)，链路速率为 (R)，传输时间为 (T)，则平均吞吐量为：</p>
+<div class="arithmatex">\[
+\text{吞吐量} = \frac{F}{T}
+\]</div>
+<p>在单条链路、传播时延影响较小时，平均吞吐量约等于链路速率 (R)。</p>
+<h4 id="端到端吞吐量与瓶颈链路">端到端吞吐量与瓶颈链路<a class="headerlink" href="#端到端吞吐量与瓶颈链路" title="Permanent link">&para;</a></h4>
+<p>在多跳路径中，端到端吞吐量通常由<strong>最慢的一段链路</strong>决定，即：</p>
+<div class="arithmatex">\[
+\text{端到端吞吐量} = \min(R, R', ...)
+\]</div>
+<p>这就是<strong>瓶颈链路（bottleneck link）</strong>思想。</p>
+<hr />
+<h2 id="14-排队论基础little-定律">14. 排队论基础：Little 定律<a class="headerlink" href="#14-排队论基础little-定律" title="Permanent link">&para;</a></h2>
+<p>用于分析排队时延。</p>
+<h3 id="基本术语">基本术语<a class="headerlink" href="#基本术语" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>到达过程</p>
+<ul>
+<li>平均到达速率：A</li>
+<li>峰值速率：P</li>
+</ul>
+</li>
+<li>
+<p>队列平均等待时间</p>
+<ul>
+<li>(W)：waiting time</li>
+</ul>
+</li>
+<li>
+<p>队列平均长度</p>
+<ul>
+<li>(L)：队列中平均分组数</li>
+</ul>
+</li>
+</ol>
+<h3 id="littles-law">Little’s Law<a class="headerlink" href="#littles-law" title="Permanent link">&para;</a></h3>
+<p>公式：</p>
+<div class="arithmatex">\[
+L = A \times W
+\]</div>
+<p>含义：队列平均长度 = 平均到达率 × 平均等待时间</p>
+<p>由于有时更容易测量 (L)，可借助该公式推算 (W).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../Introduction/introduction/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../New%20Technologies%20in%20Mobile%20Networks/introduction/" class="md-footer__link md-footer__link--next" aria-label="下一页: New Technologies in Mobile Networks">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                New Technologies in Mobile Networks
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
