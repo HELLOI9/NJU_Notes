@@ -110,7 +110,9 @@ nav:
   - Course Notes:
       - Introduction: notes/introduction.md
       - The second semester of sophomore year:
-        - Internet Computing: notes/The second semester of sophomore year/Internet Computing/introduction.md
+        - Internet Computing: 
+          - Introduction: notes/The second semester of sophomore year/Internet Computing/Introduction/introduction.md
+          - 1-计算机网络和因特网: notes/The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
         - New Technologies in Mobile Networks: notes/The second semester of sophomore year/New Technologies in Mobile Networks/introduction.md
         - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer Interaction Systems/introduction.md
         - Foundations of Data Management: notes/The second semester of sophomore year/Foundations of Data Management/introduction.md
