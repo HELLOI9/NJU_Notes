@@ -106,21 +106,31 @@ extra_javascript:
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-  - Home: index.md
-  - Course Notes:
-      - Introduction: notes/introduction.md
-      - The second semester of sophomore year:
-        - Internet Computing: 
-          - Introduction: notes/The second semester of sophomore year/Internet Computing/Introduction/introduction.md
-          - 1-计算机网络和因特网: notes/The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
-        - New Technologies in Mobile Networks: notes/The second semester of sophomore year/New Technologies in Mobile Networks/introduction.md
-        - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer Interaction Systems/introduction.md
-        - Foundations of Data Management: 
-          - Introduction: notes/The second semester of sophomore year/Foundations of Data Management/Introduction/introduction.md
-          - Chapter 1: notes/The second semester of sophomore year/Foundations of Data Management/Chapter1/Chapter1.md
-          - Chapter 2: notes/The second semester of sophomore year/Foundations of Data Management/Chapter2/Chapter2-关系数据模型.md
-        - Computer Operating Systems: notes/The second semester of sophomore year/Computer Operating Systems/introduction.md
-        - Software Engineering and Computing II: notes/The second semester of sophomore year/Software Engineering and Computing II/introduction.md
-  - Blog:
-      - First Post: blog/first-post.md
-  - About: about.md
+- Home: index.md
+- Course Notes:
+  - Overview: notes/index.md
+  - The second semester of sophomore year:
+    - Computer Operating Systems: notes/The second semester of sophomore year/Computer
+        Operating Systems/index.md
+    - Foundations of Data Management:
+      - Overview: notes/The second semester of sophomore year/Foundations of Data
+          Management/index.md
+      - Chapter1: notes/The second semester of sophomore year/Foundations of Data
+          Management/Chapter1/Chapter1.md
+      - Chapter2:
+        - Chapter2-1-关系数据模型: notes/The second semester of sophomore year/Foundations
+            of Data Management/Chapter2/Chapter2-1-关系数据模型.md
+        - Chapter2-2-关系代数的基本运算: notes/The second semester of sophomore year/Foundations
+            of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md
+    - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer
+        Interaction Systems/index.md
+    - Internet Computing:
+      - Overview: notes/The second semester of sophomore year/Internet Computing/index.md
+      - 1-计算机网络和因特网: notes/The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
+    - New Technologies in Mobile Networks: notes/The second semester of sophomore
+        year/New Technologies in Mobile Networks/index.md
+    - Software Engineering and Computing II: notes/The second semester of sophomore
+        year/Software Engineering and Computing II/index.md
+- Blog:
+  - First Post: blog/first-post.md
+- About: about.md

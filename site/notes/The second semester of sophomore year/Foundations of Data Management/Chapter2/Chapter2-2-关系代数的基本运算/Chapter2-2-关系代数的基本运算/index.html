@@ -1,0 +1,3529 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/">
+      
+      
+        <link rel="prev" href="../../Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/">
+      
+      
+        <link rel="next" href="../../../../Human-Computer%20Interaction%20Systems/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Chapter2-2-关系代数的基本运算 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#关系代数的基本运算" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter2-2-关系代数的基本运算
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Computer%20Operating%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_2" id="__nav_2_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3_1" id="__nav_2_2_2_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_2_2_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2-1-关系数据模型
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3_2" id="__nav_2_2_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_2_2_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一关系代数概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、关系代数概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、关系代数概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-关系代数的定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 关系代数的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-关系代数表达式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 关系代数表达式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-常用的关系操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 常用的关系操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-基本运算-vs-扩充运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 基本运算 vs 扩充运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-掌握每种运算符的两个要素" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 掌握每种运算符的两个要素
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二关系代数中使用的记号" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、关系代数中使用的记号
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、关系代数中使用的记号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-基本符号表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 基本符号表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-属性组的表示" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 属性组的表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-元组的连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 元组的连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-象集images-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 象集（Images Set）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三关系模式的语义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、关系模式的语义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、关系模式的语义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-命名规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 命名规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-相容表compatible-tables-同类关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 相容表（Compatible Tables）/ 同类关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四赋值运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、赋值运算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、赋值运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-一般表示方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 一般表示方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-两种使用方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 两种使用方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-赋值运算的用途" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 赋值运算的用途
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五算术比较运算与逻辑运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、算术比较运算与逻辑运算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、算术比较运算与逻辑运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-算术比较运算符" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 算术比较运算符
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-逻辑运算符" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 逻辑运算符
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六关系代数的五种基本运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、关系代数的五种基本运算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、关系代数的五种基本运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-并union" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 并（Union）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-差difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 差（Difference）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-笛卡尔积extended-cartesian-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 笛卡尔积（Extended Cartesian Product）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-选择selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 选择（Selection）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-投影projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 投影（Projection）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#七运算符优先级" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、运算符优先级
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#八单个关系上的数据操纵" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、单个关系上的数据操纵
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#九五种基本运算总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、五种基本运算总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#十关系代数基本运算的应用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十、关系代数基本运算的应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十、关系代数基本运算的应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-mycap-数据库案例库" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 MyCAP 数据库（案例库）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-关系代数应用的求解过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 关系代数应用的求解过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-基本运算查询语义分析复习思考题20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 基本运算查询语义分析（复习思考题20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-示例查询example-110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 示例查询（Example 1~10）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4 示例查询（Example 1~10）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1单关系投影" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1：单关系投影
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2单关系选择" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2：单关系选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3组合条件选择" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3：组合条件选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4并运算跨异构关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 4：并运算（跨异构关系）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-5笛卡尔积--选择--投影多表查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 5：笛卡尔积 + 选择 + 投影（多表查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-6多表查询的多种表示方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 6：多表查询的多种表示方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-7多关系连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 7：多关系连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-8差运算没有的查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 8：差运算（"没有…的"查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-9差运算只的查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 9：差运算（"只…的"查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-10最大值查询折扣最高的顾客" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 10：最大值查询（折扣最高的顾客）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#十一关系代数基本运算小结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十一、关系代数基本运算小结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十一、关系代数基本运算小结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#关键掌握点" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键掌握点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human-Computer Interaction Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../Internet%20Computing/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_4_2" id="__nav_2_2_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1-计算机网络和因特网
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一关系代数概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、关系代数概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、关系代数概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-关系代数的定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 关系代数的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-关系代数表达式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 关系代数表达式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-常用的关系操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 常用的关系操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-基本运算-vs-扩充运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 基本运算 vs 扩充运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-掌握每种运算符的两个要素" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 掌握每种运算符的两个要素
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二关系代数中使用的记号" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、关系代数中使用的记号
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、关系代数中使用的记号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-基本符号表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 基本符号表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-属性组的表示" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 属性组的表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-元组的连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 元组的连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-象集images-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 象集（Images Set）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三关系模式的语义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、关系模式的语义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、关系模式的语义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-命名规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 命名规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-相容表compatible-tables-同类关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 相容表（Compatible Tables）/ 同类关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四赋值运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、赋值运算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、赋值运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-一般表示方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 一般表示方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-两种使用方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 两种使用方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-赋值运算的用途" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 赋值运算的用途
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五算术比较运算与逻辑运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、算术比较运算与逻辑运算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、算术比较运算与逻辑运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-算术比较运算符" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 算术比较运算符
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-逻辑运算符" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 逻辑运算符
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六关系代数的五种基本运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、关系代数的五种基本运算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、关系代数的五种基本运算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-并union" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 并（Union）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-差difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 差（Difference）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-笛卡尔积extended-cartesian-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 笛卡尔积（Extended Cartesian Product）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-选择selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 选择（Selection）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-投影projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 投影（Projection）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#七运算符优先级" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、运算符优先级
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#八单个关系上的数据操纵" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、单个关系上的数据操纵
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#九五种基本运算总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、五种基本运算总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#十关系代数基本运算的应用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十、关系代数基本运算的应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十、关系代数基本运算的应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-mycap-数据库案例库" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 MyCAP 数据库（案例库）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-关系代数应用的求解过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 关系代数应用的求解过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-基本运算查询语义分析复习思考题20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 基本运算查询语义分析（复习思考题20）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-示例查询example-110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 示例查询（Example 1~10）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4 示例查询（Example 1~10）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1单关系投影" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1：单关系投影
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2单关系选择" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2：单关系选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3组合条件选择" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3：组合条件选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4并运算跨异构关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 4：并运算（跨异构关系）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-5笛卡尔积--选择--投影多表查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 5：笛卡尔积 + 选择 + 投影（多表查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-6多表查询的多种表示方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 6：多表查询的多种表示方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-7多关系连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 7：多关系连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-8差运算没有的查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 8：差运算（"没有…的"查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-9差运算只的查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 9：差运算（"只…的"查询）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-10最大值查询折扣最高的顾客" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 10：最大值查询（折扣最高的顾客）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#十一关系代数基本运算小结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十一、关系代数基本运算小结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="十一、关系代数基本运算小结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#关键掌握点" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键掌握点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Foundations of Data Management/Chapter2/Chapter2-2-关系代数的基本运算/Chapter2-2-关系代数的基本运算.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="关系代数的基本运算">关系代数的基本运算<a class="headerlink" href="#关系代数的基本运算" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="一关系代数概述">一、关系代数概述<a class="headerlink" href="#一关系代数概述" title="Permanent link">&para;</a></h2>
+<h3 id="11-关系代数的定义">1.1 关系代数的定义<a class="headerlink" href="#11-关系代数的定义" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>关系代数</strong>是一种抽象的查询语言，它用关系运算来表达对关系的操作。</li>
+<li>在关系代数中，<strong>运算对象是"关系"，运算结果亦为"关系"</strong>。</li>
+<li>关系代数的运算符有两类：</li>
+<li><strong>传统的集合运算符</strong>：从关系的"水平"方向，即<strong>行</strong>的角度进行。</li>
+<li><strong>专门的关系运算符</strong>：不仅涉及行，而且涉及列。</li>
+</ul>
+<h3 id="12-关系代数表达式">1.2 关系代数表达式<a class="headerlink" href="#12-关系代数表达式" title="Permanent link">&para;</a></h3>
+<ul>
+<li>以关系为运算对象，使用关系运算经有限次复合后形成的表达式称为<strong>"关系代数表达式"</strong>。</li>
+<li>可以用关系代数表达式来表示关系模型上的数据操纵（包括数据查询、插入、删除和修改操作）。</li>
+</ul>
+<h3 id="13-常用的关系操作">1.3 常用的关系操作<a class="headerlink" href="#13-常用的关系操作" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集合操作</td>
+<td>并、交、差、笛卡尔积</td>
+</tr>
+<tr>
+<td>专门的关系操作</td>
+<td>选择、投影、连接（θ-连接、自然连接、外连接）、除</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>5种基本操作</strong>：选择、投影、并、差、笛卡尔积</p>
+<p><strong>关系操作的特点</strong>：操作对象和操作结果都是关系（关系是元组的集合）</p>
+</blockquote>
+<h3 id="14-基本运算-vs-扩充运算">1.4 基本运算 vs 扩充运算<a class="headerlink" href="#14-基本运算-vs-扩充运算" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>关系运算</th>
+<th>运算符</th>
+<th>SQL操作符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本运算</td>
+<td>并</td>
+<td><span class="arithmatex">\(R \cup S\)</span></td>
+<td><code>R UNION S</code></td>
+</tr>
+<tr>
+<td>基本运算</td>
+<td>差</td>
+<td><span class="arithmatex">\(R - S\)</span></td>
+<td><code>R EXCEPT S</code></td>
+</tr>
+<tr>
+<td>基本运算</td>
+<td>笛卡尔积</td>
+<td><span class="arithmatex">\(R \times S\)</span></td>
+<td><code>R CROSS S</code></td>
+</tr>
+<tr>
+<td>基本运算</td>
+<td>选择</td>
+<td><span class="arithmatex">\(\sigma_F(R)\)</span></td>
+<td><code>R WHERE F</code></td>
+</tr>
+<tr>
+<td>基本运算</td>
+<td>投影</td>
+<td><span class="arithmatex">\(\Pi_{A_1,A_2,...,A_k}(R)\)</span></td>
+<td><code>R[A1, A2, ..., Ak]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-掌握每种运算符的两个要素">1.5 掌握每种运算符的两个要素<a class="headerlink" href="#15-掌握每种运算符的两个要素" title="Permanent link">&para;</a></h3>
+<p>对于关系代数中的每一种运算符，需从以下两个方面去掌握：</p>
+<ol>
+<li><strong>运算的执行条件</strong>：对关系运算的正确使用，确保关系代数表达式可以合法计算。</li>
+<li><strong>运算的执行结果</strong>：</li>
+<li>结果关系的<strong>关系模式</strong>是什么？</li>
+<li>结果关系中的<strong>元组</strong>是什么？</li>
+<li>结果关系的关系模式和结果元组的语义是否准确反映了用户的访问要求？</li>
+</ol>
+<hr />
+<h2 id="二关系代数中使用的记号">二、关系代数中使用的记号<a class="headerlink" href="#二关系代数中使用的记号" title="Permanent link">&para;</a></h2>
+<h3 id="21-基本符号表">2.1 基本符号表<a class="headerlink" href="#21-基本符号表" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(A, B, C, \ldots\)</span></td>
+<td>前面的大写字母表示属性名，小写字母表示属性值（如：用 <span class="arithmatex">\(A\)</span> 表示属性名，用 <span class="arithmatex">\(a\)</span> 或 <span class="arithmatex">\(a_1, a_2, \ldots\)</span> 表示属性A的值）</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(X, Y, Z, \ldots\)</span></td>
+<td>后面的大写字母表示关系中的一个<strong>属性组/属性集</strong></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(R, S, T, \ldots\)</span></td>
+<td>中间的大写字母表示<strong>关系名</strong>，代表一个关系，或该关系的一个实例</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(R(U)\)</span></td>
+<td>关系模式：关系名R，关系中的属性集合U</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\text{attr}(R)\)</span></td>
+<td>关系R中所有属性名的集合（关系模式的另一种表示方式）</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r, s, t, \ldots\)</span> / <span class="arithmatex">\(r_1, r_2, r_3\)</span></td>
+<td>关系中的元组</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_1[A]\)</span></td>
+<td>元组 <span class="arithmatex">\(r_1\)</span> 在属性（集）<span class="arithmatex">\(A\)</span> 上的取值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-属性组的表示">2.2 属性组的表示<a class="headerlink" href="#22-属性组的表示" title="Permanent link">&para;</a></h3>
+<p>设有一个 <span class="arithmatex">\(n\)</span> 目关系 <span class="arithmatex">\(R(A_1, A_2, \ldots, A_n)\)</span>，其一个关系（实例）设为 <span class="arithmatex">\(r\)</span>：</p>
+<ul>
+<li>关系模式可表示为 <span class="arithmatex">\(R(A_1, A_2, \ldots, A_n)\)</span> 或 <span class="arithmatex">\(\text{attr}(R) = \{A_1, A_2, \ldots, A_n\}\)</span></li>
+<li><span class="arithmatex">\(t \in r\)</span> 表示 <span class="arithmatex">\(t\)</span> 是关系 <span class="arithmatex">\(r\)</span> 中的一个元组</li>
+<li><span class="arithmatex">\(t[A_i]\)</span> 表示元组 <span class="arithmatex">\(t\)</span> 中相应于属性 <span class="arithmatex">\(A_i\)</span> 的一个分量</li>
+<li>若 <span class="arithmatex">\(X = \{A_{i1}, A_{i2}, \ldots, A_{ik}\}\)</span> 是 <span class="arithmatex">\(\{A_1, A_2, \ldots, A_n\}\)</span> 中的属性，则 <span class="arithmatex">\(X\)</span> 称为<strong>"属性列"或"属性组"或"属性集"</strong>：</li>
+<li><span class="arithmatex">\(t[X] = (t[A_{i1}], t[A_{i2}], \ldots, t[A_{ik}])\)</span> 表示元组 <span class="arithmatex">\(t\)</span> 在属性组 <span class="arithmatex">\(X\)</span> 上诸分量的集合</li>
+<li><span class="arithmatex">\(\bar{X}\)</span> 则表示从 <span class="arithmatex">\(\{A_1, A_2, \ldots, A_n\}\)</span> 中去掉 <span class="arithmatex">\(\{A_{i1}, A_{i2}, \ldots, A_{ik}\}\)</span> 后剩余的属性组</li>
+</ul>
+<h3 id="23-元组的连接">2.3 元组的连接<a class="headerlink" href="#23-元组的连接" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(R\)</span> 为 <span class="arithmatex">\(n\)</span> 目关系，<span class="arithmatex">\(S\)</span> 为 <span class="arithmatex">\(m\)</span> 目关系，则 <span class="arithmatex">\((r_t, s_t)\)</span> 表示两个元组的连接（concatenation），是一个 <span class="arithmatex">\((n+m)\)</span> 元组，前 <span class="arithmatex">\(n\)</span> 个分量来自关系 <span class="arithmatex">\(R\)</span> 的元组，后 <span class="arithmatex">\(m\)</span> 个分量来自关系 <span class="arithmatex">\(S\)</span> 的元组。</p>
+<h3 id="24-象集images-set">2.4 象集（Images Set）<a class="headerlink" href="#24-象集images-set" title="Permanent link">&para;</a></h3>
+<p>给定一个关系 <span class="arithmatex">\(R(X, Z)\)</span>（<span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Z\)</span> 为属性组），<span class="arithmatex">\(x\)</span> 为属性组 <span class="arithmatex">\(X\)</span> 定义域上的一个值，<span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(R\)</span> 中的<strong>象集</strong>定义如下：</p>
+<div class="arithmatex">\[Z_x = \{ t[Z] \mid t \in R \text{ 且 } t[X] = x \}\]</div>
+<p>它表示 <span class="arithmatex">\(R\)</span> 中属性组 <span class="arithmatex">\(X\)</span> 上值为 <span class="arithmatex">\(x\)</span> 的诸元组在 <span class="arithmatex">\(Z\)</span> 上分量的集合。</p>
+<p><strong>示例（图2.3）</strong>：关系 <span class="arithmatex">\(R(X, Z)\)</span> 中：
+- <span class="arithmatex">\(x_1\)</span> 在 <span class="arithmatex">\(R\)</span> 中的象集：<span class="arithmatex">\(Z_{x_1} = \{z_1, z_2, z_3\}\)</span>
+- <span class="arithmatex">\(x_2\)</span> 在 <span class="arithmatex">\(R\)</span> 中的象集：<span class="arithmatex">\(Z_{x_2} = \{z_2, z_3\}\)</span>
+- <span class="arithmatex">\(x_3\)</span> 在 <span class="arithmatex">\(R\)</span> 中的象集：<span class="arithmatex">\(Z_{x_3} = \{z_1, z_3\}\)</span></p>
+<hr />
+<h2 id="三关系模式的语义">三、关系模式的语义<a class="headerlink" href="#三关系模式的语义" title="Permanent link">&para;</a></h2>
+<h3 id="31-命名规则">3.1 命名规则<a class="headerlink" href="#31-命名规则" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>同名同义</strong>：属性名相同，表示具有相同的属性域和相同的语义。</li>
+<li><strong>异名异义</strong>：属性名不同，表示具有不同的属性域或不同的语义。</li>
+<li>在后续的关系代数表示中，均采用"同名同义、异名异义"的约定。</li>
+<li>若存在"同名异义"或"同义异名"现象，可通过<strong>赋值运算</strong>对属性进行重命名。</li>
+</ul>
+<h3 id="32-相容表compatible-tables-同类关系">3.2 相容表（Compatible Tables）/ 同类关系<a class="headerlink" href="#32-相容表compatible-tables-同类关系" title="Permanent link">&para;</a></h3>
+<p>如果关系 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 的关系模式满足以下要求，则称 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 是<strong>相容的</strong>（即相容表/同类关系）：</p>
+<ol>
+<li><strong>相同的目</strong>（两者具有相同的属性数）</li>
+<li><strong>对应属性之间有着相同的域和相同的语义</strong>（确保在对应属性的属性值之间可以进行有意义的逻辑比较）</li>
+</ol>
+<p><strong>注意例外情况</strong>：
+- 同名异义：属性名相同，却有着不同的属性域或不同的语义
+- 异名同义：属性名不同，却有着相同的属性域和相同的语义</p>
+<hr />
+<h2 id="四赋值运算">四、赋值运算<a class="headerlink" href="#四赋值运算" title="Permanent link">&para;</a></h2>
+<h3 id="41-一般表示方法">4.1 一般表示方法<a class="headerlink" href="#41-一般表示方法" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[R(A_1, A_2, \ldots, A_n) := \text{expression}\]</div>
+<ul>
+<li><span class="arithmatex">\(:=\)</span> 是赋值运算符</li>
+<li>右边的 <span class="arithmatex">\(\text{expression}\)</span> 是一个关系代数表达式或当前存在的关系</li>
+<li>左边的 <span class="arithmatex">\(R(A_1, A_2, \ldots, A_n)\)</span> 是 <span class="arithmatex">\(\text{expression}\)</span> 的计算结果（即数据操纵返回的结果关系）</li>
+</ul>
+<h3 id="42-两种使用方式">4.2 两种使用方式<a class="headerlink" href="#42-两种使用方式" title="Permanent link">&para;</a></h3>
+<p><strong>方式一</strong>：<span class="arithmatex">\(R(A_1, A_2, \ldots, A_n) := \text{expression}\)</span>
+- 计算右边的关系代数表达式，并将其结果关系保存下来形成临时的查询关系 <span class="arithmatex">\(R\)</span>
+- 查询关系中的属性名可采用原属性名，也可对部分属性进行<strong>重命名</strong>，但必须保证 <span class="arithmatex">\(R\)</span> 中不会出现属性同名现象。</p>
+<p><strong>方式二</strong>：<span class="arithmatex">\(R := \text{expression}\)</span>
+- 将右边的关系代数表达式的计算结果保存下来形成临时的查询关系 <span class="arithmatex">\(R\)</span>
+- <span class="arithmatex">\(R\)</span> 是查询关系的关系名，属性名直接沿用右边表达式中的原属性名。</p>
+<h3 id="43-赋值运算的用途">4.3 赋值运算的用途<a class="headerlink" href="#43-赋值运算的用途" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>对关系及属性进行重命名（alias）</strong>：方便"关系的自连接"或复杂查询的表示。</li>
+<li>例：<span class="arithmatex">\(S := R\)</span>（为关系 <span class="arithmatex">\(R\)</span> 另起一个别名 <span class="arithmatex">\(S\)</span>）</li>
+<li>通常用于"关系自连接"的表示，或有目的地对关系中的某些属性进行重命名。</li>
+<li><strong>保存计算的"中间结果"</strong>：方便复杂查询的表示。</li>
+</ol>
+<hr />
+<h2 id="五算术比较运算与逻辑运算">五、算术比较运算与逻辑运算<a class="headerlink" href="#五算术比较运算与逻辑运算" title="Permanent link">&para;</a></h2>
+<h3 id="51-算术比较运算符">5.1 算术比较运算符<a class="headerlink" href="#51-算术比较运算符" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[&gt;, \geq, &lt;, \leq, =, &lt;&gt; \text{（或 } \neq\text{）}\]</div>
+<h3 id="52-逻辑运算符">5.2 逻辑运算符<a class="headerlink" href="#52-逻辑运算符" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>逻辑运算</th>
+<th>运算符</th>
+<th>SQL操作符</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>与</td>
+<td><span class="arithmatex">\(\wedge\)</span></td>
+<td><code>AND</code></td>
+<td><span class="arithmatex">\(F_1 \wedge F_2\)</span>，<span class="arithmatex">\(F_1\)</span> <code>AND</code> <span class="arithmatex">\(F_2\)</span></td>
+</tr>
+<tr>
+<td>或</td>
+<td><span class="arithmatex">\(\vee\)</span></td>
+<td><code>OR</code></td>
+<td><span class="arithmatex">\(F_1 \vee F_2\)</span>，<span class="arithmatex">\(F_1\)</span> <code>OR</code> <span class="arithmatex">\(F_2\)</span></td>
+</tr>
+<tr>
+<td>非</td>
+<td><span class="arithmatex">\(\neg\)</span></td>
+<td><code>NOT</code></td>
+<td><span class="arithmatex">\(\neg F\)</span>，<code>NOT</code> <span class="arithmatex">\(F\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六关系代数的五种基本运算">六、关系代数的五种基本运算<a class="headerlink" href="#六关系代数的五种基本运算" title="Permanent link">&para;</a></h2>
+<h3 id="61-并union">6.1 并（Union）<a class="headerlink" href="#61-并union" title="Permanent link">&para;</a></h3>
+<p><strong>定义</strong>：</p>
+<div class="arithmatex">\[R \cup S = \{ t \mid t \in R \vee t \in S \}\]</div>
+<p><strong>运算前提</strong>：<span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 必须是<strong>同类关系</strong>（相同的目 <span class="arithmatex">\(n\)</span>，相应属性取自同一个域）。</p>
+<p><strong>结果关系模式</strong>：与关系 <span class="arithmatex">\(R\)</span>（或关系 <span class="arithmatex">\(S\)</span>）的模式相同。</p>
+<p><strong>性质</strong>：
+- 满足<strong>交换律</strong>：<span class="arithmatex">\(R \cup S = S \cup R\)</span>
+- 满足<strong>结合律</strong>：<span class="arithmatex">\((R \cup S) \cup T = R \cup (S \cup T)\)</span></p>
+<p><strong>伪代码</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>R := R    /* 首先将关系R中的元组加入结果关系T */
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>for each tuple s ∈ S {
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    if (s ∉ R)    /* 确保结果关系中元组的唯一性 */
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>    then add tuple s into R
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>}
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>return R
+</span></code></pre></div></td></tr></table></div></p>
+<hr />
+<h3 id="62-差difference">6.2 差（Difference）<a class="headerlink" href="#62-差difference" title="Permanent link">&para;</a></h3>
+<p><strong>定义</strong>：</p>
+<div class="arithmatex">\[R - S = \{ t \mid t \in R \wedge t \notin S \}\]</div>
+<p><strong>运算前提</strong>：<span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 必须是<strong>同类关系</strong>。</p>
+<p><strong>结果关系模式</strong>：与关系 <span class="arithmatex">\(R\)</span>（或关系 <span class="arithmatex">\(S\)</span>）的模式相同。</p>
+<p><strong>性质</strong>：
+- <strong>不满足</strong>交换律：<span class="arithmatex">\(R - S \neq S - R\)</span>
+- <strong>不满足</strong>结合律：<span class="arithmatex">\((R - S) - T \neq R - (S - T)\)</span></p>
+<p><strong>伪代码</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>T := { }    /* 将结果关系T初始化为空集 */
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>for each tuple t ∈ R {
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    if (t ∉ S)    /* 仅由属于R但不属于S的元组组成 */
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    then add tuple t into T
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>}
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>return T
+</span></code></pre></div></td></tr></table></div></p>
+<p><strong>并运算 &amp; 差运算示例（图2.2）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>R</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th></th>
+<th>R∪S</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>a1</td>
+<td>b1</td>
+<td>c1</td>
+<td></td>
+<td></td>
+<td>a1</td>
+<td>b1</td>
+<td>c1</td>
+</tr>
+<tr>
+<td></td>
+<td>a1</td>
+<td>b2</td>
+<td>c2</td>
+<td></td>
+<td></td>
+<td>a1</td>
+<td>b2</td>
+<td>c2</td>
+</tr>
+<tr>
+<td></td>
+<td>a2</td>
+<td>b2</td>
+<td>c1</td>
+<td></td>
+<td></td>
+<td>a2</td>
+<td>b2</td>
+<td>c1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>a1</td>
+<td>b3</td>
+<td>c2</td>
+</tr>
+</tbody>
+</table>
+<p>| S | A | B | C | | R−S | A | B | C | | S−R | A | B | C |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| | a1 | b2 | c2 | | | a1 | b1 | c1 | | | a1 | b3 | c2 |
+| | a1 | b3 | c2 | | | | | | | | | | |
+| | a2 | b2 | c1 | | | | | | | | | | |</p>
+<hr />
+<h3 id="63-笛卡尔积extended-cartesian-product">6.3 笛卡尔积（Extended Cartesian Product）<a class="headerlink" href="#63-笛卡尔积extended-cartesian-product" title="Permanent link">&para;</a></h3>
+<p><strong>定义</strong>：</p>
+<div class="arithmatex">\[R \times S = \{ (r_t, s_t) \mid r_t \in R \wedge s_t \in S \}\]</div>
+<p><strong>运算前提</strong>：任意两个关系都可以进行笛卡尔积运算。</p>
+<p><strong>结果关系模式</strong>：由关系 <span class="arithmatex">\(R\)</span> 和关系 <span class="arithmatex">\(S\)</span> 中的所有属性组成，共 <span class="arithmatex">\((n + m)\)</span> 列。
+- 前 <span class="arithmatex">\(n\)</span> 列来自关系 <span class="arithmatex">\(R\)</span>，后 <span class="arithmatex">\(m\)</span> 列来自关系 <span class="arithmatex">\(S\)</span>。</p>
+<p><strong>结果元组数</strong>：<span class="arithmatex">\(n_1 \times n_2\)</span>（<span class="arithmatex">\(n_1\)</span> 为 <span class="arithmatex">\(R\)</span> 的元组数，<span class="arithmatex">\(n_2\)</span> 为 <span class="arithmatex">\(S\)</span> 的元组数）。</p>
+<p><strong>性质</strong>：
+- 满足<strong>交换律</strong>：<span class="arithmatex">\(R \times S = S \times R\)</span>
+- 满足<strong>结合律</strong>：<span class="arithmatex">\((R \times S) \times T = R \times (S \times T)\)</span></p>
+<blockquote>
+<p><strong>重要说明</strong>：如果在关系 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 中存在同名的属性，在执行笛卡尔积运算时，将被认为是两个不同的属性，必须至少对其中一个进行<strong>换名</strong>（如 <span class="arithmatex">\(R.A\)</span>, <span class="arithmatex">\(S.A\)</span>），确保结果关系中属性名互不相同。</p>
+</blockquote>
+<p><strong>伪代码</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>T := { }    /* 将结果关系T初始化为空集 */
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>for each tuple rt ∈ R {
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    for each tuple st ∈ S {
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        add tuple (rt, st) into T
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>    }
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>}
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>return T
+</span></code></pre></div></td></tr></table></div></p>
+<hr />
+<h3 id="64-选择selection">6.4 选择（Selection）<a class="headerlink" href="#64-选择selection" title="Permanent link">&para;</a></h3>
+<p><strong>定义</strong>（又称"限制"Restriction）：</p>
+<div class="arithmatex">\[\sigma_F(R) = \{ t \mid t \in R \wedge F(t) = \text{true} \}\]</div>
+<p>也可表示为：<span class="arithmatex">\(R \text{ where } F\)</span></p>
+<p><strong>运算前提</strong>：选择条件 <span class="arithmatex">\(F\)</span> 是一个逻辑表达式，只能由关系 <span class="arithmatex">\(R\)</span> 中的属性名、常量、比较运算符、逻辑运算符组成。</p>
+<p><strong>结果关系模式</strong>：与关系 <span class="arithmatex">\(R\)</span> 的模式相同（从<strong>行</strong>的角度进行运算）。</p>
+<p><strong>选择条件 <span class="arithmatex">\(F\)</span> 的形式</strong>：
+- <strong>基本形式</strong>：<span class="arithmatex">\(X_1 \theta X_2\)</span>（<span class="arithmatex">\(X_1\)</span> 和 <span class="arithmatex">\(X_2\)</span> 是关系 <span class="arithmatex">\(R\)</span> 中的属性名或常量，但不能都是常量；<span class="arithmatex">\(\theta\)</span> 是比较运算符）
+- <strong>复合形式</strong>：在基本选择条件上通过逻辑运算符（与、或、非）经有限次组合而成</p>
+<p><strong>伪代码</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>T := { }    /* 初始化结果元组集合 */
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>for each tuple t ∈ R {
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>    if F(t) = true    /* 将元组t的属性值代入到条件表达式F中进行计算 */
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>    then add tuple t into T
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>}
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>return T
+</span></code></pre></div></td></tr></table></div></p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>例2.4：查询信息系（IS系）全体学生：<span class="arithmatex">\(\sigma_{\text{Sdept} = '\text{IS}'}(\text{Student})\)</span></li>
+<li>例2.5：查询年龄小于20岁的学生：<span class="arithmatex">\(\sigma_{\text{Sage} &lt; 20}(\text{Student})\)</span></li>
+</ul>
+<hr />
+<h3 id="65-投影projection">6.5 投影（Projection）<a class="headerlink" href="#65-投影projection" title="Permanent link">&para;</a></h3>
+<p><strong>定义</strong>：从 <span class="arithmatex">\(R\)</span> 中选择出若干属性列组成新的关系（<span class="arithmatex">\(A\)</span> 是 <span class="arithmatex">\(R\)</span> 中的属性组）：</p>
+<div class="arithmatex">\[\Pi_A(R) = \{ t[A] \mid t \in R \}\]</div>
+<p>也可表示为：<span class="arithmatex">\(R[A]\)</span></p>
+<p><strong>运算前提</strong>：属性组 <span class="arithmatex">\(A\)</span> 只能是关系 <span class="arithmatex">\(R\)</span> 的一个属性子集。</p>
+<p><strong>结果关系模式</strong>：由属性组 <span class="arithmatex">\(A\)</span> 构成结果关系的关系模式（从<strong>列</strong>的角度进行运算）。</p>
+<blockquote>
+<p><strong>注意</strong>：投影之后不仅过滤了原关系中的某些列，而且还可能产生<strong>重复的投影结果元组</strong>（需要消除那些重复出现的行）。</p>
+</blockquote>
+<p><strong>伪代码</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>T := { }    /* 初始化结果元组集合 */
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>for each tuple t ∈ R {
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>    if t[A] ∉ T    /* 投影过程中可能产生重复的结果元组 */
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    then add tuple t[A] into T
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>}
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>return T
+</span></code></pre></div></td></tr></table></div></p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>例2.6：查询学生的姓名和所在系：<span class="arithmatex">\(\Pi_{\text{Sname}, \text{Sdept}}(\text{Student})\)</span></li>
+<li>例2.7：查询学生关系Student中都有哪些系（需消除重复）：<span class="arithmatex">\(\Pi_{\text{Sdept}}(\text{Student})\)</span></li>
+</ul>
+<hr />
+<h2 id="七运算符优先级">七、运算符优先级<a class="headerlink" href="#七运算符优先级" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>优先级（从高到低）</th>
+<th>运算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最高</td>
+<td>一元运算：<span class="arithmatex">\(\sigma_F(R)\)</span>，<span class="arithmatex">\(\Pi_A(R)\)</span></td>
+</tr>
+<tr>
+<td>次之</td>
+<td>笛卡尔积：<span class="arithmatex">\(R \times S\)</span></td>
+</tr>
+<tr>
+<td>最低</td>
+<td>集合运算：<span class="arithmatex">\(R \cup S\)</span>，<span class="arithmatex">\(R - S\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="八单个关系上的数据操纵">八、单个关系上的数据操纵<a class="headerlink" href="#八单个关系上的数据操纵" title="Permanent link">&para;</a></h2>
+<p>可以结合使用投影和选择运算来实现单张表中的数据查询：</p>
+<div class="arithmatex">\[\Pi_A(\sigma_F(R))\]</div>
+<ol>
+<li><strong>先</strong>根据选择条件 <span class="arithmatex">\(F\)</span> 对关系 <span class="arithmatex">\(R\)</span> 进行选择运算（选出符合条件的元组）</li>
+<li><strong>再</strong>对选择运算的结果关系进行投影运算（确定最终结果关系的关系模式）</li>
+</ol>
+<p><strong>简写</strong>：<span class="arithmatex">\(\Pi_A \sigma_F(R)\)</span>（无括号时，运算顺序为<strong>从右向左</strong>）</p>
+<p><strong>示例</strong>（例2.11）：查询选修了2号课程的学生的学号：</p>
+<div class="arithmatex">\[\Pi_{\text{Sno}}(\sigma_{\text{Cno}='2'}(\text{SC})) = \{201215121, 201215122\}\]</div>
+<hr />
+<h2 id="九五种基本运算总结">九、五种基本运算总结<a class="headerlink" href="#九五种基本运算总结" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>运算前提</th>
+<th>结果关系模式</th>
+<th>结果关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(R \cup S\)</span></td>
+<td><span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 必须是同类关系</td>
+<td>与关系 <span class="arithmatex">\(R\)</span>（或 <span class="arithmatex">\(S\)</span>）的模式相同</td>
+<td><span class="arithmatex">\(\{ t \mid t \in R \vee t \in S \}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(R - S\)</span></td>
+<td><span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 必须是同类关系</td>
+<td>与关系 <span class="arithmatex">\(R\)</span>（或 <span class="arithmatex">\(S\)</span>）的模式相同</td>
+<td><span class="arithmatex">\(\{ t \mid t \in R \wedge t \notin S \}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(R \times S\)</span></td>
+<td>任意两个关系</td>
+<td>由 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(S\)</span> 中的所有属性组成</td>
+<td><span class="arithmatex">\(\{ (r_t, s_t) \mid r_t \in R \wedge s_t \in S \}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sigma_F(R)\)</span></td>
+<td><span class="arithmatex">\(F\)</span> 只能由 <span class="arithmatex">\(R\)</span> 中的属性名、常量、比较运算符、逻辑运算符组成</td>
+<td>与关系 <span class="arithmatex">\(R\)</span> 的模式相同</td>
+<td><span class="arithmatex">\(\{ t \mid t \in R \wedge F(t) = \text{true} \}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Pi_A(R)\)</span></td>
+<td><span class="arithmatex">\(A\)</span> 只能是关系 <span class="arithmatex">\(R\)</span> 的一个属性子集</td>
+<td>由属性组 <span class="arithmatex">\(A\)</span> 构成</td>
+<td><span class="arithmatex">\(\{ t[A] \mid t \in R \}\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>同类关系</strong>：两个关系的关系模式同时满足：①具有相同的目 <span class="arithmatex">\(n\)</span>（相同数目的属性）；②相应的属性来自于同一个域。</p>
+</blockquote>
+<hr />
+<h2 id="十关系代数基本运算的应用">十、关系代数基本运算的应用<a class="headerlink" href="#十关系代数基本运算的应用" title="Permanent link">&para;</a></h2>
+<h3 id="101-mycap-数据库案例库">10.1 MyCAP 数据库（案例库）<a class="headerlink" href="#101-mycap-数据库案例库" title="Permanent link">&para;</a></h3>
+<p>公司产品零售数据库，关系模式如下（带下划线的属性是码）：</p>
+<table>
+<thead>
+<tr>
+<th>关系名</th>
+<th>关系模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顾客</td>
+<td><code>Customers (cid, cname, city, discnt)</code></td>
+</tr>
+<tr>
+<td>供应商</td>
+<td><code>Agents (aid, aname, city, percent)</code></td>
+</tr>
+<tr>
+<td>商品</td>
+<td><code>Products (pid, pname, city, quantity, price)</code></td>
+</tr>
+<tr>
+<td>订单</td>
+<td><code>Orders (ordno, month, cid, aid, pid, qty, dollars)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-关系代数应用的求解过程">10.2 关系代数应用的求解过程<a class="headerlink" href="#102-关系代数应用的求解过程" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>确定查询目标</strong>（确定结果关系的关系模式）</li>
+<li><strong>明确查询条件</strong>（确定结果元组的语义）</li>
+<li><strong>选择从条件到目标的查找路径</strong>：</li>
+<li>在操作过程中需要使用到哪些关系？</li>
+<li>这些关系又是如何联合起来实现查询的？</li>
+<li><strong>根据以上分析构造关系代数表达式</strong></li>
+</ol>
+<h3 id="103-基本运算查询语义分析复习思考题20">10.3 基本运算查询语义分析（复习思考题20）<a class="headerlink" href="#103-基本运算查询语义分析复习思考题20" title="Permanent link">&para;</a></h3>
+<p>以下分析 12 组查询表达式的语义及其结果集关系（简写：C=Customers, A=Agents, P=Products, O=Orders）：</p>
+<table>
+<thead>
+<tr>
+<th>查询</th>
+<th>表达式</th>
+<th>目标对象</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td><span class="arithmatex">\(\sigma_{\text{pid}='p01'}(O)\)</span></td>
+<td>订单</td>
+<td>p01号商品的所有销售订单</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td><span class="arithmatex">\(\sigma_{\text{pid} \neq 'p01'}(O)\)</span></td>
+<td>订单</td>
+<td>其他商品的销售订单</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>购买过p01号商品的顾客</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>购买过其他商品(pid≠p01)的顾客</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(O) - \Pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>购买过商品但没有购买过p01号商品的顾客</td>
+</tr>
+<tr>
+<td>Q6</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(O) - \Pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>只购买过p01号商品的顾客</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(C) - \Pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>没有购买过p01号商品的顾客（<strong>包括没有购买过任何商品的顾客</strong>）</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(C) - \Pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>没有购买过其他商品的顾客（包括只购买过p01的顾客，以及没有购买过任何商品的顾客）</td>
+</tr>
+<tr>
+<td>Q9</td>
+<td><span class="arithmatex">\(O - \sigma_{\text{pid}='p01'}(O)\)</span></td>
+<td>订单</td>
+<td>除了p01号商品之外，其他商品的所有销售订单</td>
+</tr>
+<tr>
+<td>Q10</td>
+<td><span class="arithmatex">\(O - \sigma_{\text{pid} \neq 'p01'}(O)\)</span></td>
+<td>订单</td>
+<td>p01号商品的所有销售订单</td>
+</tr>
+<tr>
+<td>Q11</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(O - \sigma_{\text{pid}='p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>购买过其他商品的顾客（注意与Q5区别，其中也可能包含购买过p01的顾客）</td>
+</tr>
+<tr>
+<td>Q12</td>
+<td><span class="arithmatex">\(\Pi_{\text{cid}}(O - \sigma_{\text{pid} \neq 'p01'}(O))\)</span></td>
+<td>顾客</td>
+<td>购买过商品p01的顾客（注意与Q6区别，其中也可能包含购买过其他商品的顾客）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>各组结果集关系：</strong></p>
+<ul>
+<li>Q1 ∩ Q2 = 空集；Q1 ∪ Q2 = Orders</li>
+<li>Q3 ∪ Q4 = <span class="arithmatex">\(\Pi_{\text{cid}}(\text{orders})\)</span>（Q3与Q4之间可能有交集，一切取决于当前orders表）</li>
+<li>Q5 ∩ Q6 = 空集；<span class="arithmatex">\(Q5 \cup Q6 \subseteq \Pi_{\text{cid}}(\text{orders})\)</span></li>
+<li>Q9 ∩ Q10 = 空集；Q9 ∪ Q10 = orders</li>
+</ul>
+<h3 id="104-示例查询example-110">10.4 示例查询（Example 1~10）<a class="headerlink" href="#104-示例查询example-110" title="Permanent link">&para;</a></h3>
+<h4 id="example-1单关系投影">Example 1：单关系投影<a class="headerlink" href="#example-1单关系投影" title="Permanent link">&para;</a></h4>
+<p><strong>查询所有顾客所居住的城市名称</strong>：</p>
+<div class="arithmatex">\[\Pi_{\text{city}}(\text{Customers})\]</div>
+<blockquote>
+<p>需剔除重复的城市名称，保证结果关系中元组的唯一性。</p>
+</blockquote>
+<hr />
+<h4 id="example-2单关系选择">Example 2：单关系选择<a class="headerlink" href="#example-2单关系选择" title="Permanent link">&para;</a></h4>
+<p><strong>查询所有居住在京都（Kyoto）的顾客</strong>：</p>
+<div class="arithmatex">\[\sigma_{\text{city}='Kyoto'}(\text{Customers})\]</div>
+<hr />
+<h4 id="example-3组合条件选择">Example 3：组合条件选择<a class="headerlink" href="#example-3组合条件选择" title="Permanent link">&para;</a></h4>
+<p><strong>查询存放于达拉斯（Dallas）且单价超过$0.50的商品</strong>：</p>
+<div class="arithmatex">\[\sigma_{\text{city}='Dallas' \wedge \text{price} &gt; 0.50}(\text{Products})\]</div>
+<hr />
+<h4 id="example-4并运算跨异构关系">Example 4：并运算（跨异构关系）<a class="headerlink" href="#example-4并运算跨异构关系" title="Permanent link">&para;</a></h4>
+<p><strong>查询所有折扣低于10%的顾客所在城市以及佣金低于6%的代理商所在城市的城市名称</strong>：</p>
+<div class="arithmatex">\[\Pi_{\text{city}}(\sigma_{\text{discnt}&lt;10}(C)) \cup \Pi_{\text{city}}(\sigma_{\text{percent}&lt;6}(A))\]</div>
+<blockquote>
+<p><strong>注意</strong>：不能写成 <span class="arithmatex">\(\Pi_{\text{city}}((\sigma_{\text{discnt}&lt;10}(C)) \cup (\sigma_{\text{percent}&lt;6}(A)))\)</span>，因为 <span class="arithmatex">\(C\)</span> 和 <span class="arithmatex">\(A\)</span> 的关系模式不同，中间的并运算<strong>不合法</strong>（不是同类关系）。</p>
+</blockquote>
+<hr />
+<h4 id="example-5笛卡尔积--选择--投影多表查询">Example 5：笛卡尔积 + 选择 + 投影（多表查询）<a class="headerlink" href="#example-5笛卡尔积--选择--投影多表查询" title="Permanent link">&para;</a></h4>
+<p><strong>查询位于同一个城市的顾客和代理商，给出顾客的姓名、代理商的名称以及他们所在城市的名称</strong>：</p>
+<div class="arithmatex">\[\Pi_{C.\text{cname},\ A.\text{aname},\ C.\text{city}}(\sigma_{C.\text{city}=A.\text{city}}(C \times A))\]</div>
+<p><strong>分析</strong>：
+1. 先用<strong>笛卡尔积</strong>实现顾客和代理商关系的合并
+2. 再用<strong>选择运算</strong>查出符合条件（同城市）的笛卡尔积结果元组
+3. 最后用<strong>投影运算</strong>生成目标关系</p>
+<hr />
+<h4 id="example-6多表查询的多种表示方式">Example 6：多表查询的多种表示方式<a class="headerlink" href="#example-6多表查询的多种表示方式" title="Permanent link">&para;</a></h4>
+<p><strong>查询姓名为'Allied'的顾客的订购信息，列出每条订单记录所购买商品的商品编号(pid)、订购月份(month)以及订购数量(qty)</strong>：</p>
+<p><strong>表达式（一）</strong>：先做笛卡尔积，再整体选择：
+$<span class="arithmatex">\(\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid} \wedge C.\text{cname}='Allied'}(C \times O))\)</span>$</p>
+<p><strong>表达式（二）</strong>：先对 <span class="arithmatex">\(C\)</span> 做选择，再做笛卡尔积：
+$<span class="arithmatex">\(\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid}}(\sigma_{C.\text{cname}='Allied'}(C) \times O))\)</span>$</p>
+<p><strong>表达式（三）</strong>：先对 <span class="arithmatex">\(C\)</span> 做选择和投影（取 cid），再与 <span class="arithmatex">\(O\)</span> 做笛卡尔积：
+$<span class="arithmatex">\(\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid}}(\Pi_{\text{cid}}(\sigma_{C.\text{cname}='Allied'}(C)) \times O))\)</span>$</p>
+<blockquote>
+<p><strong>注意</strong>：可以提前执行单个关系上的元组选择查询，也可添加部分投影操作，以降低中间计算结果的数据量；但添加新的投影操作，不能影响后续运算的合法性。</p>
+</blockquote>
+<hr />
+<h4 id="example-7多关系连接">Example 7：多关系连接<a class="headerlink" href="#example-7多关系连接" title="Permanent link">&para;</a></h4>
+<p><strong>查询顾客、代理商以及所订购的商品都位于同一个城市的订单编号</strong>：</p>
+<p><strong>表达式（一）</strong>：
+$<span class="arithmatex">\(\Pi_{\text{ordno}}(\sigma_{O.\text{cid}=C.\text{cid} \wedge C.\text{city}=A.\text{city} \wedge A.\text{city}=P.\text{city} \wedge O.\text{aid}=A.\text{aid} \wedge O.\text{pid}=P.\text{pid}}(C \times A \times P \times O))\)</span>$</p>
+<p><strong>表达式（二）</strong>：提前投影，减少中间数据量：
+$<span class="arithmatex">\(\Pi_{\text{ordno}}(\sigma_{\text{...}}(\Pi_{\text{cid,city}}(C) \times \Pi_{\text{aid,city}}(A) \times \Pi_{\text{pid,city}}(P) \times O))\)</span>$</p>
+<hr />
+<h4 id="example-8差运算没有的查询">Example 8：差运算（"没有…的"查询）<a class="headerlink" href="#example-8差运算没有的查询" title="Permanent link">&para;</a></h4>
+<p><strong>查询没有销售过'p02'号商品的供应商的编号</strong>：</p>
+<div class="arithmatex">\[\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))\]</div>
+<p><strong>常见错误写法</strong>：
+- <span class="arithmatex">\(\Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))\)</span>：错误！这是查询"销售过其他商品的供应商"，而非"没有销售过p02的供应商"
+- <span class="arithmatex">\(\Pi_{\text{aid}}(\sigma_{\text{pid}='p02' \wedge \text{aid}=\text{null}}(O))\)</span>：错误</p>
+<blockquote>
+<p>需要用<strong>差运算</strong>来表达"没有…"的语义。被减数须取自正确的全集。</p>
+</blockquote>
+<hr />
+<h4 id="example-9差运算只的查询">Example 9：差运算（"只…的"查询）<a class="headerlink" href="#example-9差运算只的查询" title="Permanent link">&para;</a></h4>
+<p><strong>查询只销售过'p02'号商品的供应商的编号</strong>：</p>
+<div class="arithmatex">\[\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))\]</div>
+<p><strong>常见错误写法</strong>：<span class="arithmatex">\(\Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))\)</span>：错误！这是查询"销售过p02的供应商"，而非"只销售过p02的供应商"。</p>
+<p><strong>对比总结</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>查询语义</th>
+<th>正确表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销售过p02的供应商</td>
+<td><span class="arithmatex">\(\Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))\)</span></td>
+</tr>
+<tr>
+<td>没有销售过p02的供应商</td>
+<td><span class="arithmatex">\(\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))\)</span></td>
+</tr>
+<tr>
+<td>只销售过p02的供应商</td>
+<td><span class="arithmatex">\(\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>要点</strong>：何时使用"差运算"？何时使用"不等"比较？二者有本质区别，需仔细体会。</p>
+</blockquote>
+<hr />
+<h4 id="example-10最大值查询折扣最高的顾客">Example 10：最大值查询（折扣最高的顾客）<a class="headerlink" href="#example-10最大值查询折扣最高的顾客" title="Permanent link">&para;</a></h4>
+<p><strong>查询在当前所有顾客中，折扣（discnt）最高的顾客的编号</strong>：</p>
+<p><strong>错误思路</strong>：<span class="arithmatex">\(\Pi_{\text{cid}}(\sigma_{\text{discnt}=\max(\text{discnt})}(C))\)</span></p>
+<ul>
+<li><strong>选择运算</strong> <span class="arithmatex">\(\sigma_F(R)\)</span> 是针对<strong>单个元组</strong>判断条件是否成立的，在选择条件表达式中使用统计函数 MAX 是<strong>没有意义</strong>的。</li>
+</ul>
+<p><strong>正确思路</strong>（间接法）：</p>
+<p><strong>判断标准</strong>：
+- 如果能找到一个顾客 <span class="arithmatex">\(g\)</span>，其折扣比顾客 <span class="arithmatex">\(c\)</span> 的折扣高，那么 <span class="arithmatex">\(c\)</span> 的折扣就<strong>不是最高</strong>的。</p>
+<p><strong>步骤</strong>：</p>
+<p>① 查询所有顾客的编号，构成关系 <span class="arithmatex">\(R_1\)</span>：
+$<span class="arithmatex">\(R_1 := \Pi_{\text{cid}}(C)\)</span>$</p>
+<p>② 查询"折扣不是最高"的顾客编号（令 <span class="arithmatex">\(S := C\)</span>，进行关系自连接）：
+$<span class="arithmatex">\(R_2 := \Pi_{C.\text{cid}}(\sigma_{C.\text{discnt} &lt; S.\text{discnt}}(C \times S))\)</span>$</p>
+<p>③ 利用差运算获得折扣最高顾客的编号：
+$<span class="arithmatex">\(R := R_1 - R_2\)</span>$</p>
+<p><strong>合并为最终表达式</strong>：</p>
+<div class="arithmatex">\[\Pi_{\text{cid}}(C) - \Pi_{C.\text{cid}}(\sigma_{C.\text{discnt} &lt; S.\text{discnt}}(C \times S))\]</div>
+<blockquote>
+<p><strong>注意</strong>：选择条件中必须使用严格小于（<code>&lt;</code>），若使用小于等于（<code>≤</code>），则 <span class="arithmatex">\(R_2\)</span> 将包含所有顾客的 cid，差运算结果为空集，无法实现查询目标。</p>
+</blockquote>
+<p><strong>拓展</strong>：查询具有最大折扣的顾客的姓名（cname）：</p>
+<ul>
+<li><strong>错误写法</strong>：<span class="arithmatex">\(\Pi_{\text{cname}}(C) - \Pi_{C.\text{cname}}(\sigma_{C.\text{discnt} &lt; S.\text{discnt}}(C \times S))\)</span></li>
+<li>此表达式会从"所有顾客的姓名集合"中减去"折扣不是最高的顾客的姓名集合"，结果语义不符。</li>
+<li><strong>正确写法（方式一）</strong>：<span class="arithmatex">\(\Pi_{\text{cid, cname}}(C) - \Pi_{C.\text{cid, C.cname}}(\sigma_{C.\text{discnt} &lt; S.\text{discnt}}(C \times S))\)</span>，再取 cname。</li>
+<li><strong>正确写法（方式二）</strong>：令 <span class="arithmatex">\(R := \Pi_{\text{cid}}(C) - \Pi_{C.\text{cid}}(\sigma_{C.\text{discnt} &lt; S.\text{discnt}}(C \times S))\)</span>，然后：
+$<span class="arithmatex">\(\Pi_{C.\text{cname}}(\sigma_{C.\text{cid} = R.\text{cid}}(C \times R))\)</span>$</li>
+</ul>
+<blockquote>
+<p><strong>要点</strong>：在减数和被减数关系中，必须含<strong>目标对象的码</strong>！</p>
+</blockquote>
+<hr />
+<h2 id="十一关系代数基本运算小结">十一、关系代数基本运算小结<a class="headerlink" href="#十一关系代数基本运算小结" title="Permanent link">&para;</a></h2>
+<h3 id="关键掌握点">关键掌握点<a class="headerlink" href="#关键掌握点" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>运算</th>
+<th>使用场景</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>差运算</strong></td>
+<td>表达"没有…"、"只有…"、"最大/最小"等否定语义</td>
+<td>被减数须来自正确的全集；减数和被减数中须含目标对象的码</td>
+</tr>
+<tr>
+<td><strong>选择 + 投影</strong></td>
+<td>单个关系上的数据查询</td>
+<td>先选择（过滤行），再投影（过滤列）</td>
+</tr>
+<tr>
+<td><strong>不等比较</strong></td>
+<td>表达"不等于某值"的语义</td>
+<td>与差运算语义不同，不能混用</td>
+</tr>
+<tr>
+<td><strong>笛卡尔积</strong></td>
+<td>多个关系间的连接查询</td>
+<td>同名属性须换名；结合选择运算过滤有意义的元组</td>
+</tr>
+<tr>
+<td><strong>赋值运算</strong></td>
+<td>保存中间结果，关系自连接</td>
+<td>确保结果关系中无同名属性</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter2-1-关系数据模型">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter2-1-关系数据模型
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../../Human-Computer%20Interaction%20Systems/" class="md-footer__link md-footer__link--next" aria-label="下一页: Human-Computer Interaction Systems">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Human-Computer Interaction Systems
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
