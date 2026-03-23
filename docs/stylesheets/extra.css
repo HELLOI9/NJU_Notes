@@ -40,6 +40,15 @@
 
 .md-typeset pre > code {
   font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.md-typeset .highlighttable .linenos {
+  font-size: 0.8em;
+}
+
+.md-typeset .highlighttable .linenodiv pre {
+  line-height: 1.4;
 }
 
 /* ---- Admonition: OI-wiki uses rounded corners ---- */

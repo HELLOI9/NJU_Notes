@@ -2,54 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/about/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
+    </url>
+    <url>
+         <loc>https://helloi9.github.io/NJU_Notes/blog/Codeforces/</loc>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Computer%20Operating%20Systems/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
+    </url>
+    <url>
+         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+         <lastmod>2026-03-23</lastmod>
+    </url>
+    <url>
+         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/</loc>
+         <lastmod>2026-03-23</lastmod>
+    </url>
+    <url>
+         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/</loc>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter1/Chapter1/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
-         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</loc>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
-         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/</loc>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Human-Computer%20Interaction%20Systems/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Internet%20Computing/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/New%20Technologies%20in%20Mobile%20Networks/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
     <url>
          <loc>https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Software%20Engineering%20and%20Computing%20II/</loc>
-         <lastmod>2026-03-20</lastmod>
+         <lastmod>2026-03-23</lastmod>
     </url>
 </urlset>

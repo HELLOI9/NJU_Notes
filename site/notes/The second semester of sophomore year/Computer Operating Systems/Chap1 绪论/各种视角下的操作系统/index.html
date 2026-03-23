@@ -1,0 +1,3879 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+      
+      
+        <link rel="prev" href="../../">
+      
+      
+        <link rel="next" href="../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>各种视角下的操作系统 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#各种视角下的操作系统" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              各种视角下的操作系统
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Operating Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_1_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_2" id="__nav_2_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap1 绪论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap1 绪论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#操作系统的三条主线" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作系统的三条主线
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二应用视角下的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、应用视角下的操作系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、应用视角下的操作系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-什么是程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 什么是程序？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 什么是程序？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#从-hello-world-出发" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从 Hello World 出发
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#可执行文件结构typical-elf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件结构（Typical ELF）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#动手观察的工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动手观察的工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#手动控制编译流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手动控制编译流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-程序的状态机模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 程序的状态机模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 程序的状态机模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#二进制程序的状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二进制程序的状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#普通指令的局限性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        普通指令的局限性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解决方案syscall-指令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案：syscall 指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world-的汇编实现x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hello World 的汇编实现（x86-64）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#程序--计算--syscall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序 = 计算 + syscall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-程序的状态机模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C 程序的状态机模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-操作系统上的软件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 操作系统上的软件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 操作系统上的软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#追踪程序执行strace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        追踪程序执行：strace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#任何程序的一生" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任何程序的一生
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作系统中常见的应用程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作系统中常见的应用程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三硬件视角下的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、硬件视角下的操作系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、硬件视角下的操作系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-数字电路与状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 数字电路与状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-计算机硬件的状态机模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 计算机硬件的状态机模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-cpu-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 CPU Reset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 CPU Reset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x86-familyintel-64-and-ia-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86 Family（Intel® 64 and IA-32）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#其他架构的-reset-vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他架构的 Reset Vector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-firmware固件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Firmware（固件）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Firmware（固件）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#两种-firmware-标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两种 Firmware 标准
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-legacy-bios-启动约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Legacy BIOS 启动约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-uefi-启动流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 UEFI 启动流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-加载器bootloader工作细节" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 加载器（Bootloader）工作细节
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-使用-qemu--gdb-观察启动过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 使用 QEMU + GDB 观察启动过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-bare-metal-上的-c-代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Bare-metal 上的 C 代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-abstract-machineam抽象机器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Abstract Machine（AM）抽象机器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-两种执行流" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 两种执行流
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.11 两种执行流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#普通控制流normal-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        普通控制流（Normal Control Flow）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#异常控制流exceptional-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常控制流（Exceptional Control Flow）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-上下文切换context-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12 上下文切换（Context Switch）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-在-am-上实现操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.13 在 AM 上实现操作系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四抽象视角下的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、抽象视角下的操作系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、抽象视角下的操作系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-操作系统本身就是状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 操作系统本身就是状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-操作系统的一生" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 操作系统的一生
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 操作系统的一生">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#初始化阶段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初始化阶段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#运行阶段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行阶段
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-操作系统的抽象状态机总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 操作系统的抽象状态机总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-用代码实现抽象操作系统os-modelpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 用代码实现抽象操作系统（os-model.py）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 用代码实现抽象操作系统（os-model.py）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API 设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#借用-python-generator-机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        借用 Python Generator 机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-类封装状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread 类（封装状态机）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作系统内核syscall-解释器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作系统内核（syscall 解释器）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#应用程序示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        应用程序示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-更完整的-toy-osmosaic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 更完整的 Toy OS：Mosaic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六阅读材料" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、阅读材料
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统的发展历程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chap2%20%E5%B9%B6%E5%8F%91/%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap2 并发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Foundations%20of%20Data%20Management/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Internet%20Computing/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#操作系统的三条主线" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作系统的三条主线
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二应用视角下的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、应用视角下的操作系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、应用视角下的操作系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-什么是程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 什么是程序？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 什么是程序？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#从-hello-world-出发" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从 Hello World 出发
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#可执行文件结构typical-elf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可执行文件结构（Typical ELF）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#动手观察的工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        动手观察的工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#手动控制编译流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手动控制编译流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-程序的状态机模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 程序的状态机模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 程序的状态机模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#二进制程序的状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二进制程序的状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#普通指令的局限性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        普通指令的局限性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解决方案syscall-指令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案：syscall 指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hello-world-的汇编实现x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hello World 的汇编实现（x86-64）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#程序--计算--syscall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序 = 计算 + syscall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-程序的状态机模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C 程序的状态机模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-操作系统上的软件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 操作系统上的软件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 操作系统上的软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#追踪程序执行strace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        追踪程序执行：strace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#任何程序的一生" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任何程序的一生
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作系统中常见的应用程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作系统中常见的应用程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三硬件视角下的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、硬件视角下的操作系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、硬件视角下的操作系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-数字电路与状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 数字电路与状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-计算机硬件的状态机模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 计算机硬件的状态机模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-cpu-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 CPU Reset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 CPU Reset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x86-familyintel-64-and-ia-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x86 Family（Intel® 64 and IA-32）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#其他架构的-reset-vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他架构的 Reset Vector
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-firmware固件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Firmware（固件）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Firmware（固件）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#两种-firmware-标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两种 Firmware 标准
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-legacy-bios-启动约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Legacy BIOS 启动约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-uefi-启动流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 UEFI 启动流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-加载器bootloader工作细节" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 加载器（Bootloader）工作细节
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-使用-qemu--gdb-观察启动过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 使用 QEMU + GDB 观察启动过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-bare-metal-上的-c-代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Bare-metal 上的 C 代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-abstract-machineam抽象机器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Abstract Machine（AM）抽象机器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-两种执行流" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 两种执行流
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.11 两种执行流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#普通控制流normal-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        普通控制流（Normal Control Flow）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#异常控制流exceptional-control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异常控制流（Exceptional Control Flow）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-上下文切换context-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12 上下文切换（Context Switch）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-在-am-上实现操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.13 在 AM 上实现操作系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四抽象视角下的操作系统" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、抽象视角下的操作系统
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、抽象视角下的操作系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-操作系统本身就是状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 操作系统本身就是状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-操作系统的一生" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 操作系统的一生
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 操作系统的一生">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#初始化阶段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初始化阶段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#运行阶段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行阶段
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-操作系统的抽象状态机总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 操作系统的抽象状态机总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-用代码实现抽象操作系统os-modelpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 用代码实现抽象操作系统（os-model.py）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 用代码实现抽象操作系统（os-model.py）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API 设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#借用-python-generator-机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        借用 Python Generator 机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-类封装状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thread 类（封装状态机）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作系统内核syscall-解释器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        操作系统内核（syscall 解释器）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#应用程序示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        应用程序示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-更完整的-toy-osmosaic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 更完整的 Toy OS：Mosaic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六阅读材料" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、阅读材料
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Computer Operating Systems/Chap1 绪论/各种视角下的操作系统.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="各种视角下的操作系统">各种视角下的操作系统<a class="headerlink" href="#各种视角下的操作系统" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="一概述">一、概述<a class="headerlink" href="#一概述" title="Permanent link">&para;</a></h2>
+<p>操作系统是极其复杂的软件系统：</p>
+<ul>
+<li>Linux 内核代码量从 1.0 版本的数万行，到 4.x 版本已突破 <strong>2000 万行</strong>；</li>
+<li>Windows 10 代码量超过 <strong>5000 万行</strong>，折合成书本约需 <strong>1000～2000 本</strong>（每本1000页，每页50行）；</li>
+<li>Linux 内核模块覆盖系统接口（system）、进程（processing）、内存（memory）、存储（storage）、网络（networking）、人机接口（human interface）等多个维度，组件间依赖关系极其复杂。</li>
+</ul>
+<p>面对如此规模的系统，<strong>选对视角</strong>是理解它的关键——如同"盲人摸象"，从不同侧面切入才能形成完整认知。</p>
+<h3 id="操作系统的三条主线">操作系统的三条主线<a class="headerlink" href="#操作系统的三条主线" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>主线</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>软件（应用）</strong></td>
+<td>操作系统的服务对象</td>
+</tr>
+<tr>
+<td><strong>硬件（计算机）</strong></td>
+<td>操作系统直接运行于其上</td>
+</tr>
+<tr>
+<td><strong>操作系统本身</strong></td>
+<td>软件直接访问硬件带来麻烦太多，因而引入的中间件</td>
+</tr>
+</tbody>
+</table>
+<p>理解操作系统，必须首先对其<strong>服务对象（应用程序）</strong>有精确的理解。</p>
+<p>本讲从三个视角依次展开：</p>
+<ol>
+<li><strong>应用视角</strong>——操作系统是 syscall 的解释器</li>
+<li><strong>硬件视角</strong>——操作系统是直接访问硬件的 C 程序</li>
+<li><strong>抽象视角</strong>——操作系统本身就是一个状态机</li>
+</ol>
+<hr />
+<h2 id="二应用视角下的操作系统">二、应用视角下的操作系统<a class="headerlink" href="#二应用视角下的操作系统" title="Permanent link">&para;</a></h2>
+<h3 id="21-什么是程序">2.1 什么是程序？<a class="headerlink" href="#21-什么是程序" title="Permanent link">&para;</a></h3>
+<h4 id="从-hello-world-出发">从 Hello World 出发<a class="headerlink" href="#从-hello-world-出发" title="Permanent link">&para;</a></h4>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>用 IDE 一键运行虽然简单，但背后细节被完全隐藏。实际发生的过程分为两个阶段：</p>
+<p><strong>编译阶段（text → binary，目标文件存于磁盘）：</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>hello.c
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>  → [预处理器 cpp]  → hello.i   （展开宏、包含头文件）
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>  → [编译器 cc]     → hello.s   （生成汇编代码）
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>  → [汇编器 as]     → hello.o   （可重定位目标文件，binary）
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>  → [链接器 ld]     → hello     （可执行目标文件，binary，同时链入 printf.o）
+</span></code></pre></div></td></tr></table></div>
+<p><strong>加载执行阶段（磁盘 → 内存 → CPU）：</strong></p>
+<ol>
+<li>
+<p>Loader（加载器）将可执行 ELF 文件加载到内存，建立如下虚拟地址空间布局：</p>
+<ul>
+<li>Kernel memory（内核内存）</li>
+<li>User Stack（用户栈，从高地址向低增长）</li>
+<li>Shared libraries（共享库）</li>
+<li>Runtime Heap（运行时堆，向高地址增长）</li>
+<li>Global Data Segment（全局数据段）</li>
+<li>Read-only Code Segment（只读代码段，从 <code>0x400000</code> 起）</li>
+</ul>
+<blockquote>
+<p>注意：低地址 <code>0x0</code> ～ <code>0x400000</code>：<strong>刻意不映射</strong>（deliberately unmapped），访问此区域引发段错误</p>
+</blockquote>
+</li>
+<li>
+<p>从 <code>entry point</code> 开始执行</p>
+</li>
+</ol>
+<h4 id="可执行文件结构typical-elf">可执行文件结构（Typical ELF）<a class="headerlink" href="#可执行文件结构typical-elf" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>区段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>header</td>
+<td>文件头信息</td>
+</tr>
+<tr>
+<td>mapping info header</td>
+<td>地址映射信息</td>
+</tr>
+<tr>
+<td>Code Instructions</td>
+<td>代码段（指令）</td>
+</tr>
+<tr>
+<td>Initialized Data</td>
+<td>初始化数据段</td>
+</tr>
+<tr>
+<td>Symbol table &amp; Debug Info</td>
+<td>符号表与调试信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="动手观察的工具">动手观察的工具<a class="headerlink" href="#动手观察的工具" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gcc hello.c</code></td>
+<td>编译生成 <code>a.out</code></td>
+</tr>
+<tr>
+<td><code>file a.out</code></td>
+<td>查看文件类型（ELF 64-bit LSB pie executable...）</td>
+</tr>
+<tr>
+<td><code>objdump -d a.out</code></td>
+<td>反汇编查看机器码与汇编指令</td>
+</tr>
+<tr>
+<td><code>gcc --verbose hello.c</code></td>
+<td>查看 gcc 实际执行的编译选项与步骤</td>
+</tr>
+<tr>
+<td><code>gcc -static hello.c</code></td>
+<td>静态链接（文件体积将大幅增加）</td>
+</tr>
+<tr>
+<td><code>gcc -E hello.c</code></td>
+<td>仅执行预处理</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img alt="GCC" src="../../../../../assets/images/gcc.jpeg" width="100%" />
+</figure>
+<h4 id="手动控制编译流程">手动控制编译流程<a class="headerlink" href="#手动控制编译流程" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>cpp<span class="w"> </span>hello.c<span class="w"> </span>&gt;<span class="w"> </span>hello.i<span class="w">          </span><span class="c1"># 预处理（在这里我们发现stdio.h引入太多无效的代码，于是删掉删掉#include&lt;stdio.h&gt;）</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>gcc<span class="w"> </span>-c<span class="w"> </span>hello.i<span class="w">                 </span><span class="c1"># 编译+汇编，生成 hello.o</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>objdump<span class="w"> </span>-d<span class="w"> </span>hello.o<span class="w">             </span><span class="c1"># 查看目标文件的汇编</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>ld<span class="w"> </span>hello.o<span class="w">                     </span><span class="c1"># 直接链接（会报错：找不到 &#39;puts&#39;，那我们就删掉printf）</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>ld<span class="w"> </span>hello.o<span class="w"> </span>-e<span class="w"> </span>main<span class="w">             </span><span class="c1"># 指定入口为 main，生成 a.out</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>./a.out<span class="w">                        </span><span class="c1"># 运行（会发生 Segmentation fault）</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>为什么直接 <code>ld hello.o</code> 会报错？</strong></p>
+<p>因为 <code>printf</code> 最终被编译为 <code>puts</code>，gcc 背后自动链接了 C 标准库（<code>libc</code>），手动 <code>ld</code> 时未指定该库，因此找不到符号。</p>
+<p><strong>为什么 <code>./a.out</code>（删除 printf 后）出现 Segmentation fault？</strong></p>
+<p>通过 GDB 调试分析：
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>gdb<span class="w"> </span>a.out
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>starti<span class="w">          </span><span class="c1"># 从第一条指令开始执行</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>layout<span class="w"> </span>asm<span class="w">      </span><span class="c1"># 显示汇编视图</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>info<span class="w"> </span>registers<span class="w">  </span><span class="c1"># 查看所有寄存器</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>p<span class="w"> </span><span class="nv">$sp</span><span class="w">           </span><span class="c1"># 查看栈指针</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>x<span class="w"> </span><span class="nv">$sp</span><span class="w">           </span><span class="c1"># 查看栈顶内存内容</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>si<span class="w">              </span><span class="c1"># 单步执行（step instruction）</span>
+</span></code></pre></div></td></tr></table></div></p>
+<figure>
+<img alt="GDB" src="../../../../../assets/images/gdb.jpeg" width="100%" />
+</figure>
+<p>根本原因：<code>main</code> 函数通过 <code>ret</code> 指令返回时，它将<strong>栈顶的值（argc = 1）</strong>弹出给 <code>RIP</code>（程序计数器），导致 <code>PC = 0x1</code>。而 Linux x86-64 上，代码段从 <code>0x400000</code> 开始，<code>0x0</code> ～ <code>0x400000</code> 之间的低地址区域<strong>刻意不映射</strong>，访问地址 <code>0x1</code> 自然触发段错误。</p>
+<p>正常情况下，内核的入口点不是 <code>main</code>，而是 <code>_start</code>。
+<code>_start</code> 来自运行时启动代码（比如 <code>crt1.o</code>），它负责：</p>
+<ul>
+<li>从栈里取出 <code>argc/argv/envp</code></li>
+<li>做 libc 初始化</li>
+<li>调用 <code>__libc_start_main(...)</code></li>
+<li>再由它去调用 <code>main(argc, argv, envp)</code></li>
+<li><code>main</code> 返回后，不靠 <code>ret</code> 乱跳，而是调用 <code>exit</code></li>
+</ul>
+<p>所以正常流程其实是：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>kernel -&gt; _start -&gt; __libc_start_main -&gt; main -&gt; exit
+</span></code></pre></div></td></tr></table></div>
+<p>不是：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>kernel -&gt; main
+</span></code></pre></div></td></tr></table></div>
+<p>所以，万恶之源还是我们把<code>ELF</code>的入口点强行设成了<code>main</code>，但<code>main</code>不是一个“进程入口函数”，它只是一个“普通C函数”!</p>
+<p><strong>临时解决方案——加入无限循环：</strong></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这样 <code>ret</code> 指令永远不会执行，但这并非真正的解决办法。</p>
+<p>如果我们非要将<code>main</code>作为入口点进入，那么就不要靠普通函数返回，改成主动向操作系统发出“退出进程”的系统调用，即<code>syscall</code>.</p>
+<h3 id="22-程序的状态机模型">2.2 程序的状态机模型<a class="headerlink" href="#22-程序的状态机模型" title="Permanent link">&para;</a></h3>
+<h4 id="二进制程序的状态机">二进制程序的状态机<a class="headerlink" href="#二进制程序的状态机" title="Permanent link">&para;</a></h4>
+<p>一个运行中的程序可以用状态机来精确描述：</p>
+<ul>
+<li><strong>状态</strong> = 内存 <span class="arithmatex">\(M\)</span> + 寄存器 <span class="arithmatex">\(R\)</span>（包含 PC、栈指针等所有寄存器）</li>
+<li><strong>初始状态</strong> = 操作系统加载程序后设置的初始内存与寄存器值</li>
+<li><strong>状态转移</strong> = 执行一条指令</li>
+</ul>
+<div class="arithmatex">\[
+(M, R) \xrightarrow{\text{执行 PC 指向的指令}} (M', R')
+\]</div>
+<p>每一步转移：</p>
+<ol>
+<li>从 <code>R[PC]</code> 取一条指令；</li>
+<li>解析指令，取出所需数据；</li>
+<li>计算结果（可能存在非确定性，如 <code>rdrand</code> 指令）；</li>
+<li>更新得到新状态 <span class="arithmatex">\((M', R')\)</span>。</li>
+</ol>
+<h4 id="普通指令的局限性">普通指令的局限性<a class="headerlink" href="#普通指令的局限性" title="Permanent link">&para;</a></h4>
+<p>程序中的所有普通指令（<code>mov</code>、<code>add</code>、<code>sub</code>、<code>call</code>、<code>ret</code>……）都只能用于<strong>计算</strong>，换句话说，它们只能操作内存与寄存器，<strong>无法终止程序</strong>、<strong>无法与外部世界交互</strong>（打印字符、读取文件等）。纯计算的状态机只能<em>死循环</em>或者<em>出现 undefined behavior（如访问非法地址）</em>。</p>
+<h4 id="解决方案syscall-指令">解决方案：syscall 指令<a class="headerlink" href="#解决方案syscall-指令" title="Permanent link">&para;</a></h4>
+<p><code>syscall</code> 是一条特殊的指令，它将当前进程的 <span class="arithmatex">\((M, R)\)</span> <strong>完全交给操作系统</strong>，由操作系统任意修改后再返回：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/syscall.h&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="k">register</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="k">asm</span><span class="p">(</span><span class="s">&quot;rax&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SYS_exit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 系统调用号</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="k">register</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="k">asm</span><span class="p">(</span><span class="s">&quot;rdi&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">         </span><span class="c1">// 参数：退出码</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="k">asm</span><span class="p">(</span><span class="s">&quot;syscall&quot;</span><span class="p">);</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>通过 <code>syscall</code>，程序可以：</p>
+<ul>
+<li><strong>读写文件/操作系统状态</strong>：将文件内容写入内存 <span class="arithmatex">\(M\)</span>；</li>
+<li><strong>改变进程状态</strong>：创建进程（<code>fork</code>/<code>clone</code>）、销毁自己（<code>exit</code>）等。</li>
+</ul>
+<p>执行 <code>syscall</code> 指令，CPU 从用户态陷入内核态，交给 Linux 内核处理。</p>
+<p>内核看到：系统调用号是 <code>exit</code>，参数是 <code>1</code>，于是就会：</p>
+<ol>
+<li>终止当前进程</li>
+<li>回收资源</li>
+<li>把退出状态记成 1</li>
+<li>把控制权交还给父进程/shell</li>
+</ol>
+<p>这样程序就能正常结束，原来的崩溃路径是：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>main 结束 -&gt; ret -&gt; RIP = 1 -&gt; 跳到 0x1 -&gt; SIGSEGV
+</span></code></pre></div></td></tr></table></div>
+<p>现在变成：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>main 运行 -&gt; syscall(exit, 1) -&gt; 内核结束进程
+</span></code></pre></div></td></tr></table></div>
+<p>可用 <code>man 2 syscall</code> 及 <code>man 2 syscalls</code> 查看所有系统调用文档。</p>
+<h4 id="hello-world-的汇编实现x86-64">Hello World 的汇编实现（x86-64）<a class="headerlink" href="#hello-world-的汇编实现x86-64" title="Permanent link">&para;</a></h4>
+<div class="language-asm highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">#include &lt;sys/syscall.h&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="na">.globl</span><span class="w"> </span><span class="no">_start</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="nl">_start:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="nf">movq</span><span class="w"> </span><span class="no">$SYS_write</span><span class="p">,</span><span class="w"> </span><span class="nv">%rax</span><span class="w">   </span><span class="c1">// write(</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">    </span><span class="nf">movq</span><span class="w"> </span><span class="no">$1</span><span class="p">,</span><span class="w">         </span><span class="nv">%rdi</span><span class="w">   </span><span class="c1">//   fd=1,</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span><span class="nf">movq</span><span class="w"> </span><span class="no">$st</span><span class="p">,</span><span class="w">        </span><span class="nv">%rsi</span><span class="w">   </span><span class="c1">//   buf=st,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">    </span><span class="nf">movq</span><span class="w"> </span><span class="no">$</span><span class="p">(</span><span class="no">ed</span><span class="w"> </span><span class="p">-</span><span class="w"> </span><span class="no">st</span><span class="p">),</span><span class="w"> </span><span class="nv">%rdx</span><span class="w">   </span><span class="c1">//   count=ed-st</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">    </span><span class="nf">syscall</span><span class="w">                 </span><span class="c1">// );</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">    </span><span class="nf">movq</span><span class="w"> </span><span class="no">$SYS_exit</span><span class="p">,</span><span class="w">  </span><span class="nv">%rax</span><span class="w">   </span><span class="c1">// exit(</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">    </span><span class="nf">movq</span><span class="w"> </span><span class="no">$1</span><span class="p">,</span><span class="w">         </span><span class="nv">%rdi</span><span class="w">   </span><span class="c1">//   status=1</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="w">    </span><span class="nf">syscall</span><span class="w">                 </span><span class="c1">// );</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="nl">st:</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w">    </span><span class="na">.ascii</span><span class="w"> </span><span class="s">&quot;\033[01;31mHello, OS World\033[0m\n&quot;</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="nl">ed:</span>
+</span></code></pre></div></td></tr></table></div>
+<p>编译运行步骤：
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>cpp<span class="w"> </span>minimal.S<span class="w"> </span>&gt;<span class="w"> </span>minimal.i
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>as<span class="w"> </span>minimal.i<span class="w"> </span>-o<span class="w"> </span>minimal.o
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>ld<span class="w"> </span>minimal.o
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>./a.out
+</span></code></pre></div></td></tr></table></div></p>
+<blockquote>
+<p>在这个例子中，我们想强调的是：<strong>程序退出最终依赖的是系统调用、依赖的是操作系统。</strong></p>
+</blockquote>
+<h4 id="程序--计算--syscall">程序 = 计算 + syscall<a class="headerlink" href="#程序--计算--syscall" title="Permanent link">&para;</a></h4>
+<p>从应用视角看：</p>
+<ul>
+<li><strong>程序</strong> = 一系列普通计算指令 + <code>syscall</code> 调用序列；</li>
+<li><strong>操作系统</strong> = <code>syscall</code> 的解释器（就如 CPU 解释普通指令一样）；</li>
+<li>对程序而言，<code>syscall</code> 的执行是透明的——程序只感知"执行了一条指令后状态变化了"。</li>
+</ul>
+<h4 id="c-程序的状态机模型">C 程序的状态机模型<a class="headerlink" href="#c-程序的状态机模型" title="Permanent link">&para;</a></h4>
+<p>高级语言（C）具有更高层次的抽象，其状态机定义为：</p>
+<ul>
+<li><strong>状态</strong> = 堆（heap）+ 栈（stack）+ 全局变量（globals）</li>
+<li><strong>初始状态</strong> = 仅有一个栈帧 <code>main(argc, argv)</code>，全局变量取初始值</li>
+<li><strong>状态转移</strong> = 执行一条简单语句：</li>
+<li>执行调用栈栈顶帧 <code>frames.top.PC</code> 处的简单语句；</li>
+<li>函数调用 = 压入新栈帧并将新帧 <code>PC</code> 指向被调函数入口；</li>
+<li>函数返回 = 弹出当前栈帧（pop frame）。</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：C 是更高层的抽象，没有"寄存器"的概念，编译器负责将 C 状态机翻译为汇编状态机：<code>.s = compile(.c)</code>。不同优化级别（<code>-O0</code>、<code>-O2</code>）可产生不同的指令序列，但两种状态机在语义上应等价。</p>
+</blockquote>
+<h3 id="23-操作系统上的软件">2.3 操作系统上的软件<a class="headerlink" href="#23-操作系统上的软件" title="Permanent link">&para;</a></h3>
+<p>操作系统中的<strong>任何程序</strong>，本质上都和 <code>minimal.S</code> 无异——<strong>它们都是包含 <code>syscall</code> 的状态机</strong>。</p>
+<p>操作系统管理所有硬件与软件资源，应用程序只能通过操作系统允许的方式（<code>syscall</code>）访问系统中的对象，这种集中管理有助于解决资源抢占与冲突。</p>
+<h4 id="追踪程序执行strace">追踪程序执行：<code>strace</code><a class="headerlink" href="#追踪程序执行strace" title="Permanent link">&para;</a></h4>
+<p><code>strace</code>（system call trace）利用内核提供的 <code>ptrace</code> 系统调用，允许观测一个进程的 syscall 序列：</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>strace<span class="w"> </span>./a.out
+</span></code></pre></div></td></tr></table></div>
+<p>示例输出（最小 Hello World）：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>execve(&quot;./a.out&quot;, [&quot;./a.out&quot;], 0x7ffc... /* 24 vars */) = 0
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>write(1, &quot;\33[01;31mHello, OS World\33[0m\n&quot;, 28) = 28
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>exit(1)                                  = ?
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>+++ exited with 1 +++
+</span></code></pre></div></td></tr></table></div></p>
+<p><strong>为什么能追踪进程？</strong></p>
+<p>因为所有进程都运行在操作系统的监控之下，某种意义上运行在操作系统提供的"虚拟机"中，而非直面硬件。操作系统通过 <code>ptrace</code> 系统调用，允许一个进程查看、甚至修改另一个进程的运行时寄存器，乃至植入代码。<code>strace</code>、GDB 都基于 <code>ptrace</code> 实现。</p>
+<h4 id="任何程序的一生">任何程序的一生<a class="headerlink" href="#任何程序的一生" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>syscall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加载</td>
+<td><code>execve</code></td>
+</tr>
+<tr>
+<td>进程管理</td>
+<td><code>fork</code>、<code>execve</code>、<code>exit</code>（<code>strace -e trace=%process</code>）</td>
+</tr>
+<tr>
+<td>文件/设备管理</td>
+<td><code>open</code>、<code>close</code>、<code>read</code>、<code>write</code>（<code>strace -e trace=%file</code>）</td>
+</tr>
+<tr>
+<td>存储管理</td>
+<td><code>mmap</code>、<code>brk</code>（<code>strace -e trace=%memory</code>）</td>
+</tr>
+<tr>
+<td>终止</td>
+<td><code>exit</code> 或 <code>exit_group</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="操作系统中常见的应用程序">操作系统中常见的应用程序<a class="headerlink" href="#操作系统中常见的应用程序" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Core Utilities（coreutils）</strong>：标准的文本与文件操作程序（GNU Coreutils），轻量替代品为 busybox；</li>
+<li><strong>系统/工具程序</strong>：<code>bash</code>、<code>binutils</code>、<code>apt</code>、<code>ip</code>、<code>ssh</code>、<code>vim</code>、<code>tmux</code>、<code>jdk</code>、<code>python</code> 等；</li>
+<li><strong>其他应用</strong>：浏览器、音乐播放器、游戏……</li>
+</ul>
+<blockquote>
+<p><strong>结论</strong>：在应用眼中，<strong>操作系统就是 syscall 的解释器</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="三硬件视角下的操作系统">三、硬件视角下的操作系统<a class="headerlink" href="#三硬件视角下的操作系统" title="Permanent link">&para;</a></h2>
+<h3 id="31-数字电路与状态机">3.1 数字电路与状态机<a class="headerlink" href="#31-数字电路与状态机" title="Permanent link">&para;</a></h3>
+<p>计算机硬件的核心是数字电路，同样可以用状态机描述：</p>
+<ul>
+<li><strong>状态</strong> = 寄存器（触发器 flip-flop）保存的值</li>
+<li><strong>初始状态</strong> = RESET 信号触发后的值</li>
+<li><strong>状态转移</strong> = 每个时钟周期，组合逻辑电路（NAND、NOT、AND、OR、NOR 等）计算寄存器下一个时钟周期的值</li>
+</ul>
+<h3 id="32-计算机硬件的状态机模型">3.2 计算机硬件的状态机模型<a class="headerlink" href="#32-计算机硬件的状态机模型" title="Permanent link">&para;</a></h3>
+<p>整个计算机系统也是一个状态机：</p>
+<ul>
+<li><strong>状态</strong> = 内存 + 所有寄存器的数值</li>
+<li><strong>初始状态</strong> = CPU Reset 后的状态</li>
+<li>
+<p><strong>状态转移</strong>：</p>
+<ol>
+<li>任意选择一个处理器（多核系统）；</li>
+<li>响应该处理器的外部中断（若有）；</li>
+<li>从该 CPU 的 PC 取指令并执行。</li>
+</ol>
+</li>
+</ul>
+<h3 id="33-cpu-reset">3.3 CPU Reset<a class="headerlink" href="#33-cpu-reset" title="Permanent link">&para;</a></h3>
+<p>硬件与操作系统开发者之间存在严格约定，其基础是 <strong>CPU Reset 后的状态</strong>。</p>
+<h4 id="x86-familyintel-64-and-ia-32">x86 Family（Intel® 64 and IA-32）<a class="headerlink" href="#x86-familyintel-64-and-ia-32" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>Reset 值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EIP</code></td>
+<td><code>0x0000FFF0</code></td>
+<td>程序计数器，指向 Reset Vector</td>
+</tr>
+<tr>
+<td><code>CR0</code></td>
+<td><code>0x60000010</code></td>
+<td>处理器处于<strong>实模式</strong>（Real Mode），分页机制关闭，CPU 处于 16-bit 状态</td>
+</tr>
+<tr>
+<td><code>EFLAGS</code></td>
+<td><code>0x00000002</code></td>
+<td>中断禁用（Interrupt disabled）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="其他架构的-reset-vector">其他架构的 Reset Vector<a class="headerlink" href="#其他架构的-reset-vector" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>架构</th>
+<th>Reset Vector</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MIPS</td>
+<td><code>0xBFC00000</code></td>
+<td>固定</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td><code>0x00000000</code></td>
+<td>可通过 Reset Vector Base Address Register 配置</td>
+</tr>
+<tr>
+<td>RISC-V</td>
+<td>Implementation defined</td>
+<td>给厂商最大自由度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-firmware固件">3.4 Firmware（固件）<a class="headerlink" href="#34-firmware固件" title="Permanent link">&para;</a></h3>
+<p>CPU Reset 后 PC 指向的地址通过 Memory-mapped I/O 映射到主板上的 ROM，ROM 中存储的代码称为 <strong>Firmware（固件）</strong>。</p>
+<p>厂商通过 Firmware 为操作系统开发者提供：</p>
+<ul>
+<li>管理硬件和系统配置；</li>
+<li>把存储设备上的代码加载到内存（二级 Loader 或操作系统）。</li>
+</ul>
+<h4 id="两种-firmware-标准">两种 Firmware 标准<a class="headerlink" href="#两种-firmware-标准" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>标准</th>
+<th>全称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BIOS</strong></td>
+<td>Basic Input/Output System</td>
+<td>传统标准，只支持有限硬件，代码空间受限（MBR 仅 512 字节）</td>
+</tr>
+<tr>
+<td><strong>UEFI</strong></td>
+<td>Unified Extensible Firmware Interface</td>
+<td>现代标准，支持驱动程序（EFI Driver）、支持 Secure Boot、性能更好、支持任意大小 .efi 可执行文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为何需要 UEFI？</strong> </p>
+<p>现代计算机硬件极其复杂（指纹锁、USB 蓝牙转接器等），这些设备都需要驱动程序才能访问，BIOS 的有限能力无法胜任。</p>
+<h3 id="35-legacy-bios-启动约定">3.5 Legacy BIOS 启动约定<a class="headerlink" href="#35-legacy-bios-启动约定" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Legacy BIOS 将第一个可引导设备的<strong>第一个 512 字节</strong>（MBR，Master Boot Record）加载到物理内存 <code>0x7C00</code>；</li>
+<li>此时处理器处于 16-bit 实模式；</li>
+<li>规定 <code>CS:IP = 0x7C00</code>；</li>
+<li>其他状态无约束，<strong>控制权交给程序员</strong>；</li>
+<li>MBR 布局：前 440 字节为 Boot Loader 代码 + 6 字节磁盘签名 + 64 字节分区表 + 2 字节魔数（<code>0x55AA</code>）。</li>
+</ol>
+<h3 id="36-uefi-启动流程">3.6 UEFI 启动流程<a class="headerlink" href="#36-uefi-启动流程" title="Permanent link">&para;</a></h3>
+<ol>
+<li>磁盘按 <strong>GPT</strong>（GUID Partition Table）格式化；</li>
+<li>预留一个 <strong>FAT32 分区</strong>（EFI System Partition）；</li>
+<li>Firmware 加载 <code>.efi</code> 格式的 PE 可执行文件（EFI Bootcode → OS Loader）；</li>
+<li>EFI 应用可再次返回 Firmware。</li>
+</ol>
+<h3 id="37-加载器bootloader工作细节">3.7 加载器（Bootloader）工作细节<a class="headerlink" href="#37-加载器bootloader工作细节" title="Permanent link">&para;</a></h3>
+<p>以 Legacy BIOS + 一级 Bootloader 为例，启动流程为：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>CPU RESET → BIOS → MBR（Bootloader） → ELF 镜像（初始化C环境） → 操作系统 main 函数
+</span></code></pre></div></td></tr></table></div>
+<p>MBR 中的 Bootloader 主要完成：</p>
+<ol>
+<li>将处理器从 <strong>16-bit 实模式</strong>切换到 <strong>32-bit 保护模式</strong>（乃至 64-bit 长模式）；</li>
+<li>跳转到 ELF32/ELF64 加载器；</li>
+<li>按约定的磁盘镜像格式，将操作系统内核（ELF 文件）加载到内存；</li>
+<li>跳转到内核入口：</li>
+</ol>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">elf32</span><span class="o">-&gt;</span><span class="n">e_machine</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EM_X86_64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">    </span><span class="p">((</span><span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)())(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">elf64</span><span class="o">-&gt;</span><span class="n">e_entry</span><span class="p">)();</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">    </span><span class="p">((</span><span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)())(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">elf32</span><span class="o">-&gt;</span><span class="n">e_entry</span><span class="p">)();</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>对于 Linux，GRUB 是两阶段 Bootloader：MBR 中的 GRUB Stage 1 加载 Stage 2，Stage 2 再加载内核。</p>
+<h3 id="38-使用-qemu--gdb-观察启动过程">3.8 使用 QEMU + GDB 观察启动过程<a class="headerlink" href="#38-使用-qemu--gdb-观察启动过程" title="Permanent link">&para;</a></h3>
+<p>QEMU 模拟完整的硬件系统，可以在模拟环境中观察每一条指令的执行：</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1"># 启动 QEMU，加载 MBR 镜像，开启 GDB 服务器（端口 1234），启动后 CPU 先暂停</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>qemu-system-x86_64<span class="w"> </span>-s<span class="w"> </span>-S<span class="w"> </span>mbr.img
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="c1"># 另一终端，连接 GDB</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>gdb
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>target<span class="w"> </span>remote<span class="w"> </span>localhost:1234
+</span></code></pre></div></td></tr></table></div>
+<p>通过此方法可以验证：</p>
+<ul>
+<li>CPU Reset 后 PC 指向 <code>0xFFF0</code>（Firmware 入口）；</li>
+<li>MBR 的第一条指令被 BIOS 加载到 <code>0x7C00</code>；</li>
+<li>利用 GDB watchpoint 可以观察到是哪段代码将 MBR 内容写入内存。</li>
+</ul>
+<h3 id="39-bare-metal-上的-c-代码">3.9 Bare-metal 上的 C 代码<a class="headerlink" href="#39-bare-metal-上的-c-代码" title="Permanent link">&para;</a></h3>
+<p>在没有操作系统的裸机上运行 C 程序，需要：</p>
+<ol>
+<li>MBR 中的 Bootloader 将 C 程序加载到内存；</li>
+<li>使用编译器的特殊选项生成不依赖操作系统的目标文件：</li>
+<li><strong>静态链接</strong>：不依赖动态库；</li>
+<li><strong>Freestanding 模式</strong>（<code>-fno-hosted</code>）：不使用任何标准库。</li>
+</ol>
+<p>代价是没有 <code>printf</code>、<code>malloc</code> 等，需要自行实现。</p>
+<h3 id="310-abstract-machineam抽象机器">3.10 Abstract Machine（AM）抽象机器<a class="headerlink" href="#310-abstract-machineam抽象机器" title="Permanent link">&para;</a></h3>
+<p>为屏蔽不同硬件体系（x86、MIPS、RISC-V 等）的差异，本课程使用 <strong>AM（Abstract Machine）</strong> 作为硬件抽象层：</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NJU-ProjectN/abstract-machine.git
+</span></code></pre></div></td></tr></table></div>
+<p>AM 提供以下扩展模块：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>全称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TRM</strong></td>
+<td>Turing Machine</td>
+<td>基础计算：内存、CPU、寄存器</td>
+</tr>
+<tr>
+<td><strong>IOE</strong></td>
+<td>I/O Extension</td>
+<td>I/O 设备：定时器、键盘、GPU 等</td>
+</tr>
+<tr>
+<td><strong>CTE</strong></td>
+<td>Context Extension</td>
+<td>上下文切换（中断/异常处理）</td>
+</tr>
+<tr>
+<td><strong>VME</strong></td>
+<td>Virtual Memory Extension</td>
+<td>虚拟内存（页表机制）</td>
+</tr>
+<tr>
+<td><strong>MPE</strong></td>
+<td>Multi-Processor Extension</td>
+<td>多处理器支持、共享内存</td>
+</tr>
+</tbody>
+</table>
+<p>AM 本身也是一个状态机：执行一条指令完成状态迁移，包含正常指令流和中断处理指令流两种路径。</p>
+<h3 id="311-两种执行流">3.11 两种执行流<a class="headerlink" href="#311-两种执行流" title="Permanent link">&para;</a></h3>
+<h4 id="普通控制流normal-control-flow">普通控制流（Normal Control Flow）<a class="headerlink" href="#普通控制流normal-control-flow" title="Permanent link">&para;</a></h4>
+<p>遵循冯·诺依曼结构的指令循环：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>Select PC → Program Counter → CPU Fetch &amp; Execute → +1 / Branch → Select PC → ...
+</span></code></pre></div></td></tr></table></div>
+<p>PC 的变化仅由指令自身决定（顺序 +1，或跳转指令改变 PC）。</p>
+<h4 id="异常控制流exceptional-control-flow">异常控制流（Exceptional Control Flow）<a class="headerlink" href="#异常控制流exceptional-control-flow" title="Permanent link">&para;</a></h4>
+<p>PC 的转移<strong>不受</strong>正常自增或分支指令控制，而由"外界"强制赋值：</p>
+<ul>
+<li>触发条件：中断（interrupt）、异常（exception/fault）、自陷指令（trap，如 <code>syscall</code>）；</li>
+<li>处理器查表（实地址模式：中断向量表 IVT；保护模式：中断描述符表 IDT），跳转到对应的中断服务例程（ISR）；</li>
+<li>处理完毕后恢复到之前的正常执行流。</li>
+</ul>
+<p><strong>异步事件处理示例</strong>：<code>Ctrl+C</code> 终止进程的流程：</p>
+<ol>
+<li>键盘产生中断，操作系统中断处理程序捕获；</li>
+<li>操作系统识别 <code>Ctrl+C</code>，向目标进程发送 <code>SIGINT</code> 信号；</li>
+<li>进程终止正常指令流，跳转到 <code>SIGINT</code> 信号处理函数；</li>
+<li>信号处理函数执行，进程退出。</li>
+</ol>
+<p>这是 <strong>Event-driven programming</strong> 的典型体现。</p>
+<h3 id="312-上下文切换context-switch">3.12 上下文切换（Context Switch）<a class="headerlink" href="#312-上下文切换context-switch" title="Permanent link">&para;</a></h3>
+<p>进入异常控制流前，CPU 必须保存当前的<strong>执行现场（Context）</strong>，否则无法恢复原来的执行。</p>
+<p><strong>什么是上下文？</strong></p>
+<p>寄存器的值（它们不像栈/堆保存在内存中，一旦被覆写，旧值即丢失）。不同架构的上下文略有差异，AM 统一抽象为 <code>Context</code> 结构体，主要包含：</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC 寄存器（CS、IP）</td>
+<td>下一条指令地址</td>
+</tr>
+<tr>
+<td>栈指针（SP、SS）</td>
+<td>当前栈位置</td>
+</tr>
+<tr>
+<td>控制寄存器（EFLAGS 等）</td>
+<td>处理器标志位</td>
+</tr>
+<tr>
+<td>虚拟地址翻译入口寄存器</td>
+<td>页表基址等</td>
+</tr>
+<tr>
+<td>其他数据寄存器（EAX、EBX …）</td>
+<td>通用寄存器</td>
+</tr>
+</tbody>
+</table>
+<p><strong>上下文切换过程（x86 示例）：</strong></p>
+<ol>
+<li><strong>异常事件发生前</strong>：CPU 寄存器保存当前进程状态，用户栈正常使用；</li>
+<li><strong>异常事件发生时</strong>：CPU 将 <code>EFLAGS</code>、<code>CS:EIP</code>、<code>SS:ESP</code> 等上下文压入<strong>内核栈</strong>，转向异常处理程序；</li>
+<li><strong>异常处理结束，进程被再次调度</strong>：从内核栈弹出（POP）上下文，CPU 恢复原进程执行。</li>
+</ol>
+<p><strong>重要意义</strong>：Context 机制使操作系统能够<strong>保存和恢复任意进程的执行状态</strong>，从而实现<strong>分时复用</strong>——给程序制造了"独占 CPU"的假象。这是分时操作系统的核心。</p>
+<blockquote>
+<p><strong>关于中断嵌套</strong>：中断处理期间若又发生中断，通常做法是在进入中断处理程序时<strong>禁用中断</strong>（将新中断存入队列），处理结束时再重新启用。</p>
+</blockquote>
+<h3 id="313-在-am-上实现操作系统">3.13 在 AM 上实现操作系统<a class="headerlink" href="#313-在-am-上实现操作系统" title="Permanent link">&para;</a></h3>
+<p>操作系统本质上只能控制两部分代码：</p>
+<ol>
+<li><strong><code>main</code> 函数</strong>（经历 CPU reset → BIOS → MBR → C 环境初始化后到达）：用于初始化整个计算系统环境；</li>
+<li><strong>中断/异常响应函数</strong>（Interrupt/Trap/Fault Handler）：响应异步事件，实现各种内核服务。</li>
+</ol>
+<p>这就是<strong>硬件眼中的操作系统</strong>。</p>
+<blockquote>
+<p><strong>结论</strong>：在硬件眼中，<strong>操作系统就是一个能直接访问计算机硬件的 C 程序</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="四抽象视角下的操作系统">四、抽象视角下的操作系统<a class="headerlink" href="#四抽象视角下的操作系统" title="Permanent link">&para;</a></h2>
+<h3 id="41-操作系统本身就是状态机">4.1 操作系统本身就是状态机<a class="headerlink" href="#41-操作系统本身就是状态机" title="Permanent link">&para;</a></h3>
+<p>前两个视角分别从"自顶向下"（应用）和"自底向上"（硬件）观察操作系统，但没有从全局把握。抽象视角将操作系统视为一个<strong>状态机</strong>，从整体上理解其生命周期。</p>
+<h3 id="42-操作系统的一生">4.2 操作系统的一生<a class="headerlink" href="#42-操作系统的一生" title="Permanent link">&para;</a></h3>
+<h4 id="初始化阶段">初始化阶段<a class="headerlink" href="#初始化阶段" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>CPU RESET
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>  → BIOS / UEFI（Firmware）
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a>  → Bootloader（MBR / EFI Bootcode）
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a>  → 加载内核 ELF 镜像
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a>  → 内核初始化：
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a>      - 初始化内存、处理器、I/O、存储设备
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a>      - 设置中断处理（IRQ）
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a>      - 挂载 initrd，加载必要驱动，卸载 initrd
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a>      - 挂载根文件系统（root filesystem）
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a>  → 启动第一个用户态进程：init（现代 Linux 为 systemd）
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11"></a>  → yield CPU，进入&quot;被动等待&quot;状态
+</span></code></pre></div></td></tr></table></div>
+<p>初始化结束后，内核形成如下<strong>状态</strong>（内核内存布局）：</p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内核代码区</td>
+<td>内核代码</td>
+</tr>
+<tr>
+<td>内核堆</td>
+<td>动态分配的内核数据结构</td>
+</tr>
+<tr>
+<td>内核栈 1, 2, …</td>
+<td>每个进程一个内核栈</td>
+</tr>
+<tr>
+<td>Meta(进程 1, 2, …)</td>
+<td>进程控制块（PCB）：进程 id、栈指针、PC 等</td>
+</tr>
+<tr>
+<td>Meta(文件 1, 2, …)</td>
+<td>文件元信息</td>
+</tr>
+<tr>
+<td>Meta(地址 1, 2, …)</td>
+<td>地址空间元信息</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行阶段">运行阶段<a class="headerlink" href="#运行阶段" title="Permanent link">&para;</a></h4>
+<p>操作系统初始化完成后，<strong>变成 interrupt/trap/fault handler 的集合</strong>，状态被动迁移：</p>
+<p><strong>用户进程执行 syscall（trap）：</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span>
+<span class="normal"><a href="#__codelineno-20-6">6</a></span>
+<span class="normal"><a href="#__codelineno-20-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a>用户进程 → syscall（自陷）→ 内核 syscall 处理代码
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a>          ─────────────────────────────────────────
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a>          s  →（执行相应系统调用代码，可能需要硬件辅助）
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a>             →（等待硬件完成，如磁盘 I/O，期间可调度其他进程）
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a>             →（硬件中断通知完成）
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a>          s&#39; →（返回用户空间，用户进程继续）
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a>          s&#39;&#39;
+</span></code></pre></div></td></tr></table></div>
+<p><strong>硬件中断发生：</strong></p>
+<p>时钟中断等硬件事件直接触发内核中断处理程序，内核可借此执行调度，切换到不同的用户进程。</p>
+<h3 id="43-操作系统的抽象状态机总结">4.3 操作系统的抽象状态机总结<a class="headerlink" href="#43-操作系统的抽象状态机总结" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>内部状态</strong></td>
+<td>进程/线程元信息、文件元信息、地址空间元信息、内核栈、内核堆、内核代码区</td>
+</tr>
+<tr>
+<td><strong>状态迁移触发条件</strong></td>
+<td>① 用户进程执行 syscall（trap）；② 硬件中断事件（时钟中断、I/O 完成中断等）</td>
+</tr>
+<tr>
+<td><strong>主动性</strong></td>
+<td>操作系统的状态是<strong>被动迁移</strong>的，自身不主动执行</td>
+</tr>
+<tr>
+<td><strong>角色</strong></td>
+<td>初始化后成为 interrupt/trap/fault handler</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-用代码实现抽象操作系统os-modelpy">4.4 用代码实现抽象操作系统（os-model.py）<a class="headerlink" href="#44-用代码实现抽象操作系统os-modelpy" title="Permanent link">&para;</a></h3>
+<h4 id="api-设计">API 设计<a class="headerlink" href="#api-设计" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>syscall</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sys_choose(xs)</code></td>
+<td>返回 xs 中的一个随机选项（模拟非确定性）</td>
+</tr>
+<tr>
+<td><code>sys_write(s)</code></td>
+<td>输出字符串 s</td>
+</tr>
+<tr>
+<td><code>sys_spawn(fn)</code></td>
+<td>创建从 fn 开始执行的新状态机（线程/进程）</td>
+</tr>
+<tr>
+<td><code>sys_sched()</code></td>
+<td>随机切换到任意状态机执行</td>
+</tr>
+</tbody>
+</table>
+<h4 id="借用-python-generator-机制">借用 Python Generator 机制<a class="headerlink" href="#借用-python-generator-机制" title="Permanent link">&para;</a></h4>
+<p>Python 的 Generator（生成器）天然支持"暂停执行、保存状态、恢复执行"：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-21-10">10</a></span>
+<span class="normal"><a href="#__codelineno-21-11">11</a></span>
+<span class="normal"><a href="#__codelineno-21-12">12</a></span>
+<span class="normal"><a href="#__codelineno-21-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">number</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a>        <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a>        <span class="k">yield</span> <span class="n">a</span>          <span class="c1"># 暂停，将 a 产出给调用者</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="n">c</span> <span class="o">=</span> <span class="n">number</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># → 4，恢复执行到下一个 yield</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>   <span class="c1"># → 5</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9"></a>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10"></a><span class="c1"># 用 send() 向生成器传递值</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="n">a</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">a</span>    <span class="c1"># yield 表达式的值由 send() 决定</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>      <span class="c1"># → 6（即 5+1）</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13"></a><span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>   <span class="c1"># 等价于 next(c)，不传递值</span>
+</span></code></pre></div></td></tr></table></div>
+<p>生成器中的 <code>yield</code> 相当于"让出 CPU 并告知调用者当前状态"，这与 syscall 的语义非常契合。</p>
+<h4 id="thread-类封装状态机">Thread 类（封装状态机）<a class="headerlink" href="#thread-类封装状态机" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Thread</span><span class="p">:</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A &quot;freezed&quot; thread state.&quot;&quot;&quot;</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_func</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>   <span class="c1"># 根据目标程序创建生成器</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">retval</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Proceed with the thread until its next trap.&quot;&quot;&quot;</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9"></a>        <span class="n">syscall</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_func</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retval</span><span class="p">)</span>  <span class="c1"># 运行到下一个 syscall</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">retval</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11"></a>        <span class="k">return</span> <span class="n">syscall</span><span class="p">,</span> <span class="n">args</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="操作系统内核syscall-解释器">操作系统内核（syscall 解释器）<a class="headerlink" href="#操作系统内核syscall-解释器" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-23-10">10</a></span>
+<span class="normal"><a href="#__codelineno-23-11">11</a></span>
+<span class="normal"><a href="#__codelineno-23-12">12</a></span>
+<span class="normal"><a href="#__codelineno-23-13">13</a></span>
+<span class="normal"><a href="#__codelineno-23-14">14</a></span>
+<span class="normal"><a href="#__codelineno-23-15">15</a></span>
+<span class="normal"><a href="#__codelineno-23-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">OperatingSystem</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_main</span><span class="p">)]</span>   <span class="c1"># 初始化：只有 main 线程</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>    <span class="k">while</span> <span class="n">threads</span><span class="p">:</span>                                    <span class="c1"># 有线程存活就继续运行</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a>            <span class="k">match</span> <span class="p">(</span><span class="n">t</span> <span class="o">:=</span> <span class="n">threads</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">step</span><span class="p">():</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a>                <span class="k">case</span> <span class="s1">&#39;choose&#39;</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span>            <span class="c1"># sys_choose</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7"></a>                    <span class="n">t</span><span class="o">.</span><span class="n">retval</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8"></a>                <span class="k">case</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span>             <span class="c1"># sys_write</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9"></a>                    <span class="nb">print</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10"></a>                <span class="k">case</span> <span class="s1">&#39;spawn&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>     <span class="c1"># sys_spawn</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11"></a>                    <span class="n">threads</span> <span class="o">+=</span> <span class="p">[</span><span class="n">OperatingSystem</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)]</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12"></a>                <span class="k">case</span><span class="w"> </span><span class="s1">&#39;sched&#39;</span><span class="p">,</span> <span class="k">_</span><span class="p">:</span>              <span class="c1"># sys_sched</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13"></a>                    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14"></a>        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>                 <span class="c1"># 线程终止</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15"></a>            <span class="n">threads</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16"></a>            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span>           <span class="c1"># 隐式调度</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="应用程序示例">应用程序示例<a class="headerlink" href="#应用程序示例" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">Tprint</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a>    <span class="k">global</span> <span class="n">count</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a>        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a>        <span class="n">sys_write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#</span><span class="si">{</span><span class="n">count</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1"> Hello from </span><span class="si">{</span><span class="n">name</span><span class="si">}{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a>        <span class="n">sys_sched</span><span class="p">()</span>   <span class="c1"># 主动让出 CPU</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">sys_choose</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12"></a>    <span class="n">sys_write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;#Thread = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13"></a>    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="s1">&#39;ABCDE&#39;</span><span class="p">[:</span><span class="n">n</span><span class="p">]:</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14"></a>        <span class="n">sys_spawn</span><span class="p">(</span><span class="n">Tprint</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15"></a>    <span class="n">sys_sched</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="45-更完整的-toy-osmosaic">4.5 更完整的 Toy OS：Mosaic<a class="headerlink" href="#45-更完整的-toy-osmosaic" title="Permanent link">&para;</a></h3>
+<p><code>mosaic.py</code> 提供更接近真实 Linux 的系统调用映射：</p>
+<table>
+<thead>
+<tr>
+<th>mosaic syscall</th>
+<th>Linux 对应</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sys_spawn(fn)</code></td>
+<td><code>pthread_create</code></td>
+<td>创建从 fn 开始执行的线程（共享内存）</td>
+</tr>
+<tr>
+<td><code>sys_fork()</code></td>
+<td><code>fork</code></td>
+<td>创建当前状态机的完整复制（独立堆）</td>
+</tr>
+<tr>
+<td><code>sys_sched()</code></td>
+<td>调度器</td>
+<td>切换到随机线程/进程执行</td>
+</tr>
+<tr>
+<td><code>sys_choose(xs)</code></td>
+<td><code>rand</code></td>
+<td>返回 xs 中的随机选择</td>
+</tr>
+<tr>
+<td><code>sys_write(s)</code></td>
+<td><code>printf</code></td>
+<td>向调试终端输出字符串</td>
+</tr>
+<tr>
+<td><code>sys_bread(k)</code></td>
+<td><code>read</code></td>
+<td>读取虚拟磁盘块 k 的数据</td>
+</tr>
+<tr>
+<td><code>sys_bwrite(k, v)</code></td>
+<td><code>write</code></td>
+<td>向虚拟磁盘块 k 写入数据</td>
+</tr>
+<tr>
+<td><code>sys_sync()</code></td>
+<td><code>sync</code></td>
+<td>将所有虚拟磁盘数据落盘</td>
+</tr>
+</tbody>
+</table>
+<p><strong>设计要点：</strong></p>
+<ul>
+<li>进程/线程均为 Generator 对象；</li>
+<li>线程共享堆内存，进程拥有独立的堆（clone）；</li>
+<li>虚拟磁盘简化为 Python dict；</li>
+<li>实际系统中程序随时可能被外部事件（如时钟中断）打断，mosaic 对此做了简化。</li>
+</ul>
+<p><strong>Mosaic 的彩蛋——枚举所有调度序列：</strong></p>
+<p>当执行 <code>sys_sched()</code> 时，Mosaic 可以<strong>枚举所有可能的调度序列</strong>，生成一棵状态树：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>s1 → （任意挑选一个进程执行一步）
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a>     ├── s2₁ → ...（调度进程 A）
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a>     ├── s2₂ → ...（调度进程 B）
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a>     └── s2₃ → ...（调度进程 C）
+</span></code></pre></div></td></tr></table></div>
+<p>这等价于一台<strong>非确定性图灵机（Nondeterministic Turing Machine）</strong>，可用于验证并发程序在所有可能调度下的正确性——这是形式化验证（model checking）的核心思想。</p>
+<hr />
+<h2 id="五总结">五、总结<a class="headerlink" href="#五总结" title="Permanent link">&para;</a></h2>
+<p>操作系统在三个视角下分别呈现出不同的面貌，三者相互补充，共同构成完整的认知：</p>
+<table>
+<thead>
+<tr>
+<th>视角</th>
+<th>核心结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>应用视角</strong></td>
+<td>操作系统是 syscall 的解释器；程序 = 计算 + syscall，是包含系统调用的状态机</td>
+</tr>
+<tr>
+<td><strong>硬件视角</strong></td>
+<td>操作系统是直接运行在硬件之上的 C 程序，拥有完整计算机的控制权限（中断、I/O）</td>
+</tr>
+<tr>
+<td><strong>抽象视角</strong></td>
+<td>操作系统本身是状态机：内部状态为其管理的资源，状态被动迁移（syscall / 硬件中断触发）；初始化后成为 interrupt/trap/fault handler</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="六阅读材料">六、阅读材料<a class="headerlink" href="#六阅读材料" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>[CSAPP]</strong> 第 1、7、8 章（计算机系统概览、链接、异常控制流）</li>
+<li><strong>[OSPP]</strong> 第 1、2 章（操作系统概述）</li>
+<li>浏览 <strong>GNU Coreutils</strong> 和 <strong>GNU Binutils</strong> 官网，建立常用命令行工具的整体印象</li>
+<li>浏览 <strong>GDB 文档</strong>目录，了解感兴趣的章节，例如 "Reverse Execution"、"TUI: GDB Text User Interface"</li>
+<li>参考 <strong>busybox</strong> 和 <strong>toybox</strong> 项目，查看常用命令行工具的简化实现</li>
+<li><strong>AM（Abstract Machine）</strong>：<a href="https://jyywiki.cn/OS/AbstractMachine/index.html">https://jyywiki.cn/OS/AbstractMachine/index.html</a></li>
+<li><strong>AM 代码仓库</strong>：<a href="https://github.com/NJU-ProjectN/abstract-machine">https://github.com/NJU-ProjectN/abstract-machine</a></li>
+<li><strong>AM 示例内核</strong>：<a href="https://github.com/NJU-ProjectN/am-kernels">https://github.com/NJU-ProjectN/am-kernels</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../" class="md-footer__link md-footer__link--prev" aria-label="上一页: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-footer__link md-footer__link--next" aria-label="下一页: 操作系统的发展历程">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                操作系统的发展历程
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

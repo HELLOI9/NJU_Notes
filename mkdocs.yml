@@ -110,8 +110,15 @@ nav:
 - Course Notes:
   - Overview: notes/index.md
   - The second semester of sophomore year:
-    - Computer Operating Systems: notes/The second semester of sophomore year/Computer
-        Operating Systems/index.md
+    - Computer Operating Systems:
+      - Overview: notes/The second semester of sophomore year/Computer Operating Systems/index.md
+      - Chap1 绪论:
+        - 各种视角下的操作系统: notes/The second semester of sophomore year/Computer Operating
+            Systems/Chap1 绪论/各种视角下的操作系统.md
+        - 操作系统的发展历程: notes/The second semester of sophomore year/Computer Operating
+            Systems/Chap1 绪论/操作系统的发展历程.md
+      - Chap2 并发: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
+          并发/多处理器编程Multiprocessor Programming.md
     - Foundations of Data Management:
       - Overview: notes/The second semester of sophomore year/Foundations of Data
           Management/index.md
