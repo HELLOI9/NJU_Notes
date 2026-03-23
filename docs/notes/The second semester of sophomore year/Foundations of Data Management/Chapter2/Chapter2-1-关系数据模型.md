@@ -261,7 +261,7 @@ $$\text{选择} \quad \text{投影} \quad \text{并} \quad \text{差} \quad \tex
 
 ---
 
-## 五、本讲知识框架
+## 本讲知识框架
 
 ```
 关系数据库

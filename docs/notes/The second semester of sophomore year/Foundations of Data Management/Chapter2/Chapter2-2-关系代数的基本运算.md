@@ -9,13 +9,13 @@
 - **关系代数**是一种抽象的查询语言，它用关系运算来表达对关系的操作。
 - 在关系代数中，**运算对象是"关系"，运算结果亦为"关系"**。
 - 关系代数的运算符有两类：
-  - **传统的集合运算符**：从关系的"水平"方向，即**行**的角度进行。
-  - **专门的关系运算符**：不仅涉及行，而且涉及列。
+
+    1. **传统的集合运算符**：从关系的"水平"方向，即**行**的角度进行。
+    2. **专门的关系运算符**：不仅涉及行，而且涉及列。
 
 ### 1.2 关系代数表达式
 
-- 以关系为运算对象，使用关系运算经有限次复合后形成的表达式称为**"关系代数表达式"**。
-- 可以用关系代数表达式来表示关系模型上的数据操纵（包括数据查询、插入、删除和修改操作）。
+以关系为运算对象，使用关系运算经有限次复合后形成的表达式称为 **"关系代数表达式"**。我们可以用关系代数表达式来表示关系模型上的数据操纵（包括数据查询、插入、删除和修改操作）。
 
 ### 1.3 常用的关系操作
 
@@ -36,7 +36,7 @@
 | 基本运算 | 差 | $R - S$ | `R EXCEPT S` |
 | 基本运算 | 笛卡尔积 | $R \times S$ | `R CROSS S` |
 | 基本运算 | 选择 | $\sigma_F(R)$ | `R WHERE F` |
-| 基本运算 | 投影 | $\Pi_{A_1,A_2,...,A_k}(R)$ | `R[A1, A2, ..., Ak]` |
+| 基本运算 | 投影 | $\pi_{A_1,A_2,...,A_k}(R)$ | `R[A1, A2, ..., Ak]` |
 
 ### 1.5 掌握每种运算符的两个要素
 
@@ -56,24 +56,25 @@
 
 | 符号 | 含义 |
 |---|---|
-| $A, B, C, \ldots$ | 前面的大写字母表示属性名，小写字母表示属性值（如：用 $A$ 表示属性名，用 $a$ 或 $a_1, a_2, \ldots$ 表示属性A的值） |
-| $X, Y, Z, \ldots$ | 后面的大写字母表示关系中的一个**属性组/属性集** |
-| $R, S, T, \ldots$ | 中间的大写字母表示**关系名**，代表一个关系，或该关系的一个实例 |
+| $A, B, C, \ldots$ | 大写字母表示属性名，小写字母表示属性值，如用 $A$ 表示属性名，用 $a$ 或 $a_1, a_2, \ldots$ 表示属性A的值） |
+| $X, Y, Z, \ldots$ | 表示关系中的一个**属性组/属性集**，如$X=\{name, id, birthday\}$|
+| $R, S, T, \ldots$ | 表示**关系名**，代表一个关系，或该关系的一个实例 |
 | $R(U)$ | 关系模式：关系名R，关系中的属性集合U |
-| $\text{attr}(R)$ | 关系R中所有属性名的集合（关系模式的另一种表示方式） |
-| $r, s, t, \ldots$ / $r_1, r_2, r_3$ | 关系中的元组 |
+| $\text{head}(R)$ | 关系R中所有属性名的集合（关系模式的另一种表示方式） |
+| $r, s, t, \ldots$ $r_1, r_2, r_3$ | 关系中的元组 |
 | $r_1[A]$ | 元组 $r_1$ 在属性（集）$A$ 上的取值 |
 
 ### 2.2 属性组的表示
 
 设有一个 $n$ 目关系 $R(A_1, A_2, \ldots, A_n)$，其一个关系（实例）设为 $r$：
 
-- 关系模式可表示为 $R(A_1, A_2, \ldots, A_n)$ 或 $\text{attr}(R) = \{A_1, A_2, \ldots, A_n\}$
-- $t \in r$ 表示 $t$ 是关系 $r$ 中的一个元组
-- $t[A_i]$ 表示元组 $t$ 中相应于属性 $A_i$ 的一个分量
-- 若 $X = \{A_{i1}, A_{i2}, \ldots, A_{ik}\}$ 是 $\{A_1, A_2, \ldots, A_n\}$ 中的属性，则 $X$ 称为**"属性列"或"属性组"或"属性集"**：
-  - $t[X] = (t[A_{i1}], t[A_{i2}], \ldots, t[A_{ik}])$ 表示元组 $t$ 在属性组 $X$ 上诸分量的集合
-  - $\bar{X}$ 则表示从 $\{A_1, A_2, \ldots, A_n\}$ 中去掉 $\{A_{i1}, A_{i2}, \ldots, A_{ik}\}$ 后剩余的属性组
+1. 关系模式可表示为 $R(A_1, A_2, \ldots, A_n)$ 或 $\text{head}(R) = \{A_1, A_2, \ldots, A_n\}$
+2. $t \in r$ 表示 $t$ 是关系 $r$ 中的一个元组
+3. $t[A_i]$ 表示元组 $t$ 中相应于属性 $A_i$ 的一个分量
+4. 若 $X = \{A_{i1}, A_{i2}, \ldots, A_{ik}\}$ 是 $\{A_1, A_2, \ldots, A_n\}$ 中的属性，则 $X$ 称为**"属性列"或"属性组"或"属性集"**：
+
+    - $t[X] = (t[A_{i1}], t[A_{i2}], \ldots, t[A_{ik}])$ 表示元组 $t$ 在属性组 $X$ 上🧍各个分量的集合
+    - $\bar{X}$ 则表示从 $\{A_1, A_2, \ldots, A_n\}$ 中去掉 $\{A_{i1}, A_{i2}, \ldots, A_{ik}\}$ 后剩余的属性组
 
 ### 2.3 元组的连接
 
@@ -85,12 +86,7 @@
 
 $$Z_x = \{ t[Z] \mid t \in R \text{ 且 } t[X] = x \}$$
 
-它表示 $R$ 中属性组 $X$ 上值为 $x$ 的诸元组在 $Z$ 上分量的集合。
-
-**示例（图2.3）**：关系 $R(X, Z)$ 中：
-- $x_1$ 在 $R$ 中的象集：$Z_{x_1} = \{z_1, z_2, z_3\}$
-- $x_2$ 在 $R$ 中的象集：$Z_{x_2} = \{z_2, z_3\}$
-- $x_3$ 在 $R$ 中的象集：$Z_{x_3} = \{z_1, z_3\}$
+它表示 $R$ 中属性组 $X$ 上值为 $x$ 的各个元组在 $Z$ 上分量的集合。
 
 ---
 
@@ -103,6 +99,9 @@ $$Z_x = \{ t[Z] \mid t \in R \text{ 且 } t[X] = x \}$$
 - 在后续的关系代数表示中，均采用"同名同义、异名异义"的约定。
 - 若存在"同名异义"或"同义异名"现象，可通过**赋值运算**对属性进行重命名。
 
+??? warning "警告"
+    严格遵循“同名同义，异名异义”的规则！！！
+
 ### 3.2 相容表（Compatible Tables）/ 同类关系
 
 如果关系 $R$ 和 $S$ 的关系模式满足以下要求，则称 $R$ 和 $S$ 是**相容的**（即相容表/同类关系）：
@@ -111,6 +110,7 @@ $$Z_x = \{ t[Z] \mid t \in R \text{ 且 } t[X] = x \}$$
 2. **对应属性之间有着相同的域和相同的语义**（确保在对应属性的属性值之间可以进行有意义的逻辑比较）
 
 **注意例外情况**：
+
 - 同名异义：属性名相同，却有着不同的属性域或不同的语义
 - 异名同义：属性名不同，却有着相同的属性域和相同的语义
 
@@ -129,18 +129,22 @@ $$R(A_1, A_2, \ldots, A_n) := \text{expression}$$
 ### 4.2 两种使用方式
 
 **方式一**：$R(A_1, A_2, \ldots, A_n) := \text{expression}$
+
 - 计算右边的关系代数表达式，并将其结果关系保存下来形成临时的查询关系 $R$
 - 查询关系中的属性名可采用原属性名，也可对部分属性进行**重命名**，但必须保证 $R$ 中不会出现属性同名现象。
 
 **方式二**：$R := \text{expression}$
+
 - 将右边的关系代数表达式的计算结果保存下来形成临时的查询关系 $R$
 - $R$ 是查询关系的关系名，属性名直接沿用右边表达式中的原属性名。
 
 ### 4.3 赋值运算的用途
 
 1. **对关系及属性进行重命名（alias）**：方便"关系的自连接"或复杂查询的表示。
-   - 例：$S := R$（为关系 $R$ 另起一个别名 $S$）
-   - 通常用于"关系自连接"的表示，或有目的地对关系中的某些属性进行重命名。
+
+    - 例：$S := R$（为关系 $R$ 另起一个别名 $S$）
+    - 通常用于"关系自连接"的表示，或有目的地对关系中的某些属性进行重命名。
+
 2. **保存计算的"中间结果"**：方便复杂查询的表示。
 
 ---
@@ -173,18 +177,19 @@ $$R \cup S = \{ t \mid t \in R \vee t \in S \}$$
 
 **结果关系模式**：与关系 $R$（或关系 $S$）的模式相同。
 
-**性质**：
+**性质**(*元组内的元素是无序的*)：
+
 - 满足**交换律**：$R \cup S = S \cup R$
 - 满足**结合律**：$(R \cup S) \cup T = R \cup (S \cup T)$
 
 **伪代码**：
 ```
-R := R    /* 首先将关系R中的元组加入结果关系T */
-for each tuple s ∈ S {
-    if (s ∉ R)    /* 确保结果关系中元组的唯一性 */
-    then add tuple s into R
+T := R    /* 首先将关系R中的元组加入结果关系T */
+for each tuple t_s ∈ S {
+    if (t_s ∉ R)    /* 确保结果关系中元组的唯一性 */
+    then add tuple t_s into T
 }
-return R
+return T
 ```
 
 ---
@@ -200,6 +205,7 @@ $$R - S = \{ t \mid t \in R \wedge t \notin S \}$$
 **结果关系模式**：与关系 $R$（或关系 $S$）的模式相同。
 
 **性质**：
+
 - **不满足**交换律：$R - S \neq S - R$
 - **不满足**结合律：$(R - S) - T \neq R - (S - T)$
 
@@ -213,21 +219,6 @@ for each tuple t ∈ R {
 return T
 ```
 
-**并运算 & 差运算示例（图2.2）**：
-
-| R | A | B | C | | R∪S | A | B | C |
-|---|---|---|---|---|---|---|---|---|
-| | a1 | b1 | c1 | | | a1 | b1 | c1 |
-| | a1 | b2 | c2 | | | a1 | b2 | c2 |
-| | a2 | b2 | c1 | | | a2 | b2 | c1 |
-| | | | | | | a1 | b3 | c2 |
-
-| S | A | B | C | | R−S | A | B | C | | S−R | A | B | C |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| | a1 | b2 | c2 | | | a1 | b1 | c1 | | | a1 | b3 | c2 |
-| | a1 | b3 | c2 | | | | | | | | | | |
-| | a2 | b2 | c1 | | | | | | | | | | |
-
 ---
 
 ### 6.3 笛卡尔积（Extended Cartesian Product）
@@ -239,11 +230,13 @@ $$R \times S = \{ (r_t, s_t) \mid r_t \in R \wedge s_t \in S \}$$
 **运算前提**：任意两个关系都可以进行笛卡尔积运算。
 
 **结果关系模式**：由关系 $R$ 和关系 $S$ 中的所有属性组成，共 $(n + m)$ 列。
+
 - 前 $n$ 列来自关系 $R$，后 $m$ 列来自关系 $S$。
 
 **结果元组数**：$n_1 \times n_2$（$n_1$ 为 $R$ 的元组数，$n_2$ 为 $S$ 的元组数）。
 
 **性质**：
+
 - 满足**交换律**：$R \times S = S \times R$
 - 满足**结合律**：$(R \times S) \times T = R \times (S \times T)$
 
@@ -275,6 +268,7 @@ $$\sigma_F(R) = \{ t \mid t \in R \wedge F(t) = \text{true} \}$$
 **结果关系模式**：与关系 $R$ 的模式相同（从**行**的角度进行运算）。
 
 **选择条件 $F$ 的形式**：
+
 - **基本形式**：$X_1 \theta X_2$（$X_1$ 和 $X_2$ 是关系 $R$ 中的属性名或常量，但不能都是常量；$\theta$ 是比较运算符）
 - **复合形式**：在基本选择条件上通过逻辑运算符（与、或、非）经有限次组合而成
 
@@ -299,7 +293,7 @@ return T
 
 **定义**：从 $R$ 中选择出若干属性列组成新的关系（$A$ 是 $R$ 中的属性组）：
 
-$$\Pi_A(R) = \{ t[A] \mid t \in R \}$$
+$$\pi_A(R) = \{ t[A] \mid t \in R \}$$
 
 也可表示为：$R[A]$
 
@@ -319,18 +313,13 @@ for each tuple t ∈ R {
 return T
 ```
 
-**示例**：
-
-- 例2.6：查询学生的姓名和所在系：$\Pi_{\text{Sname}, \text{Sdept}}(\text{Student})$
-- 例2.7：查询学生关系Student中都有哪些系（需消除重复）：$\Pi_{\text{Sdept}}(\text{Student})$
-
 ---
 
 ## 七、运算符优先级
 
 | 优先级（从高到低） | 运算 |
 |---|---|
-| 最高 | 一元运算：$\sigma_F(R)$，$\Pi_A(R)$ |
+| 最高 | 一元运算：$\sigma_F(R)$，$\pi_A(R)$ |
 | 次之 | 笛卡尔积：$R \times S$ |
 | 最低 | 集合运算：$R \cup S$，$R - S$ |
 
@@ -340,16 +329,15 @@ return T
 
 可以结合使用投影和选择运算来实现单张表中的数据查询：
 
-$$\Pi_A(\sigma_F(R))$$
+$$\pi_A(\sigma_F(R))$$
 
 1. **先**根据选择条件 $F$ 对关系 $R$ 进行选择运算（选出符合条件的元组）
 2. **再**对选择运算的结果关系进行投影运算（确定最终结果关系的关系模式）
 
-**简写**：$\Pi_A \sigma_F(R)$（无括号时，运算顺序为**从右向左**）
+**简写**：$\pi_A \sigma_F(R)$（无括号时，运算顺序为**从右向左**）
 
-**示例**（例2.11）：查询选修了2号课程的学生的学号：
-
-$$\Pi_{\text{Sno}}(\sigma_{\text{Cno}='2'}(\text{SC})) = \{201215121, 201215122\}$$
+??? warning "注意"
+    如果是先投影后选择，要注意会不会出现选择不存在的属性的非法状况。
 
 ---
 
@@ -361,7 +349,7 @@ $$\Pi_{\text{Sno}}(\sigma_{\text{Cno}='2'}(\text{SC})) = \{201215121, 201215122\
 | $R - S$ | $R$ 和 $S$ 必须是同类关系 | 与关系 $R$（或 $S$）的模式相同 | $\{ t \mid t \in R \wedge t \notin S \}$ |
 | $R \times S$ | 任意两个关系 | 由 $R$ 和 $S$ 中的所有属性组成 | $\{ (r_t, s_t) \mid r_t \in R \wedge s_t \in S \}$ |
 | $\sigma_F(R)$ | $F$ 只能由 $R$ 中的属性名、常量、比较运算符、逻辑运算符组成 | 与关系 $R$ 的模式相同 | $\{ t \mid t \in R \wedge F(t) = \text{true} \}$ |
-| $\Pi_A(R)$ | $A$ 只能是关系 $R$ 的一个属性子集 | 由属性组 $A$ 构成 | $\{ t[A] \mid t \in R \}$ |
+| $\pi_A(R)$ | $A$ 只能是关系 $R$ 的一个属性子集 | 由属性组 $A$ 构成 | $\{ t[A] \mid t \in R \}$ |
 
 > **同类关系**：两个关系的关系模式同时满足：①具有相同的目 $n$（相同数目的属性）；②相应的属性来自于同一个域。
 
@@ -385,11 +373,13 @@ $$\Pi_{\text{Sno}}(\sigma_{\text{Cno}='2'}(\text{SC})) = \{201215121, 201215122\
 1. **确定查询目标**（确定结果关系的关系模式）
 2. **明确查询条件**（确定结果元组的语义）
 3. **选择从条件到目标的查找路径**：
-   - 在操作过程中需要使用到哪些关系？
-   - 这些关系又是如何联合起来实现查询的？
+
+    - 在操作过程中需要使用到哪些关系？
+    - 这些关系又是如何联合起来实现查询的？
+
 4. **根据以上分析构造关系代数表达式**
 
-### 10.3 基本运算查询语义分析（复习思考题20）
+### 10.3 基本运算查询语义分析
 
 以下分析 12 组查询表达式的语义及其结果集关系（简写：C=Customers, A=Agents, P=Products, O=Orders）：
 
@@ -397,23 +387,24 @@ $$\Pi_{\text{Sno}}(\sigma_{\text{Cno}='2'}(\text{SC})) = \{201215121, 201215122\
 |---|---|---|---|
 | Q1 | $\sigma_{\text{pid}='p01'}(O)$ | 订单 | p01号商品的所有销售订单 |
 | Q2 | $\sigma_{\text{pid} \neq 'p01'}(O)$ | 订单 | 其他商品的销售订单 |
-| Q3 | $\Pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))$ | 顾客 | 购买过p01号商品的顾客 |
-| Q4 | $\Pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 购买过其他商品(pid≠p01)的顾客 |
-| Q5 | $\Pi_{\text{cid}}(O) - \Pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))$ | 顾客 | 购买过商品但没有购买过p01号商品的顾客 |
-| Q6 | $\Pi_{\text{cid}}(O) - \Pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 只购买过p01号商品的顾客 |
-| Q7 | $\Pi_{\text{cid}}(C) - \Pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))$ | 顾客 | 没有购买过p01号商品的顾客（**包括没有购买过任何商品的顾客**） |
-| Q8 | $\Pi_{\text{cid}}(C) - \Pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 没有购买过其他商品的顾客（包括只购买过p01的顾客，以及没有购买过任何商品的顾客） |
+| Q3 | $\pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))$ | 顾客 | 购买过p01号商品的顾客 |
+| Q4 | $\pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 购买过其他商品(pid≠p01)的顾客 |
+| Q5 | $\pi_{\text{cid}}(O) - \pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))$ | 顾客 | 购买过商品但没有购买过p01号商品的顾客 |
+| Q6 | $\pi_{\text{cid}}(O) - \pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 只购买过p01号商品的顾客 |
+| Q7 | $\pi_{\text{cid}}(C) - \pi_{\text{cid}}(\sigma_{\text{pid}='p01'}(O))$ | 顾客 | 没有购买过p01号商品的顾客（**包括没有购买过任何商品的顾客**） |
+| Q8 | $\pi_{\text{cid}}(C) - \pi_{\text{cid}}(\sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 没有购买过其他商品的顾客（包括只购买过p01的顾客，以及没有购买过任何商品的顾客） |
 | Q9 | $O - \sigma_{\text{pid}='p01'}(O)$ | 订单 | 除了p01号商品之外，其他商品的所有销售订单 |
 | Q10 | $O - \sigma_{\text{pid} \neq 'p01'}(O)$ | 订单 | p01号商品的所有销售订单 |
-| Q11 | $\Pi_{\text{cid}}(O - \sigma_{\text{pid}='p01'}(O))$ | 顾客 | 购买过其他商品的顾客（注意与Q5区别，其中也可能包含购买过p01的顾客） |
-| Q12 | $\Pi_{\text{cid}}(O - \sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 购买过商品p01的顾客（注意与Q6区别，其中也可能包含购买过其他商品的顾客） |
+| Q11 | $\pi_{\text{cid}}(O - \sigma_{\text{pid}='p01'}(O))$ | 顾客 | 购买过其他商品的顾客（注意与Q5区别，其中也可能包含购买过p01的顾客） |
+| Q12 | $\pi_{\text{cid}}(O - \sigma_{\text{pid} \neq 'p01'}(O))$ | 顾客 | 购买过商品p01的顾客（注意与Q6区别，其中也可能包含购买过其他商品的顾客） |
 
 **各组结果集关系：**
 
-- Q1 ∩ Q2 = 空集；Q1 ∪ Q2 = Orders
-- Q3 ∪ Q4 = $\Pi_{\text{cid}}(\text{orders})$（Q3与Q4之间可能有交集，一切取决于当前orders表）
-- Q5 ∩ Q6 = 空集；$Q5 \cup Q6 \subseteq \Pi_{\text{cid}}(\text{orders})$
-- Q9 ∩ Q10 = 空集；Q9 ∪ Q10 = orders
+- $Q_1 \cap Q_2 = \varnothing$，且 $Q_1 \cup Q_2 = \text{Orders}$
+- $Q_3 \cup Q_4 = \pi_{\text{cid}}(\text{orders})$，其中 $Q_3$ 与 $Q_4$ 之间可能存在交集，具体取决于当前 `orders` 表的数据
+- $Q_5 \cap Q_6 = \varnothing$，且 $Q_5 \cup Q_6 \subseteq \pi_{\text{cid}}(\text{orders})$
+- $Q_9 \cap Q_{10} = \varnothing$，且 $Q_9 \cup Q_{10} = \text{orders}$
+
 
 ### 10.4 示例查询（Example 1~10）
 
@@ -421,7 +412,7 @@ $$\Pi_{\text{Sno}}(\sigma_{\text{Cno}='2'}(\text{SC})) = \{201215121, 201215122\
 
 **查询所有顾客所居住的城市名称**：
 
-$$\Pi_{\text{city}}(\text{Customers})$$
+$$\pi_{\text{city}}(\text{Customers})$$
 
 > 需剔除重复的城市名称，保证结果关系中元组的唯一性。
 
@@ -447,9 +438,9 @@ $$\sigma_{\text{city}='Dallas' \wedge \text{price} > 0.50}(\text{Products})$$
 
 **查询所有折扣低于10%的顾客所在城市以及佣金低于6%的代理商所在城市的城市名称**：
 
-$$\Pi_{\text{city}}(\sigma_{\text{discnt}<10}(C)) \cup \Pi_{\text{city}}(\sigma_{\text{percent}<6}(A))$$
+$$\pi_{\text{city}}(\sigma_{\text{discnt}<10}(C)) \cup \pi_{\text{city}}(\sigma_{\text{percent}<6}(A))$$
 
-> **注意**：不能写成 $\Pi_{\text{city}}((\sigma_{\text{discnt}<10}(C)) \cup (\sigma_{\text{percent}<6}(A)))$，因为 $C$ 和 $A$ 的关系模式不同，中间的并运算**不合法**（不是同类关系）。
+> **注意**：不能写成 $\pi_{\text{city}}((\sigma_{\text{discnt}<10}(C)) \cup (\sigma_{\text{percent}<6}(A)))$，因为 $C$ 和 $A$ 的关系模式不同，中间的并运算**不合法**（不是同类关系）。
 
 ---
 
@@ -457,9 +448,10 @@ $$\Pi_{\text{city}}(\sigma_{\text{discnt}<10}(C)) \cup \Pi_{\text{city}}(\sigma_
 
 **查询位于同一个城市的顾客和代理商，给出顾客的姓名、代理商的名称以及他们所在城市的名称**：
 
-$$\Pi_{C.\text{cname},\ A.\text{aname},\ C.\text{city}}(\sigma_{C.\text{city}=A.\text{city}}(C \times A))$$
+$$\pi_{C.\text{cname},\ A.\text{aname},\ C.\text{city}}(\sigma_{C.\text{city}=A.\text{city}}(C \times A))$$
 
 **分析**：
+
 1. 先用**笛卡尔积**实现顾客和代理商关系的合并
 2. 再用**选择运算**查出符合条件（同城市）的笛卡尔积结果元组
 3. 最后用**投影运算**生成目标关系
@@ -471,13 +463,16 @@ $$\Pi_{C.\text{cname},\ A.\text{aname},\ C.\text{city}}(\sigma_{C.\text{city}=A.
 **查询姓名为'Allied'的顾客的订购信息，列出每条订单记录所购买商品的商品编号(pid)、订购月份(month)以及订购数量(qty)**：
 
 **表达式（一）**：先做笛卡尔积，再整体选择：
-$$\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid} \wedge C.\text{cname}='Allied'}(C \times O))$$
+
+$$\pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid} \wedge C.\text{cname}='Allied'}(C \times O))$$
 
 **表达式（二）**：先对 $C$ 做选择，再做笛卡尔积：
-$$\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid}}(\sigma_{C.\text{cname}='Allied'}(C) \times O))$$
+
+$$\pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid}}(\sigma_{C.\text{cname}='Allied'}(C) \times O))$$
 
 **表达式（三）**：先对 $C$ 做选择和投影（取 cid），再与 $O$ 做笛卡尔积：
-$$\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid}}(\Pi_{\text{cid}}(\sigma_{C.\text{cname}='Allied'}(C)) \times O))$$
+
+$$\pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\text{cid}}(\pi_{\text{cid}}(\sigma_{C.\text{cname}='Allied'}(C)) \times O))$$
 
 > **注意**：可以提前执行单个关系上的元组选择查询，也可添加部分投影操作，以降低中间计算结果的数据量；但添加新的投影操作，不能影响后续运算的合法性。
 
@@ -488,10 +483,12 @@ $$\Pi_{O.\text{pid},\ O.\text{month},\ O.\text{qty}}(\sigma_{C.\text{cid}=O.\tex
 **查询顾客、代理商以及所订购的商品都位于同一个城市的订单编号**：
 
 **表达式（一）**：
-$$\Pi_{\text{ordno}}(\sigma_{O.\text{cid}=C.\text{cid} \wedge C.\text{city}=A.\text{city} \wedge A.\text{city}=P.\text{city} \wedge O.\text{aid}=A.\text{aid} \wedge O.\text{pid}=P.\text{pid}}(C \times A \times P \times O))$$
+
+$$\pi_{\text{ordno}}(\sigma_{O.\text{cid}=C.\text{cid} \wedge C.\text{city}=A.\text{city} \wedge A.\text{city}=P.\text{city} \wedge O.\text{aid}=A.\text{aid} \wedge O.\text{pid}=P.\text{pid}}(C \times A \times P \times O))$$
 
 **表达式（二）**：提前投影，减少中间数据量：
-$$\Pi_{\text{ordno}}(\sigma_{\text{...}}(\Pi_{\text{cid,city}}(C) \times \Pi_{\text{aid,city}}(A) \times \Pi_{\text{pid,city}}(P) \times O))$$
+
+$$\pi_{\text{ordno}}(\sigma_{\text{...}}(\pi_{\text{cid,city}}(C) \times \pi_{\text{aid,city}}(A) \times \pi_{\text{pid,city}}(P) \times O))$$
 
 ---
 
@@ -499,11 +496,13 @@ $$\Pi_{\text{ordno}}(\sigma_{\text{...}}(\Pi_{\text{cid,city}}(C) \times \Pi_{\t
 
 **查询没有销售过'p02'号商品的供应商的编号**：
 
-$$\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$$
+$$\pi_{\text{aid}}(A) - \pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$$
 
-**常见错误写法**：
-- $\Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$：错误！这是查询"销售过其他商品的供应商"，而非"没有销售过p02的供应商"
-- $\Pi_{\text{aid}}(\sigma_{\text{pid}='p02' \wedge \text{aid}=\text{null}}(O))$：错误
+**错误写法**
+
+$$\pi_{\text{aid}}(O) - \pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$$
+
+错误的原因在于存在供应商没有出现在$O$中。
 
 > 需要用**差运算**来表达"没有…"的语义。被减数须取自正确的全集。
 
@@ -513,17 +512,21 @@ $$\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$$
 
 **查询只销售过'p02'号商品的供应商的编号**：
 
-$$\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$$
+$$\pi_{\text{aid}}(O) - \pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$$
 
-**常见错误写法**：$\Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$：错误！这是查询"销售过p02的供应商"，而非"只销售过p02的供应商"。
+**错误写法**：
+
+$$\pi_{\text{aid}}(A) - \pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$$
+
+错误的原因在于$A$中存在没有任何订单的供应商。
 
 **对比总结**：
 
 | 查询语义 | 正确表达式 |
 |---|---|
-| 销售过p02的供应商 | $\Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$ |
-| 没有销售过p02的供应商 | $\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$ |
-| 只销售过p02的供应商 | $\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$ |
+| 销售过p02的供应商 | $\pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$ |
+| 没有销售过p02的供应商 | $\pi_{\text{aid}}(A) - \pi_{\text{aid}}(\sigma_{\text{pid}='p02'}(O))$ |
+| 只销售过p02的供应商 | $\pi_{\text{aid}}(O) - \pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$ |
 
 > **要点**：何时使用"差运算"？何时使用"不等"比较？二者有本质区别，需仔细体会。
 
@@ -533,45 +536,71 @@ $$\Pi_{\text{aid}}(O) - \Pi_{\text{aid}}(\sigma_{\text{pid} \neq 'p02'}(O))$$
 
 **查询在当前所有顾客中，折扣（discnt）最高的顾客的编号**：
 
-**错误思路**：$\Pi_{\text{cid}}(\sigma_{\text{discnt}=\max(\text{discnt})}(C))$
+**错误思路**：
 
-- **选择运算** $\sigma_F(R)$ 是针对**单个元组**判断条件是否成立的，在选择条件表达式中使用统计函数 MAX 是**没有意义**的。
+$$\pi_{\text{cid}}(\sigma_{\text{discnt}=\max(\text{discnt})}(C))$$
 
-**正确思路**（间接法）：
+错误的原因在于**选择运算** $\sigma_F(R)$ 是针对**单个元组**判断条件是否成立的，在选择条件表达式中使用统计函数 MAX 是**没有意义**的。
 
-**判断标准**：
-- 如果能找到一个顾客 $g$，其折扣比顾客 $c$ 的折扣高，那么 $c$ 的折扣就**不是最高**的。
+**正确思路**（间接法）：如果能找到一个顾客 $g$，其折扣比顾客 $c$ 的折扣高，那么 $c$ 的折扣就**不是最高**的。
 
 **步骤**：
 
 ① 查询所有顾客的编号，构成关系 $R_1$：
-$$R_1 := \Pi_{\text{cid}}(C)$$
+
+$$R_1 := \pi_{\text{cid}}(C)$$
 
 ② 查询"折扣不是最高"的顾客编号（令 $S := C$，进行关系自连接）：
-$$R_2 := \Pi_{C.\text{cid}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
+
+$$R_2 := \pi_{C.\text{cid}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
 
 ③ 利用差运算获得折扣最高顾客的编号：
+
 $$R := R_1 - R_2$$
 
 **合并为最终表达式**：
 
-$$\Pi_{\text{cid}}(C) - \Pi_{C.\text{cid}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
+$$\pi_{\text{cid}}(C) - \pi_{C.\text{cid}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
 
 > **注意**：选择条件中必须使用严格小于（`<`），若使用小于等于（`≤`），则 $R_2$ 将包含所有顾客的 cid，差运算结果为空集，无法实现查询目标。
 
 **拓展**：查询具有最大折扣的顾客的姓名（cname）：
 
-- **错误写法**：$\Pi_{\text{cname}}(C) - \Pi_{C.\text{cname}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$
-  - 此表达式会从"所有顾客的姓名集合"中减去"折扣不是最高的顾客的姓名集合"，结果语义不符。
-- **正确写法（方式一）**：$\Pi_{\text{cid, cname}}(C) - \Pi_{C.\text{cid, C.cname}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$，再取 cname。
-- **正确写法（方式二）**：令 $R := \Pi_{\text{cid}}(C) - \Pi_{C.\text{cid}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$，然后：
-$$\Pi_{C.\text{cname}}(\sigma_{C.\text{cid} = R.\text{cid}}(C \times R))$$
+**错误写法**：
 
-> **要点**：在减数和被减数关系中，必须含**目标对象的码**！
+$$\pi_{\text{cname}}(C) - \pi_{C.\text{cname}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
 
+此表达式会从"所有顾客的姓名集合"中减去"折扣不是最高的顾客的姓名集合"，结果语义不符。
+
+**正确写法一**：
+
+$$\pi_{\text{cid, cname}}(C) - \pi_{C.\text{cid, C.cname}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
+
+**正确写法二**：
+
+令 
+
+$$R := \pi_{\text{cid}}(C) - \pi_{C.\text{cid}}(\sigma_{C.\text{discnt} < S.\text{discnt}}(C \times S))$$
+
+然后：
+
+$$\pi_{C.\text{cname}}(\sigma_{C.\text{cid} = R.\text{cid}}(C \times R))$$
+
+> **要点**：Name不能作为key，所以在减数和被减数的关系中，必须含**目标对象的码**！
+
+??? tip "说明"
+    以下的几个查询：
+
+    1. 查询具有最小折扣的顾客的编号
+    2. 查询折扣并非最大的顾客的编号
+    3. 查询其折扣为第二大的顾客的编号
+    4. 查询折扣等于所有顾客折扣的平均值的顾客的编号
+
+    其中1，2，3是可以用基本运算完成；4需要依赖拓展关系运算完成，无法使用基本运算完成。
+    
 ---
 
-## 十一、关系代数基本运算小结
+## 关系代数基本运算小结
 
 ### 关键掌握点
 
