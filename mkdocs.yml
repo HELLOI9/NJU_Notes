@@ -129,12 +129,15 @@ nav:
             of Data Management/Chapter2/Chapter2-1-关系数据模型.md
         - Chapter2-2-关系代数的基本运算: notes/The second semester of sophomore year/Foundations
             of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md
+        - Chapter2-3-关系代数扩充运算: notes/The second semester of sophomore year/Foundations
+            of Data Management/Chapter2/Chapter2-3-关系代数扩充运算.md
     - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer
         Interaction Systems/index.md
     - Internet Computing:
       - Overview: notes/The second semester of sophomore year/Internet Computing/index.md
       - 1-计算机网络和因特网: notes/The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
       - 2-应用层: notes/The second semester of sophomore year/Internet Computing/2-应用层/2-应用层.md
+      - 3-运输层: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层.md
     - New Technologies in Mobile Networks: notes/The second semester of sophomore
         year/New Technologies in Mobile Networks/index.md
     - Software Engineering and Computing II: notes/The second semester of sophomore
