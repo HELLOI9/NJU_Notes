@@ -112,6 +112,8 @@ nav:
   - The second semester of sophomore year:
     - Computer Operating Systems:
       - Overview: notes/The second semester of sophomore year/Computer Operating Systems/index.md
+      - Chap Lab: notes/The second semester of sophomore year/Computer Operating Systems/Chap
+          Lab/Lab2-协程.md
       - Chap1 绪论:
         - 各种视角下的操作系统: notes/The second semester of sophomore year/Computer Operating
             Systems/Chap1 绪论/各种视角下的操作系统.md
