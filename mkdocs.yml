@@ -124,6 +124,8 @@ nav:
             year/Computer Operating Systems/Chap2 并发/1.多处理器编程Multiprocessor Programming.md
         - 2.互斥: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
             并发/2.互斥.md
+        - 4.同步: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
+            并发/4.同步.md
     - Foundations of Data Management:
       - Overview: notes/The second semester of sophomore year/Foundations of Data
           Management/index.md
@@ -136,8 +138,11 @@ nav:
             of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md
         - Chapter2-3-关系代数扩充运算: notes/The second semester of sophomore year/Foundations
             of Data Management/Chapter2/Chapter2-3-关系代数扩充运算.md
-      - Chapter3: notes/The second semester of sophomore year/Foundations of Data
-          Management/Chapter3/Chapter3-1-SQL数据库的定义.md
+      - Chapter3:
+        - Chapter3-1-SQL数据库的定义: notes/The second semester of sophomore year/Foundations
+            of Data Management/Chapter3/Chapter3-1-SQL数据库的定义.md
+        - Chapter3-2-SQL数据查询: notes/The second semester of sophomore year/Foundations
+            of Data Management/Chapter3/Chapter3-2-SQL数据查询.md
     - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer
         Interaction Systems/index.md
     - Internet Computing:

@@ -61,7 +61,7 @@ SQL 完成核心功能仅使用 **9 个动词**：
 
 | 关系模型术语 | SQL 术语 | 备注 |
 |-------------|---------|------|
-| 关系（Relation） | 基本表（Base Table） | 两者统称为"表"（Table） |
+| 关系（Relation） | 基本表（Base Table） | 基本表和视图统称为"表"（Table） |
 | 子模式（Sub-schema） | 视图（View） | 视图又称"虚表" |
 | 属性（Attribute） | 列（Column） | — |
 | 元组（Tuple） | 行（Row） | — |
