@@ -122,10 +122,12 @@ nav:
       - Chap2 并发:
         - 1.多处理器编程Multiprocessor Programming: notes/The second semester of sophomore
             year/Computer Operating Systems/Chap2 并发/1.多处理器编程Multiprocessor Programming.md
-        - 2.互斥: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
-            并发/2.互斥.md
-        - 4.同步: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
-            并发/4.同步.md
+        - 2.互斥基础: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
+            并发/2.互斥基础.md
+        - 3.互斥进阶: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
+            并发/3.互斥进阶.md
+        - 4.同步基础: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
+            并发/4.同步基础.md
     - Foundations of Data Management:
       - Overview: notes/The second semester of sophomore year/Foundations of Data
           Management/index.md
