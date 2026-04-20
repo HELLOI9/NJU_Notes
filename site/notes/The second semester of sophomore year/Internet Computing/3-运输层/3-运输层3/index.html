@@ -1,0 +1,4450 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%823/">
+      
+      
+        <link rel="prev" href="../3-%E8%BF%90%E8%BE%93%E5%B1%822/">
+      
+      
+        <link rel="next" href="../3-%E8%BF%90%E8%BE%93%E5%B1%824/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>3-运输层3 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#运输层-part3" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3-运输层3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Computer%20Operating%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Operating Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap%20Lab/Lab2-%E5%8D%8F%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_3" id="__nav_2_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap1 绪论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap1 绪论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统的发展历程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_4" id="__nav_2_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap2 并发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap2 并发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/1.%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.多处理器编程Multiprocessor Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/2.%E4%BA%92%E6%96%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.互斥基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/3.%E4%BA%92%E6%96%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.互斥进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/4.%E5%90%8C%E6%AD%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.同步基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/5.%E5%90%8C%E6%AD%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.同步进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Foundations%20of%20Data%20Management/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-3-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E6%89%A9%E5%85%85%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-3-关系代数扩充运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_4" id="__nav_2_2_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter3/Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-1-SQL数据库的定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter3/Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-2-SQL数据查询
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter3/Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-3-SQL数据库更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-应用层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_4_4" id="__nav_2_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3-运输层
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层3
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一tcp-流量控制flow-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、TCP 流量控制（Flow Control）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、TCP 流量控制（Flow Control）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-滑动窗口机制回顾" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 滑动窗口机制回顾
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 滑动窗口机制回顾">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#发送方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#接收方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接收方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-固定滑动窗口的问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 固定滑动窗口的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-信用机制credit-scheme-tcp-的解决方案" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 信用机制（Credit Scheme）—— TCP 的解决方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 信用机制（Credit Scheme）—— TCP 的解决方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心公式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#工作机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#信用机制的优势" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        信用机制的优势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tcp-头部相关字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 TCP 头部相关字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-信用分配死锁credit-allocation-deadlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 信用分配死锁（Credit Allocation Deadlock）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 信用分配死锁（Credit Allocation Deadlock）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#死锁场景" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        死锁场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解决方案窗口探测计时器window-timer--persist-timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案：窗口探测计时器（Window Timer / Persist Timer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二tcp-拥塞控制congestion-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、TCP 拥塞控制（Congestion Control）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、TCP 拥塞控制（Congestion Control）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-历史背景" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 历史背景
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 历史背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jacobson-方案的核心思路" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jacobson 方案的核心思路
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-拥塞控制的关键设计问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 拥塞控制的关键设计问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 拥塞控制的关键设计问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#三个核心问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三个核心问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#两个基本问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两个基本问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-拥塞控制方案对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 拥塞控制方案对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-拥塞窗口cwnd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 拥塞窗口（CWND）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-慢启动slow-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 慢启动（Slow Start）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 慢启动（Slow Start）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#目标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#慢启动何时停止" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        慢启动何时停止？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-拥塞避免aimd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 拥塞避免——AIMD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 拥塞避免——AIMD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#进入条件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进入条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#加法增大additive-increase-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加法增大（Additive Increase, AI）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#乘法减小multiplicative-decrease-md" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        乘法减小（Multiplicative Decrease, MD）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#为什么选择-aimd-而非其他" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么选择 AIMD 而非其他？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aimd-公平性的数学证明直观理解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AIMD 公平性的数学证明（直观理解）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-快速重传与快速恢复fast-retransmit--fast-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 快速重传与快速恢复（Fast Retransmit &amp; Fast Recovery）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 快速重传与快速恢复（Fast Retransmit &amp; Fast Recovery）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#为什么需要快速恢复" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要快速恢复？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#快速恢复机制tcp-reno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速恢复机制（TCP Reno）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#具体示例分析cwnd10包101丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体示例分析（CWND=10，包101丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-tcp-状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 TCP 状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-各种-tcp-版本对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9 各种 TCP 版本对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三路由器辅助的拥塞控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、路由器辅助的拥塞控制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、路由器辅助的拥塞控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tcp-的固有问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 TCP 的固有问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-显式拥塞通知ecnexplicit-congestion-notification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 显式拥塞通知（ECN，Explicit Congestion Notification）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 显式拥塞通知（ECN，Explicit Congestion Notification）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#机制_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecn-的优势" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECN 的优势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-其他路由器辅助机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 其他路由器辅助机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四易错点与高频考点汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、易错点与高频考点汇总
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、易错点与高频考点汇总">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-1流控-vs-拥塞控制的区别" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 1：流控 vs 拥塞控制的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-2慢启动慢在哪里" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 2：慢启动"慢"在哪里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-3三个重复ack-vs-超时的响应差异" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 3：三个重复ACK vs 超时的响应差异
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-4ssthresh-的更新时机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 4：ssthresh 的更新时机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-5cwnd-增长的精确计算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 5：CWND 增长的精确计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-1cwnd-变化的计算题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 1：CWND 变化的计算题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-2吞吐量计算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 2：吞吐量计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-3tcp-公平性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 3：TCP 公平性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-4rwnd--0-时的处理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 4：RWND = 0 时的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-典型计算题示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 典型计算题示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五知识框架总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、知识框架总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%824/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一tcp-流量控制flow-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、TCP 流量控制（Flow Control）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、TCP 流量控制（Flow Control）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-滑动窗口机制回顾" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 滑动窗口机制回顾
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 滑动窗口机制回顾">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#发送方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#接收方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接收方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-固定滑动窗口的问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 固定滑动窗口的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-信用机制credit-scheme-tcp-的解决方案" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 信用机制（Credit Scheme）—— TCP 的解决方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 信用机制（Credit Scheme）—— TCP 的解决方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心公式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#工作机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#信用机制的优势" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        信用机制的优势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tcp-头部相关字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 TCP 头部相关字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-信用分配死锁credit-allocation-deadlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 信用分配死锁（Credit Allocation Deadlock）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 信用分配死锁（Credit Allocation Deadlock）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#死锁场景" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        死锁场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解决方案窗口探测计时器window-timer--persist-timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案：窗口探测计时器（Window Timer / Persist Timer）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二tcp-拥塞控制congestion-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、TCP 拥塞控制（Congestion Control）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、TCP 拥塞控制（Congestion Control）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-历史背景" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 历史背景
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 历史背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jacobson-方案的核心思路" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jacobson 方案的核心思路
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-拥塞控制的关键设计问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 拥塞控制的关键设计问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 拥塞控制的关键设计问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#三个核心问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三个核心问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#两个基本问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两个基本问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-拥塞控制方案对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 拥塞控制方案对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-拥塞窗口cwnd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 拥塞窗口（CWND）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-慢启动slow-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 慢启动（Slow Start）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 慢启动（Slow Start）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#目标" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#慢启动何时停止" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        慢启动何时停止？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-拥塞避免aimd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 拥塞避免——AIMD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 拥塞避免——AIMD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#进入条件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进入条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#加法增大additive-increase-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加法增大（Additive Increase, AI）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#乘法减小multiplicative-decrease-md" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        乘法减小（Multiplicative Decrease, MD）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#为什么选择-aimd-而非其他" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么选择 AIMD 而非其他？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aimd-公平性的数学证明直观理解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AIMD 公平性的数学证明（直观理解）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-快速重传与快速恢复fast-retransmit--fast-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 快速重传与快速恢复（Fast Retransmit &amp; Fast Recovery）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 快速重传与快速恢复（Fast Retransmit &amp; Fast Recovery）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#为什么需要快速恢复" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要快速恢复？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#快速恢复机制tcp-reno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速恢复机制（TCP Reno）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#具体示例分析cwnd10包101丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体示例分析（CWND=10，包101丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-tcp-状态机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 TCP 状态机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-各种-tcp-版本对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9 各种 TCP 版本对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三路由器辅助的拥塞控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、路由器辅助的拥塞控制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、路由器辅助的拥塞控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tcp-的固有问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 TCP 的固有问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-显式拥塞通知ecnexplicit-congestion-notification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 显式拥塞通知（ECN，Explicit Congestion Notification）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 显式拥塞通知（ECN，Explicit Congestion Notification）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#机制_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecn-的优势" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECN 的优势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-其他路由器辅助机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 其他路由器辅助机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四易错点与高频考点汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、易错点与高频考点汇总
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、易错点与高频考点汇总">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-1流控-vs-拥塞控制的区别" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 1：流控 vs 拥塞控制的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-2慢启动慢在哪里" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 2：慢启动"慢"在哪里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-3三个重复ack-vs-超时的响应差异" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 3：三个重复ACK vs 超时的响应差异
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-4ssthresh-的更新时机" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 4：ssthresh 的更新时机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-易错点-5cwnd-增长的精确计算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 易错点 5：CWND 增长的精确计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-1cwnd-变化的计算题" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 1：CWND 变化的计算题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-2吞吐量计算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 2：吞吐量计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-3tcp-公平性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 3：TCP 公平性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-高频考点-4rwnd--0-时的处理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 高频考点 4：RWND = 0 时的处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-典型计算题示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 典型计算题示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五知识框架总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、知识框架总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层3.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="运输层-part3">运输层 Part3<a class="headerlink" href="#运输层-part3" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="一tcp-流量控制flow-control">一、TCP 流量控制（Flow Control）<a class="headerlink" href="#一tcp-流量控制flow-control" title="Permanent link">&para;</a></h2>
+<h3 id="11-滑动窗口机制回顾">1.1 滑动窗口机制回顾<a class="headerlink" href="#11-滑动窗口机制回顾" title="Permanent link">&para;</a></h3>
+<p><strong>核心思想：</strong> 发送方和接收方各自维护一个"窗口"，用于控制数据的发送与接收。</p>
+<h4 id="发送方窗口">发送方窗口<a class="headerlink" href="#发送方窗口" title="Permanent link">&para;</a></h4>
+<p><strong>左边界</strong>为第一个未被确认的字节（First unACKed byte），<strong>右边界</strong>为左边界 + 窗口常数（即最多可发送到的位置）。</p>
+<p>窗口大小受<strong>传输层缓冲区大小</strong>限制。</p>
+<h4 id="接收方窗口">接收方窗口<a class="headerlink" href="#接收方窗口" title="Permanent link">&para;</a></h4>
+<p><strong>左边界</strong>为下一个期望接收的字节（Next byte needed），<strong>右边界</strong>为左边界 + 缓冲区剩余空间。</p>
+<p>若发送方不受控制，可能<strong>溢出接收方缓冲区</strong>。</p>
+<hr />
+<h3 id="12-固定滑动窗口的问题">1.2 固定滑动窗口的问题<a class="headerlink" href="#12-固定滑动窗口的问题" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无法区分丢包与流控</td>
+<td>接收方停止发送ACK可实现流控，但发送方无法判断是"ACK丢失"还是"流控暂停"</td>
+</tr>
+<tr>
+<td>不灵活</td>
+<td>窗口大小固定，无法动态反映接收方缓冲区变化</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>没收到<code>ACK</code>这件事有两种可能，一是receiver在做流量控制，二是网络传输出现了问题。</p>
+</blockquote>
+<hr />
+<h3 id="13-信用机制credit-scheme-tcp-的解决方案">1.3 信用机制（Credit Scheme）—— TCP 的解决方案<a class="headerlink" href="#13-信用机制credit-scheme-tcp-的解决方案" title="Permanent link">&para;</a></h3>
+<h4 id="核心公式">核心公式<a class="headerlink" href="#核心公式" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[RWND = B - (LastByteReceived - LastByteRead)\]</div>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\(B\)</span>：接收方缓冲区总大小</li>
+<li><span class="arithmatex">\(LastByteReceived\)</span>：最后一个已收到的字节序号</li>
+<li><span class="arithmatex">\(LastByteRead\)</span>：接收进程最后一个读取的字节序号</li>
+<li><span class="arithmatex">\(RWND\)</span>（Receiver Window）：接收方通告窗口，即剩余可用缓冲区</li>
+</ul>
+<figure>
+<img alt="RWND" src="../../../../../assets/images/rwnd.png" width="75%" />
+</figure>
+<h4 id="发送方约束">发送方约束<a class="headerlink" href="#发送方约束" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[LastByteSent - LastByteAcked \leq RWND\]</div>
+<figure>
+<img alt="RWND" src="../../../../../assets/images/rwnd2.png" width="70%" />
+</figure>
+<details class="info">
+<summary>Info</summary>
+<p>图中的<code>Last byte written</code>可能在<code>Last byte can send</code>前，也可能在后。</p>
+</details>
+<h4 id="工作机制">工作机制<a class="headerlink" href="#工作机制" title="Permanent link">&para;</a></h4>
+<p><strong>接收方</strong>在每个ACK中携带 <code>RWND</code> 字段（对应TCP头部的 <strong>Advertised Window</strong> 字段）；<strong>发送方</strong>则保证 <strong>在途字节数（bytes in flight）≤ RWND</strong>。</p>
+<p>当收到新的<code>ACK</code>时，发送方的窗口可以往前滑；当当接收应用把缓冲区里的数据读走时，接收方窗口可以往前滑。</p>
+<p>注意，UDP协议是没有这一套流量控制机制的。</p>
+<h4 id="信用机制的优势">信用机制的优势<a class="headerlink" href="#信用机制的优势" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>流控与ACK解耦</strong>：可以区分到底是receiver在控流还是网络出现了问题。也支持做更多的操作，比如确认接收数据但不分配发送额度。</li>
+<li><strong>更灵活的控制</strong>：接收方可精细控制发送速率。</li>
+<li><strong>序号基于字节</strong>：每个字节都有序号，窗口控制精度更高。</li>
+</ol>
+<hr />
+<h3 id="14-tcp-头部相关字段">1.4 TCP 头部相关字段<a class="headerlink" href="#14-tcp-头部相关字段" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>+--------------------+---------------------+
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>|   Source Port      |   Destination Port  |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>+------------------------------------------+
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>|              Sequence Number             |
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>+------------------------------------------+
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>|            Acknowledgment Number         |
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>+------------------+---+-------------------+
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>| HdrLen | 0 | Flags |  Advertised Window  |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>+------------------+---+-------------------+
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>|    Checksum        |   Urgent Pointer    |
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>+------------------------------------------+
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>|           Options (variable)             |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>+------------------------------------------+
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>|                  Data                    |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>+------------------------------------------+
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Sequence Number</strong>：本段第一个字节的序号</li>
+<li><strong>Acknowledgment Number (AN)</strong>：期望收到的下一字节序号（即已累积确认到此前）</li>
+<li><strong>Advertised Window (W)</strong>：接收方当前可接受的字节数（RWND）</li>
+</ul>
+<p><strong>当ACK = (AN=i, W=j) 时含义：</strong>序号 <span class="arithmatex">\(i-1\)</span> 及之前的所有字节已被确认，下一个期望字节序号为 <span class="arithmatex">\(i\)</span>，允许发送方继续发送序号 <span class="arithmatex">\(i\)</span> 到 <span class="arithmatex">\(i+j-1\)</span> 的数据（共 <span class="arithmatex">\(j\)</span> 字节）。</p>
+<hr />
+<h3 id="15-信用分配死锁credit-allocation-deadlock">1.5 信用分配死锁（Credit Allocation Deadlock）<a class="headerlink" href="#15-信用分配死锁credit-allocation-deadlock" title="Permanent link">&para;</a></h3>
+<h4 id="死锁场景">死锁场景<a class="headerlink" href="#死锁场景" title="Permanent link">&para;</a></h4>
+<ol>
+<li>B 向 A 发送：<code>AN=i, W=0</code>（关闭接收窗口）</li>
+<li>B 缓冲区释放后，再次发送：<code>AN=i, W=j</code>（重开窗口），但此报文<strong>丢失</strong></li>
+<li>此时：A 认为窗口关闭（停止发送），B 认为窗口已打开（等待数据）→ <strong>死锁</strong></li>
+</ol>
+<h4 id="解决方案窗口探测计时器window-timer--persist-timer">解决方案：窗口探测计时器（Window Timer / Persist Timer）<a class="headerlink" href="#解决方案窗口探测计时器window-timer--persist-timer" title="Permanent link">&para;</a></h4>
+<ul>
+<li>当计时器超时且未收到任何报文，发送方主动发送<strong>探测报文</strong>（可以是前一报文的重传）</li>
+<li>触发接收方重新发送包含最新窗口值的ACK，打破死锁</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>易错点</strong>：UDP <strong>不具备</strong>流量控制，数据可能因接收方缓冲区溢出而丢失。</p>
+</blockquote>
+<hr />
+<h2 id="二tcp-拥塞控制congestion-control">二、TCP 拥塞控制（Congestion Control）<a class="headerlink" href="#二tcp-拥塞控制congestion-control" title="Permanent link">&para;</a></h2>
+<p>这个部分我们主要聚焦网络中间的“路由器/链路”，不让中间的传输链路被拥塞堵爆。</p>
+<h3 id="21-历史背景">2.1 历史背景<a class="headerlink" href="#21-历史背景" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1981年：TCP 标准化并广泛部署，<strong>未考虑拥塞控制</strong></li>
+<li>1986年10月：互联网出现首次<strong>拥塞崩溃（Congestion Collapse）</strong>：从LBL 到 UC Berkeley（相距400码，2跳），吞吐量从 <strong>32 Kbps 骤降至 40 bps</strong></li>
+<li>Van Jacobson 提出修复方案，开创拥塞控制研究领域</li>
+</ul>
+<h4 id="jacobson-方案的核心思路">Jacobson 方案的核心思路<a class="headerlink" href="#jacobson-方案的核心思路" title="Permanent link">&para;</a></h4>
+<p>在已有窗口机制基础上，<strong>动态调整窗口大小</strong>以响应拥塞，无需修改路由器或应用程序，仅需<strong>修改 TCP 实现的少量代码</strong>。</p>
+<p>至今仍被广泛研究改进（尤其在数据中心场景）。</p>
+<hr />
+<h3 id="22-拥塞控制的关键设计问题">2.2 拥塞控制的关键设计问题<a class="headerlink" href="#22-拥塞控制的关键设计问题" title="Permanent link">&para;</a></h3>
+<h4 id="三个核心问题">三个核心问题<a class="headerlink" href="#三个核心问题" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>解决方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>如何发现可用瓶颈带宽</td>
+<td>慢启动（Slow Start）</td>
+</tr>
+<tr>
+<td>如何适应带宽变化</td>
+<td>拥塞避免 AIMD</td>
+</tr>
+<tr>
+<td>如何在多流间公平共享带宽</td>
+<td>AIMD 的数学特性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="两个基本问题">两个基本问题<a class="headerlink" href="#两个基本问题" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>如何检测拥塞？</strong></li>
+<li>包延迟：信号噪声大，难以可靠判断</li>
+<li>路由器显式通知（ECN）</li>
+<li>
+<p><strong>丢包</strong>检测：TCP 的默认信号（fail-safe），但存在误判，比如非拥塞丢包（如无线链路误码）</p>
+</li>
+<li>
+<p><strong>如何调整发送速率？</strong></p>
+</li>
+<li>收到新 ACK → 增大速率</li>
+<li>检测到丢包 → 减小速率</li>
+</ol>
+<hr />
+<h3 id="23-拥塞控制方案对比">2.3 拥塞控制方案对比<a class="headerlink" href="#23-拥塞控制方案对比" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>特点</th>
+<th>缺陷</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不控制（Send without care）</td>
+<td>无需任何机制</td>
+<td>大量丢包，拥塞崩溃</td>
+</tr>
+<tr>
+<td>预留资源（Reservations）</td>
+<td>精确分配带宽</td>
+<td>需要提前协商，利用率低</td>
+</tr>
+<tr>
+<td>定价机制（Pricing）</td>
+<td>高出价者优先</td>
+<td>需要支付模型，不实用</td>
+</tr>
+<tr>
+<td><strong>动态调整（Dynamic Adjustment）</strong></td>
+<td>灵活，无需先验知识</td>
+<td>次优，动态过程复杂</td>
+</tr>
+</tbody>
+</table>
+<p><strong>动态调整的优势：</strong></p>
+<ul>
+<li>不预设商业模式、流量特征、应用需求</li>
+<li>但<strong>依赖端系统的良好公民行为（Good Citizenship）</strong></li>
+</ul>
+<hr />
+<h3 id="24-拥塞窗口cwnd">2.4 拥塞窗口（CWND）<a class="headerlink" href="#24-拥塞窗口cwnd" title="Permanent link">&para;</a></h3>
+<p>TCP 通过维护一个<strong>拥塞窗口（Congestion Window, CWND）</strong> 来限制发送速率：</p>
+<div class="arithmatex">\[\text{实际发送窗口} = \min(CWND, RWND)\]</div>
+<ul>
+<li>CWND：拥塞控制角度的发送限制</li>
+<li>RWND：流量控制角度的接收方限制</li>
+<li>两者取最小值，<strong>同时满足流控和拥塞控制</strong></li>
+</ul>
+<hr />
+<h3 id="25-慢启动slow-start">2.5 慢启动（Slow Start）<a class="headerlink" href="#25-慢启动slow-start" title="Permanent link">&para;</a></h3>
+<h4 id="目标">目标<a class="headerlink" href="#目标" title="Permanent link">&para;</a></h4>
+<p>在不了解网络带宽的情况下，<strong>从小到大快速探测</strong>可用带宽。</p>
+<h4 id="机制">机制<a class="headerlink" href="#机制" title="Permanent link">&para;</a></h4>
+<p>规定初始<span class="arithmatex">\(CWND = 1\)</span>个MSS（最大报文段），初始发送速率为<span class="arithmatex">\(\frac{MSS}{RTT}\)</span>。</p>
+<p>当<strong>每收到一个新 ACK</strong>，就执行<span class="arithmatex">\(CWND = CWND + 1\)</span>，带来的效果就是每个 RTT，CWND <strong>翻倍</strong>（指数增长）。</p>
+<h4 id="慢启动何时停止">慢启动何时停止？<a class="headerlink" href="#慢启动何时停止" title="Permanent link">&para;</a></h4>
+<p>引入<strong>慢启动阈值（ssthresh，Slow Start Threshold）</strong>：</p>
+<ul>
+<li>初始值：设置为一个较大值（如 65535 字节）</li>
+<li>当 <span class="arithmatex">\(CWND &gt; ssthresh\)</span> 时：<strong>停止慢启动，进入拥塞避免</strong></li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>易错点</strong>："慢启动"不慢！名字的"慢"是指初始窗口从 1 开始（相对于一次发送大量数据而言），但增长速度是<strong>指数级</strong>的，非常快。</p>
+</blockquote>
+<hr />
+<h3 id="26-拥塞避免aimd">2.6 拥塞避免——AIMD<a class="headerlink" href="#26-拥塞避免aimd" title="Permanent link">&para;</a></h3>
+<h4 id="进入条件">进入条件<a class="headerlink" href="#进入条件" title="Permanent link">&para;</a></h4>
+<p><span class="arithmatex">\(CWND &gt; ssthresh\)</span>.</p>
+<p>目的是放缓快速扩张，对带宽的估计进行微调。</p>
+<h4 id="加法增大additive-increase-ai">加法增大（Additive Increase, AI）<a class="headerlink" href="#加法增大additive-increase-ai" title="Permanent link">&para;</a></h4>
+<ul>
+<li>每个 RTT，CWND 增加 1 MSS（线性增长）</li>
+<li>实现方式：<strong>每收到一个 ACK</strong>，<span class="arithmatex">\(CWND = CWND + \frac{1}{CWND}\)</span>（MSS单位），等效于当一个完整窗口的数据都被确认后，CWND 才增加 1</li>
+</ul>
+<h4 id="乘法减小multiplicative-decrease-md">乘法减小（Multiplicative Decrease, MD）<a class="headerlink" href="#乘法减小multiplicative-decrease-md" title="Permanent link">&para;</a></h4>
+<p><strong>触发条件1：收到3个重复ACK（Triple Duplicate ACK）</strong></p>
+<div class="arithmatex">\[ssthresh = \frac{CWND}{2}\]</div>
+<div class="arithmatex">\[CWND = ssthresh \text{（进入拥塞避免/快速恢复）}\]</div>
+<p><strong>触发条件2：超时（Timeout）</strong></p>
+<div class="arithmatex">\[ssthresh = \frac{CWND}{2}\]</div>
+<div class="arithmatex">\[CWND = 1 \text{（重新开始慢启动）}\]</div>
+<h4 id="为什么选择-aimd-而非其他">为什么选择 AIMD 而非其他？<a class="headerlink" href="#为什么选择-aimd-而非其他" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>增长方式</th>
+<th>减小方式</th>
+<th>收敛性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AIAD</td>
+<td>加法</td>
+<td>加法</td>
+<td>不收敛到公平点</td>
+</tr>
+<tr>
+<td><strong>AIMD</strong></td>
+<td><strong>加法</strong></td>
+<td><strong>乘法</strong></td>
+<td><strong>收敛到公平且高效</strong></td>
+</tr>
+<tr>
+<td>MIAD</td>
+<td>乘法</td>
+<td>加法</td>
+<td>不收敛</td>
+</tr>
+<tr>
+<td>MIMD</td>
+<td>乘法</td>
+<td>乘法</td>
+<td>不收敛到公平点</td>
+</tr>
+</tbody>
+</table>
+<h4 id="aimd-公平性的数学证明直观理解">AIMD 公平性的数学证明（直观理解）<a class="headerlink" href="#aimd-公平性的数学证明直观理解" title="Permanent link">&para;</a></h4>
+<p>在二维坐标系（<span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(x_2\)</span> 分别为两个用户的发送速率）中，定义<strong>效率线</strong>为<span class="arithmatex">\(x_1 + x_2 = C\)</span>（链路容量），<strong>公平线</strong>为<span class="arithmatex">\(x_1 = x_2\)</span>.</p>
+<p>AIMD 的行为轨迹：</p>
+<ul>
+<li>未拥塞时：沿45°方向（<span class="arithmatex">\(+a_I, +a_I\)</span>）向右上方移动</li>
+<li>拥塞时：向原点方向（乘以 <span class="arithmatex">\(b_D\)</span>）收缩</li>
+<li>这两个方向的迭代轨迹<strong>收敛到效率线与公平线的交点</strong></li>
+</ul>
+<figure>
+<img alt="AIMD" src="../../../../../assets/images/AIMD.png" width="60%" />
+</figure>
+<hr />
+<h3 id="27-快速重传与快速恢复fast-retransmit--fast-recovery">2.7 快速重传与快速恢复（Fast Retransmit &amp; Fast Recovery）<a class="headerlink" href="#27-快速重传与快速恢复fast-retransmit--fast-recovery" title="Permanent link">&para;</a></h3>
+<h4 id="为什么需要快速恢复">为什么需要快速恢复？<a class="headerlink" href="#为什么需要快速恢复" title="Permanent link">&para;</a></h4>
+<p>收到3个重复<code>ACK</code>时，网络仍在转发其他包（说明没有完全中断），不应该像超时一样重置到 <span class="arithmatex">\(CWND=1\)</span>。</p>
+<p>换句话说，发送方收到 3 个重复 <code>ACK</code> 后，知道前面那个包大概率丢了；马上重传丢失包，这叫 Fast Retransmit；同时不清空网络，而是进入 Fast Recovery；等到收到一个新的 <code>ACK</code>（说明丢的包终于补到了），退出 Fast Recovery，回到拥塞避免。</p>
+<h4 id="快速恢复机制tcp-reno">快速恢复机制（TCP Reno）<a class="headerlink" href="#快速恢复机制tcp-reno" title="Permanent link">&para;</a></h4>
+<p><strong>步骤：</strong></p>
+<ol>
+<li>
+<p>收到第3个重复ACK时：</p>
+<ul>
+<li><span class="arithmatex">\(ssthresh = CWND / 2\)</span></li>
+<li><span class="arithmatex">\(CWND = ssthresh + 3\)</span>（<code>+3</code> 是因为3个<code>dupACK</code>表明3个包已离开网络）</li>
+<li>立即重传丢失的包</li>
+</ul>
+</li>
+<li>
+<p>快速恢复期间（持续收到重复ACK）：</p>
+<ul>
+<li>每收到一个额外的重复ACK：<span class="arithmatex">\(CWND = CWND + 1\)</span>（维持管道中的数据量）</li>
+</ul>
+</li>
+<li>
+<p>收到新ACK后退出快速恢复：</p>
+<ul>
+<li><span class="arithmatex">\(CWND = ssthresh\)</span></li>
+<li>进入拥塞避免阶段</li>
+</ul>
+</li>
+</ol>
+<h4 id="具体示例分析cwnd10包101丢失">具体示例分析（CWND=10，包101丢失）<a class="headerlink" href="#具体示例分析cwnd10包101丢失" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>CWND</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收到dupACK #1 (due to 102)</td>
+<td>10</td>
+<td>正常计数</td>
+</tr>
+<tr>
+<td>收到dupACK #2 (due to 103)</td>
+<td>10</td>
+<td>正常计数</td>
+</tr>
+<tr>
+<td>收到dupACK #3 (due to 104)</td>
+<td>→ 8</td>
+<td>ssthresh=5, CWND=5+3=8，重传101</td>
+</tr>
+<tr>
+<td>收到dupACK #4 (due to 105)</td>
+<td>9</td>
+<td>CWND+1，无新包可发</td>
+</tr>
+<tr>
+<td>收到dupACK #5 (due to 106)</td>
+<td>10</td>
+<td>CWND+1，无新包可发</td>
+</tr>
+<tr>
+<td>收到dupACK #6 (due to 107)</td>
+<td>11</td>
+<td>发送111</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>收到新ACK 111 (due to 101)</td>
+<td>→ 5</td>
+<td><strong>退出快速恢复</strong>，CWND=ssthresh=5，发送115</td>
+</tr>
+<tr>
+<td>收到ACK 112 (due to 111)</td>
+<td>5+1/5</td>
+<td>进入拥塞避免（线性增长）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="28-tcp-状态机">2.8 TCP 状态机<a class="headerlink" href="#28-tcp-状态机" title="Permanent link">&para;</a></h3>
+<figure>
+<img alt="TCP State Machine" src="../../../../../assets/images/TCP_State.png" width="80%" />
+</figure>
+<p><strong>状态转换规则总结：</strong></p>
+<table>
+<thead>
+<tr>
+<th>当前状态</th>
+<th>事件</th>
+<th>动作</th>
+<th>下一状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slow Start</td>
+<td>new ACK</td>
+<td>CWND += 1</td>
+<td>Slow Start</td>
+</tr>
+<tr>
+<td>Slow Start</td>
+<td>CWND &gt; ssthresh</td>
+<td>—</td>
+<td>Cong. Avoid.</td>
+</tr>
+<tr>
+<td>Slow Start</td>
+<td>timeout</td>
+<td>ssthresh=CWND/2, CWND=1</td>
+<td>Slow Start</td>
+</tr>
+<tr>
+<td>Slow Start</td>
+<td>dupACK=3</td>
+<td>ssthresh=CWND/2, CWND=ssthresh+3</td>
+<td>Fast Recovery</td>
+</tr>
+<tr>
+<td>Cong. Avoid.</td>
+<td>new ACK</td>
+<td>CWND += 1/CWND</td>
+<td>Cong. Avoid.</td>
+</tr>
+<tr>
+<td>Cong. Avoid.</td>
+<td>timeout</td>
+<td>ssthresh=CWND/2, CWND=1</td>
+<td>Slow Start</td>
+</tr>
+<tr>
+<td>Cong. Avoid.</td>
+<td>dupACK=3</td>
+<td>ssthresh=CWND/2, CWND=ssthresh+3</td>
+<td>Fast Recovery</td>
+</tr>
+<tr>
+<td>Fast Recovery</td>
+<td>dupACK</td>
+<td>CWND += 1</td>
+<td>Fast Recovery</td>
+</tr>
+<tr>
+<td>Fast Recovery</td>
+<td>new ACK</td>
+<td>CWND = ssthresh</td>
+<td>Cong. Avoid.</td>
+</tr>
+<tr>
+<td>Fast Recovery</td>
+<td>timeout</td>
+<td>ssthresh=CWND/2, CWND=1</td>
+<td>Slow Start</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="29-各种-tcp-版本对比">2.9 各种 TCP 版本对比<a class="headerlink" href="#29-各种-tcp-版本对比" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>TCP 版本</th>
+<th>3个dupACK处理</th>
+<th>超时处理</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TCP Tahoe</strong></td>
+<td>CWND=1，慢启动</td>
+<td>CWND=1，慢启动</td>
+<td>最早版本，激进</td>
+</tr>
+<tr>
+<td><strong>TCP Reno</strong></td>
+<td>CWND=CWND/2，快速恢复</td>
+<td>CWND=1，慢启动</td>
+<td>标准版本</td>
+</tr>
+<tr>
+<td><strong>TCP NewReno</strong></td>
+<td>Reno + 改进的快速恢复</td>
+<td>CWND=1，慢启动</td>
+<td>处理多包丢失更好</td>
+</tr>
+<tr>
+<td><strong>TCP SACK</strong></td>
+<td>结合选择确认</td>
+<td>CWND=1，慢启动</td>
+<td>精确知道哪些包丢失</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>考研重点</strong>：408默认考察 <strong>TCP Reno</strong> 的行为（即3个dupACK时CWND减半而非置1）。</p>
+</blockquote>
+<hr />
+<h2 id="三路由器辅助的拥塞控制">三、路由器辅助的拥塞控制<a class="headerlink" href="#三路由器辅助的拥塞控制" title="Permanent link">&para;</a></h2>
+<h3 id="31-tcp-的固有问题">3.1 TCP 的固有问题<a class="headerlink" href="#31-tcp-的固有问题" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>混淆丢包原因</td>
+<td>无线链路误码导致的丢包被误认为拥塞</td>
+</tr>
+<tr>
+<td>缓冲区占满</td>
+<td>导致排队延迟高（Bufferbloat问题）</td>
+</tr>
+<tr>
+<td>短流无法发现带宽</td>
+<td>流结束前还在慢启动阶段</td>
+</tr>
+<tr>
+<td>高速链路下AIMD效率低</td>
+<td>每次丢包减半代价太大</td>
+</tr>
+<tr>
+<td>RTT不公平</td>
+<td>RTT短的流获得更多带宽</td>
+</tr>
+<tr>
+<td>端系统可作弊</td>
+<td>恶意发送方可不遵循拥塞控制</td>
+</tr>
+</tbody>
+</table>
+<p><strong>路由器可以帮助解决其中多个问题！</strong></p>
+<hr />
+<h3 id="32-显式拥塞通知ecnexplicit-congestion-notification">3.2 显式拥塞通知（ECN，Explicit Congestion Notification）<a class="headerlink" href="#32-显式拥塞通知ecnexplicit-congestion-notification" title="Permanent link">&para;</a></h3>
+<h4 id="机制_1">机制<a class="headerlink" href="#机制_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>在 IP 头部（使用 ToS/DSCP 字段，RFC 3168）设置 <strong>ECN 比特</strong></li>
+<li>路由器检测到拥塞时<strong>主动标记</strong>数据包（而非丢弃）</li>
+<li>接收方在 ACK 中回传 ECN 标记</li>
+<li>发送方收到带 ECN 的 ACK 后，像收到丢包信号一样减小 CWND</li>
+</ul>
+<h4 id="ecn-的优势">ECN 的优势<a class="headerlink" href="#ecn-的优势" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区分拥塞与误码丢包</td>
+<td>无线环境中不再误触发减窗</td>
+</tr>
+<tr>
+<td>早期拥塞预警</td>
+<td>在队列满之前就能通知，避免高延迟</td>
+</tr>
+<tr>
+<td>增量部署友好</td>
+<td>不需要大规模改造，今天已在数据中心广泛使用</td>
+</tr>
+<tr>
+<td>语义兼容TCP</td>
+<td>端系统行为与收到丢包相同，无需修改上层逻辑</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="33-其他路由器辅助机制">3.3 其他路由器辅助机制<a class="headerlink" href="#33-其他路由器辅助机制" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>中文名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Choke Packet</td>
+<td>抑制分组</td>
+<td>路由器向源端发送"降速"控制包</td>
+</tr>
+<tr>
+<td>Backpressure</td>
+<td>反压</td>
+<td>逐跳通知上游节点降速</td>
+</tr>
+<tr>
+<td>Warning Bit (ECN)</td>
+<td>警告位</td>
+<td>在数据包头部标记拥塞</td>
+</tr>
+<tr>
+<td>Random Early Discard (RED)</td>
+<td>随机早期丢弃</td>
+<td>队列未满时就概率性丢包，提前预警</td>
+</tr>
+<tr>
+<td>Fair Queuing (FQ)</td>
+<td>公平队列</td>
+<td>路由器为每个流维护独立队列，强制公平</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="四易错点与高频考点汇总">四、易错点与高频考点汇总<a class="headerlink" href="#四易错点与高频考点汇总" title="Permanent link">&para;</a></h2>
+<h3 id="-易错点-1流控-vs-拥塞控制的区别">📌 易错点 1：流控 vs 拥塞控制的区别<a class="headerlink" href="#-易错点-1流控-vs-拥塞控制的区别" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>流量控制</th>
+<th>拥塞控制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控制对象</td>
+<td>接收方缓冲区</td>
+<td>网络链路带宽</td>
+</tr>
+<tr>
+<td>窗口名称</td>
+<td>RWND（接收窗口）</td>
+<td>CWND（拥塞窗口）</td>
+</tr>
+<tr>
+<td>信息来源</td>
+<td>接收方ACK中携带</td>
+<td>发送方自行推断（丢包/延迟）</td>
+</tr>
+<tr>
+<td>机制位置</td>
+<td>端到端</td>
+<td>端到端（可路由器辅助）</td>
+</tr>
+<tr>
+<td>是否UDP支持</td>
+<td>❌ UDP无流控</td>
+<td>❌ UDP无拥塞控制</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实际发送窗口 = min(CWND, RWND)</strong>，两者同时约束发送速率。</p>
+<hr />
+<h3 id="-易错点-2慢启动慢在哪里">📌 易错点 2：慢启动"慢"在哪里？<a class="headerlink" href="#-易错点-2慢启动慢在哪里" title="Permanent link">&para;</a></h3>
+<ul>
+<li>"慢"指<strong>初始窗口为1 MSS</strong>，不是增长速度慢</li>
+<li>慢启动阶段实际是<strong>指数增长</strong>，增速极快</li>
+<li>每个RTT翻倍，到达ssthresh后才切换为线性增长</li>
+</ul>
+<hr />
+<h3 id="-易错点-3三个重复ack-vs-超时的响应差异">📌 易错点 3：三个重复ACK vs 超时的响应差异<a class="headerlink" href="#-易错点-3三个重复ack-vs-超时的响应差异" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>3个重复ACK</th>
+<th>超时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>严重程度</td>
+<td>较轻（还在收ACK）</td>
+<td>严重（完全停顿）</td>
+</tr>
+<tr>
+<td>ssthresh</td>
+<td>CWND/2</td>
+<td>CWND/2</td>
+</tr>
+<tr>
+<td>CWND</td>
+<td><strong>CWND/2</strong>（Reno）</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>下一阶段</td>
+<td>快速恢复→拥塞避免</td>
+<td>慢启动</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="-易错点-4ssthresh-的更新时机">📌 易错点 4：ssthresh 的更新时机<a class="headerlink" href="#-易错点-4ssthresh-的更新时机" title="Permanent link">&para;</a></h3>
+<p>ssthresh <strong>只在发生拥塞事件时更新</strong>（即检测到丢包时），而不是每个RTT都更新。</p>
+<hr />
+<h3 id="-易错点-5cwnd-增长的精确计算">📌 易错点 5：CWND 增长的精确计算<a class="headerlink" href="#-易错点-5cwnd-增长的精确计算" title="Permanent link">&para;</a></h3>
+<p><strong>慢启动阶段</strong>（CWND ≤ ssthresh）：</p>
+<ul>
+<li>每收到1个ACK：CWND += 1 MSS</li>
+<li>每个RTT：CWND 翻倍</li>
+</ul>
+<p><strong>拥塞避免阶段</strong>（CWND &gt; ssthresh）：</p>
+<ul>
+<li>每收到1个ACK：CWND += MSS × (MSS/CWND)</li>
+<li>每个RTT：CWND += 1 MSS（线性增长）</li>
+</ul>
+<hr />
+<h3 id="-高频考点-1cwnd-变化的计算题">📌 高频考点 1：CWND 变化的计算题<a class="headerlink" href="#-高频考点-1cwnd-变化的计算题" title="Permanent link">&para;</a></h3>
+<p><strong>典型题型：</strong> 给出初始 ssthresh 和 CWND，以及若干轮次的事件，计算各时刻的 CWND 值。</p>
+<p><strong>解题步骤：</strong></p>
+<ol>
+<li>判断当前处于慢启动还是拥塞避免</li>
+<li>按规则更新 CWND</li>
+<li>遇到丢包事件，区分超时和dupACK，分别处理</li>
+<li>注意 ssthresh 的更新</li>
+</ol>
+<hr />
+<h3 id="-高频考点-2吞吐量计算">📌 高频考点 2：吞吐量计算<a class="headerlink" href="#-高频考点-2吞吐量计算" title="Permanent link">&para;</a></h3>
+<p>TCP 在稳态（仅考虑拥塞避免）下的平均吞吐量近似为：</p>
+<div class="arithmatex">\[\text{Throughput} \approx \frac{0.75 \times W}{RTT}\]</div>
+<p>其中 <span class="arithmatex">\(W\)</span> 为发生丢包时的窗口大小（单位：MSS）。</p>
+<p>更精确的公式（考虑丢包率 <span class="arithmatex">\(p\)</span>）：</p>
+<div class="arithmatex">\[\text{Throughput} \approx \frac{MSS}{RTT\sqrt{p}}\]</div>
+<hr />
+<h3 id="-高频考点-3tcp-公平性">📌 高频考点 3：TCP 公平性<a class="headerlink" href="#-高频考点-3tcp-公平性" title="Permanent link">&para;</a></h3>
+<p>在相同 RTT、相同瓶颈链路的情况下，AIMD 保证多条流<strong>收敛到公平共享</strong>（各流获得相等带宽）。</p>
+<p>但以下情况破坏公平性：
+- <strong>RTT 不同</strong>：RTT 短的流反应更快，获得更多带宽
+- <strong>并行连接</strong>：应用开多条TCP连接可获得更多份额（如早期HTTP）</p>
+<hr />
+<h3 id="-高频考点-4rwnd--0-时的处理">📌 高频考点 4：RWND = 0 时的处理<a class="headerlink" href="#-高频考点-4rwnd--0-时的处理" title="Permanent link">&para;</a></h3>
+<p>当接收方通告 RWND=0 时：
+- 发送方<strong>停止发送</strong>（但可发送1字节的探测报文）
+- 使用<strong>持续计时器（Persist Timer）</strong> 定期探测
+- 防止死锁：接收方缓冲区释放后重新通告窗口，但若ACK丢失则陷入死锁</p>
+<hr />
+<h3 id="-典型计算题示例">📌 典型计算题示例<a class="headerlink" href="#-典型计算题示例" title="Permanent link">&para;</a></h3>
+<p><strong>题目：</strong> 设 TCP 的 ssthresh 初始值为 8（单位MSS），在第3轮时发生超时，在第7轮时收到3个重复ACK。试画出拥塞窗口的变化图并标出各阶段。</p>
+<p><strong>解题过程：</strong></p>
+<table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>CWND</th>
+<th>阶段</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>SS</td>
+<td>初始</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>SS</td>
+<td>指数增长</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>SS→超时</td>
+<td>超时！ssthresh=4/2=2?</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：第3轮<strong>发生</strong>超时，说明第3轮传输时CWND=4，超时后：ssthresh=4/2=2，CWND=1，重新慢启动</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>CWND</th>
+<th>阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>SS</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>SS</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td><strong>超时</strong> → ssthresh=2, CWND=1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>SS</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>SS→CA（CWND=ssthresh=2）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+<td>CA</td>
+</tr>
+<tr>
+<td>7</td>
+<td>4</td>
+<td><strong>3dupACK</strong> → ssthresh=2, CWND=2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2</td>
+<td>CA（快速恢复后）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>CA</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="五知识框架总结">五、知识框架总结<a class="headerlink" href="#五知识框架总结" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>运输层（传输层）
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>│
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>├── 流量控制（Flow Control）
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>│   ├── 目的：防止接收方缓冲区溢出
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>│   ├── 机制：滑动窗口 + RWND 通告
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>│   ├── 公式：RWND = B - (LastByteRcvd - LastByteRead)
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>│   └── 问题：RWND=0死锁 → 持续计时器解决
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>│
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>└── 拥塞控制（Congestion Control）
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>    ├── 目的：防止网络链路过载
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>    ├── 检测：丢包（超时/dupACK）/ ECN
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>    ├── 机制
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>    │   ├── 慢启动（Slow Start）
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>    │   │   ├── CWND=1起步，指数增长
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>    │   │   └── 直到 CWND &gt; ssthresh
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>    │   ├── 拥塞避免（AIMD）
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>    │   │   ├── 线性增（+1/RTT）
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a>    │   │   └── 乘法减（×1/2 on loss）
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a>    │   └── 快速恢复（Fast Recovery）
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a>    │       ├── 3dupACK触发
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a>    │       └── CWND = ssthresh + 3，继续发包
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a>    ├── TCP版本：Tahoe / Reno / NewReno / SACK
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>    └── 路由器辅助：ECN / RED / FQ
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<blockquote>
+<p>📝 <strong>备考建议</strong>：TCP拥塞控制是408的高频考点，每年几乎必考计算题。建议重点掌握：①CWND的精确计算规则；②状态机的转换条件；③超时 vs 3dupACK的不同处理；④慢启动与拥塞避免的边界条件（ssthresh）。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 3-运输层2">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                3-运输层2
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%824/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3-运输层4">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                3-运输层4
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

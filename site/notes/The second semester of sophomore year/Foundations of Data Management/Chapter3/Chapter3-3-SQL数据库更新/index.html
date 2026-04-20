@@ -1,0 +1,4770 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter3/Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/">
+      
+      
+        <link rel="prev" href="../Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/">
+      
+      
+        <link rel="next" href="../../Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Chapter3-3-SQL数据库更新 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql数据更新" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter3-3-SQL数据库更新
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Computer%20Operating%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Operating Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap%20Lab/Lab2-%E5%8D%8F%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_3" id="__nav_2_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap1 绪论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap1 绪论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统的发展历程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_4" id="__nav_2_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap2 并发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap2 并发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/1.%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.多处理器编程Multiprocessor Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/2.%E4%BA%92%E6%96%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.互斥基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/3.%E4%BA%92%E6%96%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.互斥进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/4.%E5%90%8C%E6%AD%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.同步基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/5.%E5%90%8C%E6%AD%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.同步进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-3-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E6%89%A9%E5%85%85%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-3-关系代数扩充运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_4" id="__nav_2_2_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-1-SQL数据库的定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-2-SQL数据查询
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-3-SQL数据库更新
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-3-SQL数据库更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一数据更新" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、数据更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、数据更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-插入数据insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 插入数据（INSERT）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 插入数据（INSERT）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-插入单个元组" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.1 插入单个元组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-插入子查询结果批量插入" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.2 插入子查询结果（批量插入）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-修改数据update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 修改数据（UPDATE）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 修改数据（UPDATE）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#修改操作与完整性约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修改操作与完整性约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-删除数据delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 删除数据（DELETE）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二事务处理的基本概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、事务处理的基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、事务处理的基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-事务的定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 事务的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-为什么引入事务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 为什么引入事务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-事务的-acid-特性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 事务的 ACID 特性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 事务的 ACID 特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#①-原子性atomicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 原子性（Atomicity）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#②-一致性consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 一致性（Consistency）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#③-隔离性isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 隔离性（Isolation）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#④-持久性durability也称永久性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 持久性（Durability，也称永久性）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-定义事务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 定义事务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-事务结束方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 事务结束方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 事务结束方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commit提交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMMIT（提交）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback回滚" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROLLBACK（回滚）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-有关事务的-sql-命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 有关事务的 SQL 命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 有关事务的 SQL 命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#事务结束命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事务结束命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#事务设置命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事务设置命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#四种隔离级别详解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四种隔离级别详解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三sql-中的空值null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、SQL 中的空值（NULL）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、SQL 中的空值（NULL）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-空值的含义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 空值的含义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-空值的产生" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 空值的产生
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-空值的判断" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 空值的判断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-空值相关的完整性约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 空值相关的完整性约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-空值的运算规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 空值的运算规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 空值的运算规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#算术运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        算术运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#比较运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#三值逻辑three-valued-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三值逻辑（Three-Valued Logic）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbms-的实际处理规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DBMS 的实际处理规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四视图view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、视图（VIEW）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、视图（VIEW）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-视图的概念与特点" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 视图的概念与特点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-定义视图create-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 定义视图（CREATE VIEW）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 定义视图（CREATE VIEW）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-建立视图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 建立视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#视图列名的规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视图列名的规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-各类视图示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2 各类视图示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423-with-check-option-详解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.3 WITH CHECK OPTION 详解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-删除视图drop-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 删除视图（DROP VIEW）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-查询视图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 查询视图
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 查询视图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#视图消解法view-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视图消解法（View Resolution）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-更新视图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 更新视图
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 更新视图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#可更新视图的条件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可更新视图的条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#不可更新视图的典型情形" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不可更新视图的典型情形
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-视图的作用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 视图的作用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 视图的作用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#①-简化用户的操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 简化用户的操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#②-使用户能以多种角度看待同一数据" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 使用户能以多种角度看待同一数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#③-对重构数据库提供逻辑独立性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 对重构数据库提供逻辑独立性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#④-对机密数据提供安全保护" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 对机密数据提供安全保护
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#⑤-使查询表达更清晰" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 使查询表达更清晰
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五本章知识点总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、本章知识点总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、本章知识点总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#数据更新三要素对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据更新三要素对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#事务-acid-特性速记" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事务 ACID 特性速记
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#视图核心知识速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视图核心知识速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Internet%20Computing/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-应用层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_4_4" id="__nav_2_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3-运输层
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%823/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%824/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一数据更新" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、数据更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、数据更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-插入数据insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 插入数据（INSERT）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 插入数据（INSERT）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-插入单个元组" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.1 插入单个元组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-插入子查询结果批量插入" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.2 插入子查询结果（批量插入）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-修改数据update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 修改数据（UPDATE）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 修改数据（UPDATE）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#修改操作与完整性约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修改操作与完整性约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-删除数据delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 删除数据（DELETE）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二事务处理的基本概念" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、事务处理的基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、事务处理的基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-事务的定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 事务的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-为什么引入事务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 为什么引入事务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-事务的-acid-特性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 事务的 ACID 特性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 事务的 ACID 特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#①-原子性atomicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 原子性（Atomicity）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#②-一致性consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 一致性（Consistency）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#③-隔离性isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 隔离性（Isolation）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#④-持久性durability也称永久性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 持久性（Durability，也称永久性）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-定义事务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 定义事务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-事务结束方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 事务结束方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 事务结束方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commit提交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMMIT（提交）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback回滚" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROLLBACK（回滚）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-有关事务的-sql-命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 有关事务的 SQL 命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 有关事务的 SQL 命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#事务结束命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事务结束命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#事务设置命令" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事务设置命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#四种隔离级别详解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四种隔离级别详解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三sql-中的空值null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、SQL 中的空值（NULL）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、SQL 中的空值（NULL）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-空值的含义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 空值的含义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-空值的产生" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 空值的产生
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-空值的判断" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 空值的判断
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-空值相关的完整性约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 空值相关的完整性约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-空值的运算规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 空值的运算规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 空值的运算规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#算术运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        算术运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#比较运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#三值逻辑three-valued-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三值逻辑（Three-Valued Logic）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbms-的实际处理规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DBMS 的实际处理规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四视图view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、视图（VIEW）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、视图（VIEW）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-视图的概念与特点" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 视图的概念与特点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-定义视图create-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 定义视图（CREATE VIEW）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 定义视图（CREATE VIEW）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-建立视图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 建立视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#视图列名的规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视图列名的规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-各类视图示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2 各类视图示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423-with-check-option-详解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.3 WITH CHECK OPTION 详解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-删除视图drop-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 删除视图（DROP VIEW）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-查询视图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 查询视图
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 查询视图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#视图消解法view-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视图消解法（View Resolution）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-更新视图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 更新视图
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 更新视图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#可更新视图的条件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可更新视图的条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#不可更新视图的典型情形" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不可更新视图的典型情形
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-视图的作用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 视图的作用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 视图的作用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#①-简化用户的操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 简化用户的操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#②-使用户能以多种角度看待同一数据" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 使用户能以多种角度看待同一数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#③-对重构数据库提供逻辑独立性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 对重构数据库提供逻辑独立性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#④-对机密数据提供安全保护" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 对机密数据提供安全保护
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#⑤-使查询表达更清晰" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 使查询表达更清晰
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五本章知识点总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、本章知识点总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、本章知识点总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#数据更新三要素对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据更新三要素对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#事务-acid-特性速记" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        事务 ACID 特性速记
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#视图核心知识速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        视图核心知识速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Foundations of Data Management/Chapter3/Chapter3-3-SQL数据库更新.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="sql数据更新">SQL数据更新<a class="headerlink" href="#sql数据更新" title="Permanent link">&para;</a></h1>
+<h2 id="一数据更新">一、数据更新<a class="headerlink" href="#一数据更新" title="Permanent link">&para;</a></h2>
+<p>数据更新包括三类操作：<strong>插入（INSERT）</strong>、<strong>修改（UPDATE）</strong>、<strong>删除（DELETE）</strong>。</p>
+<hr />
+<h3 id="11-插入数据insert">1.1 插入数据（INSERT）<a class="headerlink" href="#11-插入数据insert" title="Permanent link">&para;</a></h3>
+<h4 id="111-插入单个元组">1.1.1 插入单个元组<a class="headerlink" href="#111-插入单个元组" title="Permanent link">&para;</a></h4>
+<p><strong>语句格式：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">INSERT</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">INTO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[(</span><span class="o">&lt;</span><span class="err">属性列</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">属性列</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="err">…</span><span class="p">])]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="err">常量</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">常量</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">…</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>INTO 子句说明：</strong></p>
+<ul>
+<li>指定要插入数据的表名及属性列</li>
+<li>属性列的顺序可以与表定义中的顺序不一致</li>
+<li><strong>若未指定属性列</strong>：表示插入完整元组，属性列顺序须与表定义一致</li>
+<li><strong>若指定部分属性列</strong>：未指定的属性列由 DBMS 自动赋空值（NULL）</li>
+</ul>
+<p><strong>VALUES 子句说明：</strong></p>
+<ul>
+<li>提供的值必须与 INTO 子句<strong>匹配</strong>：值的个数一致、值的类型兼容</li>
+<li><code>NULL</code> 关键字可显式表示空值</li>
+</ul>
+<p><strong>完整语法（标准 SQL）：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">INSERT</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">INTO</span><span class="w"> </span><span class="n">tabname</span><span class="w"> </span><span class="p">[(</span><span class="w"> </span><span class="n">colname</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="w"> </span><span class="n">colname</span><span class="w"> </span><span class="err">…}</span><span class="w"> </span><span class="p">)]</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="err">{</span><span class="p">,</span><span class="w"> </span><span class="n">expr</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="err">…}</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">subquery</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">-- 例3.69：插入完整学生元组（指定属性列）</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;201215128&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;陈冬&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">-- 例3.70：省略属性列，值顺序须与表定义一致</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;201215126&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;张成民&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">);</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">-- 例3.71：部分属性列插入（Grade 自动赋 NULL）</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;201215128&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="c1">-- 等价写法（显式写 NULL）</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;201215128&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>补充说明：</strong> 在执行 INSERT 时，DBMS 会检查实体完整性（主键不为空、不重复）和参照完整性（外键值合法），违约则拒绝插入。</p>
+</blockquote>
+<hr />
+<h4 id="112-插入子查询结果批量插入">1.1.2 插入子查询结果（批量插入）<a class="headerlink" href="#112-插入子查询结果批量插入" title="Permanent link">&para;</a></h4>
+<p><strong>语句格式：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">INSERT</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">INTO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[(</span><span class="o">&lt;</span><span class="err">属性列</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">属性列</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="err">…</span><span class="p">])]</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="err">子查询</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li>SELECT 子句的目标列必须与 INTO 子句中的属性列在<strong>数量和类型</strong>上匹配</li>
+<li>可一次性将查询结果批量写入目标表</li>
+<li>常用于构建汇总表、临时表等场景</li>
+</ul>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">-- 例3.72：先建表，再将每系学生平均年龄插入汇总表</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Dept_age</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="n">Sdept</span><span class="w">   </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w">     </span><span class="c1">-- 系名</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="n">Avg_age</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w">      </span><span class="c1">-- 学生平均年龄</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="p">);</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Dept_age</span><span class="p">(</span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="n">Avg_age</span><span class="p">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Sage</span><span class="p">)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sdept</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="12-修改数据update">1.2 修改数据（UPDATE）<a class="headerlink" href="#12-修改数据update" title="Permanent link">&para;</a></h3>
+<p><strong>语句格式：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">UPDATE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">SET</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表达式</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表达式</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">…</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">条件</span><span class="o">&gt;</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>功能：</strong></p>
+<ul>
+<li>修改指定表中<strong>满足 WHERE 子句条件</strong>的元组</li>
+<li>SET 子句用表达式的值替换对应属性列的旧值</li>
+<li><strong>若省略 WHERE 子句</strong>：修改表中所有元组</li>
+</ul>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">-- 例3.73：修改单个元组</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">SET</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">22</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215121&#39;</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="c1">-- 例3.74：修改所有元组（无 WHERE 子句）</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="k">SET</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="c1">-- 例3.75：带子查询的修改（将 CS 系学生成绩置零）</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="k">SET</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="修改操作与完整性约束">修改操作与完整性约束<a class="headerlink" href="#修改操作与完整性约束" title="Permanent link">&para;</a></h4>
+<p>DBMS 在执行 UPDATE 时会自动检查以下完整性规则，违约则拒绝执行：</p>
+<table>
+<thead>
+<tr>
+<th>约束类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实体完整性</strong></td>
+<td>主码列不能被修改为空值或重复值</td>
+</tr>
+<tr>
+<td><strong>参照完整性</strong></td>
+<td>外键值须在被参照表中存在</td>
+</tr>
+<tr>
+<td><strong>NOT NULL 约束</strong></td>
+<td>被约束列不能被修改为 NULL</td>
+</tr>
+<tr>
+<td><strong>UNIQUE 约束</strong></td>
+<td>被约束列的新值在表中须唯一</td>
+</tr>
+<tr>
+<td><strong>值域约束</strong></td>
+<td>值须在合法范围内</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="13-删除数据delete">1.3 删除数据（DELETE）<a class="headerlink" href="#13-删除数据delete" title="Permanent link">&para;</a></h3>
+<p><strong>语句格式：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">DELETE</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">条件</span><span class="o">&gt;</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>功能：</strong></p>
+<ul>
+<li>删除指定表中<strong>满足 WHERE 子句条件</strong>的元组</li>
+<li><strong>若省略 WHERE 子句</strong>：删除表中所有元组（表的结构定义仍保留在数据字典中）</li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong> <code>DELETE</code> 只删除数据行，不删除表结构；而 <code>DROP TABLE</code> 会连结构一起删除。<code>TRUNCATE TABLE</code>（非标准 SQL）也删除所有行但速度更快、不可回滚。</p>
+</blockquote>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">-- 例3.76：删除单个元组</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215128&#39;</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1">-- 例3.77：删除所有元组</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="c1">-- 例3.78：带子查询的删除（删除 CS 系所有学生的选课记录）</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="二事务处理的基本概念">二、事务处理的基本概念<a class="headerlink" href="#二事务处理的基本概念" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="21-事务的定义">2.1 事务的定义<a class="headerlink" href="#21-事务的定义" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>事务（Transaction）</strong> 是用户定义的一个数据库操作序列，这些操作<strong>要么全做，要么全不做</strong>，是一个不可分割的工作单位。</p>
+</blockquote>
+<ul>
+<li>在关系数据库中，一个事务可以由<strong>一条或一组 SQL 语句</strong>组成</li>
+<li>事务是<strong>恢复</strong>和<strong>并发控制</strong>的基本单位</li>
+</ul>
+<hr />
+<h3 id="22-为什么引入事务">2.2 为什么引入事务<a class="headerlink" href="#22-为什么引入事务" title="Permanent link">&para;</a></h3>
+<p>引入事务的目的是<strong>确保数据库的数据完整性（Integrity of the Database）</strong>。</p>
+<p><strong>一致性状态（Consistent State）：</strong> 若数据库中所有数据都满足完整性约束定义，则称数据库处于一致性状态。</p>
+<p><strong>影响数据完整性的三个因素：</strong></p>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Concurrency（并发）</strong></td>
+<td>多用户的并发访问可能导致数据相互干扰</td>
+</tr>
+<tr>
+<td><strong>Abort（放弃事务）</strong></td>
+<td>事务中途被放弃可能使数据处于不一致状态</td>
+</tr>
+<tr>
+<td><strong>Crash（系统故障）</strong></td>
+<td>硬件/软件故障可能导致部分操作结果丢失</td>
+</tr>
+</tbody>
+</table>
+<p>在 DBMS 中引入事务处理功能，可以确保<strong>在任何情况下，都能保证数据库中数据的正确性</strong>。</p>
+<hr />
+<h3 id="23-事务的-acid-特性">2.3 事务的 ACID 特性<a class="headerlink" href="#23-事务的-acid-特性" title="Permanent link">&para;</a></h3>
+<p>一个事务的运行必须满足以下四个特性：</p>
+<h4 id="①-原子性atomicity">① 原子性（Atomicity）<a class="headerlink" href="#①-原子性atomicity" title="Permanent link">&para;</a></h4>
+<ul>
+<li>事务是数据库的<strong>逻辑工作单位</strong></li>
+<li>事务中包括的诸操作<strong>要么都做，要么都不做</strong></li>
+<li>由 DBMS 的<strong>恢复机制</strong>（Undo/Redo）保证</li>
+</ul>
+<h4 id="②-一致性consistency">② 一致性（Consistency）<a class="headerlink" href="#②-一致性consistency" title="Permanent link">&para;</a></h4>
+<ul>
+<li>事务执行的结果必须使数据库从<strong>一个一致性状态</strong>变到<strong>另一个一致性状态</strong></li>
+<li><strong>一致性状态</strong>：数据库中只包含已成功提交的事务的执行结果</li>
+<li><strong>不一致状态</strong>：系统故障导致部分修改已写入物理数据库，使数据库处于不正确状态</li>
+</ul>
+<h4 id="③-隔离性isolation">③ 隔离性（Isolation）<a class="headerlink" href="#③-隔离性isolation" title="Permanent link">&para;</a></h4>
+<ul>
+<li>一个事务的执行<strong>不能被其他事务干扰</strong></li>
+<li>一个事务内部的操作及使用的数据对其他并发事务是<strong>隔离的</strong></li>
+<li>并发执行的各个事务之间<strong>不能互相干扰</strong></li>
+<li>由 DBMS 的<strong>并发控制机制</strong>（锁机制、MVCC等）保证</li>
+</ul>
+<h4 id="④-持久性durability也称永久性">④ 持久性（Durability，也称永久性）<a class="headerlink" href="#④-持久性durability也称永久性" title="Permanent link">&para;</a></h4>
+<ul>
+<li>一个事务一旦<strong>完成提交</strong>，它对数据库中数据的改变就应该是<strong>永久性的</strong></li>
+<li>接下来的其他操作或故障不应该对其执行结果有任何影响</li>
+<li>由 DBMS 的<strong>日志（WAL）机制</strong>保证</li>
+</ul>
+<hr />
+<h3 id="24-定义事务">2.4 定义事务<a class="headerlink" href="#24-定义事务" title="Permanent link">&para;</a></h3>
+<p><strong>事务的启动：</strong></p>
+<p>事务以<strong>隐式方式</strong>启动，由 DBMS 决定何时为用户启动新事务。具体有三种情形：</p>
+<table>
+<thead>
+<tr>
+<th>启动方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DDL 命令</strong>（数据定义语言，如<code>CREATE</code> <code>ALTER</code> <code>DROP</code>）</td>
+<td>每条 DDL 命令单独作为一个事务执行，执行前自动提交当前 active 事务</td>
+</tr>
+<tr>
+<td><strong>自动提交模式（AUTOCOMMIT）</strong></td>
+<td>每条 DML 命令单独作为一个事务，DBMS 自动提交或回滚。在涉及多业务逻辑时，往往要关闭自动提交，手动管理多业务逻辑。</td>
+</tr>
+<tr>
+<td><strong>DML 命令</strong> （数据操纵语言，如<code>UPDATE</code> <code>DELETE</code> <code>INSERT</code>）</td>
+<td>DBMS 检查是否已有 active 事务：有则加入当前事务；无则自动启动新事务</td>
+</tr>
+</tbody>
+</table>
+<p><strong>事务的结束：</strong></p>
+<ul>
+<li>用户调用 <code>COMMIT</code> 或 <code>ROLLBACK</code> 命令<strong>显式结束</strong>当前事务</li>
+<li>DBMS 也可<strong>强行终止</strong>用户当前事务（如检测到死锁）</li>
+</ul>
+<hr />
+<h3 id="25-事务结束方式">2.5 事务结束方式<a class="headerlink" href="#25-事务结束方式" title="Permanent link">&para;</a></h3>
+<h4 id="commit提交">COMMIT（提交）<a class="headerlink" href="#commit提交" title="Permanent link">&para;</a></h4>
+<ul>
+<li>事务<strong>正常结束</strong>，提交事务中所有操作（读 + 写）</li>
+<li>被提交事务对数据库的所有更新结果被<strong>写回磁盘</strong>，确保持久化</li>
+<li>提交可能失败（系统故障、完整性检查不满足），失败后可执行 ROLLBACK</li>
+</ul>
+<h4 id="rollback回滚">ROLLBACK（回滚）<a class="headerlink" href="#rollback回滚" title="Permanent link">&para;</a></h4>
+<ul>
+<li>事务<strong>异常终止</strong>，撤销事务执行过程中对数据库所做的<strong>全部修改</strong></li>
+<li>将数据库回退到事务<strong>开始时的状态</strong></li>
+<li>支持<strong>保存点（Savepoint）</strong>：可回滚到事务中的某个中间点，而不必放弃整个事务</li>
+</ul>
+<p><strong>保存点机制：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">SAVEPOINT</span><span class="w"> </span><span class="n">sp1</span><span class="p">;</span><span class="w">                  </span><span class="c1">-- 设置保存点</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="c1">-- ... 若干操作 ...</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">ROLLBACK</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">SAVEPOINT</span><span class="w"> </span><span class="n">sp1</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 回滚到保存点（不结束事务）</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="k">ROLLBACK</span><span class="p">;</span><span class="w">                       </span><span class="c1">-- 放弃整个事务</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="26-有关事务的-sql-命令">2.6 有关事务的 SQL 命令<a class="headerlink" href="#26-有关事务的-sql-命令" title="Permanent link">&para;</a></h3>
+<h4 id="事务结束命令">事务结束命令<a class="headerlink" href="#事务结束命令" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">COMMIT</span><span class="p">;</span><span class="w">     </span><span class="c1">-- 提交事务</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">ROLLBACK</span><span class="p">;</span><span class="w">   </span><span class="c1">-- 回滚事务（也可理解为事务放弃命令）</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="事务设置命令">事务设置命令<a class="headerlink" href="#事务设置命令" title="Permanent link">&para;</a></h4>
+<p><strong>① 设置自动提交</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">SET</span><span class="w"> </span><span class="n">AUTOCOMMIT</span><span class="w"> </span><span class="k">ON</span><span class="p">;</span><span class="w">       </span><span class="c1">-- 打开自动提交</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">SET</span><span class="w"> </span><span class="n">AUTOCOMMIT</span><span class="w"> </span><span class="k">OFF</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 关闭自动提交</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="c1">-- MySQL 语法</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="k">SET</span><span class="w"> </span><span class="n">AUTOCOMMIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 打开</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="k">SET</span><span class="w"> </span><span class="n">AUTOCOMMIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 关闭</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>② 设置事务类型</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="w"> </span><span class="n">READONLY</span><span class="p">;</span><span class="w">    </span><span class="c1">-- 只读型事务（只能执行读操作）</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="w"> </span><span class="n">READWRITE</span><span class="p">;</span><span class="w">   </span><span class="c1">-- 读写型事务（默认）</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>③ 设置隔离级别</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="w"> </span><span class="k">ISOLATION</span><span class="w"> </span><span class="k">LEVEL</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">    </span><span class="n">READUNCOMMITTED</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="c1">-- 未提交读</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span><span class="n">READCOMMITTED</span><span class="w">   </span><span class="o">|</span><span class="w">   </span><span class="c1">-- 提交读</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span><span class="n">READREPEATABLE</span><span class="w">  </span><span class="o">|</span><span class="w">   </span><span class="c1">-- 可重复读</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="k">SERIALIZABLE</span><span class="p">;</span><span class="w">       </span><span class="c1">-- 可序列化（最高级别）</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="四种隔离级别详解">四种隔离级别详解<a class="headerlink" href="#四种隔离级别详解" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>READUNCOMMITTED</strong>（未提交读）</td>
+<td>可能</td>
+<td>可能</td>
+<td>可能</td>
+<td>不申请任何锁，可读到其他事务未提交的修改（脏读）；在未提交读隔离级别下，事务可以读未提交数据，但写操作仍需受到正常并发控制</td>
+</tr>
+<tr>
+<td><strong>READCOMMITTED</strong> （提交读）</td>
+<td>不可能</td>
+<td>可能</td>
+<td>可能</td>
+<td>读前申请共享锁，读完立即释放；只读已提交数据。可能会出现同一事务同一数据前后读两次值不同的现象（不可重复读）</td>
+</tr>
+<tr>
+<td><strong>READREPEATABLE</strong> （可重复读）</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>可能</td>
+<td>读前申请共享锁，<strong>持锁到事务结束</strong>；避免其他事务修改当前事务正在使用的数据。可能出现同一事务同样条件前后两次查询结果集里多/少了几行的现象（幻读）</td>
+</tr>
+<tr>
+<td><strong>SERIALIZABLE</strong> （可串行化）</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>以可串行化调度执行并发事务，彻底避免相互干扰；性能最低</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>基于封锁的并发控制基本思想：</strong></p>
+<ol>
+<li>事务 T 持有数据对象 O 上的<strong>读锁</strong>时，只允许 T 以"读"方式访问 O</li>
+<li>事务 T 持有数据对象 O 上的<strong>写锁</strong>时，允许 T 以"读"或"写"方式访问 O</li>
+<li>一个事务在一个数据对象上，最多只能持有一把一种类型的锁（要么读锁，要么写锁）</li>
+<li>不同事务能不能同时在同一个数据对象上持锁，要看锁是否相容（只有读锁和读锁是相容的）。</li>
+</ol>
+</blockquote>
+<p>总结一下：</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>读锁</th>
+<th>写锁</th>
+<th>锁保持时间</th>
+<th>能防什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未提交读</strong></td>
+<td>通常不加，或很快释放</td>
+<td>要加</td>
+<td>写锁一般持有到提交</td>
+<td>基本不防，只是写仍受控制</td>
+</tr>
+<tr>
+<td><strong>提交读</strong></td>
+<td>读时加，读完就放</td>
+<td>要加</td>
+<td>读锁短，写锁到提交</td>
+<td>防脏读</td>
+</tr>
+<tr>
+<td><strong>可重复读</strong></td>
+<td>读时加，并保持到事务结束</td>
+<td>要加</td>
+<td>读锁长，写锁到提交</td>
+<td>防脏读、不可重复读</td>
+</tr>
+<tr>
+<td><strong>可串行化</strong></td>
+<td>读时加，并保持到事务结束；还要加范围锁/谓词锁</td>
+<td>要加</td>
+<td>最严格</td>
+<td>防脏读、不可重复读、幻读</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三sql-中的空值null">三、SQL 中的空值（NULL）<a class="headerlink" href="#三sql-中的空值null" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="31-空值的含义">3.1 空值的含义<a class="headerlink" href="#31-空值的含义" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>空值（NULL）</strong> 就是"不知道"或"不存在"或"无意义"的值。</p>
+</blockquote>
+<p><strong>空值出现的场景：</strong></p>
+<table>
+<thead>
+<tr>
+<th>情形</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>属性应有值但目前未知</td>
+<td>学生成绩尚未录入</td>
+</tr>
+<tr>
+<td>属性不应该有值</td>
+<td>未婚者的配偶姓名</td>
+</tr>
+<tr>
+<td>出于某种原因不便填写</td>
+<td>涉密信息</td>
+</tr>
+</tbody>
+</table>
+<p>空值是非常特殊的值，含有<strong>不确定性</strong>，对关系运算带来特殊问题，需要特殊处理。</p>
+<hr />
+<h3 id="32-空值的产生">3.2 空值的产生<a class="headerlink" href="#32-空值的产生" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c1">-- 例3.79：显式插入 NULL</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;201215126&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="c1">-- 或：省略属性列，DBMS 自动赋 NULL</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">SC</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="p">)</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;201215126&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="c1">-- 例3.80：UPDATE 将属性值修改为 NULL</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="k">SET</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215200&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="33-空值的判断">3.3 空值的判断<a class="headerlink" href="#33-空值的判断" title="Permanent link">&para;</a></h3>
+<p>判断属性是否为空，使用 <code>IS NULL</code> 或 <code>IS NOT NULL</code>（<strong>不能</strong>用 <code>= NULL</code> 或 <code>&lt;&gt; NULL</code>）。</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1">-- 例3.81：找出有漏填数据的学生</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">   </span><span class="k">OR</span><span class="w"> </span><span class="n">Ssex</span><span class="w">  </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">   </span><span class="k">OR</span><span class="w"> </span><span class="n">Sage</span><span class="w">  </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">   </span><span class="k">OR</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="34-空值相关的完整性约束">3.4 空值相关的完整性约束<a class="headerlink" href="#34-空值相关的完整性约束" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>约束</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOT NULL</code></td>
+<td>该属性不能取空值</td>
+</tr>
+<tr>
+<td><code>PRIMARY KEY</code>（主码）</td>
+<td>主码属性不能取空值（隐含 NOT NULL）</td>
+</tr>
+<tr>
+<td><code>UNIQUE</code></td>
+<td>当属性值非空时，其值在表中具有唯一性（NULL 值之间不参与唯一性比较）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>实践：</strong> 可通过 <code>UNIQUE + NOT NULL</code> 联合约束来确保表中元组的唯一性。</p>
+</blockquote>
+<hr />
+<h3 id="35-空值的运算规则">3.5 空值的运算规则<a class="headerlink" href="#35-空值的运算规则" title="Permanent link">&para;</a></h3>
+<h4 id="算术运算">算术运算<a class="headerlink" href="#算术运算" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+\text{NULL} \; \text{op} \; x = \text{NULL}
+\]</div>
+<p>空值与任何值（包括另一个空值）的算术运算结果均为 <strong>NULL</strong>。</p>
+<h4 id="比较运算">比较运算<a class="headerlink" href="#比较运算" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+\text{NULL} \; \theta \; x = \text{UNKNOWN}
+\]</div>
+<p>空值与任何值的比较运算结果为 <strong>UNKNOWN</strong>（不是 TRUE，也不是 FALSE）。</p>
+<h4 id="三值逻辑three-valued-logic">三值逻辑（Three-Valued Logic）<a class="headerlink" href="#三值逻辑three-valued-logic" title="Permanent link">&para;</a></h4>
+<p>引入 UNKNOWN 后，布尔逻辑从二值扩展为三值：</p>
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>q</th>
+<th>p AND q</th>
+<th>p OR q</th>
+<th>NOT p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRUE</td>
+<td>UNKNOWN</td>
+<td>UNKNOWN</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>FALSE</td>
+<td>UNKNOWN</td>
+<td>FALSE</td>
+<td>UNKNOWN</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>UNKNOWN</td>
+<td>UNKNOWN</td>
+<td>UNKNOWN</td>
+<td>UNKNOWN</td>
+<td>UNKNOWN</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dbms-的实际处理规则">DBMS 的实际处理规则<a class="headerlink" href="#dbms-的实际处理规则" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>在 <code>WHERE</code> 子句和 <code>HAVING</code> 子句中，<strong>只有条件表达式的判断结果为 TRUE 时</strong>，当前元组（或组）才被作为结果输出。</p>
+</blockquote>
+<p>关系 DBMS 一般规定：<strong>空值参与比较运算的结果为逻辑假 FALSE</strong>。</p>
+<p><strong>典型陷阱示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1">-- 例3.82：只找不及格学生（不包括缺考者，因为 NULL &lt; 60 → FALSE）</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="c1">-- 例3.83：找不及格 + 缺考学生（两种写法）</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="c1">-- 写法一：UNION</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="k">UNION</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="c1">-- 写法二：OR（推荐）</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17"></a>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="c1">-- ⚠️ 以下写法也是正确的</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="p">(</span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">60</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="四视图view">四、视图（VIEW）<a class="headerlink" href="#四视图view" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="41-视图的概念与特点">4.1 视图的概念与特点<a class="headerlink" href="#41-视图的概念与特点" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>视图（View）</strong> 是从一个或几个基本表（或视图）导出的<strong>虚表</strong>。</p>
+</blockquote>
+<p><strong>视图的三大特点：</strong></p>
+<ol>
+<li><strong>虚表</strong>：视图在数据库中只存放视图的<strong>定义</strong>（存储在数据字典中），不存放视图对应的数据</li>
+<li><strong>动态性</strong>：基本表中的数据发生变化，通过视图查询出的数据也随之改变</li>
+<li><strong>派生性</strong>：视图的数据来源于基本表，对视图的操作最终转化为对基本表的操作</li>
+</ol>
+<hr />
+<h3 id="42-定义视图create-view">4.2 定义视图（CREATE VIEW）<a class="headerlink" href="#42-定义视图create-view" title="Permanent link">&para;</a></h3>
+<h4 id="421-建立视图">4.2.1 建立视图<a class="headerlink" href="#421-建立视图" title="Permanent link">&para;</a></h4>
+<p><strong>语句格式：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="o">&lt;</span><span class="err">视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[(</span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">…</span><span class="p">)]</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="k">AS</span><span class="w"> </span><span class="o">&lt;</span><span class="err">子查询</span><span class="o">&gt;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="k">OPTION</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><strong>子查询</strong>：可以是任意的 SELECT 语句（标准 SQL 中不允许含 ORDER BY，但可使用 DISTINCT）</li>
+<li><strong>WITH CHECK OPTION</strong>：如果允许在该视图上执行更新操作，则其更新后的结果元组仍然必需满足视图的定义条件。即通过该视图插入或修改后的新元组能够通过该视图上的查询操作查出来。<strong>不影响</strong>对基本表的插入和修改等直接操作</li>
+<li>DBMS 执行 CREATE VIEW 时只将视图定义存入数据字典，<strong>不执行子查询</strong></li>
+</ul>
+<h4 id="视图列名的规则">视图列名的规则<a class="headerlink" href="#视图列名的规则" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>情形</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全部省略列名</strong></td>
+<td>沿用子查询 SELECT 目标列的字段名</td>
+</tr>
+<tr>
+<td><strong>全部指定列名</strong></td>
+<td>可沿用原名，也可使用新名；须保证唯一性</td>
+</tr>
+</tbody>
+</table>
+<p><strong>必须明确指定所有列名的情形：</strong></p>
+<ul>
+<li>某个目标列是<strong>聚集函数</strong>或<strong>列表达式</strong>（无默认名）</li>
+<li>多表连接时选出了<strong>同名列</strong></li>
+<li>需要为某列启用<strong>更合适的名字</strong></li>
+</ul>
+<hr />
+<h4 id="422-各类视图示例">4.2.2 各类视图示例<a class="headerlink" href="#422-各类视图示例" title="Permanent link">&para;</a></h4>
+<p><strong>① 行列子集视图（最常见）</strong></p>
+<blockquote>
+<p>从单个基本表导出，只去掉了部分行和列，但保留了主码。</p>
+</blockquote>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span>
+<span class="normal"><a href="#__codelineno-18-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="c1">-- 例3.84 / 3.85：信息系学生视图</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_Student</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="k">AS</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="k">WITH</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>② 基于多个基表的视图</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span>
+<span class="normal"><a href="#__codelineno-19-7">7</a></span>
+<span class="normal"><a href="#__codelineno-19-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1">-- 例3.86：信息系选修了1号课程的学生（含姓名、成绩）</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S1</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span><span class="p">)</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="k">AS</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>③ 基于视图的视图（视图嵌套定义）</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span>
+<span class="normal"><a href="#__codelineno-20-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="c1">-- 例3.87：在 IS_S1 视图上进一步筛选（成绩 ≥ 90）</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S2</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="k">AS</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">IS_S1</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>④ 带表达式的视图（导出属性）</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="c1">-- 例3.88：包含出生年份的视图（列表达式）</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">BT_S</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sbirth</span><span class="p">)</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="k">AS</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="mi">2014</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Sage</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>⑤ 分组视图（含聚集函数）</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span>
+<span class="normal"><a href="#__codelineno-22-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="c1">-- 例3.89：学号与平均成绩视图</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">S_G</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Gavg</span><span class="p">)</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="k">AS</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>⑥ 使用 SELECT * 的视图（不推荐）</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="c1">-- 例3.90：全女生视图（缺点：基表结构变更后视图映射关系被破坏，建议在SELECT时将所选列全部列举出来）</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">F_Student</span><span class="p">(</span><span class="n">F_Sno</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">dept</span><span class="p">)</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="k">AS</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;女&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h4 id="423-with-check-option-详解">4.2.3 WITH CHECK OPTION 详解<a class="headerlink" href="#423-with-check-option-详解" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="c1">-- 示例：带 CHECK OPTION 的视图</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_Stud</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="k">AS</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="k">WITH</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="c1">-- 以下操作被拒绝（违反 Sdept = &#39;IS&#39; 的条件）</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">IS_Stud</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">231215101</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;王海&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">-- 拒绝</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11"></a>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">IS_Stud</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215121&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 拒绝</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13"></a>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="c1">-- 以下操作可以执行（直接操作基本表，不受 CHECK OPTION 约束）</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">231215101</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;王海&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">-- 允许</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="43-删除视图drop-view">4.3 删除视图（DROP VIEW）<a class="headerlink" href="#43-删除视图drop-view" title="Permanent link">&para;</a></h3>
+<p><strong>语句格式：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="o">&lt;</span><span class="err">视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="k">CASCADE</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>说明：</strong></p>
+<ul>
+<li>从数据字典中删除指定视图的定义</li>
+<li>若该视图上还导出了其他视图，须使用 <code>CASCADE</code> 级联删除</li>
+<li>不使用 CASCADE 而存在依赖视图时，系统<strong>拒绝</strong>删除操作</li>
+<li>删除基本表时若使用 <code>CASCADE</code>，由该表导出的所有视图定义会被连带删除</li>
+</ul>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">BT_S</span><span class="p">;</span><span class="w">         </span><span class="c1">-- 成功（无依赖视图）</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S1</span><span class="p">;</span><span class="w">        </span><span class="c1">-- 拒绝（IS_S2 依赖于 IS_S1）</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">IS_S1</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 成功，同时删除 IS_S1 和 IS_S2</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="44-查询视图">4.4 查询视图<a class="headerlink" href="#44-查询视图" title="Permanent link">&para;</a></h3>
+<p>用户角度：<strong>查询视图与查询基本表相同</strong>。</p>
+<h4 id="视图消解法view-resolution">视图消解法（View Resolution）<a class="headerlink" href="#视图消解法view-resolution" title="Permanent link">&para;</a></h4>
+<p>DBMS 实现视图查询的核心方法：</p>
+<ol>
+<li>进行有效性检查（视图是否存在，列名是否合法）</li>
+<li>将视图查询<strong>转换为等价的对基本表的查询</strong>（视图展开）</li>
+<li>执行修正后的查询</li>
+</ol>
+<details class="info">
+<summary>Info</summary>
+<p>其实就是把“对视图的查询”翻译为“对基本表的查询”。我们写视图查询语句时，数据库管理系统会自动把它改写成对基本表的查询，也就是自动做“视图消解”。</p>
+</details>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span>
+<span class="normal"><a href="#__codelineno-27-13">13</a></span>
+<span class="normal"><a href="#__codelineno-27-14">14</a></span>
+<span class="normal"><a href="#__codelineno-27-15">15</a></span>
+<span class="normal"><a href="#__codelineno-27-16">16</a></span>
+<span class="normal"><a href="#__codelineno-27-17">17</a></span>
+<span class="normal"><a href="#__codelineno-27-18">18</a></span>
+<span class="normal"><a href="#__codelineno-27-19">19</a></span>
+<span class="normal"><a href="#__codelineno-27-20">20</a></span>
+<span class="normal"><a href="#__codelineno-27-21">21</a></span>
+<span class="normal"><a href="#__codelineno-27-22">22</a></span>
+<span class="normal"><a href="#__codelineno-27-23">23</a></span>
+<span class="normal"><a href="#__codelineno-27-24">24</a></span>
+<span class="normal"><a href="#__codelineno-27-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="c1">-- 例3.92：在视图上查询（年龄 &lt; 20 的信息系学生）</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">IS_Student</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5"></a>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="c1">-- 视图消解后等价于：</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10"></a>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="c1">-- 例3.94：分组视图上的查询（平均成绩 ≥ 90）</span>
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13"></a><span class="k">FROM</span><span class="w"> </span><span class="n">S_G</span>
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Gavg</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15"></a>
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16"></a><span class="c1">-- 视图消解后等价于：</span>
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span>
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-27-19"><a id="__codelineno-27-19" name="__codelineno-27-19"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-27-20"><a id="__codelineno-27-20" name="__codelineno-27-20"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</span><span id="__span-27-21"><a id="__codelineno-27-21" name="__codelineno-27-21"></a>
+</span><span id="__span-27-22"><a id="__codelineno-27-22" name="__codelineno-27-22"></a><span class="c1">-- 或以子查询方式：</span>
+</span><span id="__span-27-23"><a id="__codelineno-27-23" name="__codelineno-27-23"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-27-24"><a id="__codelineno-27-24" name="__codelineno-27-24"></a><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">S_G</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Gavg</span><span class="p">)</span>
+</span><span id="__span-27-25"><a id="__codelineno-27-25" name="__codelineno-27-25"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Gavg</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="45-更新视图">4.5 更新视图<a class="headerlink" href="#45-更新视图" title="Permanent link">&para;</a></h3>
+<h4 id="可更新视图的条件">可更新视图的条件<a class="headerlink" href="#可更新视图的条件" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>一般不允许执行视图上的更新操作，只有满足以下<strong>两个条件</strong>才可以：</p>
+<ol>
+<li>视图的<strong>每一行</strong>必须对应基表的唯一一行</li>
+<li>视图的<strong>每一列</strong>必须对应基表的唯一一列</li>
+</ol>
+</blockquote>
+<p>满足上述条件的视图称为<strong>可更新视图（Updatable View）</strong>，视图上的更新操作须转化为基表上的更新操作。</p>
+<p><strong>行列子集视图</strong>一般为可更新视图。</p>
+<h4 id="不可更新视图的典型情形">不可更新视图的典型情形<a class="headerlink" href="#不可更新视图的典型情形" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>示例</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>含聚集函数的分组视图</strong></td>
+<td>S_G（AVG(Grade)）</td>
+<td>无法将修改平均值转换为对原始数据的修改</td>
+</tr>
+<tr>
+<td><strong>含复杂子查询的视图</strong></td>
+<td>GOOD_SC（WHERE Grade &gt; AVG）</td>
+<td>谓词依赖于整体统计，更新无法唯一映射</td>
+</tr>
+<tr>
+<td><strong>在不可更新视图上定义的视图</strong></td>
+<td>继承不可更新性</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span>
+<span class="normal"><a href="#__codelineno-28-11">11</a></span>
+<span class="normal"><a href="#__codelineno-28-12">12</a></span>
+<span class="normal"><a href="#__codelineno-28-13">13</a></span>
+<span class="normal"><a href="#__codelineno-28-14">14</a></span>
+<span class="normal"><a href="#__codelineno-28-15">15</a></span>
+<span class="normal"><a href="#__codelineno-28-16">16</a></span>
+<span class="normal"><a href="#__codelineno-28-17">17</a></span>
+<span class="normal"><a href="#__codelineno-28-18">18</a></span>
+<span class="normal"><a href="#__codelineno-28-19">19</a></span>
+<span class="normal"><a href="#__codelineno-28-20">20</a></span>
+<span class="normal"><a href="#__codelineno-28-21">21</a></span>
+<span class="normal"><a href="#__codelineno-28-22">22</a></span>
+<span class="normal"><a href="#__codelineno-28-23">23</a></span>
+<span class="normal"><a href="#__codelineno-28-24">24</a></span>
+<span class="normal"><a href="#__codelineno-28-25">25</a></span>
+<span class="normal"><a href="#__codelineno-28-26">26</a></span>
+<span class="normal"><a href="#__codelineno-28-27">27</a></span>
+<span class="normal"><a href="#__codelineno-28-28">28</a></span>
+<span class="normal"><a href="#__codelineno-28-29">29</a></span>
+<span class="normal"><a href="#__codelineno-28-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="c1">-- 例3.95：更新视图（UPDATE → 转化为对基表的 UPDATE）</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">IS_Student</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="k">SET</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;刘辰&#39;</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215122&#39;</span><span class="p">;</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5"></a>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="c1">-- 转化为：</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="k">SET</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;刘辰&#39;</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215122&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="p">;</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10"></a>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11"></a><span class="c1">-- 例3.96：向视图插入（INSERT → 转化为对基表的 INSERT，自动补填 Sdept）</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">IS_Student</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13"></a><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;201215129&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;赵新&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14"></a>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15"></a><span class="c1">-- 转化为：</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">)</span>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17"></a><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;201215129&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;赵新&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="p">);</span>
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18"></a>
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19"></a><span class="c1">-- 例3.97：从视图删除（DELETE → 转化为对基表的 DELETE）</span>
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">IS_Student</span>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215129&#39;</span><span class="p">;</span>
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22"></a>
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23"></a><span class="c1">-- 转化为：</span>
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215129&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="p">;</span>
+</span><span id="__span-28-26"><a id="__codelineno-28-26" name="__codelineno-28-26"></a>
+</span><span id="__span-28-27"><a id="__codelineno-28-27" name="__codelineno-28-27"></a><span class="c1">-- 不可更新示例（S_G 为分组视图）</span>
+</span><span id="__span-28-28"><a id="__codelineno-28-28" name="__codelineno-28-28"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">S_G</span>
+</span><span id="__span-28-29"><a id="__codelineno-28-29" name="__codelineno-28-29"></a><span class="k">SET</span><span class="w"> </span><span class="n">Gavg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">90</span>
+</span><span id="__span-28-30"><a id="__codelineno-28-30" name="__codelineno-28-30"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215121&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 无法转换，被拒绝</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="46-视图的作用">4.6 视图的作用<a class="headerlink" href="#46-视图的作用" title="Permanent link">&para;</a></h3>
+<h4 id="①-简化用户的操作">① 简化用户的操作<a class="headerlink" href="#①-简化用户的操作" title="Permanent link">&para;</a></h4>
+<p>将复杂查询（多表连接、嵌套子查询、含导出属性）封装为视图，用户只需查询视图即可。</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-29-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-29-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-29-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-29-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-29-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-29-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-29-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-29-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-29-10">10</a></span>
+<span class="normal"><a href="#__codelineno-29-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="c1">-- 先定义视图：求每个学生的最高成绩</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">VMGRADE</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="k">AS</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="n">Mgrade</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">;</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7"></a>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8"></a><span class="c1">-- 再用简单查询完成复杂需求：找每人最高成绩对应的课程号</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span><span class="w"> </span><span class="n">VMGRADE</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VMGRADE</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VMGRADE</span><span class="p">.</span><span class="n">Mgrade</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="②-使用户能以多种角度看待同一数据">② 使用户能以多种角度看待同一数据<a class="headerlink" href="#②-使用户能以多种角度看待同一数据" title="Permanent link">&para;</a></h4>
+<p>视图机制使不同用户可以以不同方式看待同一数据，适应数据库<strong>共享</strong>的需要。</p>
+<h4 id="③-对重构数据库提供逻辑独立性">③ 对重构数据库提供逻辑独立性<a class="headerlink" href="#③-对重构数据库提供逻辑独立性" title="Permanent link">&para;</a></h4>
+<p>当基本表结构改变时，可以通过重新定义视图，使外模式（用户视角）保持不变，从而保证应用程序的相对稳定。</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="c1">-- 例：Student 表被垂直分拆为 SX 和 SY 后，通过视图重建逻辑结构</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">Student</span><span class="p">(</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">)</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="k">AS</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">SY</span><span class="p">.</span><span class="n">Ssex</span><span class="p">,</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="n">SY</span><span class="p">.</span><span class="n">Sdept</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SX</span><span class="p">,</span><span class="w"> </span><span class="n">SY</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">SX</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SY</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>注意：由于对视图的更新是有条件的，涉及写操作的应用程序仍可能需要修改。</p>
+</blockquote>
+<h4 id="④-对机密数据提供安全保护">④ 对机密数据提供安全保护<a class="headerlink" href="#④-对机密数据提供安全保护" title="Permanent link">&para;</a></h4>
+<p>对不同用户定义不同视图，使每个用户只能看到（查询/修改）其有权访问的数据，实现<strong>数据访问控制</strong>。</p>
+<h4 id="⑤-使查询表达更清晰">⑤ 使查询表达更清晰<a class="headerlink" href="#⑤-使查询表达更清晰" title="Permanent link">&para;</a></h4>
+<p>将复杂逻辑拆分为多个层次的视图，提升 SQL 语句的可读性和可维护性。</p>
+<hr />
+<h2 id="五本章知识点总结">五、本章知识点总结<a class="headerlink" href="#五本章知识点总结" title="Permanent link">&para;</a></h2>
+<h3 id="数据更新三要素对比">数据更新三要素对比<a class="headerlink" href="#数据更新三要素对比" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>语句</th>
+<th>省略 WHERE 的效果</th>
+<th>完整性检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>插入</td>
+<td>INSERT INTO … VALUES / 子查询</td>
+<td>必须提供值</td>
+<td>实体完整性、参照完整性</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>UPDATE … SET … WHERE</td>
+<td>修改所有元组</td>
+<td>实体完整性、参照完整性、用户定义完整性</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>DELETE FROM … WHERE</td>
+<td>删除所有元组（表仍存在）</td>
+<td>参照完整性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="事务-acid-特性速记">事务 ACID 特性速记<a class="headerlink" href="#事务-acid-特性速记" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>英文</th>
+<th>由谁保证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原子性</td>
+<td>Atomicity</td>
+<td>恢复机制（Undo）</td>
+</tr>
+<tr>
+<td>一致性</td>
+<td>Consistency</td>
+<td>完整性约束 + 原子性 + 隔离性 + 持久性共同保证</td>
+</tr>
+<tr>
+<td>隔离性</td>
+<td>Isolation</td>
+<td>并发控制（锁/MVCC）</td>
+</tr>
+<tr>
+<td>持久性</td>
+<td>Durability</td>
+<td>日志机制（WAL/Redo）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="视图核心知识速查">视图核心知识速查<a class="headerlink" href="#视图核心知识速查" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>是否允许</th>
+<th>条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查询视图</td>
+<td>总是允许</td>
+<td>通过视图消解转化为基表查询</td>
+</tr>
+<tr>
+<td>INSERT 视图</td>
+<td>条件允许</td>
+<td>可更新视图；WITH CHECK OPTION 时须满足谓词</td>
+</tr>
+<tr>
+<td>UPDATE 视图</td>
+<td>条件允许</td>
+<td>可更新视图</td>
+</tr>
+<tr>
+<td>DELETE 视图</td>
+<td>条件允许</td>
+<td>可更新视图</td>
+</tr>
+<tr>
+<td>级联删除视图</td>
+<td>需加 CASCADE</td>
+<td>视图上有依赖视图时必须级联</td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter3-2-SQL数据查询">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter3-2-SQL数据查询
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/" class="md-footer__link md-footer__link--next" aria-label="下一页: Chapter4">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter4
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

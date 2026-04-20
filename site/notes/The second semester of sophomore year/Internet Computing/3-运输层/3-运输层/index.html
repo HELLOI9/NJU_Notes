@@ -1,0 +1,5333 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%82/">
+      
+      
+        <link rel="prev" href="../../2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/">
+      
+      
+        <link rel="next" href="../3-%E8%BF%90%E8%BE%93%E5%B1%822/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>3-运输层 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#运输层transport-layer" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3-运输层
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Computer%20Operating%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Operating Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap%20Lab/Lab2-%E5%8D%8F%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_3" id="__nav_2_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap1 绪论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap1 绪论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统的发展历程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_4" id="__nav_2_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap2 并发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap2 并发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/1.%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.多处理器编程Multiprocessor Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/2.%E4%BA%92%E6%96%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.互斥基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/3.%E4%BA%92%E6%96%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.互斥进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/4.%E5%90%8C%E6%AD%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.同步基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/5.%E5%90%8C%E6%AD%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.同步进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Foundations%20of%20Data%20Management/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter2/Chapter2-3-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E6%89%A9%E5%85%85%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-3-关系代数扩充运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_4" id="__nav_2_2_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter3/Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-1-SQL数据库的定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter3/Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-2-SQL数据查询
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter3/Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-3-SQL数据库更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Foundations%20of%20Data%20Management/Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-应用层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_4_4" id="__nav_2_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3-运输层
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一-运输层基础" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一. 运输层基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一. 运输层基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-运输层的定位与职责" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 运输层的定位与职责
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-为什么需要运输层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 为什么需要运输层
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 为什么需要运输层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#局限一寻址粒度不足addressing-granularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        局限一：寻址粒度不足（Addressing Granularity）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#局限二服务模型过于薄弱weak-service-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        局限二：服务模型过于薄弱（Weak Service Model）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-运输层服务模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 运输层服务模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-多路复用与解复用multiplexing--demultiplexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 多路复用与解复用（Multiplexing &amp; Demultiplexing）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 多路复用与解复用（Multiplexing &amp; Demultiplexing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#工作示意图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作示意图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数据段格式tcpudp-通用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据段格式（TCP/UDP 通用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-端口与-socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 端口与 Socket
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 端口与 Socket">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#端口号port-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端口号（Port Number）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Socket
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-无连接解复用connectionless-demultiplexingudp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 无连接解复用（Connectionless Demultiplexing，UDP）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 无连接解复用（Connectionless Demultiplexing，UDP）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#创建与绑定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建与绑定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解复用规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解复用规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-面向连接解复用connection-oriented-demultiplexingtcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 面向连接解复用（Connection-Oriented Demultiplexing，TCP）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.7 面向连接解复用（Connection-Oriented Demultiplexing，TCP）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp-socket-的四元组标识" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCP Socket 的四元组标识
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#与-udp-解复用的对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与 UDP 解复用的对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#多客户端连接示意" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多客户端连接示意
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#服务器的并发处理模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        服务器的并发处理模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二-可靠传输的设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二. 可靠传输的设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二. 可靠传输的设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-理想信道-vs-现实信道" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 理想信道 vs. 现实信道
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 理想信道 vs. 现实信道">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#理想情况perfect-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理想情况（Perfect Channel）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#现实情况best-effort-ip-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现实情况（Best-Effort IP Network）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-可靠传输的应对机制全景" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 可靠传输的应对机制全景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-处理数据包损坏" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 处理数据包损坏
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 处理数据包损坏">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#基本方案ack--nack--重传" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本方案：ACK / NACK + 重传
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#深层问题acknack-本身也可能在传输中损坏" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深层问题：ACK/NACK 本身也可能在传输中损坏！
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-处理数据包丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 处理数据包丢失
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 处理数据包丢失">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#方案计时器驱动的损失检测timer-driven-loss-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案：计时器驱动的损失检测（Timer-Driven Loss Detection）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#场景一数据包本身丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景一：数据包本身丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#场景二ack-丢失数据包成功送达但确认丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景二：ACK 丢失（数据包成功送达，但确认丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#场景三超时设置过短导致伪超时premature-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景三：超时设置过短，导致"伪超时"（Premature Timeout）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-核心组件小结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 核心组件小结
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三-可靠传输协议的构造" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三. 可靠传输协议的构造
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三. 可靠传输协议的构造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-停等协议stop-and-wait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 停等协议（Stop-and-Wait）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 停等协议（Stop-and-Wait）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议逻辑" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议逻辑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#协议特点" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议特点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-停等协议的效率分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 停等协议的效率分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 停等协议的效率分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#时间空间示意" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间空间示意
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方利用率公式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方利用率公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数值计算示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数值计算示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-流水线协议pipelined-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 流水线协议（Pipelined Protocol）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 流水线协议（Pipelined Protocol）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心思想" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#流水线对协议设计的影响" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流水线对协议设计的影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#流水线对利用率的提升" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流水线对利用率的提升
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-三个核心设计决策" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 三个核心设计决策
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-滑动窗口机制sliding-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 滑动窗口机制（Sliding Window）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 滑动窗口机制（Sliding Window）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#窗口的定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        窗口的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#接收方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接收方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#窗口滑动机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        窗口滑动机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#滑动窗口的吞吐量上界" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滑动窗口的吞吐量上界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-确认机制累积-ack-vs-选择-ack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 确认机制：累积 ACK vs. 选择 ACK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 确认机制：累积 ACK vs. 选择 ACK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#累积-ackcumulative-ack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        累积 ACK（Cumulative ACK）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#选择-ackselective-acksack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择 ACK（Selective ACK，SACK）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-go-back-n-协议gbn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Go-Back-N 协议（GBN）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Go-Back-N 协议（GBN）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方窗口与接收方窗口的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方窗口与接收方窗口的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gbn-正常运行示例窗口大小--3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GBN 正常运行示例（窗口大小 = 3）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gbn-出错处理示例窗口大小--3包-5-丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GBN 出错处理示例（窗口大小 = 3，包 5 丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-selective-repeat-协议sr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Selective Repeat 协议（SR）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 Selective Repeat 协议（SR）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议规则_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方与接收方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方与接收方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sr-出错处理示例窗口大小--3包-4-丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SR 出错处理示例（窗口大小 = 3，包 4 丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-gbn-vs-sr-综合对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 GBN vs. SR 综合对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-关键观察与总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 关键观察与总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.10 关键观察与总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#可靠传输完整组件图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可靠传输完整组件图
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心公式汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心公式汇总
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关键术语中英文对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键术语中英文对照
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%823/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%824/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一-运输层基础" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一. 运输层基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一. 运输层基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-运输层的定位与职责" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 运输层的定位与职责
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-为什么需要运输层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 为什么需要运输层
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 为什么需要运输层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#局限一寻址粒度不足addressing-granularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        局限一：寻址粒度不足（Addressing Granularity）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#局限二服务模型过于薄弱weak-service-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        局限二：服务模型过于薄弱（Weak Service Model）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-运输层服务模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 运输层服务模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-多路复用与解复用multiplexing--demultiplexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 多路复用与解复用（Multiplexing &amp; Demultiplexing）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 多路复用与解复用（Multiplexing &amp; Demultiplexing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#工作示意图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工作示意图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数据段格式tcpudp-通用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据段格式（TCP/UDP 通用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-端口与-socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 端口与 Socket
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 端口与 Socket">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#端口号port-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        端口号（Port Number）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Socket
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-无连接解复用connectionless-demultiplexingudp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 无连接解复用（Connectionless Demultiplexing，UDP）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 无连接解复用（Connectionless Demultiplexing，UDP）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#创建与绑定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建与绑定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#解复用规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解复用规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-面向连接解复用connection-oriented-demultiplexingtcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 面向连接解复用（Connection-Oriented Demultiplexing，TCP）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.7 面向连接解复用（Connection-Oriented Demultiplexing，TCP）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp-socket-的四元组标识" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TCP Socket 的四元组标识
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#与-udp-解复用的对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与 UDP 解复用的对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#多客户端连接示意" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多客户端连接示意
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#服务器的并发处理模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        服务器的并发处理模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二-可靠传输的设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二. 可靠传输的设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二. 可靠传输的设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-理想信道-vs-现实信道" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 理想信道 vs. 现实信道
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 理想信道 vs. 现实信道">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#理想情况perfect-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理想情况（Perfect Channel）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#现实情况best-effort-ip-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        现实情况（Best-Effort IP Network）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-可靠传输的应对机制全景" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 可靠传输的应对机制全景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-处理数据包损坏" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 处理数据包损坏
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 处理数据包损坏">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#基本方案ack--nack--重传" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本方案：ACK / NACK + 重传
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#深层问题acknack-本身也可能在传输中损坏" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深层问题：ACK/NACK 本身也可能在传输中损坏！
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-处理数据包丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 处理数据包丢失
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 处理数据包丢失">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#方案计时器驱动的损失检测timer-driven-loss-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案：计时器驱动的损失检测（Timer-Driven Loss Detection）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#场景一数据包本身丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景一：数据包本身丢失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#场景二ack-丢失数据包成功送达但确认丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景二：ACK 丢失（数据包成功送达，但确认丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#场景三超时设置过短导致伪超时premature-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        场景三：超时设置过短，导致"伪超时"（Premature Timeout）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-核心组件小结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 核心组件小结
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三-可靠传输协议的构造" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三. 可靠传输协议的构造
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三. 可靠传输协议的构造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-停等协议stop-and-wait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 停等协议（Stop-and-Wait）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 停等协议（Stop-and-Wait）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议逻辑" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议逻辑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#协议特点" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议特点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-停等协议的效率分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 停等协议的效率分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 停等协议的效率分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#时间空间示意" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        时间空间示意
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方利用率公式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方利用率公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数值计算示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数值计算示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-流水线协议pipelined-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 流水线协议（Pipelined Protocol）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 流水线协议（Pipelined Protocol）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心思想" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#流水线对协议设计的影响" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流水线对协议设计的影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#流水线对利用率的提升" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        流水线对利用率的提升
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-三个核心设计决策" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 三个核心设计决策
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-滑动窗口机制sliding-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 滑动窗口机制（Sliding Window）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 滑动窗口机制（Sliding Window）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#窗口的定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        窗口的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#接收方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接收方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#窗口滑动机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        窗口滑动机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#滑动窗口的吞吐量上界" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滑动窗口的吞吐量上界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-确认机制累积-ack-vs-选择-ack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 确认机制：累积 ACK vs. 选择 ACK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 确认机制：累积 ACK vs. 选择 ACK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#累积-ackcumulative-ack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        累积 ACK（Cumulative ACK）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#选择-ackselective-acksack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选择 ACK（Selective ACK，SACK）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-go-back-n-协议gbn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Go-Back-N 协议（GBN）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Go-Back-N 协议（GBN）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方窗口与接收方窗口的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方窗口与接收方窗口的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gbn-正常运行示例窗口大小--3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GBN 正常运行示例（窗口大小 = 3）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gbn-出错处理示例窗口大小--3包-5-丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GBN 出错处理示例（窗口大小 = 3，包 5 丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-selective-repeat-协议sr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Selective Repeat 协议（SR）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 Selective Repeat 协议（SR）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#协议规则_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        协议规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#发送方与接收方窗口" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送方与接收方窗口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sr-出错处理示例窗口大小--3包-4-丢失" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SR 出错处理示例（窗口大小 = 3，包 4 丢失）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-gbn-vs-sr-综合对比" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 GBN vs. SR 综合对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-关键观察与总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 关键观察与总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.10 关键观察与总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#可靠传输完整组件图" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可靠传输完整组件图
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#核心公式汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心公式汇总
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关键术语中英文对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键术语中英文对照
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="运输层transport-layer">运输层（Transport Layer）<a class="headerlink" href="#运输层transport-layer" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="一-运输层基础">一. 运输层基础<a class="headerlink" href="#一-运输层基础" title="Permanent link">&para;</a></h2>
+<h3 id="11-运输层的定位与职责">1.1 运输层的定位与职责<a class="headerlink" href="#11-运输层的定位与职责" title="Permanent link">&para;</a></h3>
+<p>在 TCP/IP 五层体系结构中，运输层（Transport Layer）位于应用层与网络层之间：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>英文</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>Application</td>
+<td>进程</td>
+</tr>
+<tr>
+<td>运输层</td>
+<td>Transport</td>
+<td>本节重点</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>Network / IP</td>
+<td>主机间寻址</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>Link</td>
+<td>负责链路级传输</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>Physical</td>
+<td>负责比特传输</td>
+</tr>
+</tbody>
+</table>
+<p>运输层协议<strong>运行在端系统（End Systems）</strong>之中，而非中间路由器，其核心职责是在不同主机上运行的<strong>应用进程之间</strong>提供<strong>逻辑通信（Logical Communication）</strong>。</p>
+<p><strong>发送端行为</strong>：将应用层递交的报文（Message）切分为若干<strong>报文段（Segment）</strong>，添加运输层首部，向下递交给网络层。</p>
+<p><strong>接收端行为</strong>：从网络层接收数据报（Datagram）中的报文段，去除首部后将数据重组，向上递交给正确的应用进程。</p>
+<blockquote>
+<p>⚠️ 注意区分：<strong>网络层</strong>负责主机（Host）之间的逻辑通信；<strong>运输层</strong>负责进程（Process）之间的逻辑通信。这一层次划分是运输层存在的根本原因。</p>
+</blockquote>
+<hr />
+<h3 id="12-为什么需要运输层">1.2 为什么需要运输层<a class="headerlink" href="#12-为什么需要运输层" title="Permanent link">&para;</a></h3>
+<p>IP 层作为网络层协议，存在两大根本性局限，使得应用层无法直接依赖它进行可靠的进程间通信：</p>
+<h4 id="局限一寻址粒度不足addressing-granularity">局限一：寻址粒度不足（Addressing Granularity）<a class="headerlink" href="#局限一寻址粒度不足addressing-granularity" title="Permanent link">&para;</a></h4>
+<p>IP 数据报的目的地址只能定位到<strong>主机（Host）</strong>，但真实的端到端通信是发生在<strong>应用进程（Application Process）</strong>之间的。一台主机上可能同时运行着数十个网络应用（HTTP 服务、DNS 解析器、邮件客户端……），IP 层无法区分数据属于哪个进程。</p>
+<p>而运输层可以通过<strong>多路复用/解复用（Multiplexing / Demultiplexing）</strong>机制，基于<strong>端口号（Port Number）</strong>解决了这一问题。</p>
+<h4 id="局限二服务模型过于薄弱weak-service-model">局限二：服务模型过于薄弱（Weak Service Model）<a class="headerlink" href="#局限二服务模型过于薄弱weak-service-model" title="Permanent link">&para;</a></h4>
+<p>IP 采用<strong>尽力而为（Best-Effort）</strong>的服务语义，对上层提供零可靠性保证：</p>
+<table>
+<thead>
+<tr>
+<th>故障类型</th>
+<th>典型成因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据包损坏（Corruption）</strong></td>
+<td>物理链路噪声、比特翻转</td>
+</tr>
+<tr>
+<td><strong>数据包丢失（Loss）</strong></td>
+<td>路由器队列溢出、主动丢包（RED 等 AQM 策略）</td>
+</tr>
+<tr>
+<td><strong>数据包延迟（Delay）</strong></td>
+<td>网络拥塞、路由器排队等待</td>
+</tr>
+<tr>
+<td><strong>数据包乱序（Reordering）</strong></td>
+<td>多路径路由（ECMP）导致各路径时延差异</td>
+</tr>
+<tr>
+<td><strong>数据包重复（Duplication）</strong></td>
+<td>链路层重传或路由环路</td>
+</tr>
+<tr>
+<td><strong>无流量指导</strong></td>
+<td>IP 层不限制发送速率，可能淹没网络或接收方</td>
+</tr>
+</tbody>
+</table>
+<p>对应用开发者而言，直接在 IP 之上处理上述所有故障极为繁琐且容易出错。<strong>运输层将这些复杂性封装在内，向应用层提供统一的、更高质量的服务抽象</strong>。</p>
+<hr />
+<h3 id="13-运输层服务模型">1.3 运输层服务模型<a class="headerlink" href="#13-运输层服务模型" title="Permanent link">&para;</a></h3>
+<p>Internet 中最核心的两个运输层协议为 <strong>TCP</strong> 和 <strong>UDP</strong>，二者在服务模型上存在本质差异：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全称</strong></td>
+<td>Transmission Control Protocol</td>
+<td>User Datagram Protocol</td>
+</tr>
+<tr>
+<td><strong>连接</strong></td>
+<td>面向连接（Connection-Oriented）</td>
+<td>无连接（Connectionless）</td>
+</tr>
+<tr>
+<td><strong>可靠性</strong></td>
+<td>可靠、有序字节流（Reliable, In-Order Byte Stream）</td>
+<td>不可靠（Best-Effort Delivery）</td>
+</tr>
+<tr>
+<td><strong>流量控制</strong></td>
+<td>✅ 有（Flow Control）</td>
+<td>❌ 无</td>
+</tr>
+<tr>
+<td><strong>拥塞控制</strong></td>
+<td>✅ 有（Congestion Control）</td>
+<td>❌ 无</td>
+</tr>
+<tr>
+<td><strong>性能保证</strong></td>
+<td>❌ 无时延/带宽保证</td>
+<td>❌ 无</td>
+</tr>
+<tr>
+<td><strong>复用/解复用</strong></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Socket 类型</strong></td>
+<td>SOCK_STREAM</td>
+<td>SOCK_DGRAM</td>
+</tr>
+<tr>
+<td><strong>定位</strong></td>
+<td>功能丰富，适合对可靠性要求高的应用</td>
+<td>极简协议，仅提供复用/解复用能力</td>
+</tr>
+</tbody>
+</table>
+<p>除 TCP/UDP 外，还有 SCTP（Stream Control Transmission Protocol）、MPTCP（多路径 TCP）、SST、RDP、DCCP 等协议，各有其特定的应用场景与设计权衡。</p>
+<hr />
+<h3 id="14-多路复用与解复用multiplexing--demultiplexing">1.4 多路复用与解复用（Multiplexing &amp; Demultiplexing）<a class="headerlink" href="#14-多路复用与解复用multiplexing--demultiplexing" title="Permanent link">&para;</a></h3>
+<p>多路复用（Mux）与解复用（Demux）是运输层最基础的核心功能，解决了"数据属于哪个进程"的问题。</p>
+<h4 id="定义">定义<a class="headerlink" href="#定义" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>作用端</th>
+<th>详细定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多路复用（Multiplexing）</strong></td>
+<td>发送端</td>
+<td>从多个不同的应用 Socket 收集数据块，分别封装运输层首部（其中包含端口信息），统一向下交付给网络层</td>
+</tr>
+<tr>
+<td><strong>解复用（Demultiplexing）</strong></td>
+<td>接收端</td>
+<td>从网络层接收到的多路复用数据流中，依据运输层首部中的端口信息，将各报文段精确投递到对应的目标 Socket</td>
+</tr>
+</tbody>
+</table>
+<h4 id="工作示意图">工作示意图<a class="headerlink" href="#工作示意图" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>        发送端                                     接收端
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>┌────────────────────┐                   ┌────────────────────┐
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>│  App P1  │  App P2 │                   │  App P3  │  App P4 │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>└────┬─────┴────┬────┘                   └────┬─────┴────┬────┘
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>     │          │                             │          │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>  Socket1    Socket2                       Socket3    Socket4
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>     │          │                             │          │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>     └─────┬────┘                             └────┬─────┘
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>       多路复用（Mux）                         解复用（Demux）
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>           │ 添加运输层首部                          │  依据头部字段投递
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>      ┌─────────┐                             ┌─────────┐
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>      │  运输层  │ ---- 网络(IP 层) -----&gt;      │  运输层  │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>      └─────────┘                             └─────────┘
+</span></code></pre></div></td></tr></table></div>
+<h4 id="数据段格式tcpudp-通用">数据段格式（TCP/UDP 通用）<a class="headerlink" href="#数据段格式tcpudp-通用" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>&lt;---------------- 32 bits ----------------&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>┌─────────────────┬────────────────────┐
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>│  Source Port #  │    Dest Port #     │ &lt;- 解复用的关键字段
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>├─────────────────┴────────────────────┤
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>│           Other Header Fields        │
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>├──────────────────────────────────────┤
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>│                                      │
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>│        Application Data (Payload)    │
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>│                                      │
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>└──────────────────────────────────────┘
+</span></code></pre></div></td></tr></table></div>
+<p>主机接收到 IP 数据报后，从中提取运输层报文段，再结合 <strong>IP 地址 + 端口号</strong>共同决定将数据投递到哪个 Socket。</p>
+<hr />
+<h3 id="15-端口与-socket">1.5 端口与 Socket<a class="headerlink" href="#15-端口与-socket" title="Permanent link">&para;</a></h3>
+<h4 id="端口号port-number">端口号（Port Number）<a class="headerlink" href="#端口号port-number" title="Permanent link">&para;</a></h4>
+<ul>
+<li>端口号是 <strong>16 位无符号整数</strong>，范围 0～65535，用于区分同一主机上的不同应用进程</li>
+<li>报文段的运输层首部中携带<strong>源端口号（Source Port）</strong>和<strong>目的端口号（Dest Port）</strong></li>
+</ul>
+<p>端口分类：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>周知端口（Well-Known Ports）</strong></td>
+<td>0 ～ 1023</td>
+<td>由 IANA 统一分配，对应标准服务（HTTP:80、HTTPS:443、DNS:53、FTP:21、SMTP:25）</td>
+</tr>
+<tr>
+<td><strong>注册端口（Registered Ports）</strong></td>
+<td>1024 ～ 49151</td>
+<td>供应用程序注册使用</td>
+</tr>
+<tr>
+<td><strong>临时端口（Ephemeral Ports）</strong></td>
+<td>49152 ～ 65535</td>
+<td>由操作系统动态分配给客户端，连接结束即释放</td>
+</tr>
+</tbody>
+</table>
+<h4 id="socket">Socket<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h4>
+<p><strong>Socket</strong> 是应用进程与操作系统（运输层）之间交换网络消息的<strong>软件抽象接口</strong>，可理解为应用进程访问网络的"门"。</p>
+<p>运输层寻址单元（Transport Layer Address）：<code>&lt;主机 IP, 端口号&gt;</code> 二元组，称为一个 <strong>Socket 地址</strong>。</p>
+<p>操作系统维护端口与 Socket 之间的映射关系：</p>
+<table>
+<thead>
+<tr>
+<th>Socket 类型</th>
+<th>系统内核存储的映射键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UDP Socket</strong>（SOCK_DGRAM）</td>
+<td><code>(本地端口, 本地 IP)</code> ↔ Socket</td>
+</tr>
+<tr>
+<td><strong>TCP Socket</strong>（SOCK_STREAM）</td>
+<td><code>(本地端口, 本地 IP, 远端端口, 远端 IP)</code> ↔ Socket</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="16-无连接解复用connectionless-demultiplexingudp">1.6 无连接解复用（Connectionless Demultiplexing，UDP）<a class="headerlink" href="#16-无连接解复用connectionless-demultiplexingudp" title="Permanent link">&para;</a></h3>
+<p><strong>核心规则</strong>：UDP 解复用仅依赖<strong>目的端口号（Dest Port）</strong>，忽略源 IP 和源端口。</p>
+<h4 id="创建与绑定">创建与绑定<a class="headerlink" href="#创建与绑定" title="Permanent link">&para;</a></h4>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// 服务端：绑定本地端口</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">DatagramSocket</span><span class="w"> </span><span class="n">serverSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DatagramSocket</span><span class="p">(</span><span class="mi">6428</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">// 客户端：创建 Socket（操作系统自动分配临时端口，如 9157）</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">DatagramSocket</span><span class="w"> </span><span class="n">mySocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DatagramSocket</span><span class="p">(</span><span class="mi">9157</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>发送 UDP 数据报时必须显式指定：
+- <strong>目的 IP 地址（Destination IP Address）</strong>
+- <strong>目的端口号（Destination Port Number）</strong></p>
+<h4 id="解复用规则">解复用规则<a class="headerlink" href="#解复用规则" title="Permanent link">&para;</a></h4>
+<p>当主机收到 UDP 报文段时：
+1. 检查报文段中的<strong>目的端口号</strong>
+2. 将报文段导向绑定了该端口号的 Socket</p>
+<p><strong>关键推论</strong>：来自不同源 IP / 源端口，但目的端口相同的 UDP 数据报，会被投递到<strong>同一个 Socket</strong>。</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>来源 A:9157 --(dst:6428)--\
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>来源 B:5775 --(dst:6428)---+----&gt; serverSocket(6428)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>来源 C:3001 --(dst:6428)--/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>目的端口均为 6428，因此三者进入同一 Socket
+</span></code></pre></div></td></tr></table></div>
+<h4 id="示例">示例<a class="headerlink" href="#示例" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>mySocket2(9157)        serverSocket(6428)        mySocket1(5775)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>      |                       |                       |
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>      |-- [9157 -&gt; 6428] ----&gt;|                       |
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>      |&lt;-- [6428 -&gt; 9157] ----|                       |
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>      |                       |&lt;--- [5775 -&gt; 6428] ---|
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>      |                       |---- [6428 -&gt; 5775] --&gt;|
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>没有链接的概念，因为所有的数据到达server之后会发网同一个sockets</p>
+</blockquote>
+<hr />
+<h3 id="17-面向连接解复用connection-oriented-demultiplexingtcp">1.7 面向连接解复用（Connection-Oriented Demultiplexing，TCP）<a class="headerlink" href="#17-面向连接解复用connection-oriented-demultiplexingtcp" title="Permanent link">&para;</a></h3>
+<p><strong>核心规则</strong>：TCP Socket 由<strong>四元组（4-Tuple）</strong>唯一标识，解复用时使用全部四个字段。</p>
+<h4 id="tcp-socket-的四元组标识">TCP Socket 的四元组标识<a class="headerlink" href="#tcp-socket-的四元组标识" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>(源 IP, 源端口, 目的 IP, 目的端口)        
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>(Src IP, Src Port, Dst IP, Dst Port)   
+</span></code></pre></div></td></tr></table></div>
+<p>接收端使用<strong>全部四个值</strong>来确定将到来的报文段导向哪个 Socket。</p>
+<h4 id="与-udp-解复用的对比">与 UDP 解复用的对比<a class="headerlink" href="#与-udp-解复用的对比" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>UDP</th>
+<th>TCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解复用依据</td>
+<td>仅目的端口</td>
+<td>完整四元组</td>
+</tr>
+<tr>
+<td>不同来源客户端</td>
+<td>到同一 Socket</td>
+<td>到不同 Socket</td>
+</tr>
+<tr>
+<td>每客户端 Socket 数</td>
+<td>1（共享）</td>
+<td>1（独占）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="多客户端连接示意">多客户端连接示意<a class="headerlink" href="#多客户端连接示意" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>客户端 A:9157 ----&gt; Socket_PA（服务器 B:80，进程 P4）
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>客户端 C:5775 ----&gt; Socket_PB（服务器 B:80，进程 P5）
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>客户端 C:9157 ----&gt; Socket_PC（服务器 B:80，进程 P6）
+</span></code></pre></div></td></tr></table></div>
+<p>三个报文段目的地均为 <code>(IP:B, Port:80)</code>，但由于源 IP / 源端口不同，四元组各不相同，因此被解复用到<strong>三个独立的 Socket</strong>，对应服务器上三个独立的处理进程/线程。</p>
+<blockquote>
+<p>这才是真正的e2e!  </p>
+</blockquote>
+<h4 id="服务器的并发处理模型">服务器的并发处理模型<a class="headerlink" href="#服务器的并发处理模型" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>多进程/多线程服务器</strong>：服务器为每个连接创建独立 Socket，对应独立进程或线程（Threaded Server），各 Socket 拥有其唯一的四元组。</li>
+<li><strong>非持久 HTTP（Non-Persistent HTTP）</strong>：每次 HTTP 请求均创建新的 TCP 连接，因此每次请求对应一个不同的 Socket，请求完成即销毁。</li>
+</ul>
+<hr />
+<h2 id="二-可靠传输的设计">二. 可靠传输的设计<a class="headerlink" href="#二-可靠传输的设计" title="Permanent link">&para;</a></h2>
+<h3 id="21-理想信道-vs-现实信道">2.1 理想信道 vs. 现实信道<a class="headerlink" href="#21-理想信道-vs-现实信道" title="Permanent link">&para;</a></h3>
+<h4 id="理想情况perfect-channel">理想情况（Perfect Channel）<a class="headerlink" href="#理想情况perfect-channel" title="Permanent link">&para;</a></h4>
+<p>若信道完全无损、无延迟、无乱序：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>发送方                                 接收方
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>  |                                      |
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>  |---- 数据包 --------------------------&gt;|  直接收到并交付
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>  |---- 下一包 --------------------------&gt;|
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>  |---- ...
+</span></code></pre></div></td></tr></table></div>
+<p>在理想信道上，可靠传输<strong>不需要任何额外机制</strong>，发了就等、收了就用。</p>
+<h4 id="现实情况best-effort-ip-network">现实情况（Best-Effort IP Network）<a class="headerlink" href="#现实情况best-effort-ip-network" title="Permanent link">&para;</a></h4>
+<p>现实网络中，IP 层可能对数据包施加以下各种"伤害"：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>网络层可能引入的故障：
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>  比特翻转   -&gt; 损坏（Corrupted）
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>  队列溢出   -&gt; 丢失（Lost）
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>  拥塞排队   -&gt; 延迟（Delayed）
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>  多路径路由 -&gt; 路径 1 / 路径 2 -&gt; 乱序（Reordered）
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>  重传叠加   -&gt; 重复（Duplicated）
+</span></code></pre></div></td></tr></table></div>
+<p>可靠传输协议的目标：<strong>在不可靠的网络层之上，为上层应用提供可靠的数据传输服务</strong>。</p>
+<hr />
+<h3 id="22-可靠传输的应对机制全景">2.2 可靠传输的应对机制全景<a class="headerlink" href="#22-可靠传输的应对机制全景" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>针对的故障</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>校验和（Checksum）</strong></td>
+<td>数据损坏</td>
+<td>接收方对收到的报文段计算校验和，与首部中的校验和字段对比，检测传输错误</td>
+</tr>
+<tr>
+<td><strong>确认（ACK，Positive Acknowledgement）</strong></td>
+<td>损坏 / 丢失</td>
+<td>接收方向发送方明确反馈：某个（或某些）数据包已被正确接收</td>
+</tr>
+<tr>
+<td><strong>否定确认（NACK，Negative Acknowledgement）</strong></td>
+<td>数据损坏</td>
+<td>接收方向发送方明确反馈：某个数据包收到，但校验失败，请重传</td>
+</tr>
+<tr>
+<td><strong>序列号（Sequence Number）</strong></td>
+<td>乱序 / 重复</td>
+<td>为每个数据包分配唯一编号，接收方据此识别重复包并重组有序数据流</td>
+</tr>
+<tr>
+<td><strong>重传（Retransmission）</strong></td>
+<td>丢失 / 损坏</td>
+<td>发送方对未被确认的数据包进行重新发送</td>
+</tr>
+<tr>
+<td><strong>计时器（Timer）</strong></td>
+<td>丢失</td>
+<td>发送方为每个已发但未确认的包设置超时计时器，超时即判定丢失并触发重传</td>
+</tr>
+<tr>
+<td><strong>前向纠错（FEC，Forward Error Correction）</strong></td>
+<td>数据损坏</td>
+<td>发送方附加冗余校验信息，接收方在不重传的前提下自行纠正一定数量的错误</td>
+</tr>
+<tr>
+<td><strong>网络编码（Network Coding）</strong></td>
+<td>丢失 / 损坏</td>
+<td>通过对多个数据包进行线性编码，更高效地修复多包丢失场景。目前的技术容错率只能做到30%左右。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="23-处理数据包损坏">2.3 处理数据包损坏<a class="headerlink" href="#23-处理数据包损坏" title="Permanent link">&para;</a></h3>
+<h4 id="基本方案ack--nack--重传">基本方案：ACK / NACK + 重传<a class="headerlink" href="#基本方案ack--nack--重传" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>发送方                                 接收方
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>  |                                      |
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>  |---- P(1) ---------------------------&gt;|  ✓ 校验通过
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>  |&lt;--------------------------- ACK -----|
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>  |                                      |
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>  |---- P(2) ---------------------------&gt;|  ✗ 校验失败
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>  |&lt;-------------------------- NACK -----|
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>  |                                      |
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>  |---- P(2) ---------------------------&gt;|  ✓ 重传后校验通过
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>  |&lt;--------------------------- ACK -----|
+</span></code></pre></div></td></tr></table></div>
+<h4 id="深层问题acknack-本身也可能在传输中损坏">深层问题：ACK/NACK 本身也可能在传输中损坏！<a class="headerlink" href="#深层问题acknack-本身也可能在传输中损坏" title="Permanent link">&para;</a></h4>
+<p>若 ACK 在返回途中发生比特错误，发送方收到的是一个<strong>无法识别的反馈</strong>，陷入两难：</p>
+<ul>
+<li>若假设是 NACK → 重传 P(1) → 若接收方已正确收到 P(1)，重传的 P(1) 就是<strong>重复包</strong></li>
+<li>若假设是 ACK → 继续发 P(2) → 若实际是 NACK，则 P(1) <strong>永久丢失</strong></li>
+</ul>
+<p><strong>根本解决方案：为数据包和 ACK 均引入序列号（Sequence Number）</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>发送方                                 接收方
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>  |                                      |
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>  |---- P(1) ---------------------------&gt;|  ✓ 收到新包 P(1)
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>  |&lt;------------------------ ack(1) -----|
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>       [ack(1) 在途中损坏，发送方无法识别]
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>  |                                      |
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>  |---- P(1) ---------------------------&gt;|  识别为重复包，丢弃
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>  |&lt;------------------------ ack(1) -----|  重发 ACK
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>  |                                      |
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>  |---- P(2) ---------------------------&gt;|
+</span></code></pre></div></td></tr></table></div>
+<p>序列号使接收方能够区分"这是新包"还是"这是重传包"，从而正确处理重复数据。</p>
+<hr />
+<h3 id="24-处理数据包丢失">2.4 处理数据包丢失<a class="headerlink" href="#24-处理数据包丢失" title="Permanent link">&para;</a></h3>
+<h4 id="方案计时器驱动的损失检测timer-driven-loss-detection">方案：计时器驱动的损失检测（Timer-Driven Loss Detection）<a class="headerlink" href="#方案计时器驱动的损失检测timer-driven-loss-detection" title="Permanent link">&para;</a></h4>
+<p><strong>核心思想</strong>：发包时启动计时器，若在超时（Timeout）时间内未收到 ACK，则判定包丢失并重传。</p>
+<h4 id="场景一数据包本身丢失">场景一：数据包本身丢失<a class="headerlink" href="#场景一数据包本身丢失" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span>
+<span class="normal"><a href="#__codelineno-11-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>发送方                                 接收方
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>  |                                      |
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>  |---- P(1) ----------------------------|  x P(1) 在网络中丢失
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>                  [Timeout]
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>  |                                      |
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>  |---- P(1) ---------------------------&gt;|  ✓ 重传成功到达
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>  |&lt;------------------------ ack(1) -----|
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a>  |                                      |
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a>  |---- P(2) ---------------------------&gt;|
+</span></code></pre></div></td></tr></table></div>
+<h4 id="场景二ack-丢失数据包成功送达但确认丢失">场景二：ACK 丢失（数据包成功送达，但确认丢失）<a class="headerlink" href="#场景二ack-丢失数据包成功送达但确认丢失" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span>
+<span class="normal"><a href="#__codelineno-12-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>发送方                                 接收方
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>  |                                      |
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>  |---- P(1) ---------------------------&gt;|  ✓ 成功收到
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a>  |&lt;------------------------ ack(1) -----|  x ACK 在途中丢失
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a>                  [Timeout]
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a>  |                                      |
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a>  |---- P(1) ---------------------------&gt;|  ⚠ 收到重复的 P(1)
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a>  |&lt;------------------------ ack(1) -----|  识别重复后丢弃，并重发 ACK
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a>  |---- P(2) ---------------------------&gt;|
+</span></code></pre></div></td></tr></table></div>
+<h4 id="场景三超时设置过短导致伪超时premature-timeout">场景三：超时设置过短，导致"伪超时"（Premature Timeout）<a class="headerlink" href="#场景三超时设置过短导致伪超时premature-timeout" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>发送方                                 接收方
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>  |                                      |
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>  |---- P(1) -----------------------...    原始包仍在路上
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>       [Premature Timeout: 超时设置过短]
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a>  |                                      |
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>  |---- P(1) ---------------------------&gt;|  原始包与重传包最终都到达
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>  |&lt;------------------------ ack(1) -----|  首次返回 ACK
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a>  |                                      |  后到达的副本被识别为重复包并丢弃
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a>  |&lt;------------------------ ack(1) -----|  再次返回 ACK
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a>  |---- P(2) ---------------------------&gt;|
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>结论</strong>：计时器超时触发重传，必然引入潜在的数据包重复问题。序列号机制是解决重复问题的唯一手段，二者相互依赖，缺一不可。</p>
+</blockquote>
+<hr />
+<h3 id="25-核心组件小结">2.5 核心组件小结<a class="headerlink" href="#25-核心组件小结" title="Permanent link">&para;</a></h3>
+<p>通过以上分析，可靠传输所需的核心组件归纳如下：</p>
+<table>
+<thead>
+<tr>
+<th>核心组件</th>
+<th>英文</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>校验和</td>
+<td>Checksum</td>
+<td>检测比特错误（损坏检测）</td>
+</tr>
+<tr>
+<td>计时器</td>
+<td>Timer</td>
+<td>检测数据包丢失，超时触发重传</td>
+</tr>
+<tr>
+<td>确认</td>
+<td>ACK / NACK</td>
+<td>接收方向发送方反馈接收状态，提高传输效率</td>
+</tr>
+<tr>
+<td>序列号</td>
+<td>Sequence Number</td>
+<td>标识数据包身份，处理重复与乱序</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="三-可靠传输协议的构造">三. 可靠传输协议的构造<a class="headerlink" href="#三-可靠传输协议的构造" title="Permanent link">&para;</a></h2>
+<h3 id="31-停等协议stop-and-wait">3.1 停等协议（Stop-and-Wait）<a class="headerlink" href="#31-停等协议stop-and-wait" title="Permanent link">&para;</a></h3>
+<p>停等协议（Stop-and-Wait Protocol）是将上述四大组件组合在一起的<strong>最简单、正确的</strong>可靠传输协议实现。</p>
+<h4 id="协议逻辑">协议逻辑<a class="headerlink" href="#协议逻辑" title="Permanent link">&para;</a></h4>
+<p><strong>发送方（@Sender）</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>发送 packet(I)
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>(重)启动计时器
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>等待反馈：
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>    若收到 ACK  -&gt; I++，发送下一包
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a>    若收到 NACK -&gt; 重发 packet(I)
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>    若超时      -&gt; 重发 packet(I)
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>（循环）
+</span></code></pre></div></td></tr></table></div></p>
+<p><strong>接收方（@Receiver）</strong>：
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a>等待数据包
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a>若收到的包校验正确 -&gt; 发送 ACK
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>否则               -&gt; 发送 NACK
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>（循环）
+</span></code></pre></div></td></tr></table></div></p>
+<h4 id="协议特点">协议特点<a class="headerlink" href="#协议特点" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>正确性（Correctness）</strong>：停等协议是正确的——在有限次重传后，所有数据包均能被正确送达。</li>
+<li><strong>低效性（Inefficiency）</strong>：发送方每次只允许一个包"在途（In-Flight）"，必须等收到 ACK 才能发下一包，导致链路大量空闲。</li>
+</ul>
+<hr />
+<h3 id="32-停等协议的效率分析">3.2 停等协议的效率分析<a class="headerlink" href="#32-停等协议的效率分析" title="Permanent link">&para;</a></h3>
+<h4 id="时间空间示意">时间空间示意<a class="headerlink" href="#时间空间示意" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a>发送方                                 接收方
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>  |                                      |
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>  |---- 数据包 --------------------------&gt;|  最后一个比特到达，耗时 L/R
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a>  |                                      |  发出 ACK
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>  |&lt;--------------------------- ACK -----|  ACK 到达，往返时延约为 RTT
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>  |---- 下一包 --------------------------&gt;|
+</span></code></pre></div></td></tr></table></div>
+<h4 id="发送方利用率公式">发送方利用率公式<a class="headerlink" href="#发送方利用率公式" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[U_{sender} = \frac{L/R}{RTT + L/R}\]</div>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\(L\)</span>：数据包大小（bit）</li>
+<li><span class="arithmatex">\(R\)</span>：链路带宽（bps）</li>
+<li><span class="arithmatex">\(L/R\)</span>：<strong>传输时延（Transmission Delay）</strong>，即将整个包注入链路所需时间</li>
+<li><span class="arithmatex">\(RTT\)</span>：<strong>往返时延（Round-Trip Time）</strong> = 2 × 传播时延</li>
+</ul>
+<h4 id="数值计算示例">数值计算示例<a class="headerlink" href="#数值计算示例" title="Permanent link">&para;</a></h4>
+<p><strong>参数设置</strong>：</p>
+<ul>
+<li>链路带宽：<span class="arithmatex">\(R = 1 \text{ Gbps} = 10^9 \text{ bps}\)</span></li>
+<li>单向传播时延：15 ms → RTT = 30 ms</li>
+<li>数据包大小：<span class="arithmatex">\(L = 8000 \text{ bit}\)</span></li>
+</ul>
+<p><strong>传输时延</strong>：</p>
+<div class="arithmatex">\[D_{trans} = \frac{L}{R} = \frac{8000}{10^9} = 8 \times 10^{-6} \text{ s} = 8 \; \mu\text{s}\]</div>
+<p><strong>发送方利用率</strong>：</p>
+<div class="arithmatex">\[U_{sender} = \frac{0.008 \text{ ms}}{30.008 \text{ ms}} \approx 0.00027 = 0.027\%\]</div>
+<p><strong>实际吞吐量</strong>：</p>
+<div class="arithmatex">\[TP = U_{sender} \times R = 0.00027 \times 1 \text{ Gbps} \approx 270 \text{ kbps} \approx 33 \text{ kB/s}\]</div>
+<blockquote>
+<p><strong>结论</strong>：在 1 Gbps 链路上，停等协议实际吞吐量仅约 33 kB/s，<strong>利用率不足 0.03%</strong>。造成这一严重浪费的根本原因是：传输时延（8 μs）远小于 RTT（30 ms），链路在等待 ACK 的绝大部分时间内处于<strong>空闲</strong>状态。<strong>网络协议的设计方式成为物理资源的瓶颈，而非物理资源本身。</strong></p>
+</blockquote>
+<hr />
+<h3 id="33-流水线协议pipelined-protocol">3.3 流水线协议（Pipelined Protocol）<a class="headerlink" href="#33-流水线协议pipelined-protocol" title="Permanent link">&para;</a></h3>
+<h4 id="核心思想">核心思想<a class="headerlink" href="#核心思想" title="Permanent link">&para;</a></h4>
+<p><strong>流水线（Pipelining）</strong>：允许发送方在收到 ACK 之前，同时发送<strong>多个尚未被确认</strong>的"在途数据包（In-Flight Packets）"。</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>停等协议：
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>发送方                                 接收方
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>  |---- Pkt1 ---------------------------&gt;|
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>  |&lt;--------------------------- ACK -----|
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a>  |---- Pkt2 ---------------------------&gt;|
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a>流水线协议（窗口 = 3）：
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a>发送方                                 接收方
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9"></a>  |---- Pkt1 ---- Pkt2 ---- Pkt3 -------&gt;|
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10"></a>  |&lt;------------ ACK1 -- ACK2 -- ACK3 ---|
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11"></a>  |---- Pkt4 ---- Pkt5 ---- Pkt6 -------&gt;|
+</span></code></pre></div></td></tr></table></div>
+<h4 id="流水线对协议设计的影响">流水线对协议设计的影响<a class="headerlink" href="#流水线对协议设计的影响" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>序列号空间必须扩大</strong>：需要能够区分多个同时在途的数据包</li>
+<li><strong>发送方必须维护缓冲区</strong>：缓存已发送但尚未被确认的包，以备重传</li>
+<li><strong>接收方可能需要维护缓冲区</strong>：接受并暂存乱序到达的包（取决于具体协议）</li>
+</ol>
+<h4 id="流水线对利用率的提升">流水线对利用率的提升<a class="headerlink" href="#流水线对利用率的提升" title="Permanent link">&para;</a></h4>
+<p>以 3 包流水线为例：</p>
+<div class="arithmatex">\[U_{sender} = \frac{3 \cdot L/R}{RTT + L/R} = \frac{0.024 \text{ ms}}{30.008 \text{ ms}} \approx 0.00081\]</div>
+<p>利用率提升为停等协议的 <strong>3 倍</strong>。一般地，窗口大小为 n 时，利用率提升为停等协议的 <strong>n 倍</strong>（直至达到链路带宽上限）。</p>
+<hr />
+<h3 id="34-三个核心设计决策">3.4 三个核心设计决策<a class="headerlink" href="#34-三个核心设计决策" title="Permanent link">&para;</a></h3>
+<p>流水线协议的具体实现需要回答三个核心问题：</p>
+<table>
+<thead>
+<tr>
+<th>核心决策</th>
+<th>对应机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发送方可以发哪些包？</td>
+<td>滑动窗口机制（Sliding Window）</td>
+</tr>
+<tr>
+<td>接收方如何确认数据包？</td>
+<td>累积 ACK（Cumulative ACK） / 选择 ACK（Selective ACK）</td>
+</tr>
+<tr>
+<td>发送方应重传哪些数据包？</td>
+<td>回退 N 步（Go-Back-N, GBN） / 选择重传（Selective Repeat, SR）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="35-滑动窗口机制sliding-window">3.5 滑动窗口机制（Sliding Window）<a class="headerlink" href="#35-滑动窗口机制sliding-window" title="Permanent link">&para;</a></h3>
+<h4 id="窗口的定义">窗口的定义<a class="headerlink" href="#窗口的定义" title="Permanent link">&para;</a></h4>
+<p><strong>窗口（Window）</strong>：由<strong>相邻序列号</strong>构成的集合，窗口大小（Window Size）设为 <span class="arithmatex">\(n\)</span>，表示当前最多允许 <span class="arithmatex">\(n\)</span> 个数据包同时在途。</p>
+<h4 id="发送方窗口">发送方窗口<a class="headerlink" href="#发送方窗口" title="Permanent link">&para;</a></h4>
+<p>设 <span class="arithmatex">\(A\)</span> 为发送方<strong>最后一个已被累积确认（无间隙）的包</strong>序号，则发送方窗口为：</p>
+<div class="arithmatex">\[\text{Window}_{sender} = \{A+1,\ A+2,\ \ldots,\ A+n\}\]</div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>序列号 -&gt;
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>... [■][■][■][A+1][A+2][A+3][A+4][A+5][ ][ ][ ]...
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>              ^                   ^
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a>              A+1              A+n（窗口右边界）
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a>    &lt;-已ACK-&gt;&lt;------ 已发未 ACK ------&gt;&lt;- 不可发 -&gt;
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a>      (暗色■)                            (空白□)
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>已 ACK（Already ACKed）</strong>：序号 ≤ A 的包，已确认，可丢弃缓冲区副本</li>
+<li><strong>已发未 ACK（Sent but not ACKed）</strong>：窗口内已发送、等待确认的包，须保留副本</li>
+<li><strong>不可发送（Cannot be sent）</strong>：窗口右边界之外，尚不允许发送的包</li>
+</ul>
+<h4 id="接收方窗口">接收方窗口<a class="headerlink" href="#接收方窗口" title="Permanent link">&para;</a></h4>
+<p>设 <span class="arithmatex">\(B\)</span> 为接收方<strong>最后一个无间隙连续收到</strong>的包序号，则接收方窗口为：</p>
+<div class="arithmatex">\[\text{Window}_{receiver} = \{B+1,\ B+2,\ \ldots,\ B+n\}\]</div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>序列号 -&gt;
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>... [■][■][■][B+1][B+2][B+3][B+4][ ][ ]...
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a>              ^              ^
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a>              B+1           B+n
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a>  &lt;-已收ACK-&gt; &lt;---- 可接受未收 ----&gt;&lt;-不可接收-&gt;
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a>    (暗色■)                         (空白□)
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>已收 ACK（Received and ACKed）</strong>：已顺序交付给应用层</li>
+<li><strong>可接受未收（Acceptable but not yet received）</strong>：接收方愿意接受的包</li>
+<li><strong>不可接收（Cannot be received）</strong>：超出窗口范围，即便到达也应丢弃</li>
+</ul>
+<h4 id="窗口滑动机制">窗口滑动机制<a class="headerlink" href="#窗口滑动机制" title="Permanent link">&para;</a></h4>
+<ul>
+<li>接收方：每当收到新包并发出 ACK，窗口向右滑动</li>
+<li>发送方：每当收到新的 ACK（B 值增大），窗口向右滑动，允许发送新的包</li>
+</ul>
+<p>这种"滑动"特性使得协议可以在不停止发送的前提下，持续推进数据传输，故名<strong>滑动窗口</strong>。</p>
+<h4 id="滑动窗口的吞吐量上界">滑动窗口的吞吐量上界<a class="headerlink" href="#滑动窗口的吞吐量上界" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[TP_{sliding} \approx \min\!\left(\frac{n \times DATA}{RTT},\ B_{link}\right)\]</div>
+<p>与停等协议（相当于 <span class="arithmatex">\(n=1\)</span>）的 <span class="arithmatex">\(DATA/RTT\)</span> 相比，滑动窗口将吞吐量提升了 <span class="arithmatex">\(n\)</span> 倍（在未达链路带宽上限时）。</p>
+<blockquote>
+<p><strong>当 <span class="arithmatex">\(n\)</span> 过大时</strong>：发送速率超过链路容量或接收方处理能力，导致拥塞（Congestion）。这正是 TCP 拥塞控制机制发挥作用的场景。</p>
+</blockquote>
+<hr />
+<h3 id="36-确认机制累积-ack-vs-选择-ack">3.6 确认机制：累积 ACK vs. 选择 ACK<a class="headerlink" href="#36-确认机制累积-ack-vs-选择-ack" title="Permanent link">&para;</a></h3>
+<h4 id="累积-ackcumulative-ack">累积 ACK（Cumulative ACK）<a class="headerlink" href="#累积-ackcumulative-ack" title="Permanent link">&para;</a></h4>
+<ul>
+<li>ACK 报文中携带的序号 = <strong>接收方期望收到的下一个包的序号</strong></li>
+<li>含义：该序号之前的所有包<strong>均已被正确、有序地接收</strong></li>
+<li>即 ACK(<span class="arithmatex">\(k\)</span>) 意味着序号 <span class="arithmatex">\(1, 2, \ldots, k-1\)</span> 的包全部已收到</li>
+</ul>
+<p><strong>示例一</strong>：顺序收到 B+1, B+2</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a>收到 B+1, B+2 后：
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a>  当前边界：B_new = B+2
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a>  发送 ACK(B+3) = ACK(B_new + 1)
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a>  窗口右移 2 格
+</span></code></pre></div></td></tr></table></div>
+<p><strong>示例二</strong>：只收到 B+4, B+5（中间 B+1, B+2, B+3 尚未到达）</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a>只收到 B+4, B+5 时：
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a>  当前状态：[...B][  ][  ][  ][ B+4 ][ B+5 ]...
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a>                  ^ 中间空缺
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a>  发送 ACK(B+1)
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a>  仍期望 B+1，窗口不移动
+</span></code></pre></div></td></tr></table></div>
+<h4 id="选择-ackselective-acksack">选择 ACK（Selective ACK，SACK）<a class="headerlink" href="#选择-ackselective-acksack" title="Permanent link">&para;</a></h4>
+<ul>
+<li>对<strong>每个正确收到的包单独进行确认</strong>，无论其是否有序</li>
+<li>提供更精细的接收信息，发送方可以只重传<strong>真正丢失</strong>的包</li>
+<li>代价：簿记（Book-Keeping）更复杂，需要在 ACK 中携带更多信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>累积 ACK</th>
+<th>选择 ACK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信息精度</td>
+<td>低（仅报告连续边界）</td>
+<td>高（精确报告每个包状态）</td>
+</tr>
+<tr>
+<td>ACK 开销</td>
+<td>小（只需一个序号）</td>
+<td>大（需要记录多个范围）</td>
+</tr>
+<tr>
+<td>实现复杂度</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>典型应用协议</td>
+<td>GBN 的标准实现</td>
+<td>SR / TCP SACK 选项</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="37-go-back-n-协议gbn">3.7 Go-Back-N 协议（GBN）<a class="headerlink" href="#37-go-back-n-协议gbn" title="Permanent link">&para;</a></h3>
+<h4 id="协议规则">协议规则<a class="headerlink" href="#协议规则" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>发送方</strong></td>
+<td>最多同时发送 <span class="arithmatex">\(n\)</span> 个未确认包；只为<strong>第一个未确认包（A+1）</strong>维护一个计时器</td>
+</tr>
+<tr>
+<td><strong>接收方</strong></td>
+<td>严格<strong>只接受按序到达</strong>的包（仅接受 B+1）；对所有乱序包<strong>直接丢弃</strong></td>
+</tr>
+<tr>
+<td><strong>确认方式</strong></td>
+<td>使用<strong>累积 ACK</strong>；ACK(<span class="arithmatex">\(k\)</span>) 中 <span class="arithmatex">\(k\)</span> = 下一期望接收的序号</td>
+</tr>
+<tr>
+<td><strong>超时处理</strong></td>
+<td>计时器超时后，<strong>重传窗口内所有未确认包</strong>：<span class="arithmatex">\(A+1, A+2, \ldots, A+n\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="发送方窗口与接收方窗口的对应关系">发送方窗口与接收方窗口的对应关系<a class="headerlink" href="#发送方窗口与接收方窗口的对应关系" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a>发送方窗口 = {A+1, ..., A+n}   （n 个位置）
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a>接收方窗口 = {B+1}             （始终只有 1 个位置！）
+</span></code></pre></div></td></tr></table></div>
+<p>接收方"窗口大小"为 1，这是 GBN 的关键特征——接收方只期待下一个顺序包。</p>
+<h4 id="gbn-正常运行示例窗口大小--3">GBN 正常运行示例（窗口大小 = 3）<a class="headerlink" href="#gbn-正常运行示例窗口大小--3" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span>
+<span class="normal"><a href="#__codelineno-23-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a>步骤  当前未确认分组  发送动作               接收方反馈
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>1     {1}             1 -----------------&gt;   ACK 2
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>2     {1,2}           2 -----------------&gt;   ACK 3
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a>3     {1,2,3}         3 -----------------&gt;   ACK 4
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a>4     {2,3,4}         4 -----------------&gt;   ACK 5
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a>5     {3,4,5}         5 -----------------&gt;   ACK 6
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7"></a>6     {4,5,6}         6 -----------------&gt;   ACK 7
+</span></code></pre></div></td></tr></table></div>
+<h4 id="gbn-出错处理示例窗口大小--3包-5-丢失">GBN 出错处理示例（窗口大小 = 3，包 5 丢失）<a class="headerlink" href="#gbn-出错处理示例窗口大小--3包-5-丢失" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a>步骤  当前未确认分组  发送动作               接收方反馈
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a>1     {1}             1 -----------------&gt;   ACK 2
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a>2     {1,2}           2 -----------------&gt;   ACK 3
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a>3     {1,2,3}         3 -----------------&gt;   ACK 4
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a>4     {2,3,4}         4 -----------------&gt;   ACK 5
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a>5     {3,4,5}         5 -----------------&gt;   丢失
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a>6     {4,5,6}         6 -----------------&gt;   期待 5，丢弃 6，回 ACK 5
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a>7     {5,6}           [Timeout: packet 5]
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a>8     {5,6}           5 -----------------&gt;   ACK 6
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10"></a>9     {6}             6 -----------------&gt;   ACK 7
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>GBN 的代价</strong>：一旦某包丢失，之后所有<strong>已正确到达但乱序</strong>的包全部被丢弃，超时后连同丢失的包一起重传。在错误率较高时，大量带宽被浪费在不必要的重传上。</p>
+</blockquote>
+<hr />
+<h3 id="38-selective-repeat-协议sr">3.8 Selective Repeat 协议（SR）<a class="headerlink" href="#38-selective-repeat-协议sr" title="Permanent link">&para;</a></h3>
+<h4 id="协议规则_1">协议规则<a class="headerlink" href="#协议规则_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>发送方</strong></td>
+<td>最多同时发送 <span class="arithmatex">\(n\)</span> 个未确认包；<strong>为每个未确认包单独维护计时器</strong></td>
+</tr>
+<tr>
+<td><strong>接收方</strong></td>
+<td>接受<strong>窗口内所有正确到达的包</strong>（包括乱序包）；将乱序包<strong>缓存（Buffer）</strong>在接收缓冲区中</td>
+</tr>
+<tr>
+<td><strong>确认方式</strong></td>
+<td>使用<strong>选择 ACK</strong>，对每个正确收到的包单独确认</td>
+</tr>
+<tr>
+<td><strong>超时处理</strong></td>
+<td>超时时<strong>仅重传超时的那一个包</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="发送方与接收方窗口">发送方与接收方窗口<a class="headerlink" href="#发送方与接收方窗口" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>发送方窗口 = {A+1, ..., A+n}   （n 个位置）
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a>接收方窗口 = {B+1, ..., B+n}   （n 个位置）
+</span></code></pre></div></td></tr></table></div>
+<p>接收方也维护大小为 <span class="arithmatex">\(n\)</span> 的窗口，可以接收并缓存窗口内任意位置的包。</p>
+<h4 id="sr-出错处理示例窗口大小--3包-4-丢失">SR 出错处理示例（窗口大小 = 3，包 4 丢失）<a class="headerlink" href="#sr-出错处理示例窗口大小--3包-4-丢失" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-26-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-26-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-26-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-26-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-26-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-26-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-26-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-26-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-26-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a>步骤  发送窗口    发送动作               接收方行为
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a>1     {1,2,3}     1 -----------------&gt;   ACK=1
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a>2                 2 -----------------&gt;   ACK=2
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4"></a>3                 3 -----------------&gt;   ACK=3
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5"></a>4     {2,3,4}     4 -----------------&gt;   丢失
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6"></a>5     {3,4,5}     5 -----------------&gt;   ACK=5，缓存并等待 4
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7"></a>6     {4,5,6}     6 -----------------&gt;   ACK=6，缓存并等待 4
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8"></a>7                  [Timeout: packet 4]
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9"></a>8     {4,5,6}     4 -----------------&gt;   ACK=4，随后顺序交付 4,5,6
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10"></a>9     {7,8,9}     7 -----------------&gt;   继续发送
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>SR 的优势</strong>：仅重传真正丢失的包（包 4），不重传已正确到达的包（5,6），<strong>带宽利用率更高</strong>。<br />
+<strong>SR 的代价</strong>：每个包需要独立计时器；接收方需维护接收缓冲区并管理乱序包；实现复杂度显著高于 GBN。</p>
+</blockquote>
+<hr />
+<h3 id="39-gbn-vs-sr-综合对比">3.9 GBN vs. SR 综合对比<a class="headerlink" href="#39-gbn-vs-sr-综合对比" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>比较维度</th>
+<th>Go-Back-N（GBN）</th>
+<th>Selective Repeat（SR）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>发送方窗口大小</strong></td>
+<td><span class="arithmatex">\(n\)</span></td>
+<td><span class="arithmatex">\(n\)</span></td>
+</tr>
+<tr>
+<td><strong>接收方窗口大小</strong></td>
+<td>1（仅接受顺序包）</td>
+<td><span class="arithmatex">\(n\)</span>（缓存乱序包）</td>
+</tr>
+<tr>
+<td><strong>ACK 类型</strong></td>
+<td>累积 ACK（Cumulative）</td>
+<td>选择 ACK（Selective）</td>
+</tr>
+<tr>
+<td><strong>计时器数量</strong></td>
+<td>1（针对最老未 ACK 包）</td>
+<td><span class="arithmatex">\(n\)</span>（每个未确认包独立计时器）</td>
+</tr>
+<tr>
+<td><strong>接收方缓冲区</strong></td>
+<td>不需要</td>
+<td>需要（大小 = <span class="arithmatex">\(n\)</span>）</td>
+</tr>
+<tr>
+<td><strong>重传策略</strong></td>
+<td>超时后重传<strong>整个窗口</strong>内所有未确认包</td>
+<td>超时后<strong>仅重传</strong>超时的那一个包</td>
+</tr>
+<tr>
+<td><strong>实现复杂度</strong></td>
+<td>较低</td>
+<td>较高</td>
+</tr>
+<tr>
+<td><strong>带宽效率（低错误率）</strong></td>
+<td>高（重传开销小）</td>
+<td>高</td>
+</tr>
+<tr>
+<td><strong>带宽效率（高错误率）</strong></td>
+<td>低（大量不必要的重传）</td>
+<td>高（精准重传）</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>网络错误率低时更优</td>
+<td>网络错误率高时更优</td>
+</tr>
+</tbody>
+</table>
+<p><strong>选择原则</strong>：</p>
+<ul>
+<li>当网络<strong>错误率低</strong>时，GBN 简单且够用，SR 的复杂度得不偿失</li>
+<li>当网络<strong>错误率高</strong>时，GBN 的"全窗口重传"浪费带宽，SR 的精准重传更高效</li>
+</ul>
+<hr />
+<h3 id="310-关键观察与总结">3.10 关键观察与总结<a class="headerlink" href="#310-关键观察与总结" title="Permanent link">&para;</a></h3>
+<p><strong>观察一：链路充分利用</strong><br />
+使用滑动窗口协议时，只要窗口大小 <span class="arithmatex">\(n\)</span> 足够大（即 <span class="arithmatex">\(n \geq \lceil RTT \cdot R / L \rceil\)</span>），发送方就可以<strong>持续不断地发包</strong>，实现对链路带宽的充分利用。</p>
+<p><strong>观察二：发送方缓冲区</strong><br />
+发送方必须缓存<strong>所有已发送但尚未被确认</strong>的数据包副本，因为任何一个都可能需要重传。</p>
+<p><strong>观察三：接收方缓冲区</strong><br />
+接收方<strong>可以</strong>选择接收乱序到达的包（SR 要求这样做），但受限于接收缓冲区大小；GBN 接收方则选择直接丢弃乱序包，以换取实现简单性。</p>
+<p><strong>观察四：协议复杂度的权衡</strong><br />
+GBN 与 SR 是两种典范实现，现实中的 TCP 综合了二者的思想（使用累积 ACK 同时支持 SACK 选项），在两者之间取得工程上的平衡。</p>
+<h4 id="可靠传输完整组件图">可靠传输完整组件图<a class="headerlink" href="#可靠传输完整组件图" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>英文</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>校验和</td>
+<td>Checksum</td>
+<td>错误检测（Error Detection）</td>
+</tr>
+<tr>
+<td>计时器</td>
+<td>Timer</td>
+<td>丢包检测（Loss Detection）</td>
+</tr>
+<tr>
+<td>确认</td>
+<td>ACK / NACK</td>
+<td>支持累积确认（Cumulative）或选择确认（Selective）</td>
+</tr>
+<tr>
+<td>序列号</td>
+<td>SeqNo</td>
+<td>标识身份，处理重复与乱序</td>
+</tr>
+<tr>
+<td>滑动窗口</td>
+<td>Sliding Window</td>
+<td>提升链路利用率（效率保障）</td>
+</tr>
+<tr>
+<td>可靠性协议</td>
+<td>GBN / SR</td>
+<td>综合以上组件，决定何时重传、确认什么</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附录">附录<a class="headerlink" href="#附录" title="Permanent link">&para;</a></h2>
+<h3 id="核心公式汇总">核心公式汇总<a class="headerlink" href="#核心公式汇总" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>公式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>停等协议利用率</td>
+<td><span class="arithmatex">\(U = \dfrac{L/R}{RTT + L/R}\)</span></td>
+<td>L=包大小，R=链路带宽</td>
+</tr>
+<tr>
+<td>n 包流水线利用率</td>
+<td><span class="arithmatex">\(U = \dfrac{n \cdot L/R}{RTT + L/R}\)</span></td>
+<td>停等协议利用率的 n 倍</td>
+</tr>
+<tr>
+<td>滑动窗口吞吐量上界</td>
+<td><span class="arithmatex">\(TP \approx \min\!\left(\dfrac{n \cdot DATA}{RTT},\ B_{link}\right)\)</span></td>
+<td>n=窗口大小</td>
+</tr>
+<tr>
+<td>停等吞吐量</td>
+<td><span class="arithmatex">\(TP \approx \dfrac{DATA}{RTT}\)</span></td>
+<td>n=1 时的特例</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键术语中英文对照">关键术语中英文对照<a class="headerlink" href="#关键术语中英文对照" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>英文术语</th>
+<th>中文译名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transport Layer</td>
+<td>运输层</td>
+</tr>
+<tr>
+<td>Logical Communication</td>
+<td>逻辑通信</td>
+</tr>
+<tr>
+<td>Multiplexing / Demultiplexing</td>
+<td>多路复用 / 解复用</td>
+</tr>
+<tr>
+<td>Socket</td>
+<td>套接字</td>
+</tr>
+<tr>
+<td>Port Number</td>
+<td>端口号</td>
+</tr>
+<tr>
+<td>Well-Known Port</td>
+<td>周知端口</td>
+</tr>
+<tr>
+<td>Ephemeral Port</td>
+<td>临时端口</td>
+</tr>
+<tr>
+<td>Segment</td>
+<td>报文段</td>
+</tr>
+<tr>
+<td>Datagram</td>
+<td>数据报</td>
+</tr>
+<tr>
+<td>Round-Trip Time (RTT)</td>
+<td>往返时延</td>
+</tr>
+<tr>
+<td>Transmission Delay</td>
+<td>传输时延</td>
+</tr>
+<tr>
+<td>Propagation Delay</td>
+<td>传播时延</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>吞吐量</td>
+</tr>
+<tr>
+<td>Best-Effort</td>
+<td>尽力而为</td>
+</tr>
+<tr>
+<td>Sequence Number</td>
+<td>序列号</td>
+</tr>
+<tr>
+<td>Acknowledgement (ACK)</td>
+<td>确认</td>
+</tr>
+<tr>
+<td>Negative Acknowledgement (NACK)</td>
+<td>否定确认</td>
+</tr>
+<tr>
+<td>Cumulative ACK</td>
+<td>累积确认</td>
+</tr>
+<tr>
+<td>Selective ACK (SACK)</td>
+<td>选择确认</td>
+</tr>
+<tr>
+<td>Checksum</td>
+<td>校验和</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>超时</td>
+</tr>
+<tr>
+<td>Retransmission</td>
+<td>重传</td>
+</tr>
+<tr>
+<td>Forward Error Correction (FEC)</td>
+<td>前向纠错</td>
+</tr>
+<tr>
+<td>Stop-and-Wait</td>
+<td>停等协议</td>
+</tr>
+<tr>
+<td>Sender Utilization</td>
+<td>发送方利用率</td>
+</tr>
+<tr>
+<td>Pipelining</td>
+<td>流水线</td>
+</tr>
+<tr>
+<td>In-Flight Packets</td>
+<td>在途数据包</td>
+</tr>
+<tr>
+<td>Sliding Window</td>
+<td>滑动窗口</td>
+</tr>
+<tr>
+<td>Window Size</td>
+<td>窗口大小</td>
+</tr>
+<tr>
+<td>Go-Back-N (GBN)</td>
+<td>回退 N 步协议</td>
+</tr>
+<tr>
+<td>Selective Repeat (SR)</td>
+<td>选择重传协议</td>
+</tr>
+<tr>
+<td>Premature Timeout</td>
+<td>伪超时 / 提前超时</td>
+</tr>
+<tr>
+<td>Connection-Oriented</td>
+<td>面向连接</td>
+</tr>
+<tr>
+<td>Connectionless</td>
+<td>无连接</td>
+</tr>
+<tr>
+<td>4-Tuple</td>
+<td>四元组</td>
+</tr>
+<tr>
+<td>Threaded Server</td>
+<td>线程化服务器</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 2-应用层">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                2-应用层
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3-运输层2">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                3-运输层2
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

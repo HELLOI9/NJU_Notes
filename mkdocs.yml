@@ -128,6 +128,8 @@ nav:
             并发/3.互斥进阶.md
         - 4.同步基础: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
             并发/4.同步基础.md
+        - 5.同步进阶: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
+            并发/5.同步进阶.md
     - Foundations of Data Management:
       - Overview: notes/The second semester of sophomore year/Foundations of Data
           Management/index.md
@@ -159,6 +161,7 @@ nav:
         - 3-运输层: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层.md
         - 3-运输层2: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层2.md
         - 3-运输层3: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层3.md
+        - 3-运输层4: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层4.md
     - New Technologies in Mobile Networks: notes/The second semester of sophomore
         year/New Technologies in Mobile Networks/index.md
     - Software Engineering and Computing II: notes/The second semester of sophomore
