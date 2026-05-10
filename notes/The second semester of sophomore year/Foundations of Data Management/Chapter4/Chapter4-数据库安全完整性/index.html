@@ -1,0 +1,4348 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/">
+      
+      
+        <link rel="prev" href="../../Chapter3/Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/">
+      
+      
+        <link rel="next" href="../../../Human-Computer%20Interaction%20Systems/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter4 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#第4章-数据库安全性" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Computer%20Operating%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Operating Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap%20Lab/Lab2-%E5%8D%8F%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_3" id="__nav_2_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap1 绪论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap1 绪论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统的发展历程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_4" id="__nav_2_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap2 并发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap2 并发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/1.%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.多处理器编程Multiprocessor Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/2.%E4%BA%92%E6%96%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.互斥基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/3.%E4%BA%92%E6%96%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.互斥进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/4.%E5%90%8C%E6%AD%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.同步基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/5.%E5%90%8C%E6%AD%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.同步进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-3-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E6%89%A9%E5%85%85%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-3-关系代数扩充运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_4" id="__nav_2_2_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter3/Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-1-SQL数据库的定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter3/Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-2-SQL数据查询
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter3/Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-3-SQL数据库更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-数据库安全性概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 数据库安全性概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 数据库安全性概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-为什么需要安全性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 为什么需要安全性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-数据库面临的威胁来源" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 数据库面临的威胁来源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-数据库不安全因素" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 数据库不安全因素
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-安全标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 安全标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 安全标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-tcsec橙皮书" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 TCSEC（橙皮书）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-cc-标准通用准则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 CC 标准（通用准则）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-中国计算机安全标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 中国计算机安全标准
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-数据库安全功能要求各级别对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 数据库安全功能要求（各级别对照）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-数据库安全性控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 数据库安全性控制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 数据库安全性控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-计算机系统安全模型多层保护" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 计算机系统安全模型（多层保护）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dbms-安全性控制模型存取控制流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 DBMS 安全性控制模型（存取控制流程）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-常用安全控制方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 常用安全控制方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-用户身份鉴别identification--authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 用户身份鉴别（Identification &amp; Authentication）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-存取控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 存取控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-自主存取控制dac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 自主存取控制（DAC）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-授权授予grant与回收revoke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 授权：授予（GRANT）与回收（REVOKE）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 授权：授予（GRANT）与回收（REVOKE）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#371-grant-语句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7.1 GRANT 语句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#372-revoke-语句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7.2 REVOKE 语句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#373-数据库模式权限" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7.3 数据库模式权限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-数据库角色" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 数据库角色
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 数据库角色">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#角色相关-sql-语法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        角色相关 SQL 语法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-强制存取控制mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 强制存取控制（MAC）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.9 强制存取控制（MAC）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#主体与客体" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主体与客体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#敏感度标记label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        敏感度标记（Label）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#强制存取控制规则bell-lapadula-模型核心" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        强制存取控制规则（Bell-LaPadula 模型核心）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dac--mac-组合使用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAC + MAC 组合使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-视图机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 视图机制
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-审计audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 审计（Audit）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 审计（Audit）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-审计事件类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 审计事件类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-审计级别" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 审计级别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-审计功能" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 审计功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-审计语句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 审计语句
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-数据加密" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 数据加密
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 数据加密">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-存储加密" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 存储加密
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-传输加密" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 传输加密
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-其他安全性保护" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 其他安全性保护
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 其他安全性保护">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-推理控制inference-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 推理控制（Inference Control）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-隐蔽信道covert-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 隐蔽信道（Covert Channel）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-数据隐私保护data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 数据隐私保护（Data Privacy）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-小结与知识点对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8 小结与知识点对照
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 小结与知识点对照">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#数据库安全性技术总览" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据库安全性技术总览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关键概念辨析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键概念辨析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Internet%20Computing/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-应用层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_4_4" id="__nav_2_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3-运输层
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%823/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%824/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-数据库安全性概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 数据库安全性概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 数据库安全性概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-为什么需要安全性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 为什么需要安全性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-数据库面临的威胁来源" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 数据库面临的威胁来源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-数据库不安全因素" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 数据库不安全因素
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-安全标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 安全标准
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 安全标准">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-tcsec橙皮书" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 TCSEC（橙皮书）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-cc-标准通用准则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 CC 标准（通用准则）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-中国计算机安全标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 中国计算机安全标准
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-数据库安全功能要求各级别对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 数据库安全功能要求（各级别对照）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-数据库安全性控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 数据库安全性控制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 数据库安全性控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-计算机系统安全模型多层保护" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 计算机系统安全模型（多层保护）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-dbms-安全性控制模型存取控制流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 DBMS 安全性控制模型（存取控制流程）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-常用安全控制方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 常用安全控制方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-用户身份鉴别identification--authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 用户身份鉴别（Identification &amp; Authentication）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-存取控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 存取控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-自主存取控制dac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 自主存取控制（DAC）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-授权授予grant与回收revoke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 授权：授予（GRANT）与回收（REVOKE）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 授权：授予（GRANT）与回收（REVOKE）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#371-grant-语句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7.1 GRANT 语句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#372-revoke-语句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7.2 REVOKE 语句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#373-数据库模式权限" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7.3 数据库模式权限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-数据库角色" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 数据库角色
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 数据库角色">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#角色相关-sql-语法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        角色相关 SQL 语法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-强制存取控制mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 强制存取控制（MAC）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.9 强制存取控制（MAC）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#主体与客体" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主体与客体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#敏感度标记label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        敏感度标记（Label）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#强制存取控制规则bell-lapadula-模型核心" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        强制存取控制规则（Bell-LaPadula 模型核心）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dac--mac-组合使用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAC + MAC 组合使用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-视图机制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 视图机制
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-审计audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 审计（Audit）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 审计（Audit）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-审计事件类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 审计事件类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-审计级别" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 审计级别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-审计功能" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 审计功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-审计语句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 审计语句
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-数据加密" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 数据加密
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 数据加密">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-存储加密" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 存储加密
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-传输加密" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 传输加密
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-其他安全性保护" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 其他安全性保护
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 其他安全性保护">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-推理控制inference-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 推理控制（Inference Control）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-隐蔽信道covert-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 隐蔽信道（Covert Channel）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-数据隐私保护data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 数据隐私保护（Data Privacy）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-小结与知识点对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8 小结与知识点对照
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 小结与知识点对照">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#数据库安全性技术总览" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据库安全性技术总览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关键概念辨析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键概念辨析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Foundations of Data Management/Chapter4/Chapter4-数据库安全完整性.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="第4章-数据库安全性">第4章 数据库安全性<a class="headerlink" href="#第4章-数据库安全性" title="Permanent link">&para;</a></h1>
+<h2 id="1-数据库安全性概述">1 数据库安全性概述<a class="headerlink" href="#1-数据库安全性概述" title="Permanent link">&para;</a></h2>
+<h3 id="11-为什么需要安全性">1.1 为什么需要安全性<a class="headerlink" href="#11-为什么需要安全性" title="Permanent link">&para;</a></h3>
+<p>数据库的一大特点是<strong>数据共享</strong>，但数据共享必然带来安全问题，因此数据库中的数据共享不能是无条件的共享。典型的敏感数据场景：</p>
+<ul>
+<li>军事秘密、国家机密</li>
+<li>新产品实验数据</li>
+<li>市场需求分析、销售计划</li>
+<li>客户档案、医疗档案、银行储蓄数据</li>
+</ul>
+<p><strong>定义：</strong> 数据库的安全性是指<strong>保护数据库以防止不合法使用所造成的数据泄露、更改或破坏</strong>。系统安全保护措施是否有效是数据库系统主要的性能指标之一。</p>
+<h3 id="12-数据库面临的威胁来源">1.2 数据库面临的威胁来源<a class="headerlink" href="#12-数据库面临的威胁来源" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>威胁类型</th>
+<th>对应保护措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非法用户</td>
+<td>安全性保护（权限管理）</td>
+</tr>
+<tr>
+<td>非法数据</td>
+<td>完整性保护</td>
+</tr>
+<tr>
+<td>各种故障或误操作</td>
+<td>故障恢复</td>
+</tr>
+<tr>
+<td>多用户并发访问</td>
+<td>并发控制</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-数据库不安全因素">1.3 数据库不安全因素<a class="headerlink" href="#13-数据库不安全因素" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>非授权用户的恶意存取和破坏</strong></li>
+<li>黑客猎取用户名和口令，假冒合法用户偷取、修改、破坏数据</li>
+<li>
+<p>对策：用户身份鉴别、存取控制、视图</p>
+</li>
+<li>
+<p><strong>重要或敏感数据被泄露</strong></p>
+</li>
+<li>黑客盗窃机密数据</li>
+<li>
+<p>对策：强制存取控制（MAC）、数据加密存储和传输、审计日志分析</p>
+</li>
+<li>
+<p><strong>安全环境的脆弱性</strong></p>
+</li>
+<li>数据库安全依赖于整个计算机系统安全（硬件、OS、网络）</li>
+<li>对策：建立可信（Trusted）计算机系统的概念和标准</li>
+</ol>
+<hr />
+<h2 id="2-安全标准">2 安全标准<a class="headerlink" href="#2-安全标准" title="Permanent link">&para;</a></h2>
+<h3 id="21-tcsec橙皮书">2.1 TCSEC（橙皮书）<a class="headerlink" href="#21-tcsec橙皮书" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>颁布时间：</strong> 1985 年，美国国防部（DoD）</li>
+<li><strong>全称：</strong> DoD 可信计算机系统评估准则（Trusted Computer System Evaluation Criteria）</li>
+<li><strong>安全级别划分（由低到高）：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>安全级别</th>
+<th>名称</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D</td>
+<td>最小保护</td>
+<td>一切不符合更高标准的系统</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>自主安全保护</td>
+<td>用户与数据分离；DAC；保护/限制用户权限传播</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>受控的存取保护</td>
+<td>DAC 进一步细化；个人身份注册；审计；资源隔离</td>
+</tr>
+<tr>
+<td>B1</td>
+<td>标记安全保护</td>
+<td>对数据加标记；实施 MAC；审计</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>结构化保护</td>
+<td>形式化安全策略模型；对所有主体/客体实施 DAC + MAC</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>安全域</td>
+<td>TCB 满足访问监控器要求；更强审计跟踪；系统恢复</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>验证设计</td>
+<td>B3 级保护 + 形式化设计说明和验证</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>各安全级别之间具有<strong>偏序向下兼容</strong>的关系（高级别包含低级别的所有要求）。</p>
+</blockquote>
+<h3 id="22-cc-标准通用准则">2.2 CC 标准（通用准则）<a class="headerlink" href="#22-cc-标准通用准则" title="Permanent link">&para;</a></h3>
+<ul>
+<li>背景：1993 年，CTCPEC、FC、TCSEC、ITSEC 联合行动，形成 CC（Common Criteria）项目</li>
+<li>1999 年 CC V2.1 被 ISO 采纳为国际标准（ISO 15408），2001 年被中国采用</li>
+<li><strong>目前 CC 已基本取代 TCSEC，成为评估信息产品安全性的主要标准</strong></li>
+</ul>
+<p>CC 标准结构（三部分相互依存）：</p>
+<ol>
+<li><strong>简介和一般模型</strong> — 术语、基本概念、评估框架</li>
+<li><strong>安全功能要求</strong> — 类、子类、组件</li>
+<li><strong>安全保证要求</strong> — 保证类、子类、组件；评估保证级（EAL1～EAL7）</li>
+</ol>
+<p><strong>EAL 与 TCSEC 对照：</strong></p>
+<table>
+<thead>
+<tr>
+<th>EAL 级别</th>
+<th>定义</th>
+<th>近似对应 TCSEC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EAL1</td>
+<td>功能测试</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EAL2</td>
+<td>结构测试</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>EAL3</td>
+<td>系统地测试和检查</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>EAL4</td>
+<td>系统地设计、测试和复查</td>
+<td>B1</td>
+</tr>
+<tr>
+<td>EAL5</td>
+<td>半形式化设计和测试</td>
+<td>B2</td>
+</tr>
+<tr>
+<td>EAL6</td>
+<td>半形式化验证的设计和测试</td>
+<td>B3</td>
+</tr>
+<tr>
+<td>EAL7</td>
+<td>形式化验证的设计和测试</td>
+<td>A1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-中国计算机安全标准">2.3 中国计算机安全标准<a class="headerlink" href="#23-中国计算机安全标准" title="Permanent link">&para;</a></h3>
+<p><strong>GB 17859-1999</strong>（参照 TCSEC）：</p>
+<table>
+<thead>
+<tr>
+<th>GB 17859-1999 分级</th>
+<th>TCSEC 分级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 级：自主安全保护级</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>第 2 级：系统审计保护级</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>第 3 级：安全标记保护级</td>
+<td>B1</td>
+</tr>
+<tr>
+<td>第 4 级：结构化保护级</td>
+<td>B2</td>
+</tr>
+<tr>
+<td>第 5 级：访问验证保护级</td>
+<td>B3</td>
+</tr>
+</tbody>
+</table>
+<p>其他重要标准：</p>
+<ul>
+<li><strong>GB/T 18336-2001</strong>：信息技术安全性评估准则（参照 CC 标准）</li>
+<li><strong>GJB 2646-96</strong>：军用计算机安全评估标准（参照 TCSEC）</li>
+<li><strong>GJB 5023-2001</strong>：军用数据库安全评估准则</li>
+<li><strong>GB/T 20009-2005</strong>：数据库管理系统安全评估准则</li>
+<li><strong>GB/T 20273-2006</strong>：数据库管理系统安全技术要求</li>
+<li><strong>2002 年公安部系列标准</strong>（GA/T 387～391）：覆盖网络、操作系统、数据库、通用、管理等方面</li>
+</ul>
+<h3 id="24-数据库安全功能要求各级别对照">2.4 数据库安全功能要求（各级别对照）<a class="headerlink" href="#24-数据库安全功能要求各级别对照" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>安全功能</th>
+<th>用户自主保护级</th>
+<th>系统审计保护级</th>
+<th>安全标记保护级</th>
+<th>结构化保护级</th>
+<th>访问验证保护级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>身份鉴别</td>
+<td>+</td>
+<td>+</td>
+<td>+++</td>
+<td>+++</td>
+<td>++++</td>
+</tr>
+<tr>
+<td>自主访问控制</td>
+<td>+</td>
+<td>++</td>
+<td>++</td>
+<td>+++</td>
+<td>++++</td>
+</tr>
+<tr>
+<td>强制访问控制</td>
+<td></td>
+<td></td>
+<td>+</td>
+<td>++</td>
+<td>+++</td>
+</tr>
+<tr>
+<td>标记</td>
+<td></td>
+<td></td>
+<td>+</td>
+<td>++</td>
+<td>++</td>
+</tr>
+<tr>
+<td>客体重用</td>
+<td></td>
+<td>+</td>
+<td>+</td>
+<td>++</td>
+<td>++</td>
+</tr>
+<tr>
+<td>审计</td>
+<td></td>
+<td>+</td>
+<td>++</td>
+<td>+++</td>
+<td>++++</td>
+</tr>
+<tr>
+<td>数据完整性</td>
+<td>+</td>
+<td>+</td>
+<td>++</td>
+<td>++</td>
+<td>+++</td>
+</tr>
+<tr>
+<td>隐蔽信道分析</td>
+<td></td>
+<td></td>
+<td></td>
+<td>+</td>
+<td>++</td>
+</tr>
+<tr>
+<td>可信路径</td>
+<td></td>
+<td></td>
+<td></td>
+<td>+</td>
+<td>++</td>
+</tr>
+<tr>
+<td>可信恢复</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>+</td>
+</tr>
+<tr>
+<td>推理控制</td>
+<td></td>
+<td></td>
+<td></td>
+<td>+</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-数据库安全性控制">3 数据库安全性控制<a class="headerlink" href="#3-数据库安全性控制" title="Permanent link">&para;</a></h2>
+<h3 id="31-计算机系统安全模型多层保护">3.1 计算机系统安全模型（多层保护）<a class="headerlink" href="#31-计算机系统安全模型多层保护" title="Permanent link">&para;</a></h3>
+<p>安全措施是<strong>一级一级层层设置</strong>的：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>用户 ──→ DBMS ──→ OS ──→ DB
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>用户标识和鉴别 | 数据库安全保护 | 操作系统安全保护 | 数据密码存储
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>用户层</strong>：系统根据用户标识鉴定身份，合法用户才能进入系统</li>
+<li><strong>DBMS 层</strong>：进行存取控制，只允许用户执行合法操作</li>
+<li><strong>OS 层</strong>：操作系统自身的保护措施</li>
+<li><strong>数据层</strong>：数据以密码形式存储到数据库</li>
+</ul>
+<h3 id="32-dbms-安全性控制模型存取控制流程">3.2 DBMS 安全性控制模型（存取控制流程）<a class="headerlink" href="#32-dbms-安全性控制模型存取控制流程" title="Permanent link">&para;</a></h3>
+<p>存取控制流程：</p>
+<ol>
+<li><strong>身份鉴别</strong>：对提出 SQL 访问请求的用户进行身份验证，防止不可信用户使用系统</li>
+<li><strong>SQL 处理层</strong>：依次进行<strong>自主存取控制（DAC）</strong> 和<strong>强制存取控制（MAC）</strong>，进一步可进行推理控制</li>
+<li><strong>审计</strong>：对用户访问行为和系统关键操作进行审计，对异常用户行为进行简单入侵检测</li>
+</ol>
+<h3 id="33-常用安全控制方法">3.3 常用安全控制方法<a class="headerlink" href="#33-常用安全控制方法" title="Permanent link">&para;</a></h3>
+<ul>
+<li>用户标识和鉴别</li>
+<li>存取控制（DAC + MAC）</li>
+<li>视图</li>
+<li>审计</li>
+<li>数据加密</li>
+</ul>
+<hr />
+<h3 id="34-用户身份鉴别identification--authentication">3.4 用户身份鉴别（Identification &amp; Authentication）<a class="headerlink" href="#34-用户身份鉴别identification--authentication" title="Permanent link">&para;</a></h3>
+<p><strong>定义：</strong> 系统提供的<strong>最外层</strong>安全保护措施。</p>
+<p><strong>用户标识：</strong> 由<strong>用户名</strong>和<strong>用户标识号</strong>组成，用户标识号在系统整个生命周期内唯一。</p>
+<p><strong>鉴别方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静态口令鉴别</td>
+<td>用户自己设定，静态不变的口令</td>
+<td>简单，但安全性较低，容易被截获</td>
+</tr>
+<tr>
+<td>动态口令鉴别</td>
+<td>每次使用动态产生的新口令（一次一密，如短信验证码、令牌）</td>
+<td>安全性较高，防重放攻击</td>
+</tr>
+<tr>
+<td>生物特征鉴别</td>
+<td>指纹、虹膜、掌纹等生物特征认证</td>
+<td>难以伪造，但成本高</td>
+</tr>
+<tr>
+<td>智能卡鉴别</td>
+<td>不可复制的硬件，内置集成电路芯片，具有硬件加密功能</td>
+<td>双因素认证，安全性高</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>补充（PPT 未涉及）：</strong> 现代系统常采用<strong>多因素认证（MFA）</strong>，组合以上两种或多种方式，如"口令 + 动态令牌"或"口令 + 指纹"，进一步提升安全性。</p>
+</blockquote>
+<hr />
+<h3 id="35-存取控制">3.5 存取控制<a class="headerlink" href="#35-存取控制" title="Permanent link">&para;</a></h3>
+<p><strong>存取控制机制的两个核心组成：</strong></p>
+<ol>
+<li><strong>定义用户权限</strong>：将用户权限登记到数据字典中（称为"安全规则"或"授权规则"）</li>
+<li>用户对某一数据对象的操作权力称为<strong>权限</strong></li>
+<li><strong>合法权限检查</strong>：用户发出操作请求后，DBMS 查找数据字典，根据安全规则进行检查</li>
+</ol>
+<p><strong>两种主要存取控制方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>英文</th>
+<th>起始安全级别</th>
+<th>核心思想</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自主存取控制</td>
+<td>Discretionary Access Control（DAC）</td>
+<td>C1</td>
+<td>用户自主管理权限，权限可转授</td>
+</tr>
+<tr>
+<td>强制存取控制</td>
+<td>Mandatory Access Control（MAC）</td>
+<td>B1</td>
+<td>系统强制为数据对象和用户打密级标记，按规则控制访问</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="36-自主存取控制dac">3.6 自主存取控制（DAC）<a class="headerlink" href="#36-自主存取控制dac" title="Permanent link">&para;</a></h3>
+<p><strong>特点：</strong></p>
+<ul>
+<li>用户对不同的数据对象有不同的存取权限</li>
+<li>不同的用户对同一对象也有不同的权限</li>
+<li>用户可将其拥有的存取权限转授给其他用户</li>
+</ul>
+<p><strong>可控制的对象与权限：</strong></p>
+<table>
+<thead>
+<tr>
+<th>对象类型</th>
+<th>对象</th>
+<th>操作类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库模式</td>
+<td>模式</td>
+<td>CREATE SCHEMA</td>
+</tr>
+<tr>
+<td>数据库模式</td>
+<td>基本表</td>
+<td>CREATE TABLE，ALTER TABLE</td>
+</tr>
+<tr>
+<td>数据库模式</td>
+<td>视图</td>
+<td>CREATE VIEW</td>
+</tr>
+<tr>
+<td>数据库模式</td>
+<td>索引</td>
+<td>CREATE INDEX</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>基本表和视图</td>
+<td>SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALL PRIVILEGES</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>属性列</td>
+<td>SELECT, INSERT, UPDATE, REFERENCES, ALL PRIVILEGES</td>
+</tr>
+</tbody>
+</table>
+<p><strong>用户存取权限定义规则：</strong></p>
+<ol>
+<li>一个客体的<strong>属主（Owner）</strong>自动拥有该客体上的所有存取权限</li>
+<li>拥有权限的用户可自主将权限传授给其他已注册用户</li>
+<li>用户只能通过以上两种方式获得权限</li>
+</ol>
+<p><strong>访问控制检查流程（对每条 SQL 命令）：</strong></p>
+<ol>
+<li>判断用户 S 是否是数据库管理员 → 是则通过</li>
+<li>判断 S 是否是对象 O 的拥有者 → 是则通过</li>
+<li>判断 S 是否在 O 上拥有方式 A 所需的存取权限 → 有则通过，没有则权限检查失败</li>
+</ol>
+<p><strong>DAC 的缺点：</strong> 可能存在数据的"<strong>无意泄露</strong>"，因为机制仅通过存取权限控制，而数据本身无安全性标记。</p>
+<hr />
+<h3 id="37-授权授予grant与回收revoke">3.7 授权：授予（GRANT）与回收（REVOKE）<a class="headerlink" href="#37-授权授予grant与回收revoke" title="Permanent link">&para;</a></h3>
+<h4 id="371-grant-语句">3.7.1 GRANT 语句<a class="headerlink" href="#371-grant-语句" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">GRANT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="p">]...</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">TO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>授权用户（发出 GRANT 的用户）：</strong> DBA、数据库对象的属主、拥有该权限及继续授权许可的用户</li>
+<li><strong>被授权用户：</strong> 一个或多个具体用户、角色（ROLE）、PUBLIC（全体用户）</li>
+<li><strong>WITH GRANT OPTION：</strong> 被授权用户同时获得"继续授权"许可，可将权限再授予他人；<strong>不允许循环授权</strong></li>
+</ul>
+<p><strong>示例（与 PPT 例题对齐）：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">-- [例4.1] 把查询Student表权限授给用户U1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">U1</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">-- [例4.2] 把Student表和Course表的全部权限授予U2和U3</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">U2</span><span class="p">,</span><span class="w"> </span><span class="n">U3</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">-- [例4.3] 把SC表的查询权限授予所有用户</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">PUBLIC</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1">-- [例4.4] 把查询Student表和修改学生学号的权限授给U4</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1">-- 注：对属性列的授权，必须明确指出属性列名</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">(</span><span class="n">Sno</span><span class="p">),</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">U4</span><span class="p">;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1">-- [例4.5] 把SC表的INSERT权限授予U5，并允许继续授权</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">U5</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="c1">-- [例4.6] U5将INSERT权限及传播权限授予U6</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">U6</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="c1">-- [例4.7] U6将INSERT权限授予U7，但U7不能再传播</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">U7</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>权限传播链（例4.5～4.7）：</strong>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>DBA → U5（可传播）→ U6（可传播）→ U7（不可传播）
+</span></code></pre></div></td></tr></table></div></p>
+<h4 id="372-revoke-语句">3.7.2 REVOKE 语句<a class="headerlink" href="#372-revoke-语句" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">REVOKE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="p">]...</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">用户</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="p">[</span><span class="k">CASCADE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">RESTRICT</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>CASCADE</strong>：连锁回收。若用户 A 已将权限转授给 B，则同时从 A 和 B 处回收</li>
+<li><strong>RESTRICT</strong>：仅当不存在连锁回收问题时才执行，否则拒绝执行</li>
+</ul>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">-- [例4.8] 收回U4修改学生学号的权限</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">REVOKE</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">U4</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">-- [例4.9] 收回所有用户对SC表的查询权限</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="k">REVOKE</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">PUBLIC</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1">-- [例4.10] 收回U5对SC表的INSERT权限（CASCADE连锁回收U6、U7）</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="k">REVOKE</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">U5</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>注意：</strong> 若 U6/U7 还从其他用户获得了 SC 表的 INSERT 权限，系统只回收直接或间接从 U5 处获得的权限，他们仍可能保留该权限。</p>
+</blockquote>
+<h4 id="373-数据库模式权限">3.7.3 数据库模式权限<a class="headerlink" href="#373-数据库模式权限" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="k">WITH</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">DBA</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RESOURCE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">CONNECT</span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>可创建用户</th>
+<th>可创建模式</th>
+<th>可创建表/视图</th>
+<th>可登录数据库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DBA</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>RESOURCE</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓（需有相应权限）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>CONNECT（默认）：</strong> 只能登录，不能创建用户、模式、基本表</li>
+<li><strong>RESOURCE：</strong> 能创建基本表和视图，成为所创建对象的属主；不能创建模式和新用户</li>
+<li><strong>DBA：</strong> 超级用户，拥有一切权限</li>
+</ul>
+<hr />
+<h3 id="38-数据库角色">3.8 数据库角色<a class="headerlink" href="#38-数据库角色" title="Permanent link">&para;</a></h3>
+<p><strong>定义：</strong> 角色是<strong>被命名的一组与数据库操作相关的权限</strong>（权限的集合）。用于为一组具有相同权限的用户简化授权过程。</p>
+<h4 id="角色相关-sql-语法">角色相关 SQL 语法<a class="headerlink" href="#角色相关-sql-语法" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">-- 创建角色</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色名</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="c1">-- 给角色授权</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">GRANT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]...</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="p">]...;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="c1">-- 回收角色权限</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">REVOKE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">权限</span><span class="o">&gt;</span><span class="p">]...</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象类型</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">对象名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="p">]...;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="c1">-- 将角色授予用户或其他角色（WITH ADMIN OPTION：继续授权许可）</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="k">GRANT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="p">]...</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="n">_or_用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="n">_or_用户</span><span class="o">&gt;</span><span class="p">]...</span><span class="w"> </span><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">ADMIN</span><span class="w"> </span><span class="k">OPTION</span><span class="p">];</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="c1">-- 从用户或角色回收角色</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="k">REVOKE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="o">&gt;</span><span class="p">]...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="n">_or_用户</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">角色</span><span class="n">_or_用户</span><span class="o">&gt;</span><span class="p">]...;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>WITH GRANT OPTION 与 WITH ADMIN OPTION 的区别：</strong></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>适用范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WITH GRANT OPTION</td>
+<td>对象权限（如 SELECT/INSERT 等）</td>
+<td>允许被授权者将对象权限转授他人</td>
+</tr>
+<tr>
+<td>WITH ADMIN OPTION</td>
+<td>系统权限 / 角色授予</td>
+<td>允许被授权者将角色或系统权限再授予他人</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（例4.11）：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">-- Step1: 创建角色R1</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1">-- Step2: 授予R1权限</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="c1">-- Step3: 将角色授予用户</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="k">GRANT</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="err">王平</span><span class="p">,</span><span class="w"> </span><span class="err">张明</span><span class="p">,</span><span class="w"> </span><span class="err">赵玲</span><span class="p">;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="c1">-- 批量回收：一次性回收王平的所有R1权限</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="k">REVOKE</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="err">王平</span><span class="p">;</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="c1">-- 角色权限修改（例4.12）：增加DELETE权限</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="c1">-- 张明和赵玲自动获得DELETE权限</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="c1">-- 角色权限修改（例4.13）：减少SELECT权限</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="k">REVOKE</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="c1">-- 张明和赵玲的SELECT权限自动被回收</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>一个角色的权限 = 直接授予该角色的权限 + 通过其他角色授予该角色的权限</strong></p>
+<hr />
+<h3 id="39-强制存取控制mac">3.9 强制存取控制（MAC）<a class="headerlink" href="#39-强制存取控制mac" title="Permanent link">&para;</a></h3>
+<p><strong>定义：</strong> 强制存取控制（Mandatory Access Control，MAC），从 B1 级开始要求，提供更高程度的安全性。对数据本身进行密级标记，标记与数据不可分离。</p>
+<p><strong>适用场景：</strong> 对数据有严格而固定密级分类的部门，如军事部门、政府部门。</p>
+<h4 id="主体与客体">主体与客体<a class="headerlink" href="#主体与客体" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>主体（Subject）</strong>：系统中的活动实体，包括实际用户和代表用户的各进程</li>
+<li><strong>客体（Object）</strong>：系统中的被动实体，受主体操纵，包括文件、基本表、索引、视图、存储过程等</li>
+</ul>
+<h4 id="敏感度标记label">敏感度标记（Label）<a class="headerlink" href="#敏感度标记label" title="Permanent link">&para;</a></h4>
+<p>DBMS 为每个主体和客体实例指派一个敏感度标记，分为：</p>
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TS</td>
+<td>绝密（Top Secret）</td>
+</tr>
+<tr>
+<td>S</td>
+<td>机密（Secret）</td>
+</tr>
+<tr>
+<td>C</td>
+<td>可信（Confidential）</td>
+</tr>
+<tr>
+<td>P</td>
+<td>公开（Public）</td>
+</tr>
+</tbody>
+</table>
+<p>支配次序：<strong>TS ≥ S ≥ C ≥ P</strong></p>
+<ul>
+<li><strong>主体的敏感度标记</strong>称为<strong>许可证级别（Clearance Level）</strong></li>
+<li><strong>客体的敏感度标记</strong>称为<strong>密级（Classification Level）</strong></li>
+</ul>
+<h4 id="强制存取控制规则bell-lapadula-模型核心">强制存取控制规则（Bell-LaPadula 模型核心）<a class="headerlink" href="#强制存取控制规则bell-lapadula-模型核心" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>名称</th>
+<th>条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td><strong>下读（Read Down）</strong></td>
+<td>主体许可证级别 ≥ 客体密级</td>
+<td>主体才能<strong>读取</strong>客体</td>
+</tr>
+<tr>
+<td>②</td>
+<td><strong>上写（Write Up）</strong></td>
+<td>主体许可证级别 ≤ 客体密级</td>
+<td>主体才能<strong>写入</strong>客体</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>设计意图：</strong> 下读规则防止高密级用户将高密级数据读取后泄露；上写规则防止低密级用户将低密级数据写入高密级对象（防止"特洛伊木马"攻击）。</p>
+</blockquote>
+<h4 id="dac--mac-组合使用">DAC + MAC 组合使用<a class="headerlink" href="#dac--mac-组合使用" title="Permanent link">&para;</a></h4>
+<ul>
+<li>实现 MAC 时<strong>必须首先实现 DAC</strong>（较高级别包含较低级别的所有保护）</li>
+<li>安全检查顺序：<strong>SQL 语法分析 &amp; 语义检查 → DAC 检查 → MAC 检查 → 继续</strong></li>
+<li>只有同时通过 DAC 和 MAC 检查的数据对象才可被存取</li>
+</ul>
+<hr />
+<h2 id="4-视图机制">4 视图机制<a class="headerlink" href="#4-视图机制" title="Permanent link">&para;</a></h2>
+<p><strong>作用：</strong> 把需要保密的数据对无权存取的用户<strong>隐藏</strong>起来，对数据提供一定程度的安全保护；间接实现支持存取谓词的用户权限定义。</p>
+<p><strong>示例（例4.14）：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">-- Step1: 建立计算机系学生的视图</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">CS_Student</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1">-- Step2: 在视图上授权</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CS_Student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="err">王平</span><span class="p">;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CS_Student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="err">张明</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>视图机制的安全性优缺点：</strong></p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>将行级/列级权限控制与 SQL 授权机制结合</td>
+<td>只能提供数据独立性保护，无法防止推理攻击</td>
+</tr>
+<tr>
+<td>可限制用户只访问特定行/列数据</td>
+<td>视图本身不能替代强制存取控制</td>
+</tr>
+<tr>
+<td>实现简单，不改变数据存储结构</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>补充（PPT 未涉及）：</strong> 视图可实现<strong>行级安全性</strong>（如上例限制只看 CS 系学生）和<strong>列级安全性</strong>（只暴露特定列）。在 PostgreSQL 等系统中还有<strong>行级安全策略（Row Level Security，RLS）</strong>，可在表级别对每一行自动应用访问策略，无需视图。</p>
+</blockquote>
+<hr />
+<h2 id="5-审计audit">5 审计（Audit）<a class="headerlink" href="#5-审计audit" title="Permanent link">&para;</a></h2>
+<p><strong>定义：</strong> 启用专用的<strong>审计日志（Audit Log）</strong>，将用户对数据库的所有操作记录在上面；审计员利用审计日志监控数据库中的各种行为，找出非法存取数据的人、时间和内容。</p>
+<p><strong>要求：</strong> C2 以上安全级别的 DBMS 必须具有审计功能。</p>
+<p><strong>可选性：</strong> 审计很费时间和空间，DBA 可灵活打开或关闭审计功能，主要用于安全性要求较高的部门。</p>
+<h3 id="51-审计事件类型">5.1 审计事件类型<a class="headerlink" href="#51-审计事件类型" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务器事件</td>
+<td>数据库服务器的启停、配置文件重新加载等</td>
+</tr>
+<tr>
+<td>系统权限</td>
+<td>对系统结构或模式对象进行操作的审计（通过系统权限获得的操作）</td>
+</tr>
+<tr>
+<td>语句事件</td>
+<td>对 SQL 语句的审计，包括 DDL、DML、DQL、DCL</td>
+</tr>
+<tr>
+<td>模式对象事件</td>
+<td>特定模式对象（表、视图、存储过程/函数）上的 SELECT 或 DML 操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-审计级别">5.2 审计级别<a class="headerlink" href="#52-审计级别" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>设置人员</th>
+<th>监测内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户级审计</td>
+<td>任何用户</td>
+<td>用户针对自己创建的表和视图进行审计</td>
+</tr>
+<tr>
+<td>系统级审计</td>
+<td>仅 DBA</td>
+<td>监测登录成功/失败、授权/收回操作、数据库级权限下的操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-审计功能">5.3 审计功能<a class="headerlink" href="#53-审计功能" title="Permanent link">&para;</a></h3>
+<ul>
+<li>提供多种审计查阅方式</li>
+<li>多套审计规则（一般在数据库初始化时设定）</li>
+<li>审计分析和报表功能</li>
+<li>
+<p>审计日志管理：</p>
+</li>
+<li>
+<p>审计日志必须先转储后删除</p>
+</li>
+<li>对转储文件提供完整性和保密性保护</li>
+<li>
+<p>只允许审计员查阅和转储，不允许任何用户新增/修改审计记录</p>
+</li>
+<li>
+<p>提供查询审计设置及审计记录信息的专门视图</p>
+</li>
+</ul>
+<h3 id="54-审计语句">5.4 审计语句<a class="headerlink" href="#54-审计语句" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">-- [例4.15] 对修改SC表结构或数据的操作进行审计</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="n">AUDIT</span><span class="w"> </span><span class="k">ALTER</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1">-- [例4.16] 取消对SC表上ALTER和UPDATE操作的审计</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="n">NOAUDIT</span><span class="w"> </span><span class="k">ALTER</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>补充（PPT 未涉及）：</strong> 审计日志本身也需要保护，防止攻击者在入侵后篡改日志。现代数据库（如 Oracle、SQL Server）支持将审计日志写入独立的、受保护的存储区，甚至使用区块链技术保证日志不可篡改。</p>
+</blockquote>
+<hr />
+<h2 id="6-数据加密">6 数据加密<a class="headerlink" href="#6-数据加密" title="Permanent link">&para;</a></h2>
+<p><strong>作用：</strong> 防止数据库中数据在<strong>存储</strong>和<strong>传输</strong>中失密的有效手段。</p>
+<p><strong>基本思想：</strong> 根据一定算法将原始数据（<strong>明文，Plain text</strong>）变换为不可直接识别的格式（<strong>密文，Cipher text</strong>）。</p>
+<h3 id="61-存储加密">6.1 存储加密<a class="headerlink" href="#61-存储加密" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>透明存储加密</td>
+<td>内核级加密，写磁盘时加密、授权读取时解密，对用户完全透明；只需在建表时声明需加密字段</td>
+<td>性能较好，安全完备性高，应用无需修改</td>
+</tr>
+<tr>
+<td>非透明存储加密</td>
+<td>通过多个加密函数在应用层实现</td>
+<td>灵活但需修改应用程序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-传输加密">6.2 传输加密<a class="headerlink" href="#62-传输加密" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>加密层次</th>
+<th>说明</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链路加密</td>
+<td>链路层</td>
+<td>报文和报头均加密，每个链路节点解密再加密</td>
+<td>节点处数据为明文，节点安全性要求高</td>
+</tr>
+<tr>
+<td>端到端加密</td>
+<td>应用层（发送端加密、接收端解密）</td>
+<td>只加密报文，不加密报头</td>
+<td>所需密码设备少，但容易被非法监听者通过报头获取敏感信息</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>补充（PPT 未涉及）：</strong></p>
+<ul>
+<li><strong>TLS/SSL</strong>：目前主流数据库（MySQL、PostgreSQL、Oracle 等）均支持使用 TLS/SSL 协议进行端到端加密传输，是工程实践中最常用的传输加密方式。</li>
+<li><strong>加密算法分类：</strong> 对称加密（如 AES-256，速度快，适合大量数据存储加密）和非对称加密（如 RSA，适合密钥交换）通常结合使用。</li>
+<li><strong>密钥管理</strong>：加密系统的安全性不仅取决于算法，更取决于密钥管理（密钥生成、存储、分发、更新、撤销）。密钥泄露相当于加密失效。</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="7-其他安全性保护">7 其他安全性保护<a class="headerlink" href="#7-其他安全性保护" title="Permanent link">&para;</a></h2>
+<h3 id="71-推理控制inference-control">7.1 推理控制（Inference Control）<a class="headerlink" href="#71-推理控制inference-control" title="Permanent link">&para;</a></h3>
+<p><strong>定义：</strong> 避免用户利用能够访问的数据，通过推理<strong>得知更高密级的数据</strong>。</p>
+<p><strong>场景举例：</strong> 用户无权访问某字段，但可通过多次合法聚合查询（如求均值、方差）推断出该字段的具体值。</p>
+<p><strong>对策：</strong></p>
+<ul>
+<li><strong>查询审计</strong>：检测可疑的多次相关查询</li>
+<li><strong>数据扰动</strong>：在查询结果中加入随机噪声（如差分隐私技术）</li>
+<li><strong>查询限制</strong>：限制可以执行的查询组合，或限制查询结果集的最小规模</li>
+</ul>
+<h3 id="72-隐蔽信道covert-channel">7.2 隐蔽信道（Covert Channel）<a class="headerlink" href="#72-隐蔽信道covert-channel" title="Permanent link">&para;</a></h3>
+<p><strong>定义：</strong> 利用系统中不被安全策略覆盖的<strong>间接信息传递路径</strong>来传递敏感信息，绕过安全机制。</p>
+<p><strong>类型：</strong></p>
+<ul>
+<li><strong>存储隐蔽信道</strong>：通过修改共享存储资源（如文件大小、磁盘占用）传递信息</li>
+<li><strong>时序隐蔽信道</strong>：通过响应时间差异传递信息</li>
+</ul>
+<h3 id="73-数据隐私保护data-privacy">7.3 数据隐私保护（Data Privacy）<a class="headerlink" href="#73-数据隐私保护data-privacy" title="Permanent link">&para;</a></h3>
+<p><strong>定义：</strong> 描述个人控制其不愿他人知道或他人不便知道的个人数据的能力。</p>
+<p><strong>范围：</strong> 数据<strong>收集 → 存储 → 处理 → 发布</strong>各阶段。</p>
+<blockquote>
+<p><strong>补充（PPT 未涉及）：</strong> 数据隐私保护的重要技术：</p>
+<ul>
+<li><strong>数据脱敏（Data Masking）</strong>：将敏感数据（如身份证号、手机号）进行处理（如掩码、随机化）后再使用，用于非生产环境或对外数据共享</li>
+<li><strong>差分隐私（Differential Privacy）</strong>：通过向查询结果中加入数学意义上可控的随机噪声，使得统计查询无法精确还原个体信息，同时保证统计分析结果的可用性</li>
+<li><strong>数据匿名化（k-匿名、l-多样性等）</strong>：对数据集进行处理，使得每条记录至少与另外 k-1 条记录不可区分</li>
+<li><strong>隐私计算</strong>：联邦学习、安全多方计算（MPC）、同态加密等技术允许在不暴露原始数据的前提下进行数据计算</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="8-小结与知识点对照">8 小结与知识点对照<a class="headerlink" href="#8-小结与知识点对照" title="Permanent link">&para;</a></h2>
+<h3 id="数据库安全性技术总览">数据库安全性技术总览<a class="headerlink" href="#数据库安全性技术总览" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>核心目标</th>
+<th>主要手段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户身份鉴别</td>
+<td>确认用户合法性</td>
+<td>静态/动态口令、生物特征、智能卡</td>
+</tr>
+<tr>
+<td>自主存取控制（DAC）</td>
+<td>用户自主管理访问权限</td>
+<td>GRANT / REVOKE / ROLE</td>
+</tr>
+<tr>
+<td>强制存取控制（MAC）</td>
+<td>系统强制控制，防无意泄露</td>
+<td>密级标记、下读/上写规则</td>
+</tr>
+<tr>
+<td>视图机制</td>
+<td>隐藏敏感数据</td>
+<td>CREATE VIEW + GRANT</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>事后追责与监控</td>
+<td>AUDIT / NOAUDIT、审计日志</td>
+</tr>
+<tr>
+<td>数据加密</td>
+<td>防止数据被截获后泄密</td>
+<td>存储加密（透明/非透明）、传输加密（链路/端到端）</td>
+</tr>
+<tr>
+<td>推理控制</td>
+<td>防止间接推导高密级数据</td>
+<td>查询限制、数据扰动</td>
+</tr>
+<tr>
+<td>数据隐私保护</td>
+<td>保护个人数据全生命周期</td>
+<td>脱敏、差分隐私、匿名化</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键概念辨析">关键概念辨析<a class="headerlink" href="#关键概念辨析" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>概念对</th>
+<th>区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAC vs MAC</td>
+<td>DAC 由用户自主控制权限（可转授）；MAC 由系统强制，基于密级标记，用户不可自主更改</td>
+</tr>
+<tr>
+<td>主体 vs 客体</td>
+<td>主体是操作发起方（用户/进程）；客体是被操作方（表/视图/文件等）</td>
+</tr>
+<tr>
+<td>许可证级别 vs 密级</td>
+<td>许可证级别是<strong>主体</strong>的标记；密级是<strong>客体</strong>的标记</td>
+</tr>
+<tr>
+<td>下读 vs 上写</td>
+<td>下读：主体许可 ≥ 客体密级才能读；上写：主体许可 ≤ 客体密级才能写</td>
+</tr>
+<tr>
+<td>WITH GRANT OPTION vs WITH ADMIN OPTION</td>
+<td>GRANT OPTION 是对象权限的转授权；ADMIN OPTION 是系统权限/角色的转授权</td>
+</tr>
+<tr>
+<td>CASCADE vs RESTRICT（REVOKE）</td>
+<td>CASCADE 连锁回收下级授权；RESTRICT 存在连锁回收问题时拒绝执行</td>
+</tr>
+<tr>
+<td>链路加密 vs 端到端加密</td>
+<td>链路加密报头+报文都加密但节点暴露；端到端只加密报文，路由信息可见</td>
+</tr>
+<tr>
+<td>审计 vs 存取控制</td>
+<td>存取控制是预防性的（事前）；审计是追溯性的（事后）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../Chapter3/Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter3-3-SQL数据库更新">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter3-3-SQL数据库更新
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-footer__link md-footer__link--next" aria-label="下一页: Human-Computer Interaction Systems">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Human-Computer Interaction Systems
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

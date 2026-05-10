@@ -1,0 +1,4489 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Studying at The School of Intelligent Software and Engineering of Nanjing University">
+      
+      
+      
+        <link rel="canonical" href="https://helloi9.github.io/NJU_Notes/notes/The%20second%20semester%20of%20sophomore%20year/Foundations%20of%20Data%20Management/Chapter3/Chapter3-2-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/">
+      
+      
+        <link rel="prev" href="../Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/">
+      
+      
+        <link rel="next" href="../Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Chapter3-2-SQL数据查询 - HELLOI's Course Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-数据查询" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-header__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HELLOI's Course Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter3-2-SQL数据查询
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../blog/first-post.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="HELLOI&#39;s Course Note" class="md-nav__button md-logo" aria-label="HELLOI's Course Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    HELLOI's Course Note
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/helloi9/NJU_Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    helloi9/NJU_Notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Human-Computer%20Interaction%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The second semester of sophomore year
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    The second semester of sophomore year
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Computer%20Operating%20Systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Operating Systems
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_1" id="__nav_2_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Operating Systems
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap%20Lab/Lab2-%E5%8D%8F%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_3" id="__nav_2_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap1 绪论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap1 绪论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E5%90%84%E7%A7%8D%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    各种视角下的操作系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap1%20%E7%BB%AA%E8%AE%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统的发展历程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_1_4" id="__nav_2_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chap2 并发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chap2 并发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/1.%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%BC%96%E7%A8%8BMultiprocessor%20Programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.多处理器编程Multiprocessor Programming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/2.%E4%BA%92%E6%96%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.互斥基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/3.%E4%BA%92%E6%96%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.互斥进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/4.%E5%90%8C%E6%AD%A5%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.同步基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Computer%20Operating%20Systems/Chap2%20%E5%B9%B6%E5%8F%91/5.%E5%90%8C%E6%AD%A5%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5.同步进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations of Data Management
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations of Data Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter1/Chapter1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_3" id="__nav_2_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-1-关系数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-2-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-2-关系代数的基本运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter2/Chapter2-3-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E6%89%A9%E5%85%85%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter2-3-关系代数扩充运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2_4" id="__nav_2_2_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-1-SQL数据库的定义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-2-SQL数据查询
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-2-SQL数据查询
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一sql-数据查询概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、SQL 数据查询概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、SQL 数据查询概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-数据查询的数学基础" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 数据查询的数学基础
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-映像语句select-语句的完整语法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 映像语句（SELECT 语句）的完整语法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-select-语句的执行顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 SELECT 语句的执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二select-子句与-from-子句详解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、SELECT 子句与 FROM 子句详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、SELECT 子句与 FROM 子句详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-select-子句目标子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 SELECT 子句（目标子句）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-from-子句范围子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 FROM 子句（范围子句）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-where-子句条件子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 WHERE 子句（条件子句）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三单表查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、单表查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、单表查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-选择表中的若干元组" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 选择表中的若干元组
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 选择表中的若干元组">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#①-比较运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 比较运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#②-范围查询between--and-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 范围查询：BETWEEN … AND …
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#③-集合成员查询in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 集合成员查询：IN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#④-字符匹配模糊查询like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 字符匹配（模糊查询）：LIKE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#⑤-空值查询is-null--is-not-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 空值查询：IS NULL / IS NOT NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#⑥-多重条件查询and--or--not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ 多重条件查询：AND / OR / NOT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-消除结果中的重复元组distinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 消除结果中的重复元组：DISTINCT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-查询结果排序order-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 查询结果排序：ORDER BY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-聚集函数统计函数" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 聚集函数（统计函数）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-分组统计查询group-by-与-having" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 分组统计查询：GROUP BY 与 HAVING
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 分组统计查询：GROUP BY 与 HAVING">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#group-by-子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GROUP BY 子句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having-子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HAVING 子句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-与-having-的核心区别" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WHERE 与 HAVING 的核心区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四连接查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、连接查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、连接查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-连接查询概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 连接查询概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-等值连接与自然连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 等值连接与自然连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-连接操作的三种执行算法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 连接操作的三种执行算法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-自身连接自连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 自身连接（自连接）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-外连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 外连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-多表连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 多表连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五嵌套查询子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、嵌套查询（子查询）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、嵌套查询（子查询）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-嵌套查询概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 嵌套查询概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-不相关子查询-vs-相关子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 不相关子查询 vs. 相关子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-带-in-谓词的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 带 IN 谓词的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-带比较运算符的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 带比较运算符的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-带-any--all-谓词的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 带 ANY / ALL 谓词的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-带-exists-谓词的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 带 EXISTS 谓词的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-exists-与关系代数的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 EXISTS 与关系代数的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-用-exists-实现全称量词除法运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 用 EXISTS 实现全称量词（除法运算）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六集合查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、集合查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、集合查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-参与集合操作的要求" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 参与集合操作的要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-三种集合操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 三种集合操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#七基于派生表的查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、基于派生表的查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、基于派生表的查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-派生表derived-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 派生表（Derived Table）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-派生表的列名规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 派生表的列名规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#八关系代数与-sql-语言的对应关系总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、关系代数与 SQL 语言的对应关系总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#九重要知识点辨析与易错总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、重要知识点辨析与易错总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter3-3-SQL数据库更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Chapter4/Chapter4-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E5%AE%8C%E6%95%B4%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../Internet%20Computing/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Internet Computing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_4" id="__nav_2_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Internet Computing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1-计算机网络和因特网
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/2-%E5%BA%94%E7%94%A8%E5%B1%82/2-%E5%BA%94%E7%94%A8%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-应用层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_4_4" id="__nav_2_2_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_2_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3-运输层
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%822/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%823/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Internet%20Computing/3-%E8%BF%90%E8%BE%93%E5%B1%82/3-%E8%BF%90%E8%BE%93%E5%B1%824/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3-运输层4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../New%20Technologies%20in%20Mobile%20Networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Technologies in Mobile Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Software%20Engineering%20and%20Computing%20II/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering and Computing II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../blog/first-post.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Post
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#一sql-数据查询概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、SQL 数据查询概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、SQL 数据查询概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-数据查询的数学基础" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 数据查询的数学基础
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-映像语句select-语句的完整语法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 映像语句（SELECT 语句）的完整语法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-select-语句的执行顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 SELECT 语句的执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#二select-子句与-from-子句详解" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、SELECT 子句与 FROM 子句详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、SELECT 子句与 FROM 子句详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-select-子句目标子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 SELECT 子句（目标子句）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-from-子句范围子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 FROM 子句（范围子句）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-where-子句条件子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 WHERE 子句（条件子句）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#三单表查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、单表查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、单表查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-选择表中的若干元组" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 选择表中的若干元组
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 选择表中的若干元组">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#①-比较运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ① 比较运算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#②-范围查询between--and-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ② 范围查询：BETWEEN … AND …
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#③-集合成员查询in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ③ 集合成员查询：IN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#④-字符匹配模糊查询like" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ④ 字符匹配（模糊查询）：LIKE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#⑤-空值查询is-null--is-not-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑤ 空值查询：IS NULL / IS NOT NULL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#⑥-多重条件查询and--or--not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⑥ 多重条件查询：AND / OR / NOT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-消除结果中的重复元组distinct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 消除结果中的重复元组：DISTINCT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-查询结果排序order-by" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 查询结果排序：ORDER BY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-聚集函数统计函数" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 聚集函数（统计函数）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-分组统计查询group-by-与-having" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 分组统计查询：GROUP BY 与 HAVING
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 分组统计查询：GROUP BY 与 HAVING">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#group-by-子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GROUP BY 子句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having-子句" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HAVING 子句
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-与-having-的核心区别" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WHERE 与 HAVING 的核心区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#四连接查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、连接查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、连接查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-连接查询概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 连接查询概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-等值连接与自然连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 等值连接与自然连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-连接操作的三种执行算法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 连接操作的三种执行算法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-自身连接自连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 自身连接（自连接）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-外连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 外连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-多表连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 多表连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#五嵌套查询子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、嵌套查询（子查询）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、嵌套查询（子查询）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-嵌套查询概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 嵌套查询概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-不相关子查询-vs-相关子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 不相关子查询 vs. 相关子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-带-in-谓词的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 带 IN 谓词的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-带比较运算符的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 带比较运算符的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-带-any--all-谓词的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 带 ANY / ALL 谓词的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-带-exists-谓词的子查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 带 EXISTS 谓词的子查询
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-exists-与关系代数的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 EXISTS 与关系代数的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-用-exists-实现全称量词除法运算" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 用 EXISTS 实现全称量词（除法运算）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#六集合查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、集合查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、集合查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-参与集合操作的要求" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 参与集合操作的要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-三种集合操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 三种集合操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#七基于派生表的查询" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、基于派生表的查询
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、基于派生表的查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-派生表derived-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 派生表（Derived Table）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-派生表的列名规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 派生表的列名规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#八关系代数与-sql-语言的对应关系总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、关系代数与 SQL 语言的对应关系总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#九重要知识点辨析与易错总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、重要知识点辨析与易错总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/helloi9/NJU_Notes/edit/main/docs/notes/The second semester of sophomore year/Foundations of Data Management/Chapter3/Chapter3-2-SQL数据查询.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="sql-数据查询">SQL 数据查询<a class="headerlink" href="#sql-数据查询" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="一sql-数据查询概述">一、SQL 数据查询概述<a class="headerlink" href="#一sql-数据查询概述" title="Permanent link">&para;</a></h2>
+<h3 id="11-数据查询的数学基础">1.1 数据查询的数学基础<a class="headerlink" href="#11-数据查询的数学基础" title="Permanent link">&para;</a></h3>
+<p>SQL 语言的数据查询功能以<strong>关系代数</strong>为数学基础，常见的关系数据查询包括：</p>
+<table>
+<thead>
+<tr>
+<th>关系代数操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元组<strong>选择</strong>与属性<strong>投影</strong></td>
+<td>在单个关系上进行</td>
+</tr>
+<tr>
+<td><strong>笛卡儿积</strong>（Cartesian Product）</td>
+<td>两个关系的无条件合并</td>
+</tr>
+<tr>
+<td><strong>θ-连接</strong>（Theta Join）</td>
+<td>带条件的两表连接</td>
+</tr>
+<tr>
+<td><strong>自然连接</strong>（Natural Join）</td>
+<td>基于同名属性的等值连接，消除重复列</td>
+</tr>
+<tr>
+<td><strong>并、交、差</strong></td>
+<td>两个关系的集合运算</td>
+</tr>
+<tr>
+<td><strong>除</strong>（Division）</td>
+<td>用于"至少……全部……"类查询</td>
+</tr>
+</tbody>
+</table>
+<p>在交互式 SQL 中还扩展了以下查询功能：<strong>计算</strong>（广义投影）、<strong>统计查询</strong>与<strong>分组统计查询</strong>、<strong>结果排序</strong>。</p>
+<hr />
+<h3 id="12-映像语句select-语句的完整语法">1.2 映像语句（SELECT 语句）的完整语法<a class="headerlink" href="#12-映像语句select-语句的完整语法" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="p">[</span><span class="k">ALL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DISTINCT</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">目标列表达式</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">目标列表达式</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">…</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名或视图名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名或视图名</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="err">语句</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="k">AS</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="err">别名</span><span class="o">&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">条件表达式</span><span class="o">&gt;</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="o">&lt;</span><span class="err">条件表达式</span><span class="o">&gt;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">];</span>
+</span></code></pre></div></td></tr></table></div>
+<p>各子句功能说明：</p>
+<table>
+<thead>
+<tr>
+<th>子句</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT</code></td>
+<td><strong>目标子句</strong>：定义结果表的投影列（目标属性）</td>
+</tr>
+<tr>
+<td><code>FROM</code></td>
+<td><strong>范围子句</strong>：指定查询对象（基本表、视图或子查询）</td>
+</tr>
+<tr>
+<td><code>WHERE</code></td>
+<td><strong>条件子句</strong>：指定元组选择条件与表间连接条件</td>
+</tr>
+<tr>
+<td><code>GROUP BY</code></td>
+<td><strong>分组子句</strong>：按指定列对结果元组分组</td>
+</tr>
+<tr>
+<td><code>HAVING</code></td>
+<td><strong>分组选择子句</strong>：对分组结果进行条件过滤</td>
+</tr>
+<tr>
+<td><code>ORDER BY</code></td>
+<td><strong>排序子句</strong>：对最终结果按指定列升序/降序排序</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="13-select-语句的执行顺序">1.3 SELECT 语句的执行顺序<a class="headerlink" href="#13-select-语句的执行顺序" title="Permanent link">&para;</a></h3>
+<p>执行顺序<strong>与书写顺序不同</strong>，实际处理步骤如下：</p>
+<ol>
+<li><strong>FROM</strong>：合并 FROM 子句中的所有表（笛卡儿积）；</li>
+<li><strong>WHERE</strong>：按条件对合并后的元组进行选择，过滤不满足条件的元组；</li>
+<li><strong>GROUP BY</strong>：对保留下来的元组按指定列分组；</li>
+<li><strong>HAVING</strong>：对分组后的每个"组"进行条件过滤，丢弃不满足条件的组；</li>
+<li><strong>SELECT</strong>：对每个组进行统计计算，生成结果元组（一个组产生一条结果）；</li>
+<li><strong>ORDER BY</strong>：对查询结果进行排序输出。</li>
+</ol>
+<hr />
+<h2 id="二select-子句与-from-子句详解">二、SELECT 子句与 FROM 子句详解<a class="headerlink" href="#二select-子句与-from-子句详解" title="Permanent link">&para;</a></h2>
+<h3 id="21-select-子句目标子句">2.1 SELECT 子句（目标子句）<a class="headerlink" href="#21-select-子句目标子句" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="p">[</span><span class="k">DISTINCT</span><span class="p">]</span><span class="w"> </span><span class="k">column</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">list</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">expressions</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">*</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>目标子句的构造方式：</strong></p>
+<ol>
+<li><strong>简单属性投影</strong>：直接写列名，或通过 <code>表名.列名</code> 的方式指定来自哪张表的列；</li>
+<li><strong>表达式计算（广义投影）</strong>：对常量、表达式或内置函数的计算结果进行投影；</li>
+<li><strong>通配符 <code>*</code></strong>：代替 FROM 子句中表的所有列（按建表时的列定义顺序显示）；</li>
+<li><strong>结果列重命名</strong>：通过 <code>&lt;列表达式&gt; AS &lt;列别名&gt;</code> 的方式为结果列指定别名（<code>AS</code> 可省略）；</li>
+<li><strong>去重谓词 <code>DISTINCT</code></strong>：消除结果表中的重复元组（缺省为 <code>ALL</code>，保留所有行）。</li>
+</ol>
+<details class="warning 注意">
+<summary>Warning</summary>
+<p><code>DISTINCT</code>是去重行，不能单独对某一列操作！</p>
+</details>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">-- 查询指定列</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">-- 查询全部列</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">-- 表达式计算 + 内置函数 + 常量投影</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Year of Birth:&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2014</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">Sdept</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1">-- 结果列重命名</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Year of Birth:&#39;</span><span class="w"> </span><span class="n">BIRTH</span><span class="p">,</span><span class="w"> </span><span class="mi">2014</span><span class="o">-</span><span class="n">Sage</span><span class="w"> </span><span class="n">BIRTHDAY</span><span class="p">,</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">Sdept</span><span class="p">)</span><span class="w"> </span><span class="n">DEPARTMENT</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="c1">-- 日期函数示例</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ordno</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">orddate</span><span class="p">),</span><span class="w"> </span><span class="k">month</span><span class="p">(</span><span class="n">orddate</span><span class="p">),</span><span class="w"> </span><span class="k">day</span><span class="p">(</span><span class="n">orddate</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ordno</span><span class="p">,</span><span class="w"> </span><span class="n">orddate</span><span class="p">,</span><span class="w"> </span><span class="n">datediff</span><span class="p">(</span><span class="n">curdate</span><span class="p">(),</span><span class="w"> </span><span class="n">orddate</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="22-from-子句范围子句">2.2 FROM 子句（范围子句）<a class="headerlink" href="#22-from-子句范围子句" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">tablename</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="err">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>要点：</strong></p>
+<ul>
+<li>指定本次查询可访问的表（基本表、视图或派生子查询）；</li>
+<li>可在 FROM 子句中为表定义<strong>别名（alias）</strong>：<code>&lt;表名&gt; &lt;别名&gt;</code>；</li>
+<li>若定义了别名，则后续语句<strong>必须通过别名</strong>访问该表；</li>
+<li>FROM 子句中的表（或别名）<strong>不能重名</strong>；SELECT 子句中的结果列<strong>不能重名</strong>；</li>
+<li>若 FROM 子句中的多张表存在<strong>同名列</strong>，必须通过 <code>表名.列名</code> 明确指定访问哪张表的列。</li>
+</ul>
+<p><strong>别名的三大作用：</strong></p>
+<ol>
+<li>实现表的<strong>自身连接</strong>（一个表与其自身进行连接）；</li>
+<li><strong>简化</strong> SQL 命令的书写；</li>
+<li>提高 SQL 命令的<strong>可读性</strong>。</li>
+</ol>
+<hr />
+<h3 id="23-where-子句条件子句">2.3 WHERE 子句（条件子句）<a class="headerlink" href="#23-where-子句条件子句" title="Permanent link">&para;</a></h3>
+<p>WHERE 子句是映像语句中的<strong>可选成分</strong>，用于定义：</p>
+<ul>
+<li><strong>单表内的元组选择条件</strong>（σ 运算）；</li>
+<li><strong>表与表之间的连接条件</strong>（θ-连接）。</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：FROM 子句中列出多表时，系统默认对它们进行<strong>笛卡儿积</strong>合并；如需执行 θ-连接或自然连接，必须在 WHERE 子句中<strong>显式给出连接条件</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="三单表查询">三、单表查询<a class="headerlink" href="#三单表查询" title="Permanent link">&para;</a></h2>
+<h3 id="31-选择表中的若干元组">3.1 选择表中的若干元组<a class="headerlink" href="#31-选择表中的若干元组" title="Permanent link">&para;</a></h3>
+<h4 id="①-比较运算">① 比较运算<a class="headerlink" href="#①-比较运算" title="Permanent link">&para;</a></h4>
+<p>谓词：<code>=</code>、<code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>!=</code>（<code>&lt;&gt;</code>、<code>!&gt;</code>、<code>!&lt;</code>）</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">-- 查询计算机系学生</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1">-- 查询年龄小于20岁的学生</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1">-- 查询有不及格记录的学生（去重）</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="②-范围查询between--and-">② 范围查询：BETWEEN … AND …<a class="headerlink" href="#②-范围查询between--and-" title="Permanent link">&para;</a></h4>
+<p>谓词：<code>BETWEEN … AND …</code> 或 <code>NOT BETWEEN … AND …</code>（两端闭区间，即包含边界值）</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">-- 年龄在20~23岁之间（含）</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">-- 年龄不在20~23岁之间</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="③-集合成员查询in">③ 集合成员查询：IN<a class="headerlink" href="#③-集合成员查询in" title="Permanent link">&para;</a></h4>
+<p>谓词：<code>IN &lt;值表&gt;</code> 或 <code>NOT IN &lt;值表&gt;</code></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">-- 查询CS、MA、IS系的学生</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;CS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1">-- 查询不属于上述三系的学生</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;IS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MA&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="④-字符匹配模糊查询like">④ 字符匹配（模糊查询）：LIKE<a class="headerlink" href="#④-字符匹配模糊查询like" title="Permanent link">&para;</a></h4>
+<p>谓词：<code>[ NOT ] LIKE '&lt;匹配串&gt;' [ ESCAPE '&lt;换码字符&gt;' ]</code></p>
+<p><strong>通配符说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%</code></td>
+<td>任意长度（含0）的字符串</td>
+</tr>
+<tr>
+<td><code>_</code></td>
+<td>任意<strong>单个</strong>字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>：在 MySQL 中，系统内置的默认转义指示符为 <code>\</code>，用 <code>ESCAPE '\'</code> 声明转义字符后，<code>\_</code> 和 <code>\%</code> 就代表普通字符 <code>_</code> 和 <code>%</code>。</p>
+</blockquote>
+<p><strong>示例：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">-- 固定字符串（等价于 =）</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;201215121&#39;</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="c1">-- 姓刘的学生</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;刘%&#39;</span><span class="p">;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="c1">-- 姓&quot;欧阳&quot;且全名三个汉字（一个汉字占两字节，用两个 _ 匹配）</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;欧阳__&#39;</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="c1">-- 第2个字为&quot;阳&quot;的学生</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;__阳%&#39;</span><span class="p">;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="c1">-- 不姓刘的学生</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;刘%&#39;</span><span class="p">;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="c1">-- 转义：查 DB_Design 课程（_ 为普通字符）</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="w"> </span><span class="n">Ccredit</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;DB\_Design&#39;</span><span class="w"> </span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;\&#39;</span><span class="p">;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="c1">-- 转义：以&quot;DB_&quot;开头，倒数第3个字符为 i</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;DB\_%i_ _&#39;</span><span class="w"> </span><span class="k">ESCAPE</span><span class="w"> </span><span class="s1">&#39;\&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="⑤-空值查询is-null--is-not-null">⑤ 空值查询：IS NULL / IS NOT NULL<a class="headerlink" href="#⑤-空值查询is-null--is-not-null" title="Permanent link">&para;</a></h4>
+<p>谓词：<code>IS NULL</code> 或 <code>IS NOT NULL</code></p>
+<blockquote>
+<p><strong>注意</strong>：SQL 标准中，<code>IS</code> <strong>不能用 <code>=</code> 代替</strong>。商用系统中可用 <code>= NULL</code> 代替 <code>IS NULL</code>，但 <strong>不能用 <code>!= NULL</code> 代替 <code>IS NOT NULL</code></strong>。</p>
+</blockquote>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">-- 查询缺少成绩的选课记录</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1">-- 查询有成绩的选课记录</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="⑥-多重条件查询and--or--not">⑥ 多重条件查询：AND / OR / NOT<a class="headerlink" href="#⑥-多重条件查询and--or--not" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>AND</code> 优先级<strong>高于</strong> <code>OR</code>；</li>
+<li>可用括号改变运算顺序。</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">-- CS系且年龄小于20</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="c1">-- IN 谓词等价于 OR 连接</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MA&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IS&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="32-消除结果中的重复元组distinct">3.2 消除结果中的重复元组：DISTINCT<a class="headerlink" href="#32-消除结果中的重复元组distinct" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">-- 查询选修了课程的学生学号（去重）</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1">-- 不加 DISTINCT 则默认 ALL，保留重复行</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="33-查询结果排序order-by">3.3 查询结果排序：ORDER BY<a class="headerlink" href="#33-查询结果排序order-by" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="err">列名</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="err">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>ASC</code>：升序（<strong>默认</strong>）；<code>DESC</code>：降序；</li>
+<li>可按<strong>一个或多个列</strong>排序；</li>
+<li>对于<strong>空值（NULL）</strong>，排序次序由具体 DBMS 实现决定。</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">-- 按成绩降序</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1">-- 先按系升序，同系内按年龄降序</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="34-聚集函数统计函数">3.4 聚集函数（统计函数）<a class="headerlink" href="#34-聚集函数统计函数" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COUNT(*)</code></td>
+<td>统计<strong>元组总数</strong>（不忽略 NULL）</td>
+</tr>
+<tr>
+<td><code>COUNT([DISTINCT|ALL] &lt;列名&gt;)</code></td>
+<td>统计某列中<strong>非空值</strong>的个数</td>
+</tr>
+<tr>
+<td><code>SUM([DISTINCT|ALL] &lt;列名&gt;)</code></td>
+<td>计算一列值的<strong>总和</strong>（数值型）</td>
+</tr>
+<tr>
+<td><code>AVG([DISTINCT|ALL] &lt;列名&gt;)</code></td>
+<td>计算一列值的<strong>平均值</strong>（数值型）</td>
+</tr>
+<tr>
+<td><code>MAX([DISTINCT|ALL] &lt;列名&gt;)</code></td>
+<td>求一列中的<strong>最大值</strong></td>
+</tr>
+<tr>
+<td><code>MIN([DISTINCT|ALL] &lt;列名&gt;)</code></td>
+<td>求一列中的<strong>最小值</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>关于 NULL 的处理规则：</strong></p>
+<ul>
+<li>除 <code>COUNT(*)</code> 外，所有聚集函数在统计时均<strong>忽略 NULL 值</strong>；</li>
+<li>在<strong>空集</strong>上进行统计时： <code>COUNT()</code> 返回 <strong>0</strong>；其他聚集函数均返回 <strong>NULL</strong>。</li>
+</ul>
+<p><strong>三种统计查询类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>统计查询</strong></td>
+<td>无 GROUP BY，对整个查询结果统计，返回单条统计结果</td>
+</tr>
+<tr>
+<td><strong>分组统计查询</strong></td>
+<td>有 GROUP BY，每"组"返回一条统计结果</td>
+</tr>
+<tr>
+<td><strong>分组-选择统计查询</strong></td>
+<td>有 GROUP BY + HAVING，对满足条件的组进行统计</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>限制</strong>：在统计查询中，SELECT 子句<strong>只允许出现聚集函数</strong>，<strong>不允许对普通属性投影</strong>（除非该属性是分组属性）。</p>
+</blockquote>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1">-- 查询学生总人数</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1">-- 查询选修了课程的学生人数（去重）</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">;</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="c1">-- 查询1号课程的平均成绩</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">;</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="c1">-- 同时执行多种统计计算</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">Ccredit</span><span class="p">),</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">grade</span><span class="p">),</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">grade</span><span class="p">),</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">C</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215012&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="35-分组统计查询group-by-与-having">3.5 分组统计查询：GROUP BY 与 HAVING<a class="headerlink" href="#35-分组统计查询group-by-与-having" title="Permanent link">&para;</a></h3>
+<h4 id="group-by-子句">GROUP BY 子句<a class="headerlink" href="#group-by-子句" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">colname</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">colname</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="err">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>按指定列的值对元组分组，取值相等的元组归为同一"组"；</li>
+<li>聚集函数将分别作用于<strong>每个组</strong>；</li>
+<li>
+<p><strong>SELECT 子句中的目标属性</strong>必须满足：</p>
+<ol>
+<li><strong>必须包含所有分组属性</strong>；</li>
+<li>可以有聚集函数；</li>
+<li><strong>除分组属性和聚集函数外，不能出现其他属性</strong>。</li>
+</ol>
+</li>
+</ul>
+<details class="warning 注意">
+<summary>Warning</summary>
+<p>为什么"除分组属性和聚集函数外，不能出现其他属性"？因为<code>GRUOP BY</code>输出的结果是每组一行，如果出现了其他属性则同一组内该属性可能有多个不同取值，数据库无法确定该返回哪一个。</p>
+</details>
+<h4 id="having-子句">HAVING 子句<a class="headerlink" href="#having-子句" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">HAVING</span><span class="w"> </span><span class="n">group_condition</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>作用于<strong>分组后的组</strong>（元组集合），而非单个元组；</li>
+<li>只有满足 <code>group_condition</code> 的组才会保留用于生成最终结果；</li>
+<li>HAVING 子句中<strong>可以使用聚集函数</strong>。</li>
+</ul>
+<h4 id="where-与-having-的核心区别">WHERE 与 HAVING 的核心区别<a class="headerlink" href="#where-与-having-的核心区别" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>WHERE 子句</th>
+<th>HAVING 子句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>作用对象</strong></td>
+<td>基本表或视图中的<strong>单个元组</strong></td>
+<td>分组后的<strong>元组集合（组）</strong></td>
+</tr>
+<tr>
+<td><strong>能否使用聚集函数</strong></td>
+<td>❌ 不能</td>
+<td>✅ 可以</td>
+</tr>
+<tr>
+<td><strong>执行时机</strong></td>
+<td>分组<strong>之前</strong>过滤</td>
+<td>分组<strong>之后</strong>过滤</td>
+</tr>
+</tbody>
+</table>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1">-- 查询各课程及选课人数</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Cno</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="c1">-- 查询选修了3门以上课程的学生学号</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="c1">-- 查询平均成绩≥90分的学生学号和平均成绩（HAVING 正确用法）</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="c1">-- 错误写法（WHERE 中不能用聚集函数）：WHERE AVG(Grade) &gt;= 90</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="四连接查询">四、连接查询<a class="headerlink" href="#四连接查询" title="Permanent link">&para;</a></h2>
+<h3 id="41-连接查询概述">4.1 连接查询概述<a class="headerlink" href="#41-连接查询概述" title="Permanent link">&para;</a></h3>
+<p><strong>连接查询</strong>：同时涉及两个或两个以上的表的查询。</p>
+<p><strong>连接条件（连接谓词）的一般格式：</strong>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">比较运算符</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">2</span><span class="o">&gt;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">2</span><span class="o">&gt;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="p">[</span><span class="o">&lt;</span><span class="err">表名</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">.]</span><span class="o">&lt;</span><span class="err">列名</span><span class="mi">3</span><span class="o">&gt;</span>
+</span></code></pre></div></td></tr></table></div></p>
+<blockquote>
+<p><strong>连接字段</strong>（连接谓词中的列）：各连接字段类型必须<strong>可比</strong>，但<strong>名字不必相同</strong>。</p>
+</blockquote>
+<hr />
+<h3 id="42-等值连接与自然连接">4.2 等值连接与自然连接<a class="headerlink" href="#42-等值连接与自然连接" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>等值连接</strong>：连接运算符为 <code>=</code>，结果中保留两表的所有列（包含重复的连接列）；</li>
+<li><strong>自然连接</strong>：在等值连接基础上消除重复列，使用<code>JOIN &lt;列表&gt; ON &lt;condition&gt;</code>。</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span>
+<span class="normal"><a href="#__codelineno-18-7">7</a></span>
+<span class="normal"><a href="#__codelineno-18-8">8</a></span>
+<span class="normal"><a href="#__codelineno-18-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="c1">-- 等值连接：查询每个学生及其选修课程的情况</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="o">*</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="c1">-- 选择+连接（复合 WHERE 条件）</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="43-连接操作的三种执行算法">4.3 连接操作的三种执行算法<a class="headerlink" href="#43-连接操作的三种执行算法" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>嵌套循环法（NESTED-LOOP）</strong></td>
+<td>对表1的每个元组，逐一扫描表2查找满足连接条件的元组</td>
+</tr>
+<tr>
+<td><strong>索引连接（INDEX-JOIN）</strong></td>
+<td>在表2的连接字段上建有索引时，利用索引加速连接</td>
+</tr>
+<tr>
+<td><strong>排序合并法（SORT-MERGE）</strong></td>
+<td>先按连接字段对两表排序，再顺序扫描合并；常用于等值连接</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="44-自身连接自连接">4.4 自身连接（自连接）<a class="headerlink" href="#44-自身连接自连接" title="Permanent link">&para;</a></h3>
+<p>一个表与其<strong>自身</strong>进行连接。</p>
+<ul>
+<li>需要为同一张表分别取<strong>不同的别名</strong>以示区别；</li>
+<li>所有列名必须通过 <code>&lt;别名&gt;.&lt;列名&gt;</code> 的方式访问。</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1">-- 查询每门课的间接先修课（先修课的先修课）</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">FIRST</span><span class="p">.</span><span class="n">Cno</span><span class="p">,</span><span class="w"> </span><span class="k">SECOND</span><span class="p">.</span><span class="n">Cpno</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">FIRST</span><span class="p">,</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">SECOND</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">FIRST</span><span class="p">.</span><span class="n">Cpno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">SECOND</span><span class="p">.</span><span class="n">Cno</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="45-外连接">4.5 外连接<a class="headerlink" href="#45-外连接" title="Permanent link">&para;</a></h3>
+<p><strong>外连接</strong>与普通连接的区别：</p>
+<ul>
+<li>普通连接：只输出<strong>满足连接条件</strong>的元组；</li>
+<li>外连接：以指定表为连接<strong>主体</strong>，将主体表中<strong>不满足连接条件的元组也一并输出</strong>（对应无匹配的列值填 <code>NULL</code>）。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>左外连接（LEFT OUTER JOIN）</strong></td>
+<td>列出<strong>左边表</strong>中的所有元组</td>
+</tr>
+<tr>
+<td><strong>右外连接（RIGHT OUTER JOIN）</strong></td>
+<td>列出<strong>右边表</strong>中的所有元组</td>
+</tr>
+</tbody>
+</table>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="c1">-- 左外连接：保留所有学生，即使没有选课记录（Cno、Grade 填 NULL）</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Ssex</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="46-多表连接">4.6 多表连接<a class="headerlink" href="#46-多表连接" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="c1">-- 三表连接：查询每个学生的学号、姓名、选修课程名及成绩</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Cname</span><span class="p">,</span><span class="w"> </span><span class="n">Grade</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span><span class="w"> </span><span class="n">Course</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>注意</strong>：多表连接的嵌套顺序由 <strong>DBMS 自主决定</strong>，与 FROM 子句中的书写顺序及 WHERE 子句中条件的定义顺序<strong>均无关</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="五嵌套查询子查询">五、嵌套查询（子查询）<a class="headerlink" href="#五嵌套查询子查询" title="Permanent link">&para;</a></h2>
+<h3 id="51-嵌套查询概述">5.1 嵌套查询概述<a class="headerlink" href="#51-嵌套查询概述" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>查询块</strong>：一个 <code>SELECT-FROM-WHERE</code> 语句；</li>
+<li>
+<p><strong>嵌套查询</strong>：将一个查询块嵌套在另一个查询块的 <code>WHERE</code>、<code>FROM</code>、<code>HAVING</code>（或 <code>SELECT</code>）子句中。有两种类型：</p>
+<ol>
+<li><strong>外层查询</strong>（父查询）：包含子查询的查询块；</li>
+<li><strong>内层查询</strong>（子查询）：被嵌套的查询块；</li>
+</ol>
+</li>
+<li>
+<p>SQL 语言允许<strong>多层嵌套</strong>，但也有<strong>限制</strong>：子查询中<strong>不能使用 <code>ORDER BY</code> 子句</strong>。</p>
+</li>
+</ul>
+<hr />
+<h3 id="52-不相关子查询-vs-相关子查询">5.2 不相关子查询 vs. 相关子查询<a class="headerlink" href="#52-不相关子查询-vs-相关子查询" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>不相关子查询（独立子查询）</th>
+<th>相关子查询（关联子查询）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>子查询条件</strong></td>
+<td>不依赖于父查询</td>
+<td>依赖于父查询中的当前元组</td>
+</tr>
+<tr>
+<td><strong>执行方向</strong></td>
+<td>由<strong>里向外</strong>，逐层处理</td>
+<td>由<strong>外向里</strong>，嵌套循环</td>
+</tr>
+<tr>
+<td><strong>执行次数</strong></td>
+<td>子查询<strong>执行一次</strong>，结果用于父查询条件</td>
+<td>父查询每取一个元组，子查询就执行<strong>一次</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="53-带-in-谓词的子查询">5.3 带 IN 谓词的子查询<a class="headerlink" href="#53-带-in-谓词的子查询" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">expr</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">subquery</span><span class="w"> </span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-23-10">10</a></span>
+<span class="normal"><a href="#__codelineno-23-11">11</a></span>
+<span class="normal"><a href="#__codelineno-23-12">12</a></span>
+<span class="normal"><a href="#__codelineno-23-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="c1">-- 不相关子查询：查询与&quot;刘晨&quot;在同一系的学生</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;刘晨&#39;</span><span class="p">);</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="c1">-- 多层嵌套不相关子查询：查询选修了&quot;信息系统&quot;课程的学生学号和姓名</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;信息系统&#39;</span><span class="p">));</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>提示</strong>：带 <code>IN + 子查询</code> 的嵌套查询，通常可以用<strong>表连接查询</strong>替代，且连接查询的执行效率往往更高。</p>
+</blockquote>
+<hr />
+<h3 id="54-带比较运算符的子查询">5.4 带比较运算符的子查询<a class="headerlink" href="#54-带比较运算符的子查询" title="Permanent link">&para;</a></h3>
+<p>当确知子查询<strong>只返回单值</strong>时，可用 <code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>!=</code> 等比较运算符代替 <code>IN</code>。</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span>
+<span class="normal"><a href="#__codelineno-24-6">6</a></span>
+<span class="normal"><a href="#__codelineno-24-7">7</a></span>
+<span class="normal"><a href="#__codelineno-24-8">8</a></span>
+<span class="normal"><a href="#__codelineno-24-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="c1">-- 子查询返回单值时可用 = 代替 IN（但需确保子查询唯一返回单值）</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sdept</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;刘晨&#39;</span><span class="p">);</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="c1">-- 相关子查询：查询超过本人平均成绩的选课记录</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Sno</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p><strong>注意</strong>：子查询返回多值时使用 <code>=</code> 会报错；建议优先使用 <code>IN</code> 或带量词的比较谓词。</p>
+</blockquote>
+<hr />
+<h3 id="55-带-any--all-谓词的子查询">5.5 带 ANY / ALL 谓词的子查询<a class="headerlink" href="#55-带-any--all-谓词的子查询" title="Permanent link">&para;</a></h3>
+<p><code>SOME</code> 与 <code>ANY</code> 是同义词。</p>
+<p><strong>语义对照表：</strong></p>
+<table>
+<thead>
+<tr>
+<th>谓词</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt; ANY</code></td>
+<td>大于子查询结果中的<strong>某个</strong>值（即大于最小值）</td>
+</tr>
+<tr>
+<td><code>&gt; ALL</code></td>
+<td>大于子查询结果中的<strong>所有</strong>值（即大于最大值）</td>
+</tr>
+<tr>
+<td><code>&lt; ANY</code></td>
+<td>小于子查询结果中的<strong>某个</strong>值（即小于最大值）</td>
+</tr>
+<tr>
+<td><code>&lt; ALL</code></td>
+<td>小于子查询结果中的<strong>所有</strong>值（即小于最小值）</td>
+</tr>
+<tr>
+<td><code>= ANY</code></td>
+<td>等于子查询结果中的<strong>某个</strong>值（等价于 <code>IN</code>）</td>
+</tr>
+<tr>
+<td><code>!= ALL</code> / <code>&lt;&gt; ALL</code></td>
+<td>不等于子查询结果中的<strong>任何</strong>值（等价于 <code>NOT IN</code>）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ANY/ALL 与聚集函数、IN 的等价转换（表3.7）：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>=</code></th>
+<th><code>&lt;&gt;</code> / <code>!=</code></th>
+<th><code>&lt;</code></th>
+<th><code>&lt;=</code></th>
+<th><code>&gt;</code></th>
+<th><code>&gt;=</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ANY</strong></td>
+<td><code>IN</code></td>
+<td>—</td>
+<td><code>&lt; MAX</code></td>
+<td><code>&lt;= MAX</code></td>
+<td><code>&gt; MIN</code></td>
+<td><code>&gt;= MIN</code></td>
+</tr>
+<tr>
+<td><strong>ALL</strong></td>
+<td>—</td>
+<td><code>NOT IN</code></td>
+<td><code>&lt; MIN</code></td>
+<td><code>&lt;= MIN</code></td>
+<td><code>&gt; MAX</code></td>
+<td><code>&gt;= MAX</code></td>
+</tr>
+</tbody>
+</table>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span>
+<span class="normal"><a href="#__codelineno-25-14">14</a></span>
+<span class="normal"><a href="#__codelineno-25-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="c1">-- 查询非CS系中比CS系任意一个学生年龄小的学生（ANY）</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">)</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">;</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="c1">-- 等价写法（用聚集函数）：</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Sage</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">)</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="c1">-- 查询非CS系中比CS系所有学生年龄都小的学生（ALL）</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span><span class="p">,</span><span class="w"> </span><span class="n">Sage</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">)</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">;</span>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14"></a><span class="c1">-- 等价写法（用聚集函数）：</span>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">Sage</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="56-带-exists-谓词的子查询">5.6 带 EXISTS 谓词的子查询<a class="headerlink" href="#56-带-exists-谓词的子查询" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="p">[</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">subquery</span><span class="w"> </span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>语义：</strong></p>
+<ul>
+<li><code>EXISTS</code>：若子查询结果<strong>非空</strong>，WHERE 返回<strong>真</strong>；否则返回假；</li>
+<li><code>NOT EXISTS</code>：若子查询结果<strong>为空</strong>，WHERE 返回<strong>真</strong>；否则返回假；</li>
+<li>带 EXISTS 的子查询<strong>不返回任何数据</strong>，只返回逻辑真/假值；</li>
+<li>目标列表达式通常写为 <code>*</code>（列名无实际意义）。</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="c1">-- EXISTS：查询所有选修了1号课程的学生姓名</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">S</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="c1">-- NOT EXISTS：查询没有选修1号课程的学生姓名（必须用子查询，无法用连接替代）</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="n">S</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="57-exists-与关系代数的对应关系">5.7 EXISTS 与关系代数的对应关系<a class="headerlink" href="#57-exists-与关系代数的对应关系" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>关系代数运算</th>
+<th>SQL 实现谓词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>自然连接 / 连接</strong></td>
+<td><code>IN</code> 或 <code>EXISTS</code></td>
+</tr>
+<tr>
+<td><strong>差运算</strong></td>
+<td><code>NOT IN</code> 或 <code>NOT EXISTS</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>替换规则：</strong></p>
+<ul>
+<li>所有带 <code>IN</code>、比较运算符、<code>ANY</code>、<code>ALL</code> 谓词的子查询，都能用带 <code>EXISTS</code> 的子查询<strong>等价替换</strong>；</li>
+<li>部分带 <code>EXISTS</code> 或 <code>NOT EXISTS</code> 的子查询<strong>不能被其他形式等价替换</strong>。</li>
+</ul>
+<hr />
+<h3 id="58-用-exists-实现全称量词除法运算">5.8 用 EXISTS 实现全称量词（除法运算）<a class="headerlink" href="#58-用-exists-实现全称量词除法运算" title="Permanent link">&para;</a></h3>
+<p>SQL 语言<strong>没有全称量词</strong> <code>∀</code>，可利用逻辑等价将其转换为存在量词：</p>
+<div class="arithmatex">\[(\forall x) P \equiv \neg\exists x (\neg P)\]</div>
+<p><strong>经典例题：查询至少选修了学号为201215122的学生所选修的全部课程的学生学号</strong></p>
+<p>查询语义：不存在这样的课程<code>y</code>，学生201215122选修了<code>y</code>，而学生<code>x</code>没有选。</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCX</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCY</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SCY</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215122&#39;</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="w">              </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCZ</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10"></a><span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SCZ</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SCX</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SCZ</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SCY</span><span class="p">.</span><span class="n">Cno</span><span class="p">));</span>
+</span></code></pre></div></td></tr></table></div>
+<p>等价的第二种写法（最内层用 NOT IN）：</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span>
+<span class="normal"><a href="#__codelineno-29-4">4</a></span>
+<span class="normal"><a href="#__codelineno-29-5">5</a></span>
+<span class="normal"><a href="#__codelineno-29-6">6</a></span>
+<span class="normal"><a href="#__codelineno-29-7">7</a></span>
+<span class="normal"><a href="#__codelineno-29-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">Sno</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCX</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCY</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SCY</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;201215122&#39;</span><span class="w"> </span><span class="k">AND</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="w">          </span><span class="n">SCY</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8"></a><span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="n">SCZ</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="n">SCZ</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SCZ</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SCX</span><span class="p">.</span><span class="n">Sno</span><span class="p">));</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>查询选修了全部课程的学生姓名：</strong></p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span>
+<span class="normal"><a href="#__codelineno-30-7">7</a></span>
+<span class="normal"><a href="#__codelineno-30-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Course</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Course</span><span class="p">.</span><span class="n">Cno</span><span class="p">));</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="六集合查询">六、集合查询<a class="headerlink" href="#六集合查询" title="Permanent link">&para;</a></h2>
+<h3 id="61-参与集合操作的要求">6.1 参与集合操作的要求<a class="headerlink" href="#61-参与集合操作的要求" title="Permanent link">&para;</a></h3>
+<ul>
+<li>参与集合操作的各子查询<strong>结果列数必须相同</strong>；</li>
+<li>对应列的<strong>数据类型也必须相同</strong>。</li>
+</ul>
+<h3 id="62-三种集合操作">6.2 三种集合操作<a class="headerlink" href="#62-三种集合操作" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>并</strong></td>
+<td><code>UNION</code></td>
+<td>合并结果，<strong>自动去除</strong>重复元组</td>
+</tr>
+<tr>
+<td><strong>并（保留重复）</strong></td>
+<td><code>UNION ALL</code></td>
+<td>合并结果，<strong>保留</strong>重复元组</td>
+</tr>
+<tr>
+<td><strong>交</strong></td>
+<td><code>INTERSECT</code></td>
+<td>返回两个查询结果的<strong>公共元组</strong></td>
+</tr>
+<tr>
+<td><strong>差</strong></td>
+<td><code>EXCEPT</code></td>
+<td>返回属于第一个结果但<strong>不属于</strong>第二个结果的元组</td>
+</tr>
+</tbody>
+</table>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-31-10">10</a></span>
+<span class="normal"><a href="#__codelineno-31-11">11</a></span>
+<span class="normal"><a href="#__codelineno-31-12">12</a></span>
+<span class="normal"><a href="#__codelineno-31-13">13</a></span>
+<span class="normal"><a href="#__codelineno-31-14">14</a></span>
+<span class="normal"><a href="#__codelineno-31-15">15</a></span>
+<span class="normal"><a href="#__codelineno-31-16">16</a></span>
+<span class="normal"><a href="#__codelineno-31-17">17</a></span>
+<span class="normal"><a href="#__codelineno-31-18">18</a></span>
+<span class="normal"><a href="#__codelineno-31-19">19</a></span>
+<span class="normal"><a href="#__codelineno-31-20">20</a></span>
+<span class="normal"><a href="#__codelineno-31-21">21</a></span>
+<span class="normal"><a href="#__codelineno-31-22">22</a></span>
+<span class="normal"><a href="#__codelineno-31-23">23</a></span>
+<span class="normal"><a href="#__codelineno-31-24">24</a></span>
+<span class="normal"><a href="#__codelineno-31-25">25</a></span>
+<span class="normal"><a href="#__codelineno-31-26">26</a></span>
+<span class="normal"><a href="#__codelineno-31-27">27</a></span>
+<span class="normal"><a href="#__codelineno-31-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="c1">-- 并：CS系的学生 或 年龄不大于19岁的学生</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="k">UNION</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">19</span><span class="p">;</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="c1">-- 交：CS系且年龄不大于19岁的学生</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="k">INTERSECT</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">19</span><span class="p">;</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="c1">-- 等价写法：WHERE Sdept = &#39;CS&#39; AND Sage &lt;= 19</span>
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11"></a>
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="c1">-- 差：CS系中年龄大于19岁的学生</span>
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sdept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CS&#39;</span>
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="k">EXCEPT</span>
+</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Sage</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">19</span><span class="p">;</span>
+</span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16"></a><span class="c1">-- 等价写法：WHERE Sdept = &#39;CS&#39; AND Sage &gt; 19</span>
+</span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17"></a>
+</span><span id="__span-31-18"><a id="__codelineno-31-18" name="__codelineno-31-18"></a><span class="c1">-- 并：选修了课程1或课程2的学生</span>
+</span><span id="__span-31-19"><a id="__codelineno-31-19" name="__codelineno-31-19"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20"></a><span class="k">UNION</span>
+</span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="p">;</span>
+</span><span id="__span-31-22"><a id="__codelineno-31-22" name="__codelineno-31-22"></a>
+</span><span id="__span-31-23"><a id="__codelineno-31-23" name="__codelineno-31-23"></a><span class="c1">-- 交：既选修了课程1又选修了课程2的学生（等价写法）</span>
+</span><span id="__span-31-24"><a id="__codelineno-31-24" name="__codelineno-31-24"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span>
+</span><span id="__span-31-25"><a id="__codelineno-31-25" name="__codelineno-31-25"></a><span class="k">INTERSECT</span>
+</span><span id="__span-31-26"><a id="__codelineno-31-26" name="__codelineno-31-26"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="p">;</span>
+</span><span id="__span-31-27"><a id="__codelineno-31-27" name="__codelineno-31-27"></a><span class="c1">-- 等价写法：</span>
+</span><span id="__span-31-28"><a id="__codelineno-31-28" name="__codelineno-31-28"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="七基于派生表的查询">七、基于派生表的查询<a class="headerlink" href="#七基于派生表的查询" title="Permanent link">&para;</a></h2>
+<h3 id="71-派生表derived-table">7.1 派生表（Derived Table）<a class="headerlink" href="#71-派生表derived-table" title="Permanent link">&para;</a></h3>
+<p>子查询不仅可出现在 WHERE 子句中，还可出现在 <strong>FROM 子句</strong>中。此时子查询生成的<strong>临时结果集</strong>称为<strong>派生表（Derived Table）</strong>，成为主查询的查询对象。</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span>
+<span class="normal"><a href="#__codelineno-32-3">3</a></span>
+<span class="normal"><a href="#__codelineno-32-4">4</a></span>
+<span class="normal"><a href="#__codelineno-32-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="c1">-- 使用派生表实现&quot;超过本人平均成绩&quot;的查询</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="n">Cno</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="p">,</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="w">     </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Grade</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sno</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Avg_sc</span><span class="p">(</span><span class="n">avg_sno</span><span class="p">,</span><span class="w"> </span><span class="n">avg_grade</span><span class="p">)</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Avg_sc</span><span class="p">.</span><span class="n">avg_sno</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">SC</span><span class="p">.</span><span class="n">Grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">Avg_sc</span><span class="p">.</span><span class="n">avg_grade</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span>
+<span class="normal"><a href="#__codelineno-33-3">3</a></span>
+<span class="normal"><a href="#__codelineno-33-4">4</a></span>
+<span class="normal"><a href="#__codelineno-33-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="c1">-- 使用派生表查询所有选修了1号课程的学生姓名</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Sname</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">Student</span><span class="p">,</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="w">     </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">Sno</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">SC</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Cno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SC1</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">Student</span><span class="p">.</span><span class="n">Sno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SC1</span><span class="p">.</span><span class="n">Sno</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="72-派生表的列名规则">7.2 派生表的列名规则<a class="headerlink" href="#72-派生表的列名规则" title="Permanent link">&para;</a></h3>
+<ul>
+<li>若子查询的所有结果列<strong>均有列名且不重名</strong>，可<strong>不必</strong>为派生表显式指定列名，子查询 SELECT 子句的列名即为派生表的默认列名；</li>
+<li>否则，需要通过 <code>AS &lt;别名&gt;(列名1, 列名2, ...)</code> 的形式<strong>显式指定</strong>派生表的列名。</li>
+</ul>
+<hr />
+<h2 id="八关系代数与-sql-语言的对应关系总结">八、关系代数与 SQL 语言的对应关系总结<a class="headerlink" href="#八关系代数与-sql-语言的对应关系总结" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>关系代数操作</th>
+<th>SQL 实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择 σ</td>
+<td><code>WHERE</code> 子句</td>
+</tr>
+<tr>
+<td>投影 π</td>
+<td><code>SELECT</code> 子句</td>
+</tr>
+<tr>
+<td>笛卡儿积 ×</td>
+<td><code>FROM</code> 多表（无 WHERE 连接条件）</td>
+</tr>
+<tr>
+<td>θ-连接</td>
+<td><code>FROM</code> 多表 + <code>WHERE</code> 连接条件</td>
+</tr>
+<tr>
+<td>自然连接 ⋈</td>
+<td><code>FROM</code> 多表 + <code>WHERE</code> 等值连接条件 + <code>SELECT</code> 去除重复列</td>
+</tr>
+<tr>
+<td>并 ∪</td>
+<td><code>UNION</code> / <code>UNION ALL</code></td>
+</tr>
+<tr>
+<td>交 ∩</td>
+<td><code>INTERSECT</code></td>
+</tr>
+<tr>
+<td>差 −</td>
+<td><code>EXCEPT</code> / <code>NOT IN</code> / <code>NOT EXISTS</code></td>
+</tr>
+<tr>
+<td>除 ÷</td>
+<td>双重 <code>NOT EXISTS</code> 嵌套子查询</td>
+</tr>
+<tr>
+<td>全称量词 ∀</td>
+<td><code>NOT EXISTS(NOT ...)</code> 转换实现</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="九重要知识点辨析与易错总结">九、重要知识点辨析与易错总结<a class="headerlink" href="#九重要知识点辨析与易错总结" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>WHERE 与 HAVING 的区别</strong>：WHERE 作用于基本表的单个元组（分组前过滤），HAVING 作用于分组后的组（分组后过滤）；WHERE 中不能使用聚集函数，HAVING 中可以。</p>
+</li>
+<li>
+<p><strong>IN 与 EXISTS 的选择</strong>：IN 适合子查询返回结果集较小的情况；EXISTS 本质上是相关子查询，适合外层表较小、子查询表较大的情况。</p>
+</li>
+<li>
+<p><strong>NOT IN 与 NOT EXISTS 的陷阱</strong>：当子查询结果集中含有 <strong>NULL 值</strong>时，<code>NOT IN</code> 可能无法返回任何结果（因为 <code>NULL != x</code> 的结果是 UNKNOWN，而非 FALSE）；<code>NOT EXISTS</code> 不受此影响，更为安全。</p>
+</li>
+<li>
+<p><strong>DISTINCT 谓词的作用域</strong>：<code>DISTINCT</code> 作用于整行结果元组，而非单个列；聚集函数中的 <code>DISTINCT</code> 用于在统计前去除重复值（如 <code>COUNT(DISTINCT Sno)</code>）。</p>
+</li>
+<li>
+<p><strong>子查询不能含 ORDER BY</strong>：ORDER BY 子句只能出现在最外层的查询中。</p>
+</li>
+<li>
+<p><strong>FROM 子句中的笛卡儿积</strong>：在 FROM 子句中列出多张表，系统默认对其进行笛卡儿积合并，如果不在 WHERE 子句中给出连接条件，将产生规模极大的中间结果，必须显式添加连接条件。</p>
+</li>
+<li>
+<p><strong>自连接必须使用别名</strong>：自身连接时同一张表必须分别起不同的别名，且所有列引用必须加别名前缀。</p>
+</li>
+<li>
+<p><strong>GROUP BY 的目标属性约束</strong>：SELECT 子句中的目标属性，除聚集函数外，只能包含 GROUP BY 子句中指定的<strong>分组属性</strong>，不能出现其他普通属性。</p>
+</li>
+<li>
+<p><strong>外连接的语法</strong>：外连接不使用 WHERE 子句的连接条件，而使用 <code>LEFT/RIGHT OUTER JOIN … ON (…)</code> 语法。</p>
+</li>
+<li>
+<p><strong>空值（NULL）的特殊性</strong>：NULL 不等于任何值（包括 NULL 本身）；<code>NULL = NULL</code> 的结果是 UNKNOWN，而非 TRUE；必须使用 <code>IS NULL</code> / <code>IS NOT NULL</code> 进行空值判断。</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../Chapter3-1-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter3-1-SQL数据库的定义">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter3-1-SQL数据库的定义
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Chapter3-3-SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9B%B4%E6%96%B0/" class="md-footer__link md-footer__link--next" aria-label="下一页: Chapter3-3-SQL数据库更新">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter3-3-SQL数据库更新
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/helloi9" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
