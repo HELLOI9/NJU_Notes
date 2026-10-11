@@ -26,8 +26,20 @@ def build_nav_tree(directory):
             first_key = list(children[0].keys())[0]
             first_val = list(children[0].values())[0]
 
-            # A directory with a single markdown page doesn't need an extra level.
-            if len(children) == 1 and isinstance(first_val, str):
+            # 目录下只有一个 md 文件、且没有更深的子目录时，才考虑省掉一层，
+            # 且只有当「目录名足以代表这篇笔记」时才省：
+            #   - index.md（目录自己的首页）
+            #   - 笔记名以目录名开头（Chapter1/Chapter1.md、Chapter4/Chapter4-xxx.md）
+            # 名字对不上时（Chapter4/LL(1)文法.md、Chap Lab/Lab2-协程.md）保留目录层，
+            # 叶子显示笔记名，否则侧栏上根本看不到笔记叫什么。
+            # 目录里还有子目录时一律不折叠，否则单链目录会被压成一条、丢掉层级。
+            has_subdir = any(
+                e.is_dir() and not e.name.startswith(".")
+                for e in os.scandir(entry.path)
+            )
+            single_page = len(children) == 1 and isinstance(first_val, str) and not has_subdir
+            label_is_page = first_key == "__index__" or first_key.startswith(entry.name)
+            if single_page and label_is_page:
                 items.append({entry.name: first_val})
             else:
                 if first_key == "__index__":

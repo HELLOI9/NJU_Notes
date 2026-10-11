@@ -109,11 +109,15 @@ nav:
 - Home: index.md
 - Course Notes:
   - Overview: notes/index.md
-  - Junior: notes/Junior/Compiler Principles/Chapter4/LL(1)文法.md
+  - Junior:
+    - Compiler Principles:
+      - Chapter4:
+        - LL(1)文法: notes/Junior/Compiler Principles/Chapter4/LL(1)文法.md
   - Sophomore:
     - Computer Operating Systems:
       - Overview: notes/Sophomore/Computer Operating Systems/index.md
-      - Chap Lab: notes/Sophomore/Computer Operating Systems/Chap Lab/Lab2-协程.md
+      - Chap Lab:
+        - Lab2-协程: notes/Sophomore/Computer Operating Systems/Chap Lab/Lab2-协程.md
       - Chap1 绪论:
         - 各种视角下的操作系统: notes/Sophomore/Computer Operating Systems/Chap1 绪论/各种视角下的操作系统.md
         - 操作系统的发展历程: notes/Sophomore/Computer Operating Systems/Chap1 绪论/操作系统的发展历程.md
@@ -124,7 +128,8 @@ nav:
         - 3.互斥进阶: notes/Sophomore/Computer Operating Systems/Chap2 并发/3.互斥进阶.md
         - 4.同步基础: notes/Sophomore/Computer Operating Systems/Chap2 并发/4.同步基础.md
         - 5.同步进阶: notes/Sophomore/Computer Operating Systems/Chap2 并发/5.同步进阶.md
-      - Chap3 虚拟化: notes/Sophomore/Computer Operating Systems/Chap3 虚拟化/进程.md
+      - Chap3 虚拟化:
+        - 进程: notes/Sophomore/Computer Operating Systems/Chap3 虚拟化/进程.md
     - Foundations of Data Management:
       - Overview: notes/Sophomore/Foundations of Data Management/index.md
       - Chapter1: notes/Sophomore/Foundations of Data Management/Chapter1/Chapter1.md
@@ -137,7 +142,8 @@ nav:
         - Chapter3-2-SQL数据查询: notes/Sophomore/Foundations of Data Management/Chapter3/Chapter3-2-SQL数据查询.md
         - Chapter3-3-SQL数据库更新: notes/Sophomore/Foundations of Data Management/Chapter3/Chapter3-3-SQL数据库更新.md
       - Chapter4: notes/Sophomore/Foundations of Data Management/Chapter4/Chapter4-数据库安全完整性.md
-      - Chapter8: notes/Sophomore/Foundations of Data Management/Chapter8/Chpater8-数据库编程.md
+      - Chapter8:
+        - Chpater8-数据库编程: notes/Sophomore/Foundations of Data Management/Chapter8/Chpater8-数据库编程.md
     - Human-Computer Interaction Systems: notes/Sophomore/Human-Computer Interaction
         Systems/index.md
     - Internet Computing:
