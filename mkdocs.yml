@@ -109,63 +109,50 @@ nav:
 - Home: index.md
 - Course Notes:
   - Overview: notes/index.md
-  - The second semester of sophomore year:
+  - .trash: notes/.trash/index.md
+  - Sophomore:
     - Computer Operating Systems:
-      - Overview: notes/The second semester of sophomore year/Computer Operating Systems/index.md
-      - Chap Lab: notes/The second semester of sophomore year/Computer Operating Systems/Chap
-          Lab/Lab2-协程.md
+      - Overview: notes/Sophomore/Computer Operating Systems/index.md
+      - Chap Lab: notes/Sophomore/Computer Operating Systems/Chap Lab/Lab2-协程.md
       - Chap1 绪论:
-        - 各种视角下的操作系统: notes/The second semester of sophomore year/Computer Operating
-            Systems/Chap1 绪论/各种视角下的操作系统.md
-        - 操作系统的发展历程: notes/The second semester of sophomore year/Computer Operating
-            Systems/Chap1 绪论/操作系统的发展历程.md
+        - 各种视角下的操作系统: notes/Sophomore/Computer Operating Systems/Chap1 绪论/各种视角下的操作系统.md
+        - 操作系统的发展历程: notes/Sophomore/Computer Operating Systems/Chap1 绪论/操作系统的发展历程.md
       - Chap2 并发:
-        - 1.多处理器编程Multiprocessor Programming: notes/The second semester of sophomore
-            year/Computer Operating Systems/Chap2 并发/1.多处理器编程Multiprocessor Programming.md
-        - 2.互斥基础: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
-            并发/2.互斥基础.md
-        - 3.互斥进阶: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
-            并发/3.互斥进阶.md
-        - 4.同步基础: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
-            并发/4.同步基础.md
-        - 5.同步进阶: notes/The second semester of sophomore year/Computer Operating Systems/Chap2
-            并发/5.同步进阶.md
+        - 1.多处理器编程Multiprocessor Programming: notes/Sophomore/Computer Operating Systems/Chap2
+            并发/1.多处理器编程Multiprocessor Programming.md
+        - 2.互斥基础: notes/Sophomore/Computer Operating Systems/Chap2 并发/2.互斥基础.md
+        - 3.互斥进阶: notes/Sophomore/Computer Operating Systems/Chap2 并发/3.互斥进阶.md
+        - 4.同步基础: notes/Sophomore/Computer Operating Systems/Chap2 并发/4.同步基础.md
+        - 5.同步进阶: notes/Sophomore/Computer Operating Systems/Chap2 并发/5.同步进阶.md
+      - Chap3 虚拟化: notes/Sophomore/Computer Operating Systems/Chap3 虚拟化/进程.md
     - Foundations of Data Management:
-      - Overview: notes/The second semester of sophomore year/Foundations of Data
-          Management/index.md
-      - Chapter1: notes/The second semester of sophomore year/Foundations of Data
-          Management/Chapter1/Chapter1.md
+      - Overview: notes/Sophomore/Foundations of Data Management/index.md
+      - Chapter1: notes/Sophomore/Foundations of Data Management/Chapter1/Chapter1.md
       - Chapter2:
-        - Chapter2-1-关系数据模型: notes/The second semester of sophomore year/Foundations
-            of Data Management/Chapter2/Chapter2-1-关系数据模型.md
-        - Chapter2-2-关系代数的基本运算: notes/The second semester of sophomore year/Foundations
-            of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md
-        - Chapter2-3-关系代数扩充运算: notes/The second semester of sophomore year/Foundations
-            of Data Management/Chapter2/Chapter2-3-关系代数扩充运算.md
+        - Chapter2-1-关系数据模型: notes/Sophomore/Foundations of Data Management/Chapter2/Chapter2-1-关系数据模型.md
+        - Chapter2-2-关系代数的基本运算: notes/Sophomore/Foundations of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md
+        - Chapter2-3-关系代数扩充运算: notes/Sophomore/Foundations of Data Management/Chapter2/Chapter2-3-关系代数扩充运算.md
       - Chapter3:
-        - Chapter3-1-SQL数据库的定义: notes/The second semester of sophomore year/Foundations
-            of Data Management/Chapter3/Chapter3-1-SQL数据库的定义.md
-        - Chapter3-2-SQL数据查询: notes/The second semester of sophomore year/Foundations
-            of Data Management/Chapter3/Chapter3-2-SQL数据查询.md
-        - Chapter3-3-SQL数据库更新: notes/The second semester of sophomore year/Foundations
-            of Data Management/Chapter3/Chapter3-3-SQL数据库更新.md
-      - Chapter4: notes/The second semester of sophomore year/Foundations of Data
-          Management/Chapter4/Chapter4-数据库安全完整性.md
-    - Human-Computer Interaction Systems: notes/The second semester of sophomore year/Human-Computer
-        Interaction Systems/index.md
+        - Chapter3-1-SQL数据库的定义: notes/Sophomore/Foundations of Data Management/Chapter3/Chapter3-1-SQL数据库的定义.md
+        - Chapter3-2-SQL数据查询: notes/Sophomore/Foundations of Data Management/Chapter3/Chapter3-2-SQL数据查询.md
+        - Chapter3-3-SQL数据库更新: notes/Sophomore/Foundations of Data Management/Chapter3/Chapter3-3-SQL数据库更新.md
+      - Chapter4: notes/Sophomore/Foundations of Data Management/Chapter4/Chapter4-数据库安全完整性.md
+      - Chapter8: notes/Sophomore/Foundations of Data Management/Chapter8/Chpater8-数据库编程.md
+    - Human-Computer Interaction Systems: notes/Sophomore/Human-Computer Interaction
+        Systems/index.md
     - Internet Computing:
-      - Overview: notes/The second semester of sophomore year/Internet Computing/index.md
-      - 1-计算机网络和因特网: notes/The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
-      - 2-应用层: notes/The second semester of sophomore year/Internet Computing/2-应用层/2-应用层.md
+      - Overview: notes/Sophomore/Internet Computing/index.md
+      - 1-计算机网络和因特网: notes/Sophomore/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
+      - 2-应用层: notes/Sophomore/Internet Computing/2-应用层/2-应用层.md
       - 3-运输层:
-        - 3-运输层: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层.md
-        - 3-运输层2: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层2.md
-        - 3-运输层3: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层3.md
-        - 3-运输层4: notes/The second semester of sophomore year/Internet Computing/3-运输层/3-运输层4.md
-    - New Technologies in Mobile Networks: notes/The second semester of sophomore
-        year/New Technologies in Mobile Networks/index.md
-    - Software Engineering and Computing II: notes/The second semester of sophomore
-        year/Software Engineering and Computing II/index.md
+        - 3-运输层: notes/Sophomore/Internet Computing/3-运输层/3-运输层.md
+        - 3-运输层2: notes/Sophomore/Internet Computing/3-运输层/3-运输层2.md
+        - 3-运输层3: notes/Sophomore/Internet Computing/3-运输层/3-运输层3.md
+        - 3-运输层4: notes/Sophomore/Internet Computing/3-运输层/3-运输层4.md
+    - New Technologies in Mobile Networks: notes/Sophomore/New Technologies in Mobile
+        Networks/index.md
+    - Software Engineering and Computing II: notes/Sophomore/Software Engineering
+        and Computing II/index.md
 - Blog:
   - First Post: blog/first-post.md
 - About: about.md
