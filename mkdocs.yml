@@ -109,7 +109,7 @@ nav:
 - Home: index.md
 - Course Notes:
   - Overview: notes/index.md
-  - .trash: notes/.trash/index.md
+  - Junior: notes/Junior/Compiler Principles/Chapter4/LL(1)文法.md
   - Sophomore:
     - Computer Operating Systems:
       - Overview: notes/Sophomore/Computer Operating Systems/index.md
@@ -154,5 +154,5 @@ nav:
     - Software Engineering and Computing II: notes/Sophomore/Software Engineering
         and Computing II/index.md
 - Blog:
-  - First Post: blog/first-post.md
+  - Codeforces: blog/Codeforces.md
 - About: about.md

@@ -15,6 +15,10 @@ def build_nav_tree(directory):
     items = []
     entries = sorted(os.scandir(directory), key=lambda e: (e.is_file(), e.name))
     for entry in entries:
+        # MkDocs 不会构建以 "." 开头的目录/文件（如 .obsidian、.trash），
+        # 写进 nav 只会产生失效链接。
+        if entry.name.startswith("."):
+            continue
         if entry.is_dir():
             children = build_nav_tree(entry.path)
             if not children:

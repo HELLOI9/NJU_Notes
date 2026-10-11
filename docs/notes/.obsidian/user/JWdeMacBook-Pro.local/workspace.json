@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b9705a848802a5c3",
+        "id": "259a4979dfe463ad",
         "type": "tabs",
         "children": [
           {
-            "id": "b26ba365bd8480e1",
+            "id": "4211806fb3e249c4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": ".trash/index.md",
+                "file": "Junior/Compiler Principles/Chapter4/LL(1)文法.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "LL(1)文法"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": ".trash/index.md",
+                "file": "Junior/Compiler Principles/Chapter4/LL(1)文法.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -174,8 +174,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -188,43 +187,43 @@
       "bases:新建数据库": false
     }
   },
-  "active": "b8ae9582619b2c43",
+  "active": "4211806fb3e249c4",
   "lastOpenFiles": [
-    ".trash/未命名 1",
-    ".trash/未命名",
+    ".obsidian/plugins/better-paste/data.json",
+    ".obsidian/plugins/better-paste/styles.css",
+    ".obsidian/plugins/better-paste/main.js",
+    ".obsidian/plugins/better-paste/manifest.json",
+    ".obsidian/plugins/better-paste",
+    ".obsidian/plugins",
+    ".trash/未命名.md",
     ".trash",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter2/Chapter2-1-关系数据模型.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter1/Chapter1.md",
-    "The second semester of sophomore year/Internet Computing/3-运输层/3-运输层4.md",
-    "The second semester of sophomore year/Internet Computing/3-运输层/3-运输层3.md",
-    "The second semester of sophomore year/Internet Computing/3-运输层/3-运输层2.md",
-    "The second semester of sophomore year/Internet Computing/3-运输层/3-运输层.md",
-    "The second semester of sophomore year/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md",
-    "The second semester of sophomore year/Internet Computing/2-应用层/2-应用层.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter4/Chapter4-数据库安全完整性.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter8/Chpater8-数据库编程.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter2/Chapter2-3-关系代数扩充运算.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter3/Chapter3-3-SQL数据库更新.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter3/Chapter3-2-SQL数据查询.md",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter3/Chapter3-1-SQL数据库的定义.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap2 并发/5.同步进阶.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap2 并发/4.同步基础.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap2 并发/3.互斥进阶.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap2 并发/2.互斥基础.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap2 并发/1.多处理器编程Multiprocessor Programming.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap3 虚拟化/进程.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap1 绪论/操作系统的发展历程.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap1 绪论/各种视角下的操作系统.md",
-    "The second semester of sophomore year/Computer Operating Systems/Chap Lab/Lab2-协程.md",
-    ".obsidian/workspace.json",
-    "The second semester of sophomore year/Internet Computing/index.md",
-    "The second semester of sophomore year/Internet Computing/3-运输层",
-    "The second semester of sophomore year/Internet Computing/2-应用层",
-    "The second semester of sophomore year/Internet Computing/1-计算机网络和因特网",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter8",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter4",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter3",
-    "The second semester of sophomore year/Foundations of Data Management/Chapter2"
+    "Junior/Compiler Principles/Chapter4/LL(1)文法.md",
+    ".obsidian/core-plugins.json",
+    ".obsidian/app.json",
+    "Sophomore/Internet Computing/3-运输层/3-运输层4.md",
+    "Sophomore/Internet Computing/3-运输层/3-运输层3.md",
+    "Sophomore/Internet Computing/3-运输层/3-运输层2.md",
+    "Sophomore/Internet Computing/3-运输层/3-运输层.md",
+    "Sophomore/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md",
+    "Sophomore/Internet Computing/2-应用层/2-应用层.md",
+    "Sophomore/Foundations of Data Management/Chapter1/Chapter1.md",
+    "Sophomore/Foundations of Data Management/Chapter4/Chapter4-数据库安全完整性.md",
+    "Sophomore/Foundations of Data Management/Chapter8/Chpater8-数据库编程.md",
+    "Sophomore/Foundations of Data Management/Chapter2/Chapter2-3-关系代数扩充运算.md",
+    "Sophomore/Foundations of Data Management/Chapter2/Chapter2-2-关系代数的基本运算.md",
+    "Sophomore/Foundations of Data Management/Chapter2/Chapter2-1-关系数据模型.md",
+    "Sophomore/Foundations of Data Management/Chapter3/Chapter3-3-SQL数据库更新.md",
+    "Sophomore/Foundations of Data Management/Chapter3/Chapter3-2-SQL数据查询.md",
+    "Sophomore/Foundations of Data Management/Chapter3/Chapter3-1-SQL数据库的定义.md",
+    "Sophomore/Computer Operating Systems/Chap2 并发/5.同步进阶.md",
+    "Sophomore/Computer Operating Systems/Chap2 并发/4.同步基础.md",
+    "Sophomore/Computer Operating Systems/Chap2 并发/3.互斥进阶.md",
+    "Sophomore/Computer Operating Systems/Chap2 并发/2.互斥基础.md",
+    "Sophomore/Computer Operating Systems/Chap2 并发/1.多处理器编程Multiprocessor Programming.md",
+    "Sophomore/Computer Operating Systems/Chap3 虚拟化/进程.md",
+    "Sophomore/Computer Operating Systems/Chap1 绪论/操作系统的发展历程.md",
+    "Sophomore/Computer Operating Systems/Chap1 绪论/各种视角下的操作系统.md",
+    "Sophomore/Internet Computing/3-运输层",
+    "Sophomore/Internet Computing/2-应用层"
   ]
 }
