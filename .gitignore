@@ -1,0 +1,36 @@
+# ---------- MkDocs 构建产物（CI 每次部署会自动重建，没必要推送）----------
+/site/
+
+# ---------- Obsidian 本地状态（插件、主题、工作区布局都是本机的东西）----------
+# 想同步个别设置时，可把下面一行换成只忽略 plugins/、themes/、user/、workspace*
+.obsidian/
+docs/notes/.trash/
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------- 编辑器 / 系统文件 ----------
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# ---------- 本地 AI 代理配置 ----------
+.claude/
+.codex/
+
+# ---------- 日志 / 临时文件 ----------
+*.log
+*.bak
+*.tmp
