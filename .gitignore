@@ -34,3 +34,7 @@ desktop.ini
 *.log
 *.bak
 *.tmp
+
+# ---------- 本机专用：cron 备份脚本（写死了本机绝对路径）、备份日志 ----------
+/backup.sh
+/.backup.log
