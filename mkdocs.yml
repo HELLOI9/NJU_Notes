@@ -112,7 +112,14 @@ nav:
   - Junior:
     - Compiler Principles:
       - Chapter4:
+        - FIRST: notes/Junior/Compiler Principles/Chapter4/FIRST.md
+        - FOLLOW: notes/Junior/Compiler Principles/Chapter4/FOLLOW.md
         - LL(1)文法: notes/Junior/Compiler Principles/Chapter4/LL(1)文法.md
+        - LR(0)文法: notes/Junior/Compiler Principles/Chapter4/LR(0)文法.md
+        - LR(1): notes/Junior/Compiler Principles/Chapter4/LR(1).md
+        - LR分析器: notes/Junior/Compiler Principles/Chapter4/LR分析器.md
+        - SLR(1): notes/Junior/Compiler Principles/Chapter4/SLR(1).md
+        - 自底向上的语法分析技术: notes/Junior/Compiler Principles/Chapter4/自底向上的语法分析技术.md
   - Sophomore:
     - Computer Operating Systems:
       - Overview: notes/Sophomore/Computer Operating Systems/index.md
@@ -144,8 +151,6 @@ nav:
       - Chapter4: notes/Sophomore/Foundations of Data Management/Chapter4/Chapter4-数据库安全完整性.md
       - Chapter8:
         - Chpater8-数据库编程: notes/Sophomore/Foundations of Data Management/Chapter8/Chpater8-数据库编程.md
-    - Human-Computer Interaction Systems: notes/Sophomore/Human-Computer Interaction
-        Systems/index.md
     - Internet Computing:
       - Overview: notes/Sophomore/Internet Computing/index.md
       - 1-计算机网络和因特网: notes/Sophomore/Internet Computing/1-计算机网络和因特网/1-计算机网络和因特网.md
