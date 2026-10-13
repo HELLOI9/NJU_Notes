@@ -118,3 +118,6 @@ $$ \begin{aligned} S&\to \text{if }E\text{ then }S\\ S&\to \text{if }E\text{ the
 可以规定遇到 dangling else 的 Shift-Reduce 冲突时选择 Shift。
 也可以改写文法，如：
 $$ \begin{aligned} S&\to M\mid U\\ M&\to other\\ M&\to \text{if }E\text{ then }M\text{ else }M\\ U&\to \text{if }E\text{ then }S\\ U&\to \text{if }E\text{ then }M\text{ else }U \end{aligned} $$
+这里的$M$表示已匹配（matched）语句，$U$表示未匹配（unmatched）语句。
+
+> 这个新文法最核心的限制是$M\to \text{if }E\text{ then }M\text{ else }M$、$U\to \text{if }E\text{ then }M\text{ else }U$，这确保了如果一个`else`要和当前的`if`匹配，那么它的`then`分支内部不能还残留一个未匹配的`if`.
