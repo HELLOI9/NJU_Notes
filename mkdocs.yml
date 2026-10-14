@@ -49,6 +49,10 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+# 构建期把 Obsidian 语法（[[笔记]]、![[图片]]、> [!note] 等）转换成网页可用形式
+hooks:
+  - hooks/obsidian.py
+
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -93,7 +97,10 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
-  - pymdownx.mark
+  - pymdownx.mark:
+      # 默认 smart 模式要求 == 前不能是 \w，而正则里中文也算 \w，
+      # 会让「对应==高亮==」这类中文句中高亮失效，故关闭。
+      smart_mark: false
   - pymdownx.tilde
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji

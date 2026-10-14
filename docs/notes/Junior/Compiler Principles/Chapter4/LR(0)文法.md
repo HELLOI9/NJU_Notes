@@ -53,7 +53,9 @@ $$ GOTO(I_i,X)=I_j $$
 #### 操作
 ##### Shift
 如果当前状态 $I_i$ 在终结符 $a$ 上有：
+
 $$ I_i\xrightarrow{a}I_j $$
+
 那么：
 1. 把 $a$ 压入符号栈；
 2. 把 $j$ 压入状态栈；
@@ -61,9 +63,13 @@ $$ I_i\xrightarrow{a}I_j $$
 
 ##### Reduce
 如果决定按：
+
 $$ A\to\beta $$
+
 归约，假设：
+
 $$ |\beta|=k $$
+
 那么：
 1. 弹出 $k$ 个文法符号；
 2. 弹出 $k$ 个状态；
@@ -73,6 +79,7 @@ $$ |\beta|=k $$
 
 #### 手算例子
 对文法：
+
 $$ \begin{aligned} E'&\to E\\ E&\to E+T\mid T\\ T&\to T*F\mid F\\ F&\to(E)\mid id \end{aligned} $$
 输入$id*id\$$，解析如下：
 

@@ -93,7 +93,7 @@ $$ \begin{aligned} S&\to L=R\mid R\\ L&\to *R\mid id\\ R&\to L \end{aligned} $$
 某个 LR(0) 状态：
 $$ \begin{aligned} S&\to L\cdot =R\\ R&\to L\cdot \end{aligned} $$
 若当前输入是$ = $，则会产生Shift-Reduce Confict.
-因此要加强为[[LR(1)].
+因此要加强为[[LR(1)]].
 
 ## 二义性
 

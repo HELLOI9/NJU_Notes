@@ -1,5 +1,7 @@
 **FIRST**集合的含义是：
+
 $$ \boxed{FIRST(\alpha)=\text{“串 }\alpha\text{ 最开始可能出现什么终结符”}} $$
+
 这里的 $\alpha$ 可以是一个非终结符，也可以是一整串符号。
 
 ### FIRST的求解规则
