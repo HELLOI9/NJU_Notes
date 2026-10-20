@@ -117,7 +117,15 @@ nav:
 - Course Notes:
   - Overview: notes/index.md
   - Junior:
+    - Business Model:
+      - 商业模式画布: notes/Junior/Business Model/商业模式画布.md
+      - 客户关系（Customer Relationship）: notes/Junior/Business Model/客户关系（Customer Relationship）.md
+      - 客户细分: notes/Junior/Business Model/客户细分.md
+      - 收入来源: notes/Junior/Business Model/收入来源.md
+      - 渠道通路: notes/Junior/Business Model/渠道通路.md
     - Compiler Principles:
+      - Chapter3:
+        - NFA与DFA: notes/Junior/Compiler Principles/Chapter3/NFA与DFA.md
       - Chapter4:
         - FIRST: notes/Junior/Compiler Principles/Chapter4/FIRST.md
         - FOLLOW: notes/Junior/Compiler Principles/Chapter4/FOLLOW.md
@@ -127,6 +135,9 @@ nav:
         - LR分析器: notes/Junior/Compiler Principles/Chapter4/LR分析器.md
         - SLR(1): notes/Junior/Compiler Principles/Chapter4/SLR(1).md
         - 自底向上的语法分析技术: notes/Junior/Compiler Principles/Chapter4/自底向上的语法分析技术.md
+      - Chapter5:
+        - 语法制导定义: notes/Junior/Compiler Principles/Chapter5/语法制导定义.md
+        - 语法制导翻译: notes/Junior/Compiler Principles/Chapter5/语法制导翻译.md
   - Sophomore:
     - Computer Operating Systems:
       - Overview: notes/Sophomore/Computer Operating Systems/index.md
@@ -171,6 +182,7 @@ nav:
         Networks/index.md
     - Software Engineering and Computing II: notes/Sophomore/Software Engineering
         and Computing II/index.md
+  - 未命名: notes/未命名.md
 - Blog:
   - Codeforces: blog/Codeforces.md
 - About: about.md
